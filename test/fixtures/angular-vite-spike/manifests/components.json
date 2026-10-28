@@ -1,0 +1,31 @@
+{
+  "v": 1,
+  "components": {
+    "spike-statusbadge": {
+      "id": "spike-statusbadge",
+      "name": "StatusBadgeComponent",
+      "description": "A small status badge with a documented source contract.",
+      "docgen": {
+        "$ref": "../services/core/docgen/spike-statusbadge.json#/components/spike-statusbadge"
+      },
+      "stories": {
+        "$ref": "../services/core/story-docs/spike-statusbadge.json#/components/spike-statusbadge"
+      }
+    },
+    "spike-statuschip": {
+      "id": "spike-statuschip",
+      "name": "StatusChipComponent",
+      "description": "A status chip using Angular signal inputs and outputs.",
+      "docgen": {
+        "$ref": "../services/core/docgen/spike-statuschip.json#/components/spike-statuschip"
+      },
+      "stories": {
+        "$ref": "../services/core/story-docs/spike-statuschip.json#/components/spike-statuschip"
+      }
+    }
+  },
+  "meta": {
+    "docgen": "angular-component-meta",
+    "durationMs": 0
+  }
+}

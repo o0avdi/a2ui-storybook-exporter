@@ -1,0 +1,97 @@
+{
+  "components": {
+    "spike-statuschip": {
+      "id": "spike-statuschip",
+      "name": "StatusChipComponent",
+      "path": "./src/status-chip.stories.ts",
+      "description": "A status chip using Angular signal inputs and outputs.",
+      "jsDocTags": {},
+      "argTypes": {
+        "compact": {
+          "name": "compact",
+          "description": "Whether to use compact spacing.",
+          "type": {
+            "name": "boolean"
+          },
+          "table": {
+            "category": "inputs",
+            "type": {
+              "summary": "boolean"
+            },
+            "defaultValue": {
+              "summary": false
+            }
+          }
+        },
+        "label": {
+          "name": "label",
+          "description": "Text shown in the chip.",
+          "type": {
+            "name": "string",
+            "required": true
+          },
+          "table": {
+            "category": "inputs",
+            "type": {
+              "summary": "string"
+            },
+            "defaultValue": {}
+          }
+        },
+        "tone": {
+          "name": "tone",
+          "description": "Visual emphasis of the chip.",
+          "type": {
+            "name": "enum",
+            "value": [
+              "info",
+              "success",
+              "warning"
+            ]
+          },
+          "table": {
+            "category": "inputs",
+            "type": {
+              "summary": "\"info\" | \"success\" | \"warning\""
+            },
+            "defaultValue": {
+              "summary": "info"
+            }
+          }
+        },
+        "dismissed": {
+          "name": "dismissed",
+          "description": "Emitted with the label when the chip is dismissed.",
+          "type": {
+            "name": "other",
+            "value": "void"
+          },
+          "action": "dismissed",
+          "table": {
+            "category": "outputs",
+            "type": {
+              "summary": "string"
+            },
+            "defaultValue": {}
+          }
+        }
+      },
+      "apiDescription": "## Inputs\n\n```\nexport type StatusChipComponentInputs = {\n  /**\n   * Whether to use compact spacing.\n   *\n   * @default false\n   */\n  compact?: boolean;\n  /** Text shown in the chip. */\n  label: string;\n  /**\n   * Visual emphasis of the chip.\n   *\n   * @default info\n   */\n  tone?: \"info\" | \"success\" | \"warning\";\n}\n```\n\n## Outputs\n\n```\nexport type StatusChipComponentOutputs = {\n  /** Emitted with the label when the chip is dismissed. */\n  dismissed: string;\n}\n```",
+      "renderer": "angular",
+      "angularComponentMeta": {
+        "name": "StatusChipComponent",
+        "selector": "spike-status-chip",
+        "standalone": true,
+        "inputs": [
+          "compact",
+          "label",
+          "tone"
+        ],
+        "outputs": [
+          "dismissed"
+        ],
+        "enums": []
+      }
+    }
+  }
+}

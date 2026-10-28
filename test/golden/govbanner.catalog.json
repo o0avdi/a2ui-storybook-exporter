@@ -1,0 +1,54 @@
+{
+  "$defs": {
+    "anyComponent": {
+      "discriminator": {
+        "propertyName": "component"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/components/GovBanner"
+        }
+      ]
+    },
+    "anyFunction": false
+  },
+  "$id": "https://example.org/catalogs/react-uswds/govbanner",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "catalogId": "https://example.org/catalogs/react-uswds/govbanner",
+  "components": {
+    "GovBanner": {
+      "additionalProperties": false,
+      "description": "GovBanner component exported from React Storybook. Properties listed by Storybook metadata only; inherited HTML/DOM attributes and handlers are not part of this schema.",
+      "properties": {
+        "component": {
+          "const": "GovBanner"
+        },
+        "language": {
+          "default": "english",
+          "enum": [
+            "english",
+            "spanish"
+          ],
+          "type": "string"
+        },
+        "tld": {
+          "default": ".gov",
+          "enum": [
+            ".gov",
+            ".mil"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "component"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Standardized components exported from React Storybook.",
+  "functions": {},
+  "instructions": "Use only the components and properties declared in this catalog. Properties, types, defaults and requiredness come from Storybook component metadata, not from story args. Events and projected content without a reviewed A2UI mapping are not part of a component schema; where a component description lists them as not exported, the developer owns that behavior. Bindings use the A2UI v1.0 @path form. This export contains catalog JSON only.",
+  "protocolVersion": "1.0",
+  "title": "React A2UI Catalog"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "storybook-a2ui",
+  "version": "0.1.0",
+  "description": "Export a Storybook build's component manifest as a validated A2UI v1.0 catalog",
+  "private": true,
+  "type": "module",
+  "bin": { "storybook-a2ui": "bin/storybook-a2ui.mjs" },
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node --test test/*.test.mjs" },
+  "dependencies": { "ajv": "8.20.0" }
+}

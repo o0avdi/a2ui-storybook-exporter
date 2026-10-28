@@ -1,0 +1,21 @@
+{
+  "components": {
+    "spike-statuschip": {
+      "id": "spike-statuschip",
+      "name": "StatusChipComponent",
+      "path": "./src/status-chip.stories.ts",
+      "stories": {
+        "spike-statuschip--info": {
+          "id": "spike-statuschip--info",
+          "name": "Info",
+          "snippet": "import { Component } from '@angular/core';\nimport { StatusChipComponent } from './status-chip.component';\n\n@Component({\n  selector: 'app-demo',\n  imports: [StatusChipComponent],\n  template: `<spike-status-chip [label]=\"'Ready'\" (dismissed)=\"dismissed($event)\" />`,\n})\nexport class DemoComponent {\n  dismissed(event: unknown) {}\n}"
+        },
+        "spike-statuschip--success": {
+          "id": "spike-statuschip--success",
+          "name": "Success",
+          "snippet": "import { Component } from '@angular/core';\nimport { StatusChipComponent } from './status-chip.component';\n\n@Component({\n  selector: 'app-demo',\n  imports: [StatusChipComponent],\n  template: `\n    <spike-status-chip\n        [label]=\"'Done'\"\n        [tone]=\"'success'\"\n        (dismissed)=\"dismissed($event)\"\n    />`,\n})\nexport class DemoComponent {\n  dismissed(event: unknown) {}\n}"
+        }
+      }
+    }
+  }
+}

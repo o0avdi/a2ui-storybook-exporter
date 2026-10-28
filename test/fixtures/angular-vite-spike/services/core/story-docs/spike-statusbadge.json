@@ -1,0 +1,21 @@
+{
+  "components": {
+    "spike-statusbadge": {
+      "id": "spike-statusbadge",
+      "name": "StatusBadgeComponent",
+      "path": "./src/status-badge.stories.ts",
+      "stories": {
+        "spike-statusbadge--info": {
+          "id": "spike-statusbadge--info",
+          "name": "Info",
+          "snippet": "import { Component } from '@angular/core';\nimport { StatusBadgeComponent } from './status-badge.component';\n\n@Component({\n  selector: 'app-demo',\n  imports: [StatusBadgeComponent],\n  template: `<spike-status-badge [label]=\"'Ready'\" (dismissed)=\"dismissed($event)\" />`,\n})\nexport class DemoComponent {\n  dismissed(event: unknown) {}\n}"
+        },
+        "spike-statusbadge--warning": {
+          "id": "spike-statusbadge--warning",
+          "name": "Warning",
+          "snippet": "import { Component } from '@angular/core';\nimport { StatusBadgeComponent } from './status-badge.component';\n\n@Component({\n  selector: 'app-demo',\n  imports: [StatusBadgeComponent],\n  template: `\n    <spike-status-badge\n        [label]=\"'Pending'\"\n        [tone]=\"'warning'\"\n        [compact]=\"true\"\n        (dismissed)=\"dismissed($event)\"\n    />`,\n})\nexport class DemoComponent {\n  dismissed(event: unknown) {}\n}"
+        }
+      }
+    }
+  }
+}
