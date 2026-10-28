@@ -29,12 +29,19 @@ Try it without a Storybook of your own: `npx storybook-a2ui inspect --storybook 
 ## Architecture
 
 ```
- storybook build dir                      src/
- ├─ index.json ───────────────┐   ┌───────────────────────────────────────────────────────┐
- └─ manifests/components.json ┴──▶ storybook-build ─▶ adapter (by manifest format) ─▶ contract ─▶ policy ─▶ a2ui/catalog ─▶ a2ui/validate ─▶ catalog.json
-                                  │ reads + checks    │ react-v0 | angular-vite-v1  │ one       │ block / │ existing     │ pinned spec/   └▶ export-report.json
-                                  │ $refs stay inside │ never decide exportability  │ normalized│ report  │ generator    │ v1_0 + ajv
-                                  └ the build dir     └─────────────────────────────┘ shape     └─────────┘
+index.json + manifests/components.json   (a `storybook build` directory)
+        │
+  storybook-build   read, check, resolve $refs inside the build dir
+        │
+  adapter           react-v0 | angular-vite-v1 -> one normalized contract (decides nothing)
+        │
+  policy            exportable, or blocked with a named reason; omissions recorded
+        │
+  a2ui/catalog      existing generator -> A2UI v1.0 catalog
+        │
+  a2ui/validate     pinned official schemas (spec/v1_0) via ajv
+        │
+  catalog.json + export-report.json
 ```
 
 | Module | Role |
