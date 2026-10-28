@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { exportCatalog } from '../src/export.mjs';
 import { validateV1Export } from '../src/a2ui/validate.mjs';
+import { makeCatalogV1 } from '../src/a2ui/catalog.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const REACT = path.join(here, 'fixtures/chromatic-react');
@@ -266,6 +267,52 @@ test('CLI: inspect exits 0 and export exits 1 with nothing written when the poli
   const ok = spawnSync(process.execPath, [CLI, 'export', '--storybook', REACT, '--components', 'Button', '--unmapped-events', 'omit', '--catalog-id', catalogId, '--out', out], { encoding: 'utf8' });
   assert.equal(ok.status, 0, ok.stderr);
   assert.ok(fs.existsSync(path.join(out, 'catalog.json')));
+});
+
+// ---- Release readiness: no component-specific logic, clear CLI errors
+
+test('Generator: names from the capstone prototype get no special treatment', () => {
+  const field = (name, schema, required) => ({ name, schema, required, descriptionOrigin: 'manifest' });
+  const catalog = makeCatalogV1([
+    { name: 'MaterialButton', framework: 'react', fields: [field('label', { type: 'string' }, false), field('amount', { type: ['number', 'string'] }, false)], required: [] },
+    { name: 'FinanceMetricCard', framework: 'react', fields: [field('title', { type: 'string' }, true)], required: ['title'] },
+  ], { catalogId });
+  assert.deepEqual(validateV1Export(catalog).valid, true);
+  assert.deepEqual(catalog.components.MaterialButton.required, ['component']);
+  assert.deepEqual(catalog.components.FinanceMetricCard.required, ['component', 'title']);
+  assert.equal(catalog.components.FinanceMetricCard.description, 'FinanceMetricCard component definition exported from react.');
+  assert.match(catalog.components.MaterialButton.properties.amount.description, /^Dynamic value supporting/);
+  assert.equal(catalog.title, 'React A2UI Catalog');
+  assert.doesNotMatch(JSON.stringify(catalog), /finance and|Angular Material|MaterialCheckbox|executive/i);
+  assert.throws(() => makeCatalogV1([{ name: 'A', fields: [field('x', { type: 'string' })] }]), /Invalid catalogId/);
+});
+
+test('A build without manifests/components.json explains the Storybook feature flag', (t) => {
+  const directory = path.join(temporary(t), 'build');
+  fs.cpSync(REACT, directory, { recursive: true });
+  fs.rmSync(path.join(directory, 'manifests'), { recursive: true });
+  assert.throws(() => run({ builds: [directory] }), (error) => /No components manifest found/.test(error.message) && /componentsManifest: true/.test(error.message) && /reactDocgen/.test(error.message));
+  assert.throws(() => run({ builds: [path.join(directory, 'missing')] }), /build directory not found/);
+  fs.rmSync(path.join(directory, 'index.json'));
+  assert.throws(() => run({ builds: [directory] }), /no index\.json/);
+});
+
+test('CLI: --help, -h and --version succeed; unknown commands and a missing --catalog-id fail clearly', (t) => {
+  const cli = (...args) => spawnSync(process.execPath, [CLI, ...args], { encoding: 'utf8' });
+  for (const args of [['--help'], ['-h'], ['help'], ['export', '--help'], ['inspect', '-h']]) {
+    const result = cli(...args);
+    assert.equal(result.status, 0, args.join(' '));
+    assert.match(result.stdout, /Usage:/);
+  }
+  assert.match(cli('--version').stdout, /^\d+\.\d+\.\d+/);
+  const unknown = cli('bogus');
+  assert.equal(unknown.status, 2);
+  assert.match(unknown.stderr, /Unknown command "bogus"/);
+  const out = path.join(temporary(t), 'out');
+  const missingId = cli('export', '--storybook', REACT, '--out', out);
+  assert.equal(missingId.status, 2);
+  assert.match(missingId.stderr, /--catalog-id/);
+  assert.equal(fs.existsSync(out), false);
 });
 
 // ---- End to end: real react-uswds Storybook 10.6.3 build (see test/fixtures/PROVENANCE.md)

@@ -4,27 +4,62 @@ Turn a Storybook build's own component manifest into a validated [A2UI](https://
 `catalog.json`, with a plain-language compatibility report. No project source is parsed, no component-specific
 schema is written by hand, and anything the exporter cannot represent is reported instead of dropped.
 
-Status: **0.1 prototype, local only, not published.** Node >= 22. One dependency (`ajv`).
+Status: **0.1 prototype, local only, not published.** Node >= 22. One dependency (`ajv`). License: Apache-2.0 (see
+`THIRD_PARTY_NOTICES.md`).
 
 ## Quick start
 
+### A. Try it in this repository (no Storybook project needed)
+
+Run from the root of this repository. The committed fixture is a real `storybook build` of
+[`trussworks/react-uswds`](https://github.com/trussworks/react-uswds) (see `test/fixtures/PROVENANCE.md`).
+
 ```bash
 npm ci
+node bin/storybook-a2ui.mjs inspect --storybook test/fixtures/react-uswds        # what can be exported, and why not
 
-# 1. Build your Storybook with the components manifest on (Storybook >= 10.6):
-#    .storybook/main.ts  ->  features: { componentsManifest: true }, typescript: { reactDocgen: 'react-docgen' }
-npx storybook build -o storybook-static
-
-# 2. What can be exported, and why not (writes nothing)
-npx storybook-a2ui inspect --storybook ./storybook-static
-
-# 3. Export (the catalog is validated against the pinned official A2UI v1.0 schemas before it is written)
-npx storybook-a2ui export --storybook ./storybook-static \
-  --catalog-id https://example.org/catalogs/my-lib/1 --out ./a2ui-catalog [--components A,B]
+OUT=$(mktemp -d)
+node bin/storybook-a2ui.mjs export --storybook test/fixtures/react-uswds --components GovBanner \
+  --catalog-id https://example.org/catalogs/react-uswds/govbanner --out "$OUT"
+diff "$OUT/catalog.json" test/golden/govbanner.catalog.json && echo "matches the golden catalog"
 ```
 
-Output: `catalog.json` and `export-report.json`. Repeat `--storybook` to combine React and Angular builds.
-Try it without a Storybook of your own: `npx storybook-a2ui inspect --storybook test/fixtures/react-uswds`.
+`export` validates the catalog against the pinned official A2UI v1.0 schemas before writing `catalog.json` and
+`export-report.json` into `--out` (a new or empty directory). `--catalog-id` is required: use a stable `https` URI you own.
+
+### B. Use it on your own Storybook project
+
+**1. In your Storybook project** (Storybook >= 10.6): turn on the components manifest, then build.
+
+```ts
+// .storybook/main.ts
+features: { componentsManifest: true },
+typescript: { reactDocgen: 'react-docgen' },   // React projects
+```
+
+```bash
+npx storybook build -o storybook-static        # writes storybook-static/manifests/components.json
+```
+
+Without the feature flag the exporter stops with an error that shows these two lines.
+
+**2. Run the exporter** (not published to npm yet). Either call it by path:
+
+```bash
+node /path/to/a2ui-storybook-exporter/bin/storybook-a2ui.mjs inspect --storybook ./storybook-static
+```
+
+or install a local tarball: run `npm pack` in this repository, then in your project
+`npm install --save-dev /path/to/storybook-a2ui-0.1.0.tgz` and use `npx storybook-a2ui ...`.
+
+```bash
+npx storybook-a2ui inspect --storybook ./storybook-static
+npx storybook-a2ui export  --storybook ./storybook-static --catalog-id https://example.org/catalogs/my-lib/1 \
+  --out ./a2ui-catalog [--components A,B]
+```
+
+Repeat `--storybook` to combine React and Angular builds. `storybook-a2ui --help` lists every option.
+Exit codes: `0` success, `1` nothing could be exported under the policy, `2` usage or input error.
 
 ## Architecture
 
@@ -89,6 +124,6 @@ manifest.
 
 ## Tests
 
-`npm test` (26 tests, no network). Includes a reproducible end-to-end test on a real `trussworks/react-uswds`
+`npm test` (29 tests, no network). Includes a reproducible end-to-end test on a real `trussworks/react-uswds`
 Storybook 10.6.3 build (golden catalog in `test/golden`) and the Angular-Vite adapter regression. See
 `test/fixtures/PROVENANCE.md` for exactly where each fixture came from.

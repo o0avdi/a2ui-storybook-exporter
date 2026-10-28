@@ -22,7 +22,7 @@ it: give Omar the exact pinned commands.
 ```bash
 cd /Users/oavdi/repos/bacs496/a2ui-storybook-exporter
 npm ci --ignore-scripts --no-audit --no-fund      # installs ajv 8.20.0 only
-npm test                                          # 26 tests, no network
+npm test                                          # 29 tests, no network
 node bin/storybook-a2ui.mjs inspect --storybook test/fixtures/react-uswds
 node bin/storybook-a2ui.mjs export --storybook test/fixtures/react-uswds --components GovBanner \
   --catalog-id https://example.org/catalogs/react-uswds/govbanner --out /tmp/govbanner   # must match test/golden
@@ -58,9 +58,9 @@ Earlier: Chromatic `Button` exports as properties-only with `--unmapped-events o
 2. **Hidden `children`.** react-uswds `Collection` exports with only `condensed` yet renders `{children}`; the catalog
    cannot place content in it. A manifest cannot reveal this; consider an explicit container warning heuristic or an
    audited-sidecar mechanism, not a source parser.
-3. **Legacy component-name branches remain in `src/a2ui/catalog.mjs`** (`FinanceMetricCard`, `MaterialButton`,
-   `MaterialCheckbox` instruction text, a `FinanceMetricCard` field special case near line 234, finance default
-   title/description). They only fire for those exact names but contradict "no component-specific code". Remove first.
+3. ~~Legacy component-name branches in `src/a2ui/catalog.mjs`~~ Removed on branch `release-readiness` (no component is
+   treated specially by name; all fixture exports are byte-identical to before). The generator still accepts
+   caller-supplied `reviewedPolicies` / `componentInstructions`, which the CLI never passes.
 4. Component id ambiguity (same story `title` in two files) is reported as a warning, not blocked.
 5. Angular adapter is verified on real `@storybook/angular-vite` 10.6.5 output, but both components were self-authored; no
    external Angular library has been tested. Plain-string defaults are refused (encoding unverified).
@@ -71,11 +71,14 @@ Earlier: Chromatic `Button` exports as properties-only with `--unmapped-events o
 
 ## First standalone tasks (in order)
 
-1. Remove the legacy component-name branches (limitation 3); keep every test and the golden catalog passing unchanged.
-2. Error clearly when `manifests/components.json` is missing (feature flag off), with the two config lines to add.
+1. ~~Remove the legacy component-name branches~~ and 2. ~~error clearly when `manifests/components.json` is missing~~: done on `release-readiness`.
 3. Add `string[]` and nullable primitives using the capstone assessment, only if an external run shows they block real components.
 4. Run one more external library (candidate: `gravity-ui/uikit`, or an Angular library) and record the result like react-uswds.
-5. Decide license and package name; verify on Windows; only then discuss a remote repository with Omar.
+5. License: `LICENSE` (Apache-2.0) and `THIRD_PARTY_NOTICES.md` are prepared, but the copyright holder and any
+   university/sponsor/teammate permission are unconfirmed. Package name `storybook-a2ui` returned 404 on the npm
+   registry on 2026-10-28 (not a reservation). Verify on Windows; only then discuss a remote repository with Omar.
+6. Known issue: `--unmapped-events omit` on the full react-uswds build aborts (exit 2) because `TimePicker` has a property
+   named `id`, which A2UI reserves for envelopes. It should block that one component instead of failing the whole run.
 
 ## Future enhancement, NOT implemented: AI-assisted event mapping
 

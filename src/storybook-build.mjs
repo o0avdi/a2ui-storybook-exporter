@@ -14,8 +14,20 @@ export function readJson(file, label) {
   catch (error) { throw new Error(`${label} is not valid JSON (${file}): ${error.message}`); }
 }
 
+// Storybook writes manifests/components.json only when this feature flag is on (Storybook >= 10.6).
+export const MANIFEST_HELP = `Storybook only writes the components manifest when its feature flag is enabled. In .storybook/main.ts add:
+
+  features: { componentsManifest: true },
+  typescript: { reactDocgen: 'react-docgen' },   // React projects
+
+then run "storybook build" again (Storybook >= 10.6 is required).`;
+
 /** Storybook index v5: the set of story ids per component id prefix is checked against the manifest. */
 export function readIndex(buildDir) {
+  if (!fs.existsSync(buildDir) || !fs.statSync(buildDir).isDirectory())
+    throw new Error(`Storybook build directory not found: ${buildDir}. Pass the output folder of "storybook build" (usually ./storybook-static).`);
+  if (!fs.existsSync(path.join(buildDir, 'index.json')))
+    throw new Error(`${buildDir} has no index.json, so it does not look like a "storybook build" output folder. Pass the folder that "storybook build" wrote (usually ./storybook-static).`);
   const { value, sha256: hash } = readJson(path.join(buildDir, 'index.json'), 'Storybook index');
   if (!record(value) || value.v !== 5 || !record(value.entries))
     throw new Error(`Unsupported Storybook index in ${buildDir}: expected index.json with "v": 5 and "entries".`);
@@ -37,6 +49,8 @@ export function readIndex(buildDir) {
 
 export function readManifest(buildDir) {
   const file = path.join(buildDir, 'manifests', 'components.json');
+  if (!fs.existsSync(file))
+    throw new Error(`No components manifest found (expected ${file}).\n\n${MANIFEST_HELP}`);
   const { value, sha256: hash } = readJson(file, 'Components manifest');
   if (!record(value) || !record(value.components))
     throw new Error(`Unsupported components manifest in ${buildDir}: expected an object with "components".`);

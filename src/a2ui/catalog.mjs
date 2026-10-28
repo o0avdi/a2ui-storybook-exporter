@@ -1,5 +1,3 @@
-export const catalogV1Id = 'https://capstone.example/catalogs/finance-material/1.0.0';
-
 export const catalogIdRequirements = 'Must be an absolute HTTP(S) URI with a path such as https://example.org/catalogs/1, without fragments or whitespace. URNs and other non-HTTP(S) schemes are unsupported because relative schema references cannot resolve against opaque IDs.';
 
 /**
@@ -21,95 +19,28 @@ export function isValidCatalogId(id) {
 }
 
 /**
- * Reviewed registration policies for known components.
- * Configures explicit normative contracts, action descriptions, and component guidelines
- * without requiring hardcoded component-name branches in the core generator.
- */
-export const DEFAULT_REVIEWED_POLICIES = {
-  MaterialButton: {
-    required: ['component', 'label', 'action'],
-    eventDescriptions: {
-      click: 'Interaction handler dispatched on button click.',
-    },
-    instructions:
-      "MaterialButton: User interaction trigger. Requires a descriptive 'label' and an 'action' envelope specifying the outbound event name and optional context dictionary.",
-  },
-  MaterialCheckbox: {
-    required: ['component', 'label', 'checked'],
-    eventDescriptions: {
-      change: 'Interaction handler dispatched when the checkbox state changes.',
-    },
-    instructions:
-      "MaterialCheckbox: Host-owned boolean toggle. Bind 'checked' to a boolean path in the data model (@path). Click interactions emit change events with context.checked; data model updates are host-owned.",
-  },
-};
-
-/**
- * Generate design and usage instructions relevant to the actually exported components.
- * Omits unexported structural components (like Row or Column) and unused features.
+ * Generate usage instructions for the exported components. No component is treated specially by name:
+ * a component gets a line only if the caller supplies reviewed instructions for it
+ * (`options.reviewedPolicies[name].instructions` or `options.componentInstructions[name]`).
  */
 export function generateInstructions(componentNames = [], options = {}) {
   const lines = ['## Layout & Usage Guidelines\n'];
   let step = 1;
 
-  // 1. Surface container requirement
   lines.push(
     `${step++}. Surface Hierarchy: Top-level components must be placed within 'Surface' container roots. Component envelopes supply unique instance IDs via 'id'.`,
   );
 
-  // 2. Container layout - only if container components are actually present
-  const hasRow = componentNames.includes('Row');
-  const hasColumn = componentNames.includes('Column');
-  if (hasRow && hasColumn) {
-    lines.push(
-      `${step++}. Container Layout: Use Row and Column container components to arrange nested child components.`,
-    );
-  } else if (hasRow) {
-    lines.push(
-      `${step++}. Container Layout: Use Row container components to arrange child components horizontally.`,
-    );
-  } else if (hasColumn) {
-    lines.push(
-      `${step++}. Container Layout: Use Column container components to arrange child components vertically.`,
-    );
-  }
-
-  // 3. Component-specific guidelines based on actual exported components
-  if (componentNames.includes('FinanceMetricCard')) {
-    lines.push(
-      `${step++}. FinanceMetricCard: Executive KPI and financial metric displays. Accepts literal numbers, formatted strings, and dynamic data bindings via RFC 6901 @path expressions.`,
-    );
-  }
-
-  const reviewedPolicies = options.reviewedPolicies ?? DEFAULT_REVIEWED_POLICIES;
-
-  if (componentNames.includes('MaterialButton')) {
-    const inst =
-      reviewedPolicies.MaterialButton?.instructions ??
-      "MaterialButton: Dispatches user interaction events. Must declare an 'action' with a descriptive event name and optional context.";
-    lines.push(`${step++}. ${inst}`);
-  }
-
-  if (componentNames.includes('MaterialCheckbox')) {
-    const inst =
-      reviewedPolicies.MaterialCheckbox?.instructions ??
-      "MaterialCheckbox: Host-owned boolean toggle. Bind 'checked' to a boolean path in the data model (@path). Click interactions emit change events with context.checked; data model updates are host-owned.";
-    lines.push(`${step++}. ${inst}`);
-  }
-
-  // Any other exported component with reviewed or configured instructions
   for (const name of componentNames) {
-    if (!['FinanceMetricCard', 'MaterialButton', 'MaterialCheckbox', 'Row', 'Column'].includes(name)) {
-      const customInst =
-        reviewedPolicies[name]?.instructions ??
-        options.componentInstructions?.[name];
-      if (customInst) {
-        lines.push(`${step++}. ${customInst}`);
-      }
+    const customInst =
+      options.reviewedPolicies?.[name]?.instructions ??
+      options.componentInstructions?.[name];
+    if (customInst) {
+      lines.push(`${step++}. ${customInst}`);
     }
   }
 
-  // 4. Functions: only mention if catalog defines active functions
+  // Functions: only mention if catalog defines active functions
   const functionCount = options.functions ? Object.keys(options.functions).length : 0;
   if (functionCount > 0) {
     lines.push(`${step++}. Functions: Active catalog functions are invoked using @call envelopes.`);
@@ -117,12 +48,6 @@ export function generateInstructions(componentNames = [], options = {}) {
 
   return lines.join('\n');
 }
-
-export const defaultInstructions = generateInstructions([
-  'FinanceMetricCard',
-  'MaterialButton',
-  'MaterialCheckbox',
-]);
 
 const emittedNullTypes = (property) => [property.type, ...(property.oneOf ?? []).map((option) => option.type)].flat();
 // Whether the generated schema itself accepts null (not merely whether the source type mentioned null).
@@ -210,7 +135,7 @@ function formatFieldPropertyInner(field, componentName, options = {}) {
     throw new Error(errorMessage);
   }
 
-  // 1. Union scalar types like number | string (e.g. value and change in FinanceMetricCard)
+  // 1. Union scalar types like number | string
   const isNumberStringUnion =
     (Array.isArray(schema.type) &&
       schema.type.includes('number') &&
@@ -231,9 +156,7 @@ function formatFieldPropertyInner(field, componentName, options = {}) {
 
   if (isNumberStringUnion) {
     const defaultUnionDesc =
-      componentName === 'FinanceMetricCard'
-        ? 'Dynamic metric value supporting literal numbers, strings, @path bindings, or function calls.'
-        : 'Dynamic value supporting literal numbers, strings, @path bindings, or function calls.';
+      'Dynamic value supporting literal numbers, strings, @path bindings, or function calls.';
 
     const unionOneOf = [{ type: 'number' }, { type: 'string' }];
     if (isNullableUnion) {
@@ -452,9 +375,7 @@ function formatFieldPropertyInner(field, componentName, options = {}) {
  * `origin` tells metadata reporting whether the text is reviewed or a generator fallback.
  */
 export function actionDescriptionSource(componentName, eventName, options = {}) {
-  const policy =
-    options.reviewedPolicies?.[componentName] ??
-    DEFAULT_REVIEWED_POLICIES[componentName];
+  const policy = options.reviewedPolicies?.[componentName];
 
   if (policy?.eventDescriptions?.[eventName]) {
     return { text: policy.eventDescriptions[eventName], origin: 'reviewed-policy' };
@@ -467,12 +388,10 @@ function getActionDescription(componentName, eventName, options = {}) {
 }
 
 /** Generator-created component text used when extraction supplies none; reported as synthetic. */
-export function defaultComponentDescription(c, hasFinanceComponents) {
-  return hasFinanceComponents && c.name === 'FinanceMetricCard'
-    ? `${c.name} component definition exported from Angular Material and finance widgets.`
-    : c.framework
-      ? `${c.name} component definition exported from ${c.framework}.`
-      : `${c.name} component definition.`;
+export function defaultComponentDescription(c) {
+  return c.framework
+    ? `${c.name} component definition exported from ${c.framework}.`
+    : `${c.name} component definition.`;
 }
 
 /**
@@ -492,8 +411,7 @@ export function getRequiredProperties(component, options = {}) {
   // 2. Explicit reviewed policy from options or default reviewed policies
   const policy =
     options.reviewedPolicies?.[component.name] ??
-    component.policy ??
-    DEFAULT_REVIEWED_POLICIES[component.name];
+    component.policy;
 
   if (policy && Array.isArray(policy.required)) {
     return ['component', ...policy.required.filter((p) => p !== 'component')];
@@ -540,31 +458,26 @@ export function makeCatalogV1(components, options = {}) {
     throw new Error('makeCatalogV1: At least one supported component definition is required.');
   }
 
-  const catalogId = options.catalogId ?? catalogV1Id;
+  const catalogId = options.catalogId;
   if (!isValidCatalogId(catalogId)) {
     throw new Error(
       `makeCatalogV1: Invalid catalogId '${catalogId}'. ${catalogIdRequirements}`,
     );
   }
 
-  const hasFinanceComponents = components.some((c) => c.name === 'FinanceMetricCard');
   const allReact = components.every((c) => c.framework === 'react');
 
   const defaultTitle = options.projectName
     ? `${options.projectName} A2UI Catalog`
-    : hasFinanceComponents
-      ? 'Finance and Material A2UI Catalog'
-      : allReact
-        ? 'React A2UI Catalog'
-        : 'A2UI Component Catalog';
+    : allReact
+      ? 'React A2UI Catalog'
+      : 'A2UI Component Catalog';
 
   const defaultDescription = options.projectDescription
     ? options.projectDescription
-    : hasFinanceComponents
-      ? 'Standardized components exported from Angular Material and finance widgets.'
-      : allReact
-        ? 'Standardized components exported from React Storybook.'
-        : 'Standardized A2UI v1.0 component catalog.';
+    : allReact
+      ? 'Standardized components exported from React Storybook.'
+      : 'Standardized A2UI v1.0 component catalog.';
 
   const title = options.title ?? defaultTitle;
   const description = options.description ?? defaultDescription;
@@ -655,7 +568,7 @@ export function makeCatalogV1(components, options = {}) {
 
     const schema = {
       type: 'object',
-      description: c.description ?? defaultComponentDescription(c, hasFinanceComponents),
+      description: c.description ?? defaultComponentDescription(c),
       properties,
       required,
       additionalProperties: false,
