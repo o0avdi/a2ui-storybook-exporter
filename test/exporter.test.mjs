@@ -247,6 +247,28 @@ test('Angular: a manifest reference that escapes the build directory is rejected
   assert.match(component(result, 'StatusBadgeComponent').blocking[0].message, /escapes the Storybook build directory/);
 });
 
+test('Angular: a symbolic link inside the build cannot make a manifest reference read a file outside it', (t) => {
+  const root = temporary(t);
+  const build = path.join(root, 'build');
+  fs.cpSync(ANGULAR, build, { recursive: true });
+  const badge = (directory) => component(run({ builds: [directory], components: ['StatusBadgeComponent'], unmappedEvents: 'omit' }), 'StatusBadgeComponent');
+  // Move the referenced files outside the build and leave only a link to them inside it.
+  fs.mkdirSync(path.join(root, 'outside'));
+  fs.renameSync(path.join(build, 'services'), path.join(root, 'outside/services'));
+  fs.symlinkSync(path.join(root, 'outside/services'), path.join(build, 'services'), 'dir');
+  const blocked = badge(build);
+  assert.equal(blocked.status, 'blocked');
+  assert.match(blocked.blocking[0].message, /escapes the Storybook build directory through a symbolic link/);
+  // A link that stays inside the build is fine, and so is a build directory that is itself reached through a link.
+  fs.rmSync(path.join(build, 'services'));
+  fs.cpSync(path.join(root, 'outside/services'), path.join(build, 'real-services'), { recursive: true });
+  fs.symlinkSync(path.join(build, 'real-services'), path.join(build, 'services'), 'dir');
+  assert.equal(badge(build).status, 'exported');
+  const linked = path.join(root, 'linked-build');
+  fs.symlinkSync(build, linked, 'dir');
+  assert.equal(badge(linked).status, 'exported');
+});
+
 test('Stories listed by the manifest but absent from the Storybook index block the component', (t) => {
   const directory = path.join(temporary(t), 'build');
   fs.cpSync(REACT, directory, { recursive: true });

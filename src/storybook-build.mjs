@@ -64,7 +64,13 @@ export function resolveRef(buildDir, manifestFile, ref) {
   const target = path.resolve(path.dirname(manifestFile), relative);
   const root = path.resolve(buildDir) + path.sep;
   if (!target.startsWith(root)) throw new Error(`Manifest reference escapes the Storybook build directory: ${ref}`);
-  let node = readJson(target, `Manifest reference ${relative}`).value;
+  // The check above is lexical; a symbolic link inside the build can still lead outside it. Compare real paths and
+  // read from the resolved one so the file that was checked is the file that is read.
+  let real;
+  try { real = fs.realpathSync(target); } catch (error) { throw new Error(`Cannot read Manifest reference ${relative} (${target}): ${error.message}`); }
+  if (!real.startsWith(fs.realpathSync(buildDir) + path.sep))
+    throw new Error(`Manifest reference escapes the Storybook build directory through a symbolic link: ${ref}`);
+  let node = readJson(real, `Manifest reference ${relative}`).value;
   for (const part of pointer.split('/').filter(Boolean)) {
     const key = part.replaceAll('~1', '/').replaceAll('~0', '~');
     if (!record(node) || !(key in node)) throw new Error(`Manifest reference ${ref} does not resolve (missing "${key}").`);
