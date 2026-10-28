@@ -53,13 +53,15 @@ function print(report) {
   }
 }
 
-try {
+// Exit by setting process.exitCode, never process.exit(): exiting immediately can cut off output that is still
+// waiting to be written to a pipe (for example `storybook-a2ui inspect ... | head`).
+function main() {
   const options = parse(process.argv.slice(2));
   if (['-v', '--version'].includes(options.command)) {
     console.log(JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version);
-    process.exit(0);
+    return 0;
   }
-  if (!options.command || options.help || ['-h', '--help', 'help'].includes(options.command)) { console.log(USAGE); process.exit(0); }
+  if (!options.command || options.help || ['-h', '--help', 'help'].includes(options.command)) { console.log(USAGE); return 0; }
   if (!['inspect', 'export'].includes(options.command))
     throw new Error(`Unknown command "${options.command}". Commands: inspect, export. Run "storybook-a2ui --help" for usage.`);
   if (options.command === 'export' && !options.out) throw new Error('export needs --out <new-dir>.');
@@ -71,8 +73,12 @@ try {
     console.log(result.ok ? `\nWrote ${path.resolve(options.out)}/catalog.json (official A2UI v1.0 validation: PASS) and export-report.json`
       : '\nNothing written: no catalog could be produced under the current policy.');
   }
-  process.exit(result.ok || options.command === 'inspect' ? 0 : 1);
+  return result.ok || options.command === 'inspect' ? 0 : 1;
+}
+
+try {
+  process.exitCode = main();
 } catch (error) {
   console.error(`Error: ${error.message}`);
-  process.exit(2);
+  process.exitCode = 2;
 }

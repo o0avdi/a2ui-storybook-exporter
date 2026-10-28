@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { exportCatalog } from '../src/export.mjs';
@@ -348,6 +348,22 @@ test('CLI: --help, -h and --version succeed; unknown commands and a missing --ca
   assert.equal(missingId.status, 2);
   assert.match(missingId.stderr, /--catalog-id/);
   assert.equal(fs.existsSync(out), false);
+});
+
+test('CLI: a slow reader on a pipe still receives the complete output', async () => {
+  // process.exit() used to truncate piped output at the 64 KB pipe buffer; `inspect` on react-uswds is ~150 KB.
+  const args = [CLI, 'inspect', '--storybook', path.join(here, 'fixtures/react-uswds')];
+  const expected = spawnSync(process.execPath, args, { encoding: 'utf8', maxBuffer: 1 << 26 }).stdout.length;
+  assert.ok(expected > 70000, 'the fixture output must exceed one pipe buffer for this test to mean anything');
+  const child = spawn(process.execPath, args, { stdio: ['ignore', 'pipe', 'inherit'] });
+  const closed = new Promise((resolve) => child.on('close', resolve));
+  child.stdout.pause();
+  let received = 0;
+  child.stdout.on('data', (chunk) => { received += chunk.length; });
+  await new Promise((resolve) => setTimeout(resolve, 400));
+  child.stdout.resume();
+  await closed;
+  assert.equal(received, Buffer.byteLength(spawnSync(process.execPath, args, { encoding: 'utf8', maxBuffer: 1 << 26 }).stdout));
 });
 
 // ---- Names A2UI reserves block one component; they never abort the export or get renamed
