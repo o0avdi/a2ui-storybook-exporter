@@ -73,14 +73,20 @@ export function evaluate(contract, { unmappedEvents = 'fail' } = {}) {
 
 // Storybook metadata may not list everything a component accepts (for example props inherited from an HTML
 // element type), and this exporter cannot see what the metadata leaves out.
-export const SCOPE_NOTE = 'Properties listed by Storybook metadata only; inherited HTML/DOM attributes and handlers are not part of this schema.';
+export const SCOPE_NOTE = 'Properties listed by Storybook metadata only; inherited HTML/DOM attributes and handlers are not part of this schema. ' +
+  'Projected content (for example React children) may be missing from Storybook metadata and is not described here.';
 
-/** What the report may claim about the source contract. Conversion of the exposed metadata is not verification. */
-export function contractStatus(omitted) {
+/**
+ * What the report may claim about the source contract. Conversion of the exposed metadata is not verification.
+ * "present" only where the metadata itself shows it (a listed DOM attribute, a listed children/content property);
+ * otherwise "unknown", because absence from Storybook metadata is not evidence of absence.
+ */
+export function contractStatus(omitted, content = []) {
   return {
     basis: 'storybook-manifest',
     sourceContractVerified: false,
     inheritedAttributes: omitted.some((item) => item.kind === 'dom-attribute') ? 'present' : 'unknown',
+    projectedContent: content.length ? 'present' : 'unknown',
   };
 }
 

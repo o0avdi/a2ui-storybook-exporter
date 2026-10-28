@@ -112,18 +112,20 @@ It does **not** claim the source component contract is fully represented. Storyb
 `GovBannerProps = {tld?, language?} & JSX.IntrinsicElements['section']` is 282 properties in TypeScript and 2 in the
 manifest.
 
-- `export-report.json` has, per component, `contract: { basis: "storybook-manifest", sourceContractVerified: false, inheritedAttributes: "unknown" | "present" }`,
-  and a top-level `notice`. `omittedKnown` lists only omissions the exporter could see; **an empty list is not proof
+- `export-report.json` has, per component, `contract: { basis: "storybook-manifest", sourceContractVerified: false, inheritedAttributes: "unknown" | "present", projectedContent: "unknown" | "present" }`,
+  and a top-level `notice`. Both fields say `present` only when the metadata itself shows it (a listed DOM attribute,
+  a listed `children` property); `unknown` never means "none". `omittedKnown` lists only omissions the exporter could see; **an empty list is not proof
   that nothing was left out.**
 - Component descriptions in the catalog say the schema lists Storybook-exposed properties only.
 - `additionalProperties: false` restricts the *A2UI* surface; it does not say the component accepts nothing else.
-- Hidden `children` matter most: react-uswds `Collection` (`{condensed?} & JSX.IntrinsicElements['ul']`, renders
+- Projected content (React `children`, slots) can be absent from Storybook metadata, so the catalog cannot say whether a
+  component accepts it; every component description says so. Hidden `children` matter most: react-uswds `Collection` (`{condensed?} & JSX.IntrinsicElements['ul']`, renders
   `{children}`) converts with one property and cannot hold content. Review container-like components before use.
 - `AMBIGUOUS_COMPONENT_ID` (warning) is reported when several story files share one Storybook id (same `title`);
   the manifest then describes only one of them.
 
 ## Tests
 
-`npm test` (29 tests, no network). Includes a reproducible end-to-end test on a real `trussworks/react-uswds`
+`npm test` (35 tests, no network). Includes a reproducible end-to-end test on a real `trussworks/react-uswds`
 Storybook 10.6.3 build (golden catalog in `test/golden`) and the Angular-Vite adapter regression. See
 `test/fixtures/PROVENANCE.md` for exactly where each fixture came from.

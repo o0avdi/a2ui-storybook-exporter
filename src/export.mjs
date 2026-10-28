@@ -76,14 +76,15 @@ export function exportCatalog(options) {
     generator: 'storybook-a2ui', protocolVersion: '1.0', catalogId,
     policy: { unmappedEvents },
     notice: 'Conversion covers the properties Storybook exposes. The source component contract is not verified: ' +
-      'anything the metadata does not list, such as inherited HTML/DOM attributes, is not visible to this exporter. ' +
+      'anything the metadata does not list, such as inherited HTML/DOM attributes or projected content like React children, ' +
+      'is not visible to this exporter. ' +
       '"omittedKnown" lists only omissions the exporter could see; an empty list is not proof that nothing was left out.',
     builds: reads.map((read) => read.build),
     components: evaluated.map(({ contract, exportable: ok, blocking, omitted }) => ({
       name: contract.name, id: contract.id, framework: contract.framework, adapter: contract.adapter,
       status: ok ? 'exported' : 'blocked',
       properties: ok ? contract.fields.map((field) => field.name) : [],
-      contract: contractStatus(omitted),
+      contract: contractStatus(omitted, contract.content),
       omittedKnown: omitted, blocking, warnings: contract.warnings,
     })),
     result: 'failed',

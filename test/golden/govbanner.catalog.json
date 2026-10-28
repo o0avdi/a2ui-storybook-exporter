@@ -18,7 +18,7 @@
   "components": {
     "GovBanner": {
       "additionalProperties": false,
-      "description": "GovBanner component exported from React Storybook. Properties listed by Storybook metadata only; inherited HTML/DOM attributes and handlers are not part of this schema.",
+      "description": "GovBanner component exported from React Storybook. Properties listed by Storybook metadata only; inherited HTML/DOM attributes and handlers are not part of this schema. Projected content (for example React children) may be missing from Storybook metadata and is not described here.",
       "properties": {
         "component": {
           "const": "GovBanner"

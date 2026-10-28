@@ -95,9 +95,22 @@ test('Report: a successful export states that the source contract is not verifie
   const result = run({ builds: [REACT], components: ['Button'], unmappedEvents: 'omit' });
   assert.match(result.report.notice, /source component contract is not verified/);
   assert.match(result.report.notice, /empty list is not proof/);
-  assert.deepEqual(component(result, 'Button').contract, { basis: 'storybook-manifest', sourceContractVerified: false, inheritedAttributes: 'unknown' });
+  assert.deepEqual(component(result, 'Button').contract, { basis: 'storybook-manifest', sourceContractVerified: false, inheritedAttributes: 'unknown', projectedContent: 'unknown' });
   assert.ok(!('omitted' in component(result, 'Button')), 'the old "omitted" key read as a completeness claim');
   assert.match(result.catalog.components.Button.description, /Properties listed by Storybook metadata only; inherited HTML\/DOM attributes and handlers are not part of this schema\./);
+  assert.match(result.catalog.components.Button.description, /Projected content \(for example React children\) may be missing from Storybook metadata and is not described here\./);
+  assert.match(result.report.notice, /projected content like React children/);
+});
+
+test('Report: projectedContent is "present" only on evidence (a listed children property), otherwise "unknown"', () => {
+  // react-uswds Form lists `children` in docgen: evidence, and the component is blocked. GovBanner lists none: unknown.
+  const { report } = run({ builds: [USWDS], catalogId: USWDS_ID });
+  assert.equal(report.components.find((item) => item.name === 'Form').contract.projectedContent, 'present');
+  for (const name of ['GovBanner', 'Collection']) {
+    const entry = report.components.find((item) => item.name === name);
+    assert.equal(entry.status, 'exported');
+    assert.equal(entry.contract.projectedContent, 'unknown');
+  }
 });
 
 test('Report: an empty omittedKnown (the GovBanner case) still reports inherited attributes as unknown', (t) => {
@@ -394,7 +407,7 @@ test('E2E react-uswds: GovBanner matches the source contract for the two propert
   // The honest part: nothing visible was omitted, yet the contract is not verified.
   const entry = report.components[0];
   assert.deepEqual(entry.omittedKnown, []);
-  assert.deepEqual(entry.contract, { basis: 'storybook-manifest', sourceContractVerified: false, inheritedAttributes: 'unknown' });
+  assert.deepEqual(entry.contract, { basis: 'storybook-manifest', sourceContractVerified: false, inheritedAttributes: 'unknown', projectedContent: 'unknown' });
   assert.match(schema.description, /inherited HTML\/DOM attributes and handlers are not part of this schema/);
   assert.deepEqual(entry.warnings.map((warning) => warning.code), ['AMBIGUOUS_COMPONENT_ID']);
   assert.match(entry.warnings[0].message, /components-banner.*CustomBanner\.stories\.tsx.*GovBanner\.stories\.tsx/);
