@@ -1,5 +1,8 @@
 export const catalogIdRequirements = 'Must be an absolute HTTP(S) URI with a path such as https://example.org/catalogs/1, without fragments or whitespace. URNs and other non-HTTP(S) schemes are unsupported because relative schema references cannot resolve against opaque IDs.';
 
+/** Component names must be UAX #31 identifiers (A2UI v1.0). */
+export const isValidComponentName = (name) => typeof name === 'string' && /^[\p{XID_Start}_][\p{XID_Continue}]*$/u.test(name);
+
 /**
  * Validate catalog identifier according to A2UI v1.0 and JSON Schema Draft 2020-12 canonical URI rules.
  * Requires a non-empty string, no whitespace, no URI fragments, and an HTTP(S) base for relative schema references.
@@ -502,7 +505,7 @@ export function makeCatalogV1(components, options = {}) {
       throw new Error(`makeCatalogV1: Component name 'Surface' is reserved by the A2UI specification.`);
     }
 
-    if (!/^[\p{XID_Start}_][\p{XID_Continue}]*$/u.test(c.name)) {
+    if (!isValidComponentName(c.name)) {
       throw new Error(`makeCatalogV1: Component name '${c.name}' violates UAX #31 identifier syntax.`);
     }
 

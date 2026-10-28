@@ -13,6 +13,8 @@
 //     blocking: [{ code, subject, message }],                              // reasons this component cannot export
 //   }
 
+import { isValidComponentName } from './a2ui/catalog.mjs';
+
 export const BLOCKING = {
   unsupportedType: 'UNSUPPORTED_PROP_TYPE',
   content: 'PROJECTED_CONTENT_UNMAPPED',
@@ -21,6 +23,14 @@ export const BLOCKING = {
   manifest: 'MANIFEST_ENTRY_INVALID',
   index: 'INDEX_MISMATCH',
   default: 'UNSUPPORTED_DEFAULT',
+  reservedName: 'A2UI_RESERVED_NAME',
+};
+
+// Names A2UI v1.0 keeps for itself. The pinned structural validator rejects a catalog that uses them, which used to
+// abort a whole multi-component export; checking here blocks only the component that cannot be represented.
+const RESERVED_PROPERTIES = {
+  id: "'id' belongs to the A2UI wire envelope",
+  component: "'component' is the A2UI component discriminator",
 };
 
 export function blocker(code, subject, message) {
@@ -48,6 +58,14 @@ export function evaluate(contract, { unmappedEvents = 'fail' } = {}) {
       blocking.push(blocker(BLOCKING.event, event.name,
         `${event.name} (${event.payload || 'no payload type'}) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported.`));
   }
+  for (const field of contract.fields)
+    if (Object.hasOwn(RESERVED_PROPERTIES, field.name))
+      blocking.push(blocker(BLOCKING.reservedName, field.name,
+        `Property "${field.name}" cannot be exported: ${RESERVED_PROPERTIES[field.name]}, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties.`));
+  if (contract.name === 'Surface')
+    blocking.push(blocker(BLOCKING.reservedName, contract.name, 'The component name "Surface" is reserved by A2UI v1.0.'));
+  else if (!isValidComponentName(contract.name))
+    blocking.push(blocker(BLOCKING.reservedName, contract.name, `"${contract.name}" is not a valid A2UI component name (it must be an identifier: letters, digits and underscores, not starting with a digit).`));
   if (!contract.fields.length && !blocking.some((issue) => issue.code === BLOCKING.noProps))
     blocking.push(blocker(BLOCKING.noProps, contract.name, 'No supported properties were found, so there is nothing to put in the catalog.'));
   return { exportable: blocking.length === 0, blocking, omitted };

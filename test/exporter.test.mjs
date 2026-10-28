@@ -315,6 +315,53 @@ test('CLI: --help, -h and --version succeed; unknown commands and a missing --ca
   assert.equal(fs.existsSync(out), false);
 });
 
+// ---- Names A2UI reserves block one component; they never abort the export or get renamed
+
+function renamedButtonProp(t, to) {
+  return mutatedReact(t, ({ read, write }) => {
+    const manifest = read('manifests/components.json');
+    const props = manifest.components['example-button'].reactDocgen.props;
+    props[to] = props.label;
+    delete props.label;
+    write('manifests/components.json', manifest);
+  });
+}
+
+test('Reserved property names (id, component) block that component with a named reason and are never renamed', (t) => {
+  for (const reserved of ['id', 'component']) {
+    const result = run({ builds: [renamedButtonProp(t, reserved)], unmappedEvents: 'omit' });
+    const button = component(result, 'Button');
+    assert.equal(button.status, 'blocked');
+    assert.ok(button.blocking.some((issue) => issue.code === 'A2UI_RESERVED_NAME' && issue.subject === reserved), reserved);
+    assert.deepEqual(button.properties, []);
+    // Blocked, not aborted and not renamed: nothing else in this small build is exportable, so no catalog is produced.
+    assert.equal(result.ok, false);
+    assert.equal(result.catalog, undefined);
+  }
+});
+
+test('Reserved or invalid component names block that component instead of aborting', (t) => {
+  for (const name of ['Surface', 'Bad-Name']) {
+    const directory = mutatedReact(t, ({ read, write }) => {
+      const manifest = read('manifests/components.json');
+      manifest.components['example-button'].name = name;
+      manifest.components['example-button'].reactDocgen.displayName = name;
+      write('manifests/components.json', manifest);
+    });
+    const result = run({ builds: [directory], unmappedEvents: 'omit' });
+    const blocked = component(result, name);
+    assert.equal(blocked.status, 'blocked', name);
+    assert.ok(blocked.blocking.some((issue) => issue.code === 'A2UI_RESERVED_NAME'));
+    assert.equal(result.ok, false);
+  }
+});
+
+test('The pinned validator is unchanged: a catalog that does define an id property is still rejected', () => {
+  const catalog = makeCatalogV1([{ name: 'Thing', framework: 'react', required: [],
+    fields: [{ name: 'id', schema: { type: 'string' }, required: false, descriptionOrigin: 'manifest' }] }], { catalogId });
+  assert.throws(() => validateV1Export(catalog), /envelope property 'id'/);
+});
+
 // ---- End to end: real react-uswds Storybook 10.6.3 build (see test/fixtures/PROVENANCE.md)
 
 const USWDS = path.join(here, 'fixtures/react-uswds');
@@ -366,4 +413,31 @@ test('E2E react-uswds: callback-bearing and children-bearing components stay blo
   const { report } = run({ builds: [USWDS], catalogId: USWDS_ID });
   const codes = new Set(report.components.flatMap((item) => item.blocking.map((issue) => issue.code)));
   assert.ok(codes.has('PROJECTED_CONTENT_UNMAPPED') && codes.has('UNMAPPED_EVENT') && codes.has('UNSUPPORTED_PROP_TYPE'));
+});
+
+test('E2E react-uswds, omit events: TimePicker (property "id") is blocked while the other eligible components still export', (t) => {
+  const result = run({ builds: [USWDS], catalogId: USWDS_ID, unmappedEvents: 'omit' });
+  assert.equal(result.ok, true);
+  const timePicker = component(result, 'TimePicker');
+  assert.equal(timePicker.status, 'blocked');
+  assert.ok(timePicker.blocking.some((issue) => issue.code === 'A2UI_RESERVED_NAME' && issue.subject === 'id'));
+  const exported = result.report.components.filter((item) => item.status === 'exported').map((item) => item.name).sort();
+  assert.deepEqual(exported, ['Collection', 'GovBanner', 'NavDropDownButton', 'Pagination']);
+  for (const schema of Object.values(result.catalog.components)) assert.ok(!('id' in schema.properties));
+  assert.equal(result.report.validation.valid, true);
+  const out = path.join(temporary(t), 'out');
+  const cli = spawnSync(process.execPath, [CLI, 'export', '--storybook', USWDS, '--unmapped-events', 'omit', '--catalog-id', USWDS_ID, '--out', out], { encoding: 'utf8' });
+  assert.equal(cli.status, 0, cli.stderr);
+  assert.ok(fs.existsSync(path.join(out, 'catalog.json')));
+});
+
+test('E2E react-uswds: explicitly selecting TimePicker fails cleanly with exit 1 and writes nothing', (t) => {
+  const out = path.join(temporary(t), 'out');
+  const cli = spawnSync(process.execPath, [CLI, 'export', '--storybook', USWDS, '--components', 'TimePicker', '--unmapped-events', 'omit', '--catalog-id', USWDS_ID, '--out', out], { encoding: 'utf8' });
+  assert.equal(cli.status, 1, cli.stderr);
+  assert.match(cli.stdout, /A2UI_RESERVED_NAME/);
+  assert.equal(fs.existsSync(out), false);
+  // A selection mixing a valid and an incompatible component is all-or-nothing as well.
+  const mixed = run({ builds: [USWDS], components: ['GovBanner', 'TimePicker'], unmappedEvents: 'omit' });
+  assert.equal(mixed.ok, false);
 });
