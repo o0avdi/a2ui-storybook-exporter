@@ -58,6 +58,8 @@ npx storybook-a2ui export  --storybook ./storybook-static --catalog-id https://e
   --out ./a2ui-catalog [--components A,B]
 ```
 
+Teammates installing from a ZIP and testing another library: see `docs/TEAM_TESTING.md`.
+
 Repeat `--storybook` to combine React and Angular builds. `storybook-a2ui --help` lists every option.
 Exit codes: `0` success, `1` nothing could be exported under the policy, `2` usage or input error.
 
