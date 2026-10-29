@@ -28,7 +28,8 @@ it: give Omar the exact pinned commands.
 | `c119b4d` | CLI no longer truncates piped output (`process.exit()` cut `inspect | head` at 64 KB) |
 | (docs commit) | `docs/DEMO_FRIDAY.md`, this file, README test count |
 | `bff068e` (team-testing docs, 2026-10-29) | `docs/TEAM_TESTING.md`, `docs/TEAM_TEST_RESULTS_TEMPLATE.md`, design notes below, README pointer. Docs only; no code change |
-| (names fix, 2026-10-29) | Names that exist on `Object.prototype` can no longer vanish or be misread: `__proto__` as a property and any `Object.prototype` member as a component name are blocked per component with `UNSAFE_NAME` instead of being dropped or aborting the export; `constructor`, `toString` etc. as property names export as real properties. 10 regression tests; GovBanner golden unchanged |
+| `083b4f7` (names fix, 2026-10-29) | Names that exist on `Object.prototype` can no longer vanish or be misread: `__proto__` as a property and any `Object.prototype` member as a component name are blocked per component with `UNSAFE_NAME` instead of being dropped or aborting the export; `constructor`, `toString` etc. as property names export as real properties. 10 regression tests; GovBanner golden unchanged |
+| (Windows test fix, 2026-10-29) | Test-only: the symlink-containment test creates directory junctions (`'junction'`; ignored on POSIX) so it runs without the Windows symlink privilege. Exporter, golden catalog and demo output unchanged; mutation check: with the real-path check disabled the test fails |
 
 Verified on this branch with real commands: `npm test` 47/47 (after the names fix below; 37/37 before it); GovBanner default export byte-identical to the golden file;
 full react-uswds export with `--unmapped-events omit` exits 0 with 4 exported (`GovBanner`, `Collection`, `NavDropDownButton`,
@@ -40,7 +41,8 @@ Also verified on 2026-10-29 (macOS, Node 24.22.1): the separate-config recipe in
 `.storybook-a2ui`, add `features.componentsManifest` and `reactDocgen`, `storybook build -c .storybook-a2ui -o <dir>`) on the
 pinned react-uswds clone: build succeeds, only untracked `.storybook-a2ui/` appears in `git status`, and the exporter reads
 the fresh build (2 OK, 73 BLOCKED, same as the committed fixture; `project.json` records `storybookVersion` 10.6.3).
-Not verified: Windows (the PowerShell commands in `docs/TEAM_TESTING.md` were never executed), a Storybook build of anyone
+Windows: an independent tester reported (not run by the author) that `083b4f7` installs, exports GovBanner identical to the golden catalog and passes pinned validation on Windows 11, Node v24.20.0, with `npm test` 46/47; the one failure was `EPERM` creating a directory symlink in the manifest-reference containment test, fixed in the test only (directory junction) and not yet re-run on Windows.
+Not verified: the external-library PowerShell commands in `docs/TEAM_TESTING.md` (never executed), a Storybook build of anyone
 else's project, a second external library.
 
 ## Install and run (Node 24; on this Mac `eval "$(fnm env)"; fnm exec --using=24 -- <cmd>`)

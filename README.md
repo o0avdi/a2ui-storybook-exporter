@@ -104,7 +104,7 @@ index.json + manifests/components.json   (a `storybook build` directory)
 | Objects, arrays, functions, other types | **block**, with the type named | **block** |
 
 Not supported yet: `string[]` and nullable primitives (both representable in A2UI v1.0), Vue, Web Components,
-other manifest versions, Windows verification. Event mapping is strict by default; `--unmapped-events omit` exports
+other manifest versions, complete Windows verification (one tester has run the baseline there; see `docs/TEAM_TESTING.md`). Event mapping is strict by default; `--unmapped-events omit` exports
 the properties and records each event as not exported in the report and the component description.
 
 ## What a successful export does and does not claim

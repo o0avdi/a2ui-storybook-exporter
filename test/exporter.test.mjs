@@ -249,23 +249,26 @@ test('Angular: a manifest reference that escapes the build directory is rejected
 
 test('Angular: a symbolic link inside the build cannot make a manifest reference read a file outside it', (t) => {
   const root = temporary(t);
-  const build = path.join(root, 'build');
-  fs.cpSync(ANGULAR, build, { recursive: true });
   const badge = (directory) => component(run({ builds: [directory], components: ['StatusBadgeComponent'], unmappedEvents: 'omit' }), 'StatusBadgeComponent');
+  // A directory link. 'junction' makes a directory junction on Windows, where creating a symbolic link needs a privilege
+  // (EPERM for an ordinary user); realpath still resolves it to its target. POSIX ignores the type and makes a symlink.
+  const link = (target, at) => fs.symlinkSync(target, at, 'junction');
+  const copy = (name) => { const dir = path.join(root, name); fs.cpSync(ANGULAR, dir, { recursive: true }); return dir; };
   // Move the referenced files outside the build and leave only a link to them inside it.
+  const escaping = copy('escaping-build');
   fs.mkdirSync(path.join(root, 'outside'));
-  fs.renameSync(path.join(build, 'services'), path.join(root, 'outside/services'));
-  fs.symlinkSync(path.join(root, 'outside/services'), path.join(build, 'services'), 'dir');
-  const blocked = badge(build);
+  fs.renameSync(path.join(escaping, 'services'), path.join(root, 'outside/services'));
+  link(path.join(root, 'outside/services'), path.join(escaping, 'services'));
+  const blocked = badge(escaping);
   assert.equal(blocked.status, 'blocked');
   assert.match(blocked.blocking[0].message, /escapes the Storybook build directory through a symbolic link/);
   // A link that stays inside the build is fine, and so is a build directory that is itself reached through a link.
-  fs.rmSync(path.join(build, 'services'));
-  fs.cpSync(path.join(root, 'outside/services'), path.join(build, 'real-services'), { recursive: true });
-  fs.symlinkSync(path.join(build, 'real-services'), path.join(build, 'services'), 'dir');
+  const build = copy('build');
+  fs.renameSync(path.join(build, 'services'), path.join(build, 'real-services'));
+  link(path.join(build, 'real-services'), path.join(build, 'services'));
   assert.equal(badge(build).status, 'exported');
   const linked = path.join(root, 'linked-build');
-  fs.symlinkSync(build, linked, 'dir');
+  link(build, linked);
   assert.equal(badge(linked).status, 'exported');
 });
 

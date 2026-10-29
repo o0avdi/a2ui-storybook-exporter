@@ -6,7 +6,7 @@ we have never seen, and send back results we can compare. You do not need to und
 | Platform | Status |
 |---|---|
 | macOS (Node 24.22.1) | **Verified.** Every macOS command below was run from a fresh ZIP extraction. |
-| Windows PowerShell | **Unverified.** Written carefully, never executed. If one fails, copy the exact error into your results. |
+| Windows PowerShell | **Partly verified by a teammate, not by the author.** On Windows 11 with Node v24.20.0, commit `083b4f7` installed, ran the CLI, exported GovBanner, matched the golden catalog and passed the pinned A2UI validation. `npm test` then showed 46 of 47 passing: one test could not create a directory symbolic link (`EPERM`). The test now uses a directory junction, which needs no privilege; **that fix has not yet been run on Windows**, so on Windows expect 47 of 47 and tell us if you see anything else. The PowerShell commands for external-library testing (sections 3 onward) have not been run. If one fails, copy the exact error into your results. |
 | Linux | Same commands as macOS; not run. |
 
 ## Read this first (2 minutes)
