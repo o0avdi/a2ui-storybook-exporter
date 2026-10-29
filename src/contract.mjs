@@ -13,7 +13,7 @@
 //     blocking: [{ code, subject, message }],                              // reasons this component cannot export
 //   }
 
-import { isValidComponentName } from './a2ui/catalog.mjs';
+import { componentNameProblem, isValidComponentName, propertyNameProblem } from './a2ui/catalog.mjs';
 
 export const BLOCKING = {
   unsupportedType: 'UNSUPPORTED_PROP_TYPE',
@@ -24,6 +24,7 @@ export const BLOCKING = {
   index: 'INDEX_MISMATCH',
   default: 'UNSUPPORTED_DEFAULT',
   reservedName: 'A2UI_RESERVED_NAME',
+  unsafeName: 'UNSAFE_NAME',
 };
 
 // Names A2UI v1.0 keeps for itself. The pinned structural validator rejects a catalog that uses them, which used to
@@ -62,6 +63,13 @@ export function evaluate(contract, { unmappedEvents = 'fail' } = {}) {
     if (Object.hasOwn(RESERVED_PROPERTIES, field.name))
       blocking.push(blocker(BLOCKING.reservedName, field.name,
         `Property "${field.name}" cannot be exported: ${RESERVED_PROPERTIES[field.name]}, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties.`));
+  for (const field of contract.fields)
+    if (propertyNameProblem(field.name))
+      blocking.push(blocker(BLOCKING.unsafeName, field.name,
+        `Property "${field.name}" cannot be exported: ${propertyNameProblem(field.name)}. This exporter does not rename or drop properties.`));
+  if (componentNameProblem(contract.name))
+    blocking.push(blocker(BLOCKING.unsafeName, contract.name,
+      `Component name "${contract.name}" cannot be exported: ${componentNameProblem(contract.name)}. This exporter does not rename components.`));
   if (contract.name === 'Surface')
     blocking.push(blocker(BLOCKING.reservedName, contract.name, 'The component name "Surface" is reserved by A2UI v1.0.'));
   else if (!isValidComponentName(contract.name))

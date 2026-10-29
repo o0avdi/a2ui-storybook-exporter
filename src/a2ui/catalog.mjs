@@ -1,5 +1,35 @@
 export const catalogIdRequirements = 'Must be an absolute HTTP(S) URI with a path such as https://example.org/catalogs/1, without fragments or whitespace. URNs and other non-HTTP(S) schemes are unsupported because relative schema references cannot resolve against opaque IDs.';
 
+/**
+ * Names are data, not code. Dictionaries keyed by component or property names must neither lose a key nor read one
+ * inherited from Object.prototype: `dict['__proto__'] = x` sets the prototype instead of adding a key, and
+ * `'toString' in dict` or `dict['constructor']` is true on an empty object.
+ */
+export function setOwn(object, key, value) {
+  Object.defineProperty(object, key, { value, enumerable: true, writable: true, configurable: true });
+  return object;
+}
+const own = (object, key) => (object && typeof object === 'object' && Object.hasOwn(object, key) ? object[key] : undefined);
+
+const PROTOTYPE_NAMES = new Set(Object.getOwnPropertyNames(Object.prototype));
+
+/**
+ * Why a component name cannot be exported, or undefined. Every Object.prototype member (`constructor`, `toString`,
+ * `__proto__`, ...) makes the pinned validator's Ajv discriminator fail to compile, which would abort the whole catalog.
+ */
+export const componentNameProblem = (name) => PROTOTYPE_NAMES.has(name)
+  ? 'it is a built-in JavaScript Object.prototype member, and the schema validator (Ajv) cannot compile a catalog that uses it as a component name'
+  : undefined;
+
+/**
+ * Why a property name cannot be exported, or undefined. Other Object.prototype names are ordinary properties once they
+ * are real keys; `__proto__` is not: the pinned validator does not enforce a property with that name (a required
+ * `__proto__` is accepted when missing), and JavaScript consumers read it as the object's prototype.
+ */
+export const propertyNameProblem = (name) => name === '__proto__'
+  ? 'the pinned schema validator does not enforce a property with that name and JavaScript treats it as the prototype of the object'
+  : undefined;
+
 /** Component names must be UAX #31 identifiers (A2UI v1.0). */
 export const isValidComponentName = (name) => typeof name === 'string' && /^[\p{XID_Start}_][\p{XID_Continue}]*$/u.test(name);
 
@@ -36,8 +66,8 @@ export function generateInstructions(componentNames = [], options = {}) {
 
   for (const name of componentNames) {
     const customInst =
-      options.reviewedPolicies?.[name]?.instructions ??
-      options.componentInstructions?.[name];
+      own(own(options.reviewedPolicies, name), 'instructions') ??
+      own(options.componentInstructions, name);
     if (customInst) {
       lines.push(`${step++}. ${customInst}`);
     }
@@ -64,7 +94,7 @@ const propertyAdmitsNull = (property) => emittedNullTypes(property).includes('nu
 export function formatFieldPropertyV1(field, componentName, options = {}) {
   const property = formatFieldPropertyInner(field, componentName, options);
   // Explicitly reviewed schemas are hand-authored and returned verbatim, exactly as before.
-  const reviewed = options.reviewedPropertySchemas?.[componentName]?.[field.name] ?? field.reviewedSchema;
+  const reviewed = own(own(options.reviewedPropertySchemas, componentName), field.name) ?? field.reviewedSchema;
   if (reviewed || property?.default !== null || propertyAdmitsNull(property)) return property;
   const errorMessage = `NULL_DEFAULT_NOT_ALLOWED: '${componentName}.${field.name}' declares a null default but the generated property does not admit null. Declare the type as nullable in source (for example string | null) or remove the null default; the exporter will not drop or reinterpret it.`;
   if (options.diagnostics && Array.isArray(options.diagnostics)) {
@@ -83,7 +113,7 @@ export function formatFieldPropertyV1(field, componentName, options = {}) {
 function formatFieldPropertyInner(field, componentName, options = {}) {
   // Check for explicit reviewed property schema override
   const reviewedSchema =
-    options.reviewedPropertySchemas?.[componentName]?.[field.name] ??
+    own(own(options.reviewedPropertySchemas, componentName), field.name) ??
     field.reviewedSchema;
   if (reviewedSchema) {
     return reviewedSchema;
@@ -378,10 +408,11 @@ function formatFieldPropertyInner(field, componentName, options = {}) {
  * `origin` tells metadata reporting whether the text is reviewed or a generator fallback.
  */
 export function actionDescriptionSource(componentName, eventName, options = {}) {
-  const policy = options.reviewedPolicies?.[componentName];
+  const policy = own(options.reviewedPolicies, componentName);
+  const reviewedText = own(policy?.eventDescriptions, eventName);
 
-  if (policy?.eventDescriptions?.[eventName]) {
-    return { text: policy.eventDescriptions[eventName], origin: 'reviewed-policy' };
+  if (reviewedText) {
+    return { text: reviewedText, origin: 'reviewed-policy' };
   }
   return { text: `Interaction handler dispatched for ${eventName} event.`, origin: 'generator-fallback' };
 }
@@ -413,7 +444,7 @@ export function getRequiredProperties(component, options = {}) {
 
   // 2. Explicit reviewed policy from options or default reviewed policies
   const policy =
-    options.reviewedPolicies?.[component.name] ??
+    own(options.reviewedPolicies, component.name) ??
     component.policy;
 
   if (policy && Array.isArray(policy.required)) {
@@ -448,7 +479,7 @@ export function sortDeterministic(value) {
   }
   const sorted = {};
   for (const key of Object.keys(value).sort()) {
-    sorted[key] = sortDeterministic(value[key]);
+    setOwn(sorted, key, sortDeterministic(value[key]));
   }
   return sorted;
 }
@@ -505,6 +536,11 @@ export function makeCatalogV1(components, options = {}) {
       throw new Error(`makeCatalogV1: Component name 'Surface' is reserved by the A2UI specification.`);
     }
 
+    const unsafeComponent = componentNameProblem(c.name);
+    if (unsafeComponent) {
+      throw new Error(`makeCatalogV1: Component name "${c.name}" cannot be exported: ${unsafeComponent}. This exporter does not rename components.`);
+    }
+
     if (!isValidComponentName(c.name)) {
       throw new Error(`makeCatalogV1: Component name '${c.name}' violates UAX #31 identifier syntax.`);
     }
@@ -524,9 +560,14 @@ export function makeCatalogV1(components, options = {}) {
         );
       }
 
+      const unsafeProperty = propertyNameProblem(f.name);
+      if (unsafeProperty) {
+        throw new Error(`makeCatalogV1: the property name "${f.name}" (component '${c.name}') cannot be exported: ${unsafeProperty}. This exporter does not rename or drop properties.`);
+      }
+
       const prop = formatFieldPropertyV1(f, c.name, options);
       if (prop !== null) {
-        properties[f.name] = prop;
+        setOwn(properties, f.name, prop);
       } else {
         if (f.required === true) {
           throw new Error(
@@ -539,11 +580,15 @@ export function makeCatalogV1(components, options = {}) {
     // Add action properties from registered events
     if (c.events && typeof c.events === 'object') {
       for (const [eventName, propName] of Object.entries(c.events)) {
-        if (!properties[propName]) {
-          properties[propName] = {
+        const unsafeEvent = propertyNameProblem(propName);
+        if (unsafeEvent) {
+          throw new Error(`makeCatalogV1: the property name "${propName}" (event '${eventName}' of component '${c.name}') cannot be exported: ${unsafeEvent}. This exporter does not rename or drop properties.`);
+        }
+        if (!Object.hasOwn(properties, propName)) {
+          setOwn(properties, propName, {
             $ref: 'common_types.json#/$defs/Action',
             description: getActionDescription(c.name, eventName, options),
-          };
+          });
         }
       }
     }
@@ -553,7 +598,7 @@ export function makeCatalogV1(components, options = {}) {
 
     // CRITICAL: Ensure every required property actually exists in generated properties
     for (const reqProp of required) {
-      if (!(reqProp in properties)) {
+      if (!Object.hasOwn(properties, reqProp)) {
         const errorMsg = `makeCatalogV1: Required property '${reqProp}' on component '${c.name}' is not defined in component properties.`;
         if (options.diagnostics && Array.isArray(options.diagnostics)) {
           options.diagnostics.push({
@@ -584,7 +629,7 @@ export function makeCatalogV1(components, options = {}) {
       schema.allowedChildren = [...new Set(c.allowedChildren)].sort();
     }
 
-    componentSchemas[c.name] = schema;
+    setOwn(componentSchemas, c.name, schema);
   }
 
   const instructions =

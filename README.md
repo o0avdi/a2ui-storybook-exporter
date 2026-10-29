@@ -128,6 +128,6 @@ manifest.
 
 ## Tests
 
-`npm test` (37 tests, no network). Includes a reproducible end-to-end test on a real `trussworks/react-uswds`
+`npm test` (47 tests, no network). Includes a reproducible end-to-end test on a real `trussworks/react-uswds`
 Storybook 10.6.3 build (golden catalog in `test/golden`) and the Angular-Vite adapter regression. See
 `test/fixtures/PROVENANCE.md` for exactly where each fixture came from.

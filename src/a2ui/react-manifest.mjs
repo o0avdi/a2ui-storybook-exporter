@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
+import { setOwn } from './catalog.mjs';
 
 /**
  * Storybook Components Manifest reader and normalizer for A2UI v1.0.
@@ -451,7 +452,7 @@ export function normalizeReactComponentManifest(entry, options = {}) {
       }
     }
 
-    rawProperties[propName] = {
+    setOwn(rawProperties, propName, {
       name: propName,
       rawType,
       structuredType: propDef.type ?? propDef.tsType ?? null,
@@ -463,7 +464,7 @@ export function normalizeReactComponentManifest(entry, options = {}) {
       parent: propDef.parent ?? null,
       declarations: propDef.declarations ?? [],
       classification: classification.category,
-    };
+    });
 
     switch (classification.category) {
       case 'scalar':
@@ -503,11 +504,11 @@ export function normalizeReactComponentManifest(entry, options = {}) {
       }
 
       case 'content': {
-        content[propName] = {
+        setOwn(content, propName, {
           type: 'projected',
           typeText: rawType,
           description: propDescription,
-        };
+        });
         diagnostics.push({
           code: 'PROJECTED_CONTENT_PROP',
           severity: 'info',

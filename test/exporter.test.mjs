@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { exportCatalog } from '../src/export.mjs';
 import { validateV1Export } from '../src/a2ui/validate.mjs';
-import { makeCatalogV1 } from '../src/a2ui/catalog.mjs';
+import { makeCatalogV1, sortDeterministic } from '../src/a2ui/catalog.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const REACT = path.join(here, 'fixtures/chromatic-react');
@@ -372,7 +372,7 @@ function renamedButtonProp(t, to) {
   return mutatedReact(t, ({ read, write }) => {
     const manifest = read('manifests/components.json');
     const props = manifest.components['example-button'].reactDocgen.props;
-    props[to] = props.label;
+    Object.defineProperty(props, to, { value: props.label, enumerable: true, writable: true, configurable: true });
     delete props.label;
     write('manifests/components.json', manifest);
   });
@@ -411,6 +411,124 @@ test('The pinned validator is unchanged: a catalog that does define an id proper
   const catalog = makeCatalogV1([{ name: 'Thing', framework: 'react', required: [],
     fields: [{ name: 'id', schema: { type: 'string' }, required: false, descriptionOrigin: 'manifest' }] }], { catalogId });
   assert.throws(() => validateV1Export(catalog), /envelope property 'id'/);
+});
+
+// ---- Names that exist on Object.prototype must never disappear or be misread by a plain JavaScript dictionary
+
+const PROTOTYPE_NAMES = Object.getOwnPropertyNames(Object.prototype); // __proto__, constructor, toString, hasOwnProperty, ...
+const INHERITED_PROPERTY_NAMES = PROTOTYPE_NAMES.filter((name) => name !== '__proto__');
+const stringField = (name, required = false) => ({ name, schema: { type: 'string' }, required, descriptionOrigin: 'manifest' });
+const thing = (extra = {}) => ({ name: 'Thing', framework: 'react', required: [], fields: [stringField('label')], ...extra });
+
+// The catalog and the report must describe the same components and properties, and every required property must exist.
+function assertCatalogMatchesReport(result) {
+  const names = Object.getOwnPropertyNames(result.catalog.components).sort();
+  const exported = result.report.components.filter((item) => item.status === 'exported');
+  assert.deepEqual(exported.map((item) => item.name).sort(), names);
+  assert.deepEqual(result.catalog.$defs.anyComponent.oneOf.map((item) => item.$ref).sort(), names.map((name) => `#/components/${name}`));
+  for (const item of exported) {
+    const schema = result.catalog.components[item.name];
+    const properties = Object.getOwnPropertyNames(schema.properties).filter((name) => name !== 'component').sort();
+    assert.deepEqual(properties, [...item.properties].sort(), item.name);
+    for (const required of schema.required) assert.ok(Object.hasOwn(schema.properties, required), `${item.name}.${required} is required but not defined`);
+  }
+  assert.equal(result.report.validation.valid, true);
+}
+
+test('Generator: property names inherited from Object.prototype are emitted as real properties, never lost', () => {
+  for (const name of INHERITED_PROPERTY_NAMES) {
+    const catalog = makeCatalogV1([thing({ fields: [stringField(name, true), stringField('other')], required: [name] })], { catalogId });
+    const schema = catalog.components.Thing;
+    assert.deepEqual(Object.getOwnPropertyNames(schema.properties).sort(), ['component', 'other', name].sort(), name);
+    assert.equal(schema.properties[name].$ref, 'common_types.json#/$defs/DynamicString', name);
+    assert.deepEqual(schema.required, ['component', name], name);
+    assert.equal(validateV1Export(catalog).valid, true, name);
+    assert.ok(JSON.stringify(catalog).includes(`"${name}":{"$ref"`), `${name} survives serialization`);
+  }
+});
+
+test('Generator: a property named __proto__ is rejected with a clear message instead of vanishing', () => {
+  assert.throws(() => makeCatalogV1([thing({ fields: [stringField('__proto__', true)], required: ['__proto__'] })], { catalogId }),
+    /property name "__proto__".*Thing/s);
+});
+
+test('Generator: a required property that is only inherited from Object.prototype is not treated as defined', () => {
+  for (const name of INHERITED_PROPERTY_NAMES)
+    assert.throws(() => makeCatalogV1([thing({ required: [name] })], { catalogId }), /not defined in component properties/, name);
+});
+
+test('Generator: event properties named like inherited keys are emitted, and __proto__ is rejected', () => {
+  for (const name of INHERITED_PROPERTY_NAMES) {
+    const catalog = makeCatalogV1([thing({ events: { onGo: name } })], { catalogId });
+    assert.equal(catalog.components.Thing.properties[name].$ref, 'common_types.json#/$defs/Action', name);
+  }
+  assert.throws(() => makeCatalogV1([thing({ events: { onGo: '__proto__' } })], { catalogId }), /"__proto__"/);
+});
+
+test('Generator: component names that exist on Object.prototype are rejected with a clear message', () => {
+  for (const name of PROTOTYPE_NAMES)
+    assert.throws(() => makeCatalogV1([thing({ name })], { catalogId }), new RegExp(`Component name "${name}".*Object\\.prototype`, 's'), name);
+});
+
+test('Generator: deterministic sorting keeps an own "__proto__" key', () => {
+  const sorted = sortDeterministic(JSON.parse('{"b":1,"__proto__":{"a":1},"a":{"__proto__":2}}'));
+  assert.deepEqual(Object.getOwnPropertyNames(sorted), ['__proto__', 'a', 'b']);
+  assert.deepEqual(Object.getOwnPropertyNames(sorted.a), ['__proto__']);
+  assert.equal(Object.getPrototypeOf(sorted), Object.prototype);
+});
+
+test('Pipeline: a property named constructor, toString or hasOwnProperty exports, and catalog and report agree', (t) => {
+  for (const name of ['constructor', 'toString', 'hasOwnProperty', 'valueOf']) {
+    const result = run({ builds: [renamedButtonProp(t, name)], unmappedEvents: 'omit' });
+    assert.equal(result.ok, true, name);
+    const button = result.catalog.components.Button;
+    assert.ok(Object.hasOwn(button.properties, name), `${name} must be a real property`);
+    assert.deepEqual(button.required, ['component', name], name);
+    assert.ok(component(result, 'Button').properties.includes(name), name);
+    assertCatalogMatchesReport(result);
+  }
+});
+
+test('Pipeline: a property named __proto__ blocks that component with a named reason and nothing is dropped or aborted', (t) => {
+  const result = run({ builds: [renamedButtonProp(t, '__proto__')], unmappedEvents: 'omit' });
+  const button = component(result, 'Button');
+  assert.equal(button.status, 'blocked');
+  assert.ok(button.blocking.some((issue) => issue.code === 'UNSAFE_NAME' && issue.subject === '__proto__' && /__proto__/.test(issue.message)));
+  assert.deepEqual(button.properties, []);
+  assert.equal(result.ok, false);
+});
+
+test('Pipeline: projected content named __proto__ is still seen and blocks the component', (t) => {
+  const directory = mutatedReact(t, ({ read, write }) => {
+    const manifest = read('manifests/components.json');
+    const props = manifest.components['example-button'].reactDocgen.props;
+    Object.defineProperty(props, '__proto__', { value: { required: false, tsType: { name: 'ReactNode' }, description: 'Hidden slot' }, enumerable: true, writable: true, configurable: true });
+    write('manifests/components.json', manifest);
+  });
+  const button = component(run({ builds: [directory], unmappedEvents: 'omit' }), 'Button');
+  assert.equal(button.status, 'blocked');
+  assert.ok(button.blocking.some((issue) => issue.code === 'PROJECTED_CONTENT_UNMAPPED' && issue.subject === '__proto__'));
+  assert.equal(button.contract.projectedContent, 'present');
+});
+
+test('Pipeline: a component named like an Object.prototype member is blocked, not aborting, and the rest still exports', (t) => {
+  for (const name of ['constructor', 'toString', '__proto__']) {
+    const directory = path.join(temporary(t), 'build');
+    fs.cpSync(USWDS, directory, { recursive: true });
+    const file = path.join(directory, 'manifests/components.json');
+    const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const entry = Object.values(manifest.components).find((item) => item.name === 'Collection');
+    entry.name = name;
+    entry.reactDocgen.displayName = name;
+    fs.writeFileSync(file, JSON.stringify(manifest));
+    const result = run({ builds: [directory], catalogId: USWDS_ID });
+    const blocked = component(result, name);
+    assert.equal(blocked.status, 'blocked', name);
+    assert.ok(blocked.blocking.some((issue) => issue.code === 'UNSAFE_NAME' && issue.subject === name && /Object\.prototype/.test(issue.message)), name);
+    assert.equal(result.ok, true, name);
+    assert.deepEqual(Object.getOwnPropertyNames(result.catalog.components), ['GovBanner'], name);
+    assertCatalogMatchesReport(result);
+  }
 });
 
 // ---- End to end: real react-uswds Storybook 10.6.3 build (see test/fixtures/PROVENANCE.md)

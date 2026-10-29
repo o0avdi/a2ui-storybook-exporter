@@ -70,7 +70,7 @@ components). If any step here differs from "Expect", stop and report it before t
 ```bash
 npm test
 ```
-Expect, near the bottom: `tests 37`, `pass 37`, `fail 0` (each line starts with an `ℹ`).
+Expect, near the bottom: `tests 47`, `pass 47`, `fail 0` (each line starts with an `ℹ`).
 
 ```bash
 node bin/storybook-a2ui.mjs inspect --storybook test/fixtures/react-uswds
@@ -186,7 +186,7 @@ PowerShell: use `| Out-File -Encoding utf8 results\mylib\inspect.txt` instead of
 Exit codes: `0` exported; `1` nothing could be exported under that policy (**normal** for many libraries; no files are
 written, so rely on `inspect.txt`); `2` usage or input problem (read the message; a missing manifest prints the two lines
 to add). Read `results/mylib/inspect.txt` in an editor: each component is `OK` or `BLOCKED` with codes such as
-`UNMAPPED_EVENT`, `PROJECTED_CONTENT_UNMAPPED`, `UNSUPPORTED_PROP_TYPE`, `UNSUPPORTED_DEFAULT`, `A2UI_RESERVED_NAME`.
+`UNMAPPED_EVENT`, `PROJECTED_CONTENT_UNMAPPED`, `UNSUPPORTED_PROP_TYPE`, `UNSUPPORTED_DEFAULT`, `A2UI_RESERVED_NAME`, `UNSAFE_NAME`.
 
 ## 4. Record what you found
 

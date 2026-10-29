@@ -18,7 +18,7 @@ blank or guessing. How to find each value is in `docs/TEAM_TESTING.md`, section 
 
 | Check | Result |
 |---|---|
-| `npm test` (expect 37 tests, 37 pass, 0 fail) | |
+| `npm test` (expect 47 tests, 47 pass, 0 fail) | |
 | `inspect`: OK / BLOCKED counts (expect 2 / 73) | |
 | GovBanner export exit code and `official A2UI v1.0 validation: PASS` line | |
 | Output `MATCHES golden` | |
@@ -63,6 +63,7 @@ Components blocked per reason code (from the summary command; one component can 
 | `UNSUPPORTED_PROP_TYPE` | | |
 | `UNSUPPORTED_DEFAULT` | | |
 | `A2UI_RESERVED_NAME` | | |
+| `UNSAFE_NAME` | | |
 | `NO_EXPORTABLE_PROPS` | | |
 | `MANIFEST_ENTRY_INVALID` / `INDEX_MISMATCH` | | |
 | other | | |

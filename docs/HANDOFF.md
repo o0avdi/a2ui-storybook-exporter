@@ -27,9 +27,10 @@ it: give Omar the exact pinned commands.
 | `2bd33ea` | `resolveRef` rejects references that reach outside the build through a symlink (reproduced first) |
 | `c119b4d` | CLI no longer truncates piped output (`process.exit()` cut `inspect | head` at 64 KB) |
 | (docs commit) | `docs/DEMO_FRIDAY.md`, this file, README test count |
-| (team-testing docs commit, 2026-10-29) | `docs/TEAM_TESTING.md`, `docs/TEAM_TEST_RESULTS_TEMPLATE.md`, design notes below, README pointer. Docs only; no code change |
+| `bff068e` (team-testing docs, 2026-10-29) | `docs/TEAM_TESTING.md`, `docs/TEAM_TEST_RESULTS_TEMPLATE.md`, design notes below, README pointer. Docs only; no code change |
+| (names fix, 2026-10-29) | Names that exist on `Object.prototype` can no longer vanish or be misread: `__proto__` as a property and any `Object.prototype` member as a component name are blocked per component with `UNSAFE_NAME` instead of being dropped or aborting the export; `constructor`, `toString` etc. as property names export as real properties. 10 regression tests; GovBanner golden unchanged |
 
-Verified on this branch with real commands: `npm test` 37/37; GovBanner default export byte-identical to the golden file;
+Verified on this branch with real commands: `npm test` 47/47 (after the names fix below; 37/37 before it); GovBanner default export byte-identical to the golden file;
 full react-uswds export with `--unmapped-events omit` exits 0 with 4 exported (`GovBanner`, `Collection`, `NavDropDownButton`,
 `Pagination`) and 71 blocked, `TimePicker` blocked with `A2UI_RESERVED_NAME`; `--components TimePicker` exits 1 and writes nothing;
 Angular-Vite fixture exports (and its tests pass); `npm pack` (19 files, no tests/fixtures/docs) installed into a fresh project and
@@ -47,7 +48,7 @@ else's project, a second external library.
 ```bash
 cd /Users/oavdi/repos/bacs496/a2ui-storybook-exporter
 npm ci --ignore-scripts --no-audit --no-fund      # installs ajv 8.20.0 only
-npm test                                          # 37 tests, no network
+npm test                                          # 47 tests, no network
 node bin/storybook-a2ui.mjs inspect --storybook test/fixtures/react-uswds
 node bin/storybook-a2ui.mjs export --storybook test/fixtures/react-uswds --components GovBanner \
   --catalog-id https://example.org/catalogs/react-uswds/govbanner --out /tmp/govbanner   # must match test/golden
