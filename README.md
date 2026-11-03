@@ -92,6 +92,28 @@ index.json + manifests/components.json   (a `storybook build` directory)
 | `src/a2ui/validate.mjs` | validation against the pinned official schemas in `spec/v1_0` |
 | `src/a2ui/react-manifest.mjs` | React docgen type classification (carried over) |
 
+### Interactive architecture map (Floorplan)
+
+`docs/architecture/floorplan.html` is an interactive map of this codebase, made with the
+[Floorplan](https://github.com/haydenschmitty/floorplan) tool so teammates can learn the architecture without reading every
+file first. It shows the CLI, the Storybook build reader, the React and Angular adapters, the normalized contract and export
+policy, catalog generation, validation and the tests. Every card has a plain description and the real file path. It also has
+guided flows for `inspect`, for `export` (to `catalog.json` and `export-report.json`), for how unsupported metadata is blocked
+or omitted, and for why Storybook metadata is not a complete source of truth. The map also marks which parts are implemented
+and which are only planned.
+
+**To open it:** download or clone the repository and open `docs/architecture/floorplan.html` in any browser (double-click it).
+Do not open it from GitHub's file view, which only shows the source text. Press **Start here** for a short tour or **Flows**
+for the guided walkthroughs.
+
+- **Works offline:** pan and zoom, search, click cards for details, the tour, and the guided flows. It is one self-contained
+  file; it needs no install, server or network.
+- **Not included:** the **Ask** bar (AI questions about the code). That needs a separate local Floorplan setup with Claude Code
+  and the map generated on your own machine; it is not part of the shared file.
+- **Snapshot:** the map was generated from commit `142dd7b` and does not update itself. After code changes it can be
+  out of date (the code and this README are the source of truth). Regenerate it with Floorplan and replace the file in a pull
+  request. Its Recent Work and Health views are deliberately left out of the shared copy.
+
 ## Compatibility
 
 | | React (manifest v0, `react-docgen`) | Angular (`@storybook/angular-vite` manifest v1) |
