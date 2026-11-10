@@ -7,7 +7,7 @@ approval before it starts and a review before the next one begins.
 
 ### Before the feature freeze (target Fri Nov 13)
 
-- [ ] **M1** Characterization tests: react-uswds report under both policies; validator on the official basic catalog
+- [x] **M1** Characterization tests: react-uswds report under both policies; validator on the official basic catalog (`010aa61`)
 - [ ] **N2** CI: Node 22 and 24 on Ubuntu, Node 22 on Windows; `npm ci`, `npm test`, clean tarball install (push needs approval)
 - [ ] **M2** Own-property checks in the validator and ref resolver (Codex review)
 - [ ] **M3** `MISSING_PROP_TYPE` replaces `Unsupported type ''`
