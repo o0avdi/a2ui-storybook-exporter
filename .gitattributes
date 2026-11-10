@@ -1,0 +1,4 @@
+# Text files use LF line endings in the repository and in every checkout, whatever the platform or Git settings.
+# Git for Windows otherwise checks text files out with CRLF (core.autocrlf=true is its default), and the test that
+# compares an exported catalog.json byte for byte with test/golden/govbanner.catalog.json then fails.
+* text=auto eol=lf

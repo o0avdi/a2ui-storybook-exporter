@@ -1,0 +1,42 @@
+# Every push to any branch: run the test suite, then check the package the way a user would install it.
+name: CI
+
+on: push
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, node: 22 }
+          - { os: ubuntu-latest, node: 24 }
+          - { os: windows-latest, node: 22 }
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm test
+
+      # The package as a user receives it. The project directory is outside the checkout, so Node cannot fall back
+      # on the repository's node_modules: the installed copy has to work with only what the tarball ships and
+      # declares. node_modules/.bin/storybook-a2ui is the command npm creates from the package's "bin" entry.
+      # inspect on react-uswds exports two components, so it also runs the validator, which reads the schemas in
+      # spec/ from the installed copy. bash is named so that the same script runs on Windows, where it is Git Bash.
+      - name: Install the packed tarball into an empty project and run the installed CLI
+        shell: bash
+        run: |
+          npm pack --pack-destination "$RUNNER_TEMP"
+          mkdir "$RUNNER_TEMP/consumer"
+          cd "$RUNNER_TEMP/consumer"
+          npm init -y
+          npm install ../storybook-a2ui-*.tgz
+          ./node_modules/.bin/storybook-a2ui --version
+          ./node_modules/.bin/storybook-a2ui inspect --storybook "$GITHUB_WORKSPACE/test/fixtures/react-uswds"
