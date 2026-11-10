@@ -1,0 +1,272 @@
+[
+  {
+    "name": "Form",
+    "id": "page-templates-forms",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "event",
+        "name": "onSubmit",
+        "reason": "No reviewed A2UI event mapping (NonNullable<React.ComponentProps<'form'>['onSubmit']>); not exported."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "DatePicker",
+    "id": "components-date-picker",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [
+      {
+        "kind": "event",
+        "name": "onChange",
+        "reason": "No reviewed A2UI event mapping ((val?: string) => void); not exported."
+      },
+      {
+        "kind": "event",
+        "name": "onBlur",
+        "reason": "No reviewed A2UI event mapping ((\n  event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>\n) => void); not exported."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "dateFormat",
+        "message": "dateFormat: Union type 'typeof INTERNAL_DATE_FORMAT | typeof DEFAULT_EXTERNAL_DATE_FORMAT' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "i18n",
+        "message": "i18n: Unsupported type 'DatePickerLocalization'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "ExtendedNav",
+    "id": "components-header-extendednav",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [
+      {
+        "kind": "event",
+        "name": "onToggleMobileNav",
+        "reason": "No reviewed A2UI event mapping ((\n  event: React.MouseEvent<HTMLButtonElement, MouseEvent>\n) => void); not exported."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "primaryItems",
+        "message": "primaryItems: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "secondaryItems",
+        "message": "secondaryItems: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "NavDropDownButton",
+    "id": "components-header-navdropdownbutton",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "exported",
+    "properties": [
+      "label",
+      "menuId",
+      "isOpen",
+      "isCurrent"
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [
+      {
+        "kind": "event",
+        "name": "onToggle",
+        "reason": "No reviewed A2UI event mapping (() => void); not exported."
+      }
+    ],
+    "blocking": [],
+    "warnings": []
+  },
+  {
+    "name": "PrimaryNav",
+    "id": "components-header-primarynav",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [
+      {
+        "kind": "event",
+        "name": "onToggleMobileNav",
+        "reason": "No reviewed A2UI event mapping ((\n  event: React.MouseEvent<HTMLButtonElement, MouseEvent>\n) => void); not exported."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "items",
+        "message": "items: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Pagination",
+    "id": "components-pagination",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "exported",
+    "properties": [
+      "pathname",
+      "totalPages",
+      "currentPage",
+      "maxSlots"
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [
+      {
+        "kind": "event",
+        "name": "onClickNext",
+        "reason": "No reviewed A2UI event mapping (() => void); not exported."
+      },
+      {
+        "kind": "event",
+        "name": "onClickPrevious",
+        "reason": "No reviewed A2UI event mapping (() => void); not exported."
+      },
+      {
+        "kind": "event",
+        "name": "onClickPageNumber",
+        "reason": "No reviewed A2UI event mapping ((\n  event: React.MouseEvent<HTMLButtonElement>,\n  page: number\n) => void); not exported."
+      }
+    ],
+    "blocking": [],
+    "warnings": []
+  },
+  {
+    "name": "Search",
+    "id": "components-search-search",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "event",
+        "name": "onSubmit",
+        "reason": "No reviewed A2UI event mapping (NonNullable<React.ComponentProps<'form'>['onSubmit']>); not exported."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "i18n",
+        "message": "i18n: Unsupported type '{\n  buttonText: string\n}'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputProps",
+        "message": "inputProps: Unsupported type 'CustomTextInputProps &\nJSX.IntrinsicElements['input']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "TimePicker",
+    "id": "components-time-picker",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [
+      {
+        "kind": "event",
+        "name": "onChange",
+        "reason": "No reviewed A2UI event mapping ((val?: string) => void); not exported."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  }
+]

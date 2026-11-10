@@ -1,0 +1,2126 @@
+[
+  {
+    "name": "Form",
+    "id": "page-templates-forms",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onSubmit",
+        "message": "onSubmit (NonNullable<React.ComponentProps<'form'>['onSubmit']>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Accordion",
+    "id": "components-accordion",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "items",
+        "message": "items: Unsupported type 'AccordionItemProps[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Alert",
+    "id": "components-alert",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "GovBanner",
+    "id": "components-banner",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "exported",
+    "properties": [
+      "tld",
+      "language"
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [],
+    "warnings": [
+      {
+        "code": "AMBIGUOUS_COMPONENT_ID",
+        "subject": "components-banner",
+        "message": "Component id \"components-banner\" is shared by stories from 2 files (./src/components/banner/CustomBanner.stories.tsx, ./src/components/banner/GovBanner/GovBanner.stories.tsx). The manifest describes GovBanner only; documentation links for this id may point at another file. Give each story file a unique title to remove the ambiguity."
+      }
+    ]
+  },
+  {
+    "name": "BreadcrumbBar",
+    "id": "components-breadcrumb",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "navProps",
+        "message": "navProps: Unsupported type 'JSX.IntrinsicElements['nav']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "listProps",
+        "message": "listProps: Unsupported type 'JSX.IntrinsicElements['ol']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactElement<BreadcrumbProps> | ReactElement<BreadcrumbProps>[]) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Button",
+    "id": "components-button",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "size",
+        "message": "size: Unsupported type 'literal'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "ButtonGroup",
+    "id": "components-button-groups",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Card",
+    "id": "components-card",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "containerProps",
+        "message": "containerProps: Unsupported type 'React.HTMLAttributes<HTMLDivElement>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "gridLayout",
+        "message": "gridLayout: Unsupported type 'GridItemProps & {\n  [P in BreakpointKeys]?: GridItemProps\n}'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "CharacterCount",
+    "id": "components-charactercount",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "value",
+        "message": "value: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "defaultValue",
+        "message": "defaultValue: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "isTextArea",
+        "message": "isTextArea: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "getCharacterCount",
+        "message": "getCharacterCount: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "getMessage",
+        "message": "getMessage: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "CharacterCount",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Checkbox",
+    "id": "components-checkbox",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "labelDescription",
+        "message": "labelDescription (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Collection",
+    "id": "components-collection",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "exported",
+    "properties": [
+      "condensed"
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [],
+    "warnings": []
+  },
+  {
+    "name": "ComboBox",
+    "id": "components-combo-box",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "disableFiltering",
+        "message": "disableFiltering: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "ComboBox",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "DateInput",
+    "id": "components-date-input",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputProps",
+        "message": "inputProps: Unsupported type 'JSX.IntrinsicElements['input']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "DatePicker",
+    "id": "components-date-picker",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "dateFormat",
+        "message": "dateFormat: Union type 'typeof INTERNAL_DATE_FORMAT | typeof DEFAULT_EXTERNAL_DATE_FORMAT' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "i18n",
+        "message": "i18n: Unsupported type 'DatePickerLocalization'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onChange",
+        "message": "onChange ((val?: string) => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onBlur",
+        "message": "onBlur ((\n  event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>\n) => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "DateRangePicker",
+    "id": "components-date-range-picker",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "startDatePickerProps",
+        "message": "startDatePickerProps: Unsupported type 'Omit<DatePickerProps, 'rangeDate'>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "endDatePickerProps",
+        "message": "endDatePickerProps: Unsupported type 'Omit<DatePickerProps, 'rangeDate'>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "FileInput",
+    "id": "components-file-input",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "FileInput",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Footer",
+    "id": "components-footer",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "returnToTop",
+        "message": "returnToTop (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "primary",
+        "message": "primary (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "secondary",
+        "message": "secondary (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Address",
+    "id": "components-footer-address",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "items",
+        "message": "items: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "FooterNav",
+    "id": "components-footer-footernav",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "links",
+        "message": "links: Union type 'React.ReactNode[] | ExtendedNavLinksType' contains null or non-scalar types requiring explicit reviewed mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Logo",
+    "id": "components-footer-logo",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "heading",
+        "message": "heading (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "image",
+        "message": "image (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "SocialLinks",
+    "id": "components-footer-sociallinks",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "links",
+        "message": "links: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "SocialLinks",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "ErrorMessage",
+    "id": "components-form-elements-errormessage",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Fieldset",
+    "id": "components-form-elements-fieldset",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "legend",
+        "message": "legend (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "FormGroup",
+    "id": "components-form-elements-formgroup",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Label",
+    "id": "components-form-elements-label",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "hint",
+        "message": "hint (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Grid",
+    "id": "components-grid",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Grid",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Header",
+    "id": "components-header",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "ExtendedNav",
+    "id": "components-header-extendednav",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "primaryItems",
+        "message": "primaryItems: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "secondaryItems",
+        "message": "secondaryItems: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onToggleMobileNav",
+        "message": "onToggleMobileNav ((\n  event: React.MouseEvent<HTMLButtonElement, MouseEvent>\n) => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "MegaMenu",
+    "id": "components-header-megamenu",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "items",
+        "message": "items: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Menu",
+    "id": "components-header-menu",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "items",
+        "message": "items: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "NavCloseButton",
+    "id": "components-header-navclosebutton",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "NavCloseButton",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "NavDropDownButton",
+    "id": "components-header-navdropdownbutton",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onToggle",
+        "message": "onToggle (() => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "NavList",
+    "id": "components-header-navlist",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "items",
+        "message": "items: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "NavMenuButton",
+    "id": "components-header-navmenubutton",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "NavMenuButton",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "PrimaryNav",
+    "id": "components-header-primarynav",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "items",
+        "message": "items: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onToggleMobileNav",
+        "message": "onToggleMobileNav ((\n  event: React.MouseEvent<HTMLButtonElement, MouseEvent>\n) => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Title",
+    "id": "components-header-title",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Title",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Identifier",
+    "id": "components-identifier",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "InPageNavigation",
+    "id": "components-in-page-navigation",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "mainProps",
+        "message": "mainProps: Unsupported type 'JSX.IntrinsicElements['main']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "navProps",
+        "message": "navProps: Unsupported type 'JSX.IntrinsicElements['nav']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "headingElements",
+        "message": "headingElements: Unsupported type 'HeadingLevel[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "content",
+        "message": "content (JSX.Element) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "InputPrefix",
+    "id": "components-input-prefix-or-suffix-inputprefix",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "InputSuffix",
+    "id": "components-input-prefix-or-suffix-inputsuffix",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "LanguageSelector",
+    "id": "components-languageselector",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "langs",
+        "message": "langs: Unsupported type 'LanguageDefinition[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Link",
+    "id": "components-link",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Link",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Modal",
+    "id": "components-modal",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "isLarge",
+        "message": "isLarge: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "forceAction",
+        "message": "forceAction: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "modalRoot",
+        "message": "modalRoot: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "renderToPortal",
+        "message": "renderToPortal: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Modal",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Pagination",
+    "id": "components-pagination",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onClickNext",
+        "message": "onClickNext (() => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onClickPrevious",
+        "message": "onClickPrevious (() => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onClickPageNumber",
+        "message": "onClickPageNumber ((\n  event: React.MouseEvent<HTMLButtonElement>,\n  page: number\n) => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "ProcessList",
+    "id": "components-processlist",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactElement<ProcessListItemProps>[]) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Radio",
+    "id": "components-radio-buttons",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "labelDescription",
+        "message": "labelDescription (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "RangeSlider",
+    "id": "components-range-slider",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "hint",
+        "message": "hint (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Search",
+    "id": "components-search-search",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "i18n",
+        "message": "i18n: Unsupported type '{\n  buttonText: string\n}'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputProps",
+        "message": "inputProps: Unsupported type 'CustomTextInputProps &\nJSX.IntrinsicElements['input']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onSubmit",
+        "message": "onSubmit (NonNullable<React.ComponentProps<'form'>['onSubmit']>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "SearchButton",
+    "id": "components-search-searchbutton",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "i18n",
+        "message": "i18n: Unsupported type '{\n  buttonText: string\n}'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "SearchField",
+    "id": "components-search-searchfield",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputProps",
+        "message": "inputProps: Unsupported type 'JSX.IntrinsicElements['input']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "defaultValue",
+        "message": "defaultValue (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Select",
+    "id": "components-select",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "SideNav",
+    "id": "components-side-navigation",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "items",
+        "message": "items: Unsupported type 'React.ReactNode[]'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "SiteAlert",
+    "id": "components-sitealert",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (string | React.ReactNode | React.ReactNode[]) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "StepIndicator",
+    "id": "components-step-indicator",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "divProps",
+        "message": "divProps: Unsupported type 'JSX.IntrinsicElements['div']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "listProps",
+        "message": "listProps: Unsupported type 'JSX.IntrinsicElements['ol']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "headingProps",
+        "message": "headingProps: Unsupported type 'React.DetailedHTMLProps<\n  React.HTMLAttributes<HTMLHeadingElement>,\n  HTMLHeadingElement\n>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "statusText",
+        "message": "statusText: Unsupported type '{\n  complete: string\n  incomplete: string\n}'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactElement<StepIndicatorStepProps>[]) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "SummaryBox",
+    "id": "components-summary-box",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Table",
+    "id": "components-table",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "caption",
+        "message": "caption (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Tag",
+    "id": "components-tag",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "TextInput",
+    "id": "components-text-input",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputProps",
+        "message": "inputProps: Unsupported type 'JSX.IntrinsicElements['input']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "TextInputMask",
+    "id": "components-text-input-mask",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputProps",
+        "message": "inputProps: Unsupported type 'JSX.IntrinsicElements['input']'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Textarea",
+    "id": "components-textarea",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Union type 'Ref<T> | LegacyRef<T> | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (React.ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "TimePicker",
+    "id": "components-time-picker",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onChange",
+        "message": "onChange ((val?: string) => void) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Tooltip",
+    "id": "components-tooltip",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "position",
+        "message": "position: Unsupported type ''; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Tooltip",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "ValidationChecklist",
+    "id": "components-validation",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "ValidationChecklist",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Swatches",
+    "id": "design-tokens-swatches",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "Swatches",
+        "message": "Storybook could not detect the component for 'design-tokens-swatches' (src/stories/swatches.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Swatches",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "TypeStyles",
+    "id": "design-tokens-type-styles",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "TypeStyles",
+        "message": "Storybook could not detect the component for 'design-tokens-type-styles' (src/stories/type.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "TypeStyles",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "CreateAccount",
+    "id": "page-templates-create-account",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "CreateAccount",
+        "message": "Storybook could not detect the component for 'page-templates-create-account' (src/stories/templates/createaccount.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "CreateAccount",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Documentation",
+    "id": "page-templates-documentation",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "Documentation",
+        "message": "Storybook could not detect the component for 'page-templates-documentation' (src/stories/templates/documentation.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Documentation",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "LandingPage",
+    "id": "page-templates-landing-page",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "LandingPage",
+        "message": "Storybook could not detect the component for 'page-templates-landing-page' (src/stories/templates/landing.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "LandingPage",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "MultipleSignInOptions",
+    "id": "page-templates-multiple-sign-in-options",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "MultipleSignInOptions",
+        "message": "Storybook could not detect the component for 'page-templates-multiple-sign-in-options' (src/stories/templates/mutliplesignin.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "MultipleSignInOptions",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "NotFound",
+    "id": "page-templates-not-found",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "NotFound",
+        "message": "Storybook could not detect the component for 'page-templates-not-found' (src/stories/templates/notfound.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "NotFound",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "SignIn",
+    "id": "page-templates-sign-in",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "SignIn",
+        "message": "Storybook could not detect the component for 'page-templates-sign-in' (src/stories/templates/signin.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "SignIn",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Iconlist",
+    "id": "components-icon-list",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "Iconlist",
+        "message": "Manifest extraction error for 'components-icon-list': File: src/components/Icon/Icons.ts\nError:\nNo suitable component definition found.\nYou can debug your component file in this playground: https://react-docgen.dev/playground\nCode:\nimport AccessibilityNewSvg from '@uswds/uswds/img/usa-icons/accessibility_new.svg?svgr'\nimport AccessibleForwardSvg from '@uswds/uswds/img/usa-icons/accessible_forward.svg?svgr'\nimport AccountBalanceSvg from '@uswds/uswds/img/usa-icons/account_balance.svg?svgr'\nimport AccountBoxSvg from '@uswds/uswds/img/usa-icons/account_box.svg?svgr'\nimport AccountCircleSvg from '@uswds/uswds/img/usa-icons/account_circle.svg?svgr'\nimport AddSvg from '@uswds/uswds/img/usa-icons/add.svg?svgr'\nimport AddCircleSvg from '@uswds/uswds/img/usa-icons/add_circle.svg?svgr'\nimport AddCircleOutlineSvg from '@uswds/uswds/img/usa-icons/add_circle_outline.svg?svgr'\nimport AlarmSvg from '@uswds/uswds/img/usa-icons/alarm.svg?svgr'\nimport AlternateEmailSvg from '@uswds/uswds/img/usa-icons/alternate_email.svg?svgr'\nimport AnnouncementSvg from '@uswds/uswds/img/usa-icons/announcement.svg?svgr'\nimport ArrowBackSvg from '@uswds/uswds/img/usa-icons/arrow_back.svg?svgr'\nimport ArrowDownwardSvg from '@uswds/uswds/img/usa-icons/arrow_downward.svg?svgr'\nimport ArrowDropDownSvg from '@uswds/uswds/img/usa-icons/arrow_drop_down.svg?svgr'\nimport ArrowDropUpSvg from '@uswds/uswds/img/usa-icons/arrow_drop_up.svg?svgr'\nimport ArrowForwardSvg from '@uswds/uswds/img/usa-icons/arrow_forward.svg?svgr'\nimport ArrowUpwardSvg from '@uswds/uswds/img/usa-icons/arrow_upward.svg?svgr'\nimport ApiSvg from '@uswds/uswds/img/usa-icons/api.svg?svgr'\nimport AssessmentSvg from '@uswds/uswds/img/usa-icons/assessment.svg?svgr'\nimport AttachFileSvg from '@uswds/uswds/img/usa-icons/attach_file.svg?svgr'\nimport AttachMoneySvg from '@uswds/uswds/img/usa-icons/attach_money.svg?svgr'\nimport AutorenewSvg from '@uswds/uswds/img/usa-icons/autorenew.svg?svgr'\nimport BackpackSvg from '@uswds/uswds/img/usa-icons/backpack.svg?svgr'\nimport BathtubSvg from '@uswds/uswds/img/usa-icons/bathtub.svg?svgr'\nimport BeddingSvg from '@uswds/uswds/img/usa-icons/bedding.svg?svgr'\nimport BookmarkSvg from '@uswds/uswds/img/usa-icons/bookmark.svg?svgr'\nimport BugReportSvg from '@uswds/uswds/img/usa-icons/bug_report.svg?svgr'\nimport BuildSvg from '@uswds/uswds/img/usa-icons/build.svg?svgr'\nimport CalendarTodaySvg from '@uswds/uswds/img/usa-icons/calendar_today.svg?svgr'\nimport CampaignSvg from '@uswds/uswds/img/usa-icons/campaign.svg?svgr'\nimport CampingSvg from '@uswds/uswds/img/usa-icons/camping.svg?svgr'\nimport CancelSvg from '@uswds/uswds/img/usa-icons/cancel.svg?svgr'\nimport ChatSvg from '@uswds/uswds/img/usa-icons/chat.svg?svgr'\nimport CheckSvg from '@uswds/uswds/img/usa-icons/check.svg?svgr'\nimport CheckBoxOutlineBlankSvg from '@uswds/uswds/img/usa-icons/check_box_outline_blank.svg?svgr'\nimport CheckCircleSvg from '@uswds/uswds/img/usa-icons/check_circle.svg?svgr'\nimport CheckCircleOutlineSvg from '@uswds/uswds/img/usa-icons/check_circle_outline.svg?svgr'\nimport CheckroomSvg from '@uswds/uswds/img/usa-icons/checkroom.svg?svgr'\nimport CleanHandsSvg from '@uswds/uswds/img/usa-icons/clean_hands.svg?svgr'\nimport ClothesSvg from '@uswds/uswds/img/usa-icons/clothes.svg?svgr'\nimport CloseSvg from '@uswds/uswds/img/usa-icons/close.svg?svgr'\nimport ClosedCaptionSvg from '@uswds/uswds/img/usa-icons/closed_caption.svg?svgr'\nimport CloudSvg from '@uswds/uswds/img/usa-icons/cloud.svg?svgr'\nimport CodeSvg from '@uswds/uswds/img/usa-icons/code.svg?svgr'\nimport CommentSvg from '@uswds/uswds/img/usa-icons/comment.svg?svgr'\nimport ConnectWithoutContactSvg from '@uswds/uswds/img/usa-icons/connect_without_contact.svg?svgr'\nimport ConstructionSvg from '@uswds/uswds/img/usa-icons/construction.svg?svgr'\nimport ConstructionWorkerSvg from '@uswds/uswds/img/usa-icons/construction_worker.svg?svgr'\nimport ContactPageSvg from '@uswds/uswds/img/usa-icons/contact_page.svg?svgr'\nimport ContentCopySvg from '@uswds/uswds/img/usa-icons/content_copy.svg?svgr'\nimport CoronavirusSvg from '@uswds/uswds/img/usa-icons/coronavirus.svg?svgr'\nimport CreditCardSvg from '@uswds/uswds/img/usa-icons/credit_card.svg?svgr'\nimport DeckSvg from '@uswds/uswds/img/usa-icons/deck.svg?svgr'\nimport DeleteSvg from '@uswds/uswds/img/usa-icons/delete.svg?svgr'\nimport DeviceThermostatSvg from '@uswds/uswds/img/usa-icons/device_thermostat.svg?svgr'\nimport DirectionsSvg from '@uswds/uswds/img/usa-icons/directions.svg?svgr'\nimport DirectionsBikeSvg from '@uswds/uswds/img/usa-icons/directions_bike.svg?svgr'\nimport DirectionsBusSvg from '@uswds/uswds/img/usa-icons/directions_bus.svg?svgr'\nimport DirectionsCarSvg from '@uswds/uswds/img/usa-icons/directions_car.svg?svgr'\nimport DirectionsWalkSvg from '@uswds/uswds/img/usa-icons/directions_walk.svg?svgr'\nimport DoNotDisturbSvg from '@uswds/uswds/img/usa-icons/do_not_disturb.svg?svgr'\nimport DoNotTouchSvg from '@uswds/uswds/img/usa-icons/do_not_touch.svg?svgr'\nimport DragHandleSvg from '@uswds/uswds/img/usa-icons/drag_handle.svg?svgr'\nimport EcoSvg from '@uswds/uswds/img/usa-icons/eco.svg?svgr'\nimport EditSvg from '@uswds/uswds/img/usa-icons/edit.svg?svgr'\nimport ElectricalServicesSvg from '@uswds/uswds/img/usa-icons/electrical_services.svg?svgr'\nimport EmojiEventsSvg from '@uswds/uswds/img/usa-icons/emoji_events.svg?svgr'\nimport ErrorSvg from '@uswds/uswds/img/usa-icons/error.svg?svgr'\nimport ErrorOutlineSvg from '@uswds/uswds/img/usa-icons/error_outline.svg?svgr'\nimport EventSvg from '@uswds/uswds/img/usa-icons/event.svg?svgr'\nimport ExpandLessSvg from '@uswds/uswds/img/usa-icons/expand_less.svg?svgr'\nimport ExpandMoreSvg from '@uswds/uswds/img/usa-icons/expand_more.svg?svgr'\nimport FacebookSvg from '@uswds/uswds/img/usa-icons/facebook.svg?svgr'\nimport FastForwardSvg from '@uswds/uswds/img/usa-icons/fast_forward.svg?svgr'\nimport FastRewindSvg from '@uswds/uswds/img/usa-icons/fast_rewind.svg?svgr'\nimport FavoriteSvg from '@uswds/uswds/img/usa-icons/favorite.svg?svgr'\nimport FavoriteBorderSvg from '@uswds/uswds/img/usa-icons/favorite_border.svg?svgr'\nimport FaxSvg from '@uswds/uswds/img/usa-icons/fax.svg?svgr'\nimport FileDownloadSvg from '@uswds/uswds/img/usa-icons/file_download.svg?svgr'\nimport FilePresentSvg from '@uswds/uswds/img/usa-icons/file_present.svg?svgr'\nimport FileUploadSvg from '@uswds/uswds/img/usa-icons/file_upload.svg?svgr'\nimport FilterAltSvg from '@uswds/uswds/img/usa-icons/filter_alt.svg?svgr'\nimport FilterListSvg from '@uswds/uswds/img/usa-icons/filter_list.svg?svgr'\nimport FingerprintSvg from '@uswds/uswds/img/usa-icons/fingerprint.svg?svgr'\nimport FirstPageSvg from '@uswds/uswds/img/usa-icons/first_page.svg?svgr'\nimport FlagSvg from '@uswds/uswds/img/usa-icons/flag.svg?svgr'\nimport FlickrSvg from '@uswds/uswds/img/usa-icons/flickr.svg?svgr'\nimport FlightSvg from '@uswds/uswds/img/usa-icons/flight.svg?svgr'\nimport FloodingSvg from '@uswds/uswds/img/usa-icons/flooding.svg?svgr'\nimport FolderSvg from '@uswds/uswds/img/usa-icons/folder.svg?svgr'\nimport FolderOpenSvg from '@uswds/uswds/img/usa-icons/folder_open.svg?svgr'\nimport FormatQuoteSvg from '@uswds/uswds/img/usa-icons/format_quote.svg?svgr'\nimport FormatSizeSvg from '@uswds/uswds/img/usa-icons/format_size.svg?svgr'\nimport ForumSvg from '@uswds/uswds/img/usa-icons/forum.svg?svgr'\nimport GithubSvg from '@uswds/uswds/img/usa-icons/github.svg?svgr'\nimport GridViewSvg from '@uswds/uswds/img/usa-icons/grid_view.svg?svgr'\nimport GroupAddSvg from '@uswds/uswds/img/usa-icons/group_add.svg?svgr'\nimport GroupsSvg from '@uswds/uswds/img/usa-icons/groups.svg?svgr'\nimport HearingSvg from '@uswds/uswds/img/usa-icons/hearing.svg?svgr'\nimport HelpSvg from '@uswds/uswds/img/usa-icons/help.svg?svgr'\nimport HelpOutlineSvg from '@uswds/uswds/img/usa-icons/help_outline.svg?svgr'\nimport HighlightOffSvg from '@uswds/uswds/img/usa-icons/highlight_off.svg?svgr'\nimport HistorySvg from '@uswds/uswds/img/usa-icons/history.svg?svgr'\nimport HomeSvg from '@uswds/uswds/img/usa-icons/home.svg?svgr'\nimport HospitalSvg from '@uswds/uswds/img/usa-icons/hospital.svg?svgr'\nimport HotelSvg from '@uswds/uswds/img/usa-icons/hotel.svg?svgr'\nimport HourglassEmptySvg from '@uswds/uswds/img/usa-icons/hourglass_empty.svg?svgr'\nimport HurricaneSvg from '@uswds/uswds/img/usa-icons/hurricane.svg?svgr'\nimport IdentificationSvg from '@uswds/uswds/img/usa-icons/identification.svg?svgr'\nimport ImageSvg from '@uswds/uswds/img/usa-icons/image.svg?svgr'\nimport InfoSvg from '@uswds/uswds/img/usa-icons/info.svg?svgr'\nimport InfoOutlineSvg from '@uswds/uswds/img/usa-icons/info_outline.svg?svgr'\nimport InsightsSvg from '@uswds/uswds/img/usa-icons/insights.svg?svgr'\nimport InstagramSvg from '@uswds/uswds/img/usa-icons/instagram.svg?svgr'\nimport KeyboardSvg from '@uswds/uswds/img/usa-icons/keyboard.svg?svgr'\nimport LabelSvg from '@uswds/uswds/img/usa-icons/label.svg?svgr'\nimport LanguageSvg from '@uswds/uswds/img/usa-icons/language.svg?svgr'\nimport LastPageSvg from '@uswds/uswds/img/usa-icons/last_page.svg?svgr'\nimport LaunchSvg from '@uswds/uswds/img/usa-icons/launch.svg?svgr'\nimport LightbulbSvg from '@uswds/uswds/img/usa-icons/lightbulb.svg?svgr'\nimport LightbulbOutlineSvg from '@uswds/uswds/img/usa-icons/lightbulb_outline.svg?svgr'\nimport LinkedInSvg from '@uswds/uswds/img/usa-icons/linkedin.svg?svgr'\nimport LinkSvg from '@uswds/uswds/img/usa-icons/link.svg?svgr'\nimport LinkOffSvg from '@uswds/uswds/img/usa-icons/link_off.svg?svgr'\nimport ListSvg from '@uswds/uswds/img/usa-icons/list.svg?svgr'\nimport LocalCafeSvg from '@uswds/uswds/img/usa-icons/local_cafe.svg?svgr'\nimport LocalFireDepartmentSvg from '@uswds/uswds/img/usa-icons/local_fire_department.svg?svgr'\nimport LocalGasStationSvg from '@uswds/uswds/img/usa-icons/local_gas_station.svg?svgr'\nimport LocalGroceryStoreSvg from '@uswds/uswds/img/usa-icons/local_grocery_store.svg?svgr'\nimport LocalHospitalSvg from '@uswds/uswds/img/usa-icons/local_hospital.svg?svgr'\nimport LocalLaundryServiceSvg from '@uswds/uswds/img/usa-icons/local_laundry_service.svg?svgr'\nimport LocalLibrarySvg from '@uswds/uswds/img/usa-icons/local_library.svg?svgr'\nimport LocalOfferSvg from '@uswds/uswds/img/usa-icons/local_offer.svg?svgr'\nimport LocalParkingSvg from '@uswds/uswds/img/usa-icons/local_parking.svg?svgr'\nimport LocalPharmacySvg from '@uswds/uswds/img/usa-icons/local_pharmacy.svg?svgr'\nimport LocalPoliceSvg from '@uswds/uswds/img/usa-icons/local_police.svg?svgr'\nimport LocalTaxiSvg from '@uswds/uswds/img/usa-icons/local_taxi.svg?svgr'\nimport LocationCitySvg from '@uswds/uswds/img/usa-icons/location_city.svg?svgr'\nimport LocationOnSvg from '@uswds/uswds/img/usa-icons/location_on.svg?svgr'\nimport LockSvg from '@uswds/uswds/img/usa-icons/lock.svg?svgr'\nimport LockOpenSvg from '@uswds/uswds/img/usa-icons/lock_open.svg?svgr'\nimport LockOutlineSvg from '@uswds/uswds/img/usa-icons/lock_outline.svg?svgr'\nimport LoginSvg from '@uswds/uswds/img/usa-icons/login.svg?svgr'\nimport LogoutSvg from '@uswds/uswds/img/usa-icons/logout.svg?svgr'\nimport LoopSvg from '@uswds/uswds/img/usa-icons/loop.svg?svgr'\nimport MailSvg from '@uswds/uswds/img/usa-icons/mail.svg?svgr'\nimport MailOutlineSvg from '@uswds/uswds/img/usa-icons/mail_outline.svg?svgr'\nimport MapSvg from '@uswds/uswds/img/usa-icons/map.svg?svgr'\nimport MasksSvg from '@uswds/uswds/img/usa-icons/masks.svg?svgr'\nimport MedicalServicesSvg from '@uswds/uswds/img/usa-icons/medical_services.svg?svgr'\nimport MenuSvg from '@uswds/uswds/img/usa-icons/menu.svg?svgr'\nimport MilitaryTechSvg from '@uswds/uswds/img/usa-icons/military_tech.svg?svgr'\nimport MoreHorizSvg from '@uswds/uswds/img/usa-icons/more_horiz.svg?svgr'\nimport MoreVertSvg from '@uswds/uswds/img/usa-icons/more_vert.svg?svgr'\nimport MyLocationSvg from '@uswds/uswds/img/usa-icons/my_location.svg?svgr'\nimport NavigateBeforeSvg from '@uswds/uswds/img/usa-icons/navigate_before.svg?svgr'\nimport NavigateNextSvg from '@uswds/uswds/img/usa-icons/navigate_next.svg?svgr'\nimport NavigateFarBeforeSvg from '@uswds/uswds/img/usa-icons/navigate_far_before.svg?svgr'\nimport NavigateFarNextSvg from '@uswds/uswds/img/usa-icons/navigate_far_next.svg?svgr'\nimport NearMeSvg from '@uswds/uswds/img/usa-icons/near_me.svg?svgr'\nimport NotificationsSvg from '@uswds/uswds/img/usa-icons/notifications.svg?svgr'\nimport NotificationsActiveSvg from '@uswds/uswds/img/usa-icons/notifications_active.svg?svgr'\nimport NotificationsNoneSvg from '@uswds/uswds/img/usa-icons/notifications_none.svg?svgr'\nimport NotificationsOffSvg from '@uswds/uswds/img/usa-icons/notifications_off.svg?svgr'\nimport ParkSvg from '@uswds/uswds/img/usa-icons/park.svg?svgr'\nimport PeopleSvg from '@uswds/uswds/img/usa-icons/people.svg?svgr'\nimport PersonSvg from '@uswds/uswds/img/usa-icons/person.svg?svgr'\nimport PetsSvg from '@uswds/uswds/img/usa-icons/pets.svg?svgr'\nimport PhoneSvg from '@uswds/uswds/img/usa-icons/phone.svg?svgr'\nimport PhotoCameraSvg from '@uswds/uswds/img/usa-icons/photo_camera.svg?svgr'\nimport PrintSvg from '@uswds/uswds/img/usa-icons/print.svg?svgr'\nimport PriorityHighSvg from '@uswds/uswds/img/usa-icons/priority_high.svg?svgr'\nimport PublicSvg from '@uswds/uswds/img/usa-icons/public.svg?svgr'\nimport PushPinSvg from '@uswds/uswds/img/usa-icons/push_pin.svg?svgr'\nimport RadioButtonUncheckedSvg from '@uswds/uswds/img/usa-icons/radio_button_unchecked.svg?svgr'\nimport RainSvg from '@uswds/uswds/img/usa-icons/rain.svg?svgr'\nimport ReduceCapacitySvg from '@uswds/uswds/img/usa-icons/reduce_capacity.svg?svgr'\nimport RemoveCircleSvg from '@uswds/uswds/img/usa-icons/remove_circle.svg?svgr'\nimport RemoveSvg from '@uswds/uswds/img/usa-icons/remove.svg?svgr'\nimport ReportSvg from '@uswds/uswds/img/usa-icons/report.svg?svgr'\nimport RestaurantSvg from '@uswds/uswds/img/usa-icons/restaurant.svg?svgr'\nimport RssFeedSvg from '@uswds/uswds/img/usa-icons/rss_feed.svg?svgr'\nimport SafetyDividerSvg from '@uswds/uswds/img/usa-icons/safety_divider.svg?svgr'\nimport SanitizerSvg from '@uswds/uswds/img/usa-icons/sanitizer.svg?svgr'\nimport SaveAltSvg from '@uswds/uswds/img/usa-icons/save_alt.svg?svgr'\nimport SevereWeatherSvg from '@uswds/uswds/img/usa-icons/severe_weather.svg?svgr'\nimport ScheduleSvg from '@uswds/uswds/img/usa-icons/schedule.svg?svgr'\nimport SchoolSvg from '@uswds/uswds/img/usa-icons/school.svg?svgr'\nimport ScienceSvg from '@uswds/uswds/img/usa-icons/science.svg?svgr'\nimport SearchSvg from '@uswds/uswds/img/usa-icons/search.svg?svgr'\nimport SecuritySvg from '@uswds/uswds/img/usa-icons/security.svg?svgr'\nimport SendSvg from '@uswds/uswds/img/usa-icons/send.svg?svgr'\nimport SentimentDissatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_dissatisfied.svg?svgr'\nimport SentimentNeutralSvg from '@uswds/uswds/img/usa-icons/sentiment_neutral.svg?svgr'\nimport SentimentSatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_satisfied.svg?svgr'\nimport SentimentSatisfiedAltSvg from '@uswds/uswds/img/usa-icons/sentiment_satisfied_alt.svg?svgr'\nimport SentimentVeryDissatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_very_dissatisfied.svg?svgr'\nimport SettingsSvg from '@uswds/uswds/img/usa-icons/settings.svg?svgr'\nimport ShareSvg from '@uswds/uswds/img/usa-icons/share.svg?svgr'\nimport ShieldSvg from '@uswds/uswds/img/usa-icons/shield.svg?svgr'\nimport ShoppingBasketSvg from '@uswds/uswds/img/usa-icons/shopping_basket.svg?svgr'\nimport SnowSvg from '@uswds/uswds/img/usa-icons/snow.svg?svgr'\nimport SoapSvg from '@uswds/uswds/img/usa-icons/soap.svg?svgr'\nimport SocialDistanceSvg from '@uswds/uswds/img/usa-icons/social_distance.svg?svgr'\nimport SortArrowSvg from '@uswds/uswds/img/usa-icons/sort_arrow.svg?svgr'\nimport SpellcheckSvg from '@uswds/uswds/img/usa-icons/spellcheck.svg?svgr'\nimport StarSvg from '@uswds/uswds/img/usa-icons/star.svg?svgr'\nimport StarHalfSvg from '@uswds/uswds/img/usa-icons/star_half.svg?svgr'\nimport StarOutlineSvg from '@uswds/uswds/img/usa-icons/star_outline.svg?svgr'\nimport StoreSvg from '@uswds/uswds/img/usa-icons/store.svg?svgr'\nimport SupportSvg from '@uswds/uswds/img/usa-icons/support.svg?svgr'\nimport SupportAgentSvg from '@uswds/uswds/img/usa-icons/support_agent.svg?svgr'\nimport TextFieldsSvg from '@uswds/uswds/img/usa-icons/text_fields.svg?svgr'\nimport ThumbDownAltSvg from '@uswds/uswds/img/usa-icons/thumb_down_alt.svg?svgr'\nimport ThumbUpAltSvg from '@uswds/uswds/img/usa-icons/thumb_up_alt.svg?svgr'\nimport TimerSvg from '@uswds/uswds/img/usa-icons/timer.svg?svgr'\nimport ToggleOffSvg from '@uswds/uswds/img/usa-icons/toggle_off.svg?svgr'\nimport ToggleOnSvg from '@uswds/uswds/img/usa-icons/toggle_on.svg?svgr'\nimport TopicSvg from '@uswds/uswds/img/usa-icons/topic.svg?svgr'\nimport TornadoSvg from '@uswds/uswds/img/usa-icons/tornado.svg?svgr'\nimport TranslateSvg from '@uswds/uswds/img/usa-icons/translate.svg?svgr'\nimport TrendingDownSvg from '@uswds/uswds/img/usa-icons/trending_down.svg?svgr'\nimport TrendingUpSvg from '@uswds/uswds/img/usa-icons/trending_up.svg?svgr'\nimport TwitterSvg from '@uswds/uswds/img/usa-icons/twitter.svg?svgr'\nimport UndoSvg from '@uswds/uswds/img/usa-icons/undo.svg?svgr'\nimport UnfoldLessSvg from '@uswds/uswds/img/usa-icons/unfold_less.svg?svgr'\nimport UnfoldMoreSvg from '@uswds/uswds/img/usa-icons/unfold_more.svg?svgr'\nimport UpdateSvg from '@uswds/uswds/img/usa-icons/update.svg?svgr'\nimport UploadFileSvg from '@uswds/uswds/img/usa-icons/upload_file.svg?svgr'\nimport VerifiedSvg from '@uswds/uswds/img/usa-icons/verified.svg?svgr'\nimport VerifiedUserSvg from '@uswds/uswds/img/usa-icons/verified_user.svg?svgr'\nimport VisibilitySvg from '@uswds/uswds/img/usa-icons/visibility.svg?svgr'\nimport VisibilityOffSvg from '@uswds/uswds/img/usa-icons/visibility_off.svg?svgr'\nimport VolumeOffSvg from '@uswds/uswds/img/usa-icons/volume_off.svg?svgr'\nimport WarningSvg from '@uswds/uswds/img/usa-icons/warning.svg?svgr'\nimport WashSvg from '@uswds/uswds/img/usa-icons/wash.svg?svgr'\nimport WifiSvg from '@uswds/uswds/img/usa-icons/wifi.svg?svgr'\nimport WorkSvg from '@uswds/uswds/img/usa-icons/work.svg?svgr'\nimport XSvg from '@uswds/uswds/img/usa-icons/x.svg?svgr'\nimport YoutubeSvg from '@uswds/uswds/img/usa-icons/youtube.svg?svgr'\nimport ZoomInSvg from '@uswds/uswds/img/usa-icons/zoom_in.svg?svgr'\nimport ZoomOutMapSvg from '@uswds/uswds/img/usa-icons/zoom_out_map.svg?svgr'\nimport ZoomOutSvg from '@uswds/uswds/img/usa-icons/zoom_out.svg?svgr'\n\nimport { makeUSWDSIcon, IconProps } from './Icon'\nimport React from 'react'\n\nexport class Icon {\n  public static AccessibilityNew: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccessibilityNewSvg)\n\n  public static AccessibleForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccessibleForwardSvg)\n\n  public static AccountBalance: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountBalanceSvg)\n\n  public static AccountBox: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountBoxSvg)\n\n  public static AccountCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountCircleSvg)\n\n  public static Add: React.ComponentType<IconProps> = makeUSWDSIcon(AddSvg)\n\n  public static AddCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AddCircleSvg)\n\n  public static AddCircleOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AddCircleOutlineSvg)\n\n  public static Alarm: React.ComponentType<IconProps> = makeUSWDSIcon(AlarmSvg)\n\n  public static AlternateEmail: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AlternateEmailSvg)\n\n  public static Announcement: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AnnouncementSvg)\n\n  public static ArrowBack: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowBackSvg)\n\n  public static ArrowDownward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDownwardSvg)\n\n  public static ArrowDropDown: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDropDownSvg)\n\n  public static ArrowDropUp: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDropUpSvg)\n\n  public static ArrowForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowForwardSvg)\n\n  public static ArrowUpward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowUpwardSvg)\n\n  public static Api: React.ComponentType<IconProps> = makeUSWDSIcon(ApiSvg)\n\n  public static Assessment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AssessmentSvg)\n\n  public static AttachFile: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AttachFileSvg)\n\n  public static AttachMoney: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AttachMoneySvg)\n\n  public static Autorenew: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AutorenewSvg)\n\n  public static Backpack: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BackpackSvg)\n\n  public static Bathtub: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BathtubSvg)\n\n  public static Bedding: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BeddingSvg)\n\n  public static Bookmark: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BookmarkSvg)\n\n  public static BugReport: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BugReportSvg)\n\n  public static Build: React.ComponentType<IconProps> = makeUSWDSIcon(BuildSvg)\n\n  public static CalendarToday: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CalendarTodaySvg)\n\n  public static Campaign: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CampaignSvg)\n\n  public static Camping: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CampingSvg)\n\n  public static Cancel: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CancelSvg)\n\n  public static Chat: React.ComponentType<IconProps> = makeUSWDSIcon(ChatSvg)\n\n  public static Check: React.ComponentType<IconProps> = makeUSWDSIcon(CheckSvg)\n\n  public static CheckBoxOutlineBlank: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckBoxOutlineBlankSvg)\n\n  public static CheckCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckCircleSvg)\n\n  public static CheckCircleOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckCircleOutlineSvg)\n\n  public static Checkroom: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckroomSvg)\n\n  public static CleanHands: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CleanHandsSvg)\n\n  public static Clothes: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ClothesSvg)\n\n  public static Close: React.ComponentType<IconProps> = makeUSWDSIcon(CloseSvg)\n\n  public static ClosedCaption: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ClosedCaptionSvg)\n\n  public static Cloud: React.ComponentType<IconProps> = makeUSWDSIcon(CloudSvg)\n\n  public static Code: React.ComponentType<IconProps> = makeUSWDSIcon(CodeSvg)\n\n  public static Comment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CommentSvg)\n\n  public static ConnectWithoutContact: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConnectWithoutContactSvg)\n\n  public static Construction: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConstructionSvg)\n\n  public static ConstructionWorker: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConstructionWorkerSvg)\n\n  public static ContactPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ContactPageSvg)\n\n  public static ContentCopy: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ContentCopySvg)\n\n  public static Coronavirus: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CoronavirusSvg)\n\n  public static CreditCard: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CreditCardSvg)\n\n  public static Deck: React.ComponentType<IconProps> = makeUSWDSIcon(DeckSvg)\n\n  public static Delete: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DeleteSvg)\n\n  public static DeviceThermostat: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DeviceThermostatSvg)\n\n  public static Directions: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsSvg)\n\n  public static DirectionsBike: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsBikeSvg)\n\n  public static DirectionsBus: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsBusSvg)\n\n  public static DirectionsCar: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsCarSvg)\n\n  public static DirectionsWalk: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsWalkSvg)\n\n  public static DoNotDisturb: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DoNotDisturbSvg)\n\n  public static DoNotTouch: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DoNotTouchSvg)\n\n  public static DragHandle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DragHandleSvg)\n\n  public static Eco: React.ComponentType<IconProps> = makeUSWDSIcon(EcoSvg)\n\n  public static Edit: React.ComponentType<IconProps> = makeUSWDSIcon(EditSvg)\n\n  public static ElectricalServices: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ElectricalServicesSvg)\n\n  public static EmojiEvents: React.ComponentType<IconProps> =\n    makeUSWDSIcon(EmojiEventsSvg)\n\n  public static Error: React.ComponentType<IconProps> = makeUSWDSIcon(ErrorSvg)\n\n  public static ErrorOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ErrorOutlineSvg)\n\n  public static Event: React.ComponentType<IconProps> = makeUSWDSIcon(EventSvg)\n\n  public static ExpandLess: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ExpandLessSvg)\n\n  public static ExpandMore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ExpandMoreSvg)\n\n  public static Facebook: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FacebookSvg)\n\n  public static FastForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FastForwardSvg)\n\n  public static FastRewind: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FastRewindSvg)\n\n  public static Favorite: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FavoriteSvg)\n\n  public static FavoriteBorder: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FavoriteBorderSvg)\n\n  public static Fax: React.ComponentType<IconProps> = makeUSWDSIcon(FaxSvg)\n\n  public static FileDownload: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FileDownloadSvg)\n\n  public static FilePresent: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilePresentSvg)\n\n  public static FileUpload: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FileUploadSvg)\n\n  public static FilterAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilterAltSvg)\n\n  public static FilterList: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilterListSvg)\n\n  public static Fingerprint: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FingerprintSvg)\n\n  public static FirstPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FirstPageSvg)\n\n  public static Flag: React.ComponentType<IconProps> = makeUSWDSIcon(FlagSvg)\n\n  public static Flickr: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FlickrSvg)\n\n  public static Flight: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FlightSvg)\n\n  public static Flooding: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FloodingSvg)\n\n  public static Folder: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FolderSvg)\n\n  public static FolderOpen: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FolderOpenSvg)\n\n  public static FormatQuote: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FormatQuoteSvg)\n\n  public static FormatSize: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FormatSizeSvg)\n\n  public static Forum: React.ComponentType<IconProps> = makeUSWDSIcon(ForumSvg)\n\n  public static Github: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GithubSvg)\n\n  public static GridView: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GridViewSvg)\n\n  public static GroupAdd: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GroupAddSvg)\n\n  public static Groups: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GroupsSvg)\n\n  public static Hearing: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HearingSvg)\n\n  public static Help: React.ComponentType<IconProps> = makeUSWDSIcon(HelpSvg)\n\n  public static HelpOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HelpOutlineSvg)\n\n  public static HighlightOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HighlightOffSvg)\n\n  public static History: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HistorySvg)\n\n  public static Home: React.ComponentType<IconProps> = makeUSWDSIcon(HomeSvg)\n\n  public static Hospital: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HospitalSvg)\n\n  public static Hotel: React.ComponentType<IconProps> = makeUSWDSIcon(HotelSvg)\n\n  public static HourglassEmpty: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HourglassEmptySvg)\n\n  public static Hurricane: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HurricaneSvg)\n\n  public static Identification: React.ComponentType<IconProps> =\n    makeUSWDSIcon(IdentificationSvg)\n\n  public static Image: React.ComponentType<IconProps> = makeUSWDSIcon(ImageSvg)\n\n  public static Info: React.ComponentType<IconProps> = makeUSWDSIcon(InfoSvg)\n\n  public static InfoOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InfoOutlineSvg)\n\n  public static Insights: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InsightsSvg)\n\n  public static Instagram: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InstagramSvg)\n\n  public static Keyboard: React.ComponentType<IconProps> =\n    makeUSWDSIcon(KeyboardSvg)\n\n  public static Label: React.ComponentType<IconProps> = makeUSWDSIcon(LabelSvg)\n\n  public static Language: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LanguageSvg)\n\n  public static LastPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LastPageSvg)\n\n  public static Launch: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LaunchSvg)\n\n  public static Lightbulb: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LightbulbSvg)\n\n  public static LightbulbOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LightbulbOutlineSvg)\n\n  public static LinkedIn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LinkedInSvg)\n\n  public static Link: React.ComponentType<IconProps> = makeUSWDSIcon(LinkSvg)\n\n  public static LinkOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LinkOffSvg)\n\n  public static List: React.ComponentType<IconProps> = makeUSWDSIcon(ListSvg)\n\n  public static LocalCafe: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalCafeSvg)\n\n  public static LocalFireDepartment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalFireDepartmentSvg)\n\n  public static LocalGasStation: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalGasStationSvg)\n\n  public static LocalGroceryStore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalGroceryStoreSvg)\n\n  public static LocalHospital: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalHospitalSvg)\n\n  public static LocalLaundryService: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalLaundryServiceSvg)\n\n  public static LocalLibrary: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalLibrarySvg)\n\n  public static LocalOffer: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalOfferSvg)\n\n  public static LocalParking: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalParkingSvg)\n\n  public static LocalPharmacy: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalPharmacySvg)\n\n  public static LocalPolice: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalPoliceSvg)\n\n  public static LocalTaxi: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalTaxiSvg)\n\n  public static LocationCity: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocationCitySvg)\n\n  public static LocationOn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocationOnSvg)\n\n  public static Lock: React.ComponentType<IconProps> = makeUSWDSIcon(LockSvg)\n\n  public static LockOpen: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LockOpenSvg)\n\n  public static LockOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LockOutlineSvg)\n\n  public static Login: React.ComponentType<IconProps> = makeUSWDSIcon(LoginSvg)\n\n  public static Logout: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LogoutSvg)\n\n  public static Loop: React.ComponentType<IconProps> = makeUSWDSIcon(LoopSvg)\n\n  public static Mail: React.ComponentType<IconProps> = makeUSWDSIcon(MailSvg)\n\n  public static MailOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MailOutlineSvg)\n\n  public static Map: React.ComponentType<IconProps> = makeUSWDSIcon(MapSvg)\n\n  public static Masks: React.ComponentType<IconProps> = makeUSWDSIcon(MasksSvg)\n\n  public static MedicalServices: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MedicalServicesSvg)\n\n  public static Menu: React.ComponentType<IconProps> = makeUSWDSIcon(MenuSvg)\n\n  public static MilitaryTech: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MilitaryTechSvg)\n\n  public static MoreHoriz: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MoreHorizSvg)\n\n  public static MoreVert: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MoreVertSvg)\n\n  public static MyLocation: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MyLocationSvg)\n\n  public static NavigateBefore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateBeforeSvg)\n\n  public static NavigateNext: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateNextSvg)\n\n  public static NavigateFarBefore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateFarBeforeSvg)\n\n  public static NavigateFarNext: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateFarNextSvg)\n\n  public static NearMe: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NearMeSvg)\n\n  public static Notifications: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsSvg)\n\n  public static NotificationsActive: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsActiveSvg)\n\n  public static NotificationsNone: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsNoneSvg)\n\n  public static NotificationsOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsOffSvg)\n\n  public static Park: React.ComponentType<IconProps> = makeUSWDSIcon(ParkSvg)\n\n  public static People: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PeopleSvg)\n\n  public static Person: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PersonSvg)\n\n  public static Pets: React.ComponentType<IconProps> = makeUSWDSIcon(PetsSvg)\n\n  public static Phone: React.ComponentType<IconProps> = makeUSWDSIcon(PhoneSvg)\n\n  public static PhotoCamera: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PhotoCameraSvg)\n\n  public static Print: React.ComponentType<IconProps> = makeUSWDSIcon(PrintSvg)\n\n  public static PriorityHigh: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PriorityHighSvg)\n\n  public static Public: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PublicSvg)\n\n  public static PushPin: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PushPinSvg)\n\n  public static RadioButtonUnchecked: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RadioButtonUncheckedSvg)\n\n  public static Rain: React.ComponentType<IconProps> = makeUSWDSIcon(RainSvg)\n\n  public static ReduceCapacity: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ReduceCapacitySvg)\n\n  public static RemoveCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RemoveCircleSvg)\n\n  public static Remove: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RemoveSvg)\n\n  public static Report: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ReportSvg)\n\n  public static Restaurant: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RestaurantSvg)\n\n  public static RssFeed: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RssFeedSvg)\n\n  public static SafetyDivider: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SafetyDividerSvg)\n\n  public static Sanitizer: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SanitizerSvg)\n\n  public static SaveAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SaveAltSvg)\n\n  public static SevereWeather: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SevereWeatherSvg)\n\n  public static Schedule: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ScheduleSvg)\n\n  public static School: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SchoolSvg)\n\n  public static Science: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ScienceSvg)\n\n  public static Search: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SearchSvg)\n\n  public static Security: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SecuritySvg)\n\n  public static Send: React.ComponentType<IconProps> = makeUSWDSIcon(SendSvg)\n\n  public static SentimentDissatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentDissatisfiedSvg)\n\n  public static SentimentNeutral: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentNeutralSvg)\n\n  public static SentimentSatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentSatisfiedSvg)\n\n  public static SentimentSatisfiedAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentSatisfiedAltSvg)\n\n  public static SentimentVeryDissatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentVeryDissatisfiedSvg)\n\n  public static Settings: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SettingsSvg)\n\n  public static Share: React.ComponentType<IconProps> = makeUSWDSIcon(ShareSvg)\n\n  public static Shield: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ShieldSvg)\n\n  public static ShoppingBasket: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ShoppingBasketSvg)\n\n  public static Snow: React.ComponentType<IconProps> = makeUSWDSIcon(SnowSvg)\n\n  public static Soap: React.ComponentType<IconProps> = makeUSWDSIcon(SoapSvg)\n\n  public static SocialDistance: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SocialDistanceSvg)\n\n  public static SortArrow: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SortArrowSvg)\n\n  public static Spellcheck: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SpellcheckSvg)\n\n  public static Star: React.ComponentType<IconProps> = makeUSWDSIcon(StarSvg)\n\n  public static StarHalf: React.ComponentType<IconProps> =\n    makeUSWDSIcon(StarHalfSvg)\n\n  public static StarOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(StarOutlineSvg)\n\n  public static Store: React.ComponentType<IconProps> = makeUSWDSIcon(StoreSvg)\n\n  public static Support: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SupportSvg)\n\n  public static SupportAgent: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SupportAgentSvg)\n\n  public static TextFields: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TextFieldsSvg)\n\n  public static ThumbDownAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ThumbDownAltSvg)\n\n  public static ThumbUpAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ThumbUpAltSvg)\n\n  public static Timer: React.ComponentType<IconProps> = makeUSWDSIcon(TimerSvg)\n\n  public static ToggleOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ToggleOffSvg)\n\n  public static ToggleOn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ToggleOnSvg)\n\n  public static Topic: React.ComponentType<IconProps> = makeUSWDSIcon(TopicSvg)\n\n  public static Tornado: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TornadoSvg)\n\n  public static Translate: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TranslateSvg)\n\n  public static TrendingDown: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TrendingDownSvg)\n\n  public static TrendingUp: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TrendingUpSvg)\n\n  public static Twitter: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TwitterSvg)\n\n  public static Undo: React.ComponentType<IconProps> = makeUSWDSIcon(UndoSvg)\n\n  public static UnfoldLess: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UnfoldLessSvg)\n\n  public static UnfoldMore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UnfoldMoreSvg)\n\n  public static Update: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UpdateSvg)\n\n  public static UploadFile: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UploadFileSvg)\n\n  public static Verified: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VerifiedSvg)\n\n  public static VerifiedUser: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VerifiedUserSvg)\n\n  public static Visibility: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VisibilitySvg)\n\n  public static VisibilityOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VisibilityOffSvg)\n\n  public static VolumeOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VolumeOffSvg)\n\n  public static Warning: React.ComponentType<IconProps> =\n    makeUSWDSIcon(WarningSvg)\n\n  public static Wash: React.ComponentType<IconProps> = makeUSWDSIcon(WashSvg)\n\n  public static Wifi: React.ComponentType<IconProps> = makeUSWDSIcon(WifiSvg)\n\n  public static Work: React.ComponentType<IconProps> = makeUSWDSIcon(WorkSvg)\n\n  public static X: React.ComponentType<IconProps> = makeUSWDSIcon(XSvg)\n\n  public static Youtube: React.ComponentType<IconProps> =\n    makeUSWDSIcon(YoutubeSvg)\n\n  public static ZoomIn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomInSvg)\n\n  public static ZoomOutMap: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomOutMapSvg)\n\n  public static ZoomOut: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomOutSvg)\n}\n\nexport default Icon\n"
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Iconlist",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "All",
+    "id": "components-icons-all",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "All",
+        "message": "Manifest extraction error for 'components-icons-all': File: src/components/Icon/Icons.ts\nError:\nNo suitable component definition found.\nYou can debug your component file in this playground: https://react-docgen.dev/playground\nCode:\nimport AccessibilityNewSvg from '@uswds/uswds/img/usa-icons/accessibility_new.svg?svgr'\nimport AccessibleForwardSvg from '@uswds/uswds/img/usa-icons/accessible_forward.svg?svgr'\nimport AccountBalanceSvg from '@uswds/uswds/img/usa-icons/account_balance.svg?svgr'\nimport AccountBoxSvg from '@uswds/uswds/img/usa-icons/account_box.svg?svgr'\nimport AccountCircleSvg from '@uswds/uswds/img/usa-icons/account_circle.svg?svgr'\nimport AddSvg from '@uswds/uswds/img/usa-icons/add.svg?svgr'\nimport AddCircleSvg from '@uswds/uswds/img/usa-icons/add_circle.svg?svgr'\nimport AddCircleOutlineSvg from '@uswds/uswds/img/usa-icons/add_circle_outline.svg?svgr'\nimport AlarmSvg from '@uswds/uswds/img/usa-icons/alarm.svg?svgr'\nimport AlternateEmailSvg from '@uswds/uswds/img/usa-icons/alternate_email.svg?svgr'\nimport AnnouncementSvg from '@uswds/uswds/img/usa-icons/announcement.svg?svgr'\nimport ArrowBackSvg from '@uswds/uswds/img/usa-icons/arrow_back.svg?svgr'\nimport ArrowDownwardSvg from '@uswds/uswds/img/usa-icons/arrow_downward.svg?svgr'\nimport ArrowDropDownSvg from '@uswds/uswds/img/usa-icons/arrow_drop_down.svg?svgr'\nimport ArrowDropUpSvg from '@uswds/uswds/img/usa-icons/arrow_drop_up.svg?svgr'\nimport ArrowForwardSvg from '@uswds/uswds/img/usa-icons/arrow_forward.svg?svgr'\nimport ArrowUpwardSvg from '@uswds/uswds/img/usa-icons/arrow_upward.svg?svgr'\nimport ApiSvg from '@uswds/uswds/img/usa-icons/api.svg?svgr'\nimport AssessmentSvg from '@uswds/uswds/img/usa-icons/assessment.svg?svgr'\nimport AttachFileSvg from '@uswds/uswds/img/usa-icons/attach_file.svg?svgr'\nimport AttachMoneySvg from '@uswds/uswds/img/usa-icons/attach_money.svg?svgr'\nimport AutorenewSvg from '@uswds/uswds/img/usa-icons/autorenew.svg?svgr'\nimport BackpackSvg from '@uswds/uswds/img/usa-icons/backpack.svg?svgr'\nimport BathtubSvg from '@uswds/uswds/img/usa-icons/bathtub.svg?svgr'\nimport BeddingSvg from '@uswds/uswds/img/usa-icons/bedding.svg?svgr'\nimport BookmarkSvg from '@uswds/uswds/img/usa-icons/bookmark.svg?svgr'\nimport BugReportSvg from '@uswds/uswds/img/usa-icons/bug_report.svg?svgr'\nimport BuildSvg from '@uswds/uswds/img/usa-icons/build.svg?svgr'\nimport CalendarTodaySvg from '@uswds/uswds/img/usa-icons/calendar_today.svg?svgr'\nimport CampaignSvg from '@uswds/uswds/img/usa-icons/campaign.svg?svgr'\nimport CampingSvg from '@uswds/uswds/img/usa-icons/camping.svg?svgr'\nimport CancelSvg from '@uswds/uswds/img/usa-icons/cancel.svg?svgr'\nimport ChatSvg from '@uswds/uswds/img/usa-icons/chat.svg?svgr'\nimport CheckSvg from '@uswds/uswds/img/usa-icons/check.svg?svgr'\nimport CheckBoxOutlineBlankSvg from '@uswds/uswds/img/usa-icons/check_box_outline_blank.svg?svgr'\nimport CheckCircleSvg from '@uswds/uswds/img/usa-icons/check_circle.svg?svgr'\nimport CheckCircleOutlineSvg from '@uswds/uswds/img/usa-icons/check_circle_outline.svg?svgr'\nimport CheckroomSvg from '@uswds/uswds/img/usa-icons/checkroom.svg?svgr'\nimport CleanHandsSvg from '@uswds/uswds/img/usa-icons/clean_hands.svg?svgr'\nimport ClothesSvg from '@uswds/uswds/img/usa-icons/clothes.svg?svgr'\nimport CloseSvg from '@uswds/uswds/img/usa-icons/close.svg?svgr'\nimport ClosedCaptionSvg from '@uswds/uswds/img/usa-icons/closed_caption.svg?svgr'\nimport CloudSvg from '@uswds/uswds/img/usa-icons/cloud.svg?svgr'\nimport CodeSvg from '@uswds/uswds/img/usa-icons/code.svg?svgr'\nimport CommentSvg from '@uswds/uswds/img/usa-icons/comment.svg?svgr'\nimport ConnectWithoutContactSvg from '@uswds/uswds/img/usa-icons/connect_without_contact.svg?svgr'\nimport ConstructionSvg from '@uswds/uswds/img/usa-icons/construction.svg?svgr'\nimport ConstructionWorkerSvg from '@uswds/uswds/img/usa-icons/construction_worker.svg?svgr'\nimport ContactPageSvg from '@uswds/uswds/img/usa-icons/contact_page.svg?svgr'\nimport ContentCopySvg from '@uswds/uswds/img/usa-icons/content_copy.svg?svgr'\nimport CoronavirusSvg from '@uswds/uswds/img/usa-icons/coronavirus.svg?svgr'\nimport CreditCardSvg from '@uswds/uswds/img/usa-icons/credit_card.svg?svgr'\nimport DeckSvg from '@uswds/uswds/img/usa-icons/deck.svg?svgr'\nimport DeleteSvg from '@uswds/uswds/img/usa-icons/delete.svg?svgr'\nimport DeviceThermostatSvg from '@uswds/uswds/img/usa-icons/device_thermostat.svg?svgr'\nimport DirectionsSvg from '@uswds/uswds/img/usa-icons/directions.svg?svgr'\nimport DirectionsBikeSvg from '@uswds/uswds/img/usa-icons/directions_bike.svg?svgr'\nimport DirectionsBusSvg from '@uswds/uswds/img/usa-icons/directions_bus.svg?svgr'\nimport DirectionsCarSvg from '@uswds/uswds/img/usa-icons/directions_car.svg?svgr'\nimport DirectionsWalkSvg from '@uswds/uswds/img/usa-icons/directions_walk.svg?svgr'\nimport DoNotDisturbSvg from '@uswds/uswds/img/usa-icons/do_not_disturb.svg?svgr'\nimport DoNotTouchSvg from '@uswds/uswds/img/usa-icons/do_not_touch.svg?svgr'\nimport DragHandleSvg from '@uswds/uswds/img/usa-icons/drag_handle.svg?svgr'\nimport EcoSvg from '@uswds/uswds/img/usa-icons/eco.svg?svgr'\nimport EditSvg from '@uswds/uswds/img/usa-icons/edit.svg?svgr'\nimport ElectricalServicesSvg from '@uswds/uswds/img/usa-icons/electrical_services.svg?svgr'\nimport EmojiEventsSvg from '@uswds/uswds/img/usa-icons/emoji_events.svg?svgr'\nimport ErrorSvg from '@uswds/uswds/img/usa-icons/error.svg?svgr'\nimport ErrorOutlineSvg from '@uswds/uswds/img/usa-icons/error_outline.svg?svgr'\nimport EventSvg from '@uswds/uswds/img/usa-icons/event.svg?svgr'\nimport ExpandLessSvg from '@uswds/uswds/img/usa-icons/expand_less.svg?svgr'\nimport ExpandMoreSvg from '@uswds/uswds/img/usa-icons/expand_more.svg?svgr'\nimport FacebookSvg from '@uswds/uswds/img/usa-icons/facebook.svg?svgr'\nimport FastForwardSvg from '@uswds/uswds/img/usa-icons/fast_forward.svg?svgr'\nimport FastRewindSvg from '@uswds/uswds/img/usa-icons/fast_rewind.svg?svgr'\nimport FavoriteSvg from '@uswds/uswds/img/usa-icons/favorite.svg?svgr'\nimport FavoriteBorderSvg from '@uswds/uswds/img/usa-icons/favorite_border.svg?svgr'\nimport FaxSvg from '@uswds/uswds/img/usa-icons/fax.svg?svgr'\nimport FileDownloadSvg from '@uswds/uswds/img/usa-icons/file_download.svg?svgr'\nimport FilePresentSvg from '@uswds/uswds/img/usa-icons/file_present.svg?svgr'\nimport FileUploadSvg from '@uswds/uswds/img/usa-icons/file_upload.svg?svgr'\nimport FilterAltSvg from '@uswds/uswds/img/usa-icons/filter_alt.svg?svgr'\nimport FilterListSvg from '@uswds/uswds/img/usa-icons/filter_list.svg?svgr'\nimport FingerprintSvg from '@uswds/uswds/img/usa-icons/fingerprint.svg?svgr'\nimport FirstPageSvg from '@uswds/uswds/img/usa-icons/first_page.svg?svgr'\nimport FlagSvg from '@uswds/uswds/img/usa-icons/flag.svg?svgr'\nimport FlickrSvg from '@uswds/uswds/img/usa-icons/flickr.svg?svgr'\nimport FlightSvg from '@uswds/uswds/img/usa-icons/flight.svg?svgr'\nimport FloodingSvg from '@uswds/uswds/img/usa-icons/flooding.svg?svgr'\nimport FolderSvg from '@uswds/uswds/img/usa-icons/folder.svg?svgr'\nimport FolderOpenSvg from '@uswds/uswds/img/usa-icons/folder_open.svg?svgr'\nimport FormatQuoteSvg from '@uswds/uswds/img/usa-icons/format_quote.svg?svgr'\nimport FormatSizeSvg from '@uswds/uswds/img/usa-icons/format_size.svg?svgr'\nimport ForumSvg from '@uswds/uswds/img/usa-icons/forum.svg?svgr'\nimport GithubSvg from '@uswds/uswds/img/usa-icons/github.svg?svgr'\nimport GridViewSvg from '@uswds/uswds/img/usa-icons/grid_view.svg?svgr'\nimport GroupAddSvg from '@uswds/uswds/img/usa-icons/group_add.svg?svgr'\nimport GroupsSvg from '@uswds/uswds/img/usa-icons/groups.svg?svgr'\nimport HearingSvg from '@uswds/uswds/img/usa-icons/hearing.svg?svgr'\nimport HelpSvg from '@uswds/uswds/img/usa-icons/help.svg?svgr'\nimport HelpOutlineSvg from '@uswds/uswds/img/usa-icons/help_outline.svg?svgr'\nimport HighlightOffSvg from '@uswds/uswds/img/usa-icons/highlight_off.svg?svgr'\nimport HistorySvg from '@uswds/uswds/img/usa-icons/history.svg?svgr'\nimport HomeSvg from '@uswds/uswds/img/usa-icons/home.svg?svgr'\nimport HospitalSvg from '@uswds/uswds/img/usa-icons/hospital.svg?svgr'\nimport HotelSvg from '@uswds/uswds/img/usa-icons/hotel.svg?svgr'\nimport HourglassEmptySvg from '@uswds/uswds/img/usa-icons/hourglass_empty.svg?svgr'\nimport HurricaneSvg from '@uswds/uswds/img/usa-icons/hurricane.svg?svgr'\nimport IdentificationSvg from '@uswds/uswds/img/usa-icons/identification.svg?svgr'\nimport ImageSvg from '@uswds/uswds/img/usa-icons/image.svg?svgr'\nimport InfoSvg from '@uswds/uswds/img/usa-icons/info.svg?svgr'\nimport InfoOutlineSvg from '@uswds/uswds/img/usa-icons/info_outline.svg?svgr'\nimport InsightsSvg from '@uswds/uswds/img/usa-icons/insights.svg?svgr'\nimport InstagramSvg from '@uswds/uswds/img/usa-icons/instagram.svg?svgr'\nimport KeyboardSvg from '@uswds/uswds/img/usa-icons/keyboard.svg?svgr'\nimport LabelSvg from '@uswds/uswds/img/usa-icons/label.svg?svgr'\nimport LanguageSvg from '@uswds/uswds/img/usa-icons/language.svg?svgr'\nimport LastPageSvg from '@uswds/uswds/img/usa-icons/last_page.svg?svgr'\nimport LaunchSvg from '@uswds/uswds/img/usa-icons/launch.svg?svgr'\nimport LightbulbSvg from '@uswds/uswds/img/usa-icons/lightbulb.svg?svgr'\nimport LightbulbOutlineSvg from '@uswds/uswds/img/usa-icons/lightbulb_outline.svg?svgr'\nimport LinkedInSvg from '@uswds/uswds/img/usa-icons/linkedin.svg?svgr'\nimport LinkSvg from '@uswds/uswds/img/usa-icons/link.svg?svgr'\nimport LinkOffSvg from '@uswds/uswds/img/usa-icons/link_off.svg?svgr'\nimport ListSvg from '@uswds/uswds/img/usa-icons/list.svg?svgr'\nimport LocalCafeSvg from '@uswds/uswds/img/usa-icons/local_cafe.svg?svgr'\nimport LocalFireDepartmentSvg from '@uswds/uswds/img/usa-icons/local_fire_department.svg?svgr'\nimport LocalGasStationSvg from '@uswds/uswds/img/usa-icons/local_gas_station.svg?svgr'\nimport LocalGroceryStoreSvg from '@uswds/uswds/img/usa-icons/local_grocery_store.svg?svgr'\nimport LocalHospitalSvg from '@uswds/uswds/img/usa-icons/local_hospital.svg?svgr'\nimport LocalLaundryServiceSvg from '@uswds/uswds/img/usa-icons/local_laundry_service.svg?svgr'\nimport LocalLibrarySvg from '@uswds/uswds/img/usa-icons/local_library.svg?svgr'\nimport LocalOfferSvg from '@uswds/uswds/img/usa-icons/local_offer.svg?svgr'\nimport LocalParkingSvg from '@uswds/uswds/img/usa-icons/local_parking.svg?svgr'\nimport LocalPharmacySvg from '@uswds/uswds/img/usa-icons/local_pharmacy.svg?svgr'\nimport LocalPoliceSvg from '@uswds/uswds/img/usa-icons/local_police.svg?svgr'\nimport LocalTaxiSvg from '@uswds/uswds/img/usa-icons/local_taxi.svg?svgr'\nimport LocationCitySvg from '@uswds/uswds/img/usa-icons/location_city.svg?svgr'\nimport LocationOnSvg from '@uswds/uswds/img/usa-icons/location_on.svg?svgr'\nimport LockSvg from '@uswds/uswds/img/usa-icons/lock.svg?svgr'\nimport LockOpenSvg from '@uswds/uswds/img/usa-icons/lock_open.svg?svgr'\nimport LockOutlineSvg from '@uswds/uswds/img/usa-icons/lock_outline.svg?svgr'\nimport LoginSvg from '@uswds/uswds/img/usa-icons/login.svg?svgr'\nimport LogoutSvg from '@uswds/uswds/img/usa-icons/logout.svg?svgr'\nimport LoopSvg from '@uswds/uswds/img/usa-icons/loop.svg?svgr'\nimport MailSvg from '@uswds/uswds/img/usa-icons/mail.svg?svgr'\nimport MailOutlineSvg from '@uswds/uswds/img/usa-icons/mail_outline.svg?svgr'\nimport MapSvg from '@uswds/uswds/img/usa-icons/map.svg?svgr'\nimport MasksSvg from '@uswds/uswds/img/usa-icons/masks.svg?svgr'\nimport MedicalServicesSvg from '@uswds/uswds/img/usa-icons/medical_services.svg?svgr'\nimport MenuSvg from '@uswds/uswds/img/usa-icons/menu.svg?svgr'\nimport MilitaryTechSvg from '@uswds/uswds/img/usa-icons/military_tech.svg?svgr'\nimport MoreHorizSvg from '@uswds/uswds/img/usa-icons/more_horiz.svg?svgr'\nimport MoreVertSvg from '@uswds/uswds/img/usa-icons/more_vert.svg?svgr'\nimport MyLocationSvg from '@uswds/uswds/img/usa-icons/my_location.svg?svgr'\nimport NavigateBeforeSvg from '@uswds/uswds/img/usa-icons/navigate_before.svg?svgr'\nimport NavigateNextSvg from '@uswds/uswds/img/usa-icons/navigate_next.svg?svgr'\nimport NavigateFarBeforeSvg from '@uswds/uswds/img/usa-icons/navigate_far_before.svg?svgr'\nimport NavigateFarNextSvg from '@uswds/uswds/img/usa-icons/navigate_far_next.svg?svgr'\nimport NearMeSvg from '@uswds/uswds/img/usa-icons/near_me.svg?svgr'\nimport NotificationsSvg from '@uswds/uswds/img/usa-icons/notifications.svg?svgr'\nimport NotificationsActiveSvg from '@uswds/uswds/img/usa-icons/notifications_active.svg?svgr'\nimport NotificationsNoneSvg from '@uswds/uswds/img/usa-icons/notifications_none.svg?svgr'\nimport NotificationsOffSvg from '@uswds/uswds/img/usa-icons/notifications_off.svg?svgr'\nimport ParkSvg from '@uswds/uswds/img/usa-icons/park.svg?svgr'\nimport PeopleSvg from '@uswds/uswds/img/usa-icons/people.svg?svgr'\nimport PersonSvg from '@uswds/uswds/img/usa-icons/person.svg?svgr'\nimport PetsSvg from '@uswds/uswds/img/usa-icons/pets.svg?svgr'\nimport PhoneSvg from '@uswds/uswds/img/usa-icons/phone.svg?svgr'\nimport PhotoCameraSvg from '@uswds/uswds/img/usa-icons/photo_camera.svg?svgr'\nimport PrintSvg from '@uswds/uswds/img/usa-icons/print.svg?svgr'\nimport PriorityHighSvg from '@uswds/uswds/img/usa-icons/priority_high.svg?svgr'\nimport PublicSvg from '@uswds/uswds/img/usa-icons/public.svg?svgr'\nimport PushPinSvg from '@uswds/uswds/img/usa-icons/push_pin.svg?svgr'\nimport RadioButtonUncheckedSvg from '@uswds/uswds/img/usa-icons/radio_button_unchecked.svg?svgr'\nimport RainSvg from '@uswds/uswds/img/usa-icons/rain.svg?svgr'\nimport ReduceCapacitySvg from '@uswds/uswds/img/usa-icons/reduce_capacity.svg?svgr'\nimport RemoveCircleSvg from '@uswds/uswds/img/usa-icons/remove_circle.svg?svgr'\nimport RemoveSvg from '@uswds/uswds/img/usa-icons/remove.svg?svgr'\nimport ReportSvg from '@uswds/uswds/img/usa-icons/report.svg?svgr'\nimport RestaurantSvg from '@uswds/uswds/img/usa-icons/restaurant.svg?svgr'\nimport RssFeedSvg from '@uswds/uswds/img/usa-icons/rss_feed.svg?svgr'\nimport SafetyDividerSvg from '@uswds/uswds/img/usa-icons/safety_divider.svg?svgr'\nimport SanitizerSvg from '@uswds/uswds/img/usa-icons/sanitizer.svg?svgr'\nimport SaveAltSvg from '@uswds/uswds/img/usa-icons/save_alt.svg?svgr'\nimport SevereWeatherSvg from '@uswds/uswds/img/usa-icons/severe_weather.svg?svgr'\nimport ScheduleSvg from '@uswds/uswds/img/usa-icons/schedule.svg?svgr'\nimport SchoolSvg from '@uswds/uswds/img/usa-icons/school.svg?svgr'\nimport ScienceSvg from '@uswds/uswds/img/usa-icons/science.svg?svgr'\nimport SearchSvg from '@uswds/uswds/img/usa-icons/search.svg?svgr'\nimport SecuritySvg from '@uswds/uswds/img/usa-icons/security.svg?svgr'\nimport SendSvg from '@uswds/uswds/img/usa-icons/send.svg?svgr'\nimport SentimentDissatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_dissatisfied.svg?svgr'\nimport SentimentNeutralSvg from '@uswds/uswds/img/usa-icons/sentiment_neutral.svg?svgr'\nimport SentimentSatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_satisfied.svg?svgr'\nimport SentimentSatisfiedAltSvg from '@uswds/uswds/img/usa-icons/sentiment_satisfied_alt.svg?svgr'\nimport SentimentVeryDissatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_very_dissatisfied.svg?svgr'\nimport SettingsSvg from '@uswds/uswds/img/usa-icons/settings.svg?svgr'\nimport ShareSvg from '@uswds/uswds/img/usa-icons/share.svg?svgr'\nimport ShieldSvg from '@uswds/uswds/img/usa-icons/shield.svg?svgr'\nimport ShoppingBasketSvg from '@uswds/uswds/img/usa-icons/shopping_basket.svg?svgr'\nimport SnowSvg from '@uswds/uswds/img/usa-icons/snow.svg?svgr'\nimport SoapSvg from '@uswds/uswds/img/usa-icons/soap.svg?svgr'\nimport SocialDistanceSvg from '@uswds/uswds/img/usa-icons/social_distance.svg?svgr'\nimport SortArrowSvg from '@uswds/uswds/img/usa-icons/sort_arrow.svg?svgr'\nimport SpellcheckSvg from '@uswds/uswds/img/usa-icons/spellcheck.svg?svgr'\nimport StarSvg from '@uswds/uswds/img/usa-icons/star.svg?svgr'\nimport StarHalfSvg from '@uswds/uswds/img/usa-icons/star_half.svg?svgr'\nimport StarOutlineSvg from '@uswds/uswds/img/usa-icons/star_outline.svg?svgr'\nimport StoreSvg from '@uswds/uswds/img/usa-icons/store.svg?svgr'\nimport SupportSvg from '@uswds/uswds/img/usa-icons/support.svg?svgr'\nimport SupportAgentSvg from '@uswds/uswds/img/usa-icons/support_agent.svg?svgr'\nimport TextFieldsSvg from '@uswds/uswds/img/usa-icons/text_fields.svg?svgr'\nimport ThumbDownAltSvg from '@uswds/uswds/img/usa-icons/thumb_down_alt.svg?svgr'\nimport ThumbUpAltSvg from '@uswds/uswds/img/usa-icons/thumb_up_alt.svg?svgr'\nimport TimerSvg from '@uswds/uswds/img/usa-icons/timer.svg?svgr'\nimport ToggleOffSvg from '@uswds/uswds/img/usa-icons/toggle_off.svg?svgr'\nimport ToggleOnSvg from '@uswds/uswds/img/usa-icons/toggle_on.svg?svgr'\nimport TopicSvg from '@uswds/uswds/img/usa-icons/topic.svg?svgr'\nimport TornadoSvg from '@uswds/uswds/img/usa-icons/tornado.svg?svgr'\nimport TranslateSvg from '@uswds/uswds/img/usa-icons/translate.svg?svgr'\nimport TrendingDownSvg from '@uswds/uswds/img/usa-icons/trending_down.svg?svgr'\nimport TrendingUpSvg from '@uswds/uswds/img/usa-icons/trending_up.svg?svgr'\nimport TwitterSvg from '@uswds/uswds/img/usa-icons/twitter.svg?svgr'\nimport UndoSvg from '@uswds/uswds/img/usa-icons/undo.svg?svgr'\nimport UnfoldLessSvg from '@uswds/uswds/img/usa-icons/unfold_less.svg?svgr'\nimport UnfoldMoreSvg from '@uswds/uswds/img/usa-icons/unfold_more.svg?svgr'\nimport UpdateSvg from '@uswds/uswds/img/usa-icons/update.svg?svgr'\nimport UploadFileSvg from '@uswds/uswds/img/usa-icons/upload_file.svg?svgr'\nimport VerifiedSvg from '@uswds/uswds/img/usa-icons/verified.svg?svgr'\nimport VerifiedUserSvg from '@uswds/uswds/img/usa-icons/verified_user.svg?svgr'\nimport VisibilitySvg from '@uswds/uswds/img/usa-icons/visibility.svg?svgr'\nimport VisibilityOffSvg from '@uswds/uswds/img/usa-icons/visibility_off.svg?svgr'\nimport VolumeOffSvg from '@uswds/uswds/img/usa-icons/volume_off.svg?svgr'\nimport WarningSvg from '@uswds/uswds/img/usa-icons/warning.svg?svgr'\nimport WashSvg from '@uswds/uswds/img/usa-icons/wash.svg?svgr'\nimport WifiSvg from '@uswds/uswds/img/usa-icons/wifi.svg?svgr'\nimport WorkSvg from '@uswds/uswds/img/usa-icons/work.svg?svgr'\nimport XSvg from '@uswds/uswds/img/usa-icons/x.svg?svgr'\nimport YoutubeSvg from '@uswds/uswds/img/usa-icons/youtube.svg?svgr'\nimport ZoomInSvg from '@uswds/uswds/img/usa-icons/zoom_in.svg?svgr'\nimport ZoomOutMapSvg from '@uswds/uswds/img/usa-icons/zoom_out_map.svg?svgr'\nimport ZoomOutSvg from '@uswds/uswds/img/usa-icons/zoom_out.svg?svgr'\n\nimport { makeUSWDSIcon, IconProps } from './Icon'\nimport React from 'react'\n\nexport class Icon {\n  public static AccessibilityNew: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccessibilityNewSvg)\n\n  public static AccessibleForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccessibleForwardSvg)\n\n  public static AccountBalance: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountBalanceSvg)\n\n  public static AccountBox: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountBoxSvg)\n\n  public static AccountCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountCircleSvg)\n\n  public static Add: React.ComponentType<IconProps> = makeUSWDSIcon(AddSvg)\n\n  public static AddCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AddCircleSvg)\n\n  public static AddCircleOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AddCircleOutlineSvg)\n\n  public static Alarm: React.ComponentType<IconProps> = makeUSWDSIcon(AlarmSvg)\n\n  public static AlternateEmail: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AlternateEmailSvg)\n\n  public static Announcement: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AnnouncementSvg)\n\n  public static ArrowBack: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowBackSvg)\n\n  public static ArrowDownward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDownwardSvg)\n\n  public static ArrowDropDown: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDropDownSvg)\n\n  public static ArrowDropUp: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDropUpSvg)\n\n  public static ArrowForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowForwardSvg)\n\n  public static ArrowUpward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowUpwardSvg)\n\n  public static Api: React.ComponentType<IconProps> = makeUSWDSIcon(ApiSvg)\n\n  public static Assessment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AssessmentSvg)\n\n  public static AttachFile: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AttachFileSvg)\n\n  public static AttachMoney: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AttachMoneySvg)\n\n  public static Autorenew: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AutorenewSvg)\n\n  public static Backpack: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BackpackSvg)\n\n  public static Bathtub: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BathtubSvg)\n\n  public static Bedding: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BeddingSvg)\n\n  public static Bookmark: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BookmarkSvg)\n\n  public static BugReport: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BugReportSvg)\n\n  public static Build: React.ComponentType<IconProps> = makeUSWDSIcon(BuildSvg)\n\n  public static CalendarToday: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CalendarTodaySvg)\n\n  public static Campaign: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CampaignSvg)\n\n  public static Camping: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CampingSvg)\n\n  public static Cancel: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CancelSvg)\n\n  public static Chat: React.ComponentType<IconProps> = makeUSWDSIcon(ChatSvg)\n\n  public static Check: React.ComponentType<IconProps> = makeUSWDSIcon(CheckSvg)\n\n  public static CheckBoxOutlineBlank: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckBoxOutlineBlankSvg)\n\n  public static CheckCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckCircleSvg)\n\n  public static CheckCircleOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckCircleOutlineSvg)\n\n  public static Checkroom: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckroomSvg)\n\n  public static CleanHands: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CleanHandsSvg)\n\n  public static Clothes: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ClothesSvg)\n\n  public static Close: React.ComponentType<IconProps> = makeUSWDSIcon(CloseSvg)\n\n  public static ClosedCaption: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ClosedCaptionSvg)\n\n  public static Cloud: React.ComponentType<IconProps> = makeUSWDSIcon(CloudSvg)\n\n  public static Code: React.ComponentType<IconProps> = makeUSWDSIcon(CodeSvg)\n\n  public static Comment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CommentSvg)\n\n  public static ConnectWithoutContact: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConnectWithoutContactSvg)\n\n  public static Construction: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConstructionSvg)\n\n  public static ConstructionWorker: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConstructionWorkerSvg)\n\n  public static ContactPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ContactPageSvg)\n\n  public static ContentCopy: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ContentCopySvg)\n\n  public static Coronavirus: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CoronavirusSvg)\n\n  public static CreditCard: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CreditCardSvg)\n\n  public static Deck: React.ComponentType<IconProps> = makeUSWDSIcon(DeckSvg)\n\n  public static Delete: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DeleteSvg)\n\n  public static DeviceThermostat: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DeviceThermostatSvg)\n\n  public static Directions: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsSvg)\n\n  public static DirectionsBike: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsBikeSvg)\n\n  public static DirectionsBus: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsBusSvg)\n\n  public static DirectionsCar: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsCarSvg)\n\n  public static DirectionsWalk: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsWalkSvg)\n\n  public static DoNotDisturb: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DoNotDisturbSvg)\n\n  public static DoNotTouch: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DoNotTouchSvg)\n\n  public static DragHandle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DragHandleSvg)\n\n  public static Eco: React.ComponentType<IconProps> = makeUSWDSIcon(EcoSvg)\n\n  public static Edit: React.ComponentType<IconProps> = makeUSWDSIcon(EditSvg)\n\n  public static ElectricalServices: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ElectricalServicesSvg)\n\n  public static EmojiEvents: React.ComponentType<IconProps> =\n    makeUSWDSIcon(EmojiEventsSvg)\n\n  public static Error: React.ComponentType<IconProps> = makeUSWDSIcon(ErrorSvg)\n\n  public static ErrorOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ErrorOutlineSvg)\n\n  public static Event: React.ComponentType<IconProps> = makeUSWDSIcon(EventSvg)\n\n  public static ExpandLess: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ExpandLessSvg)\n\n  public static ExpandMore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ExpandMoreSvg)\n\n  public static Facebook: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FacebookSvg)\n\n  public static FastForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FastForwardSvg)\n\n  public static FastRewind: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FastRewindSvg)\n\n  public static Favorite: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FavoriteSvg)\n\n  public static FavoriteBorder: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FavoriteBorderSvg)\n\n  public static Fax: React.ComponentType<IconProps> = makeUSWDSIcon(FaxSvg)\n\n  public static FileDownload: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FileDownloadSvg)\n\n  public static FilePresent: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilePresentSvg)\n\n  public static FileUpload: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FileUploadSvg)\n\n  public static FilterAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilterAltSvg)\n\n  public static FilterList: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilterListSvg)\n\n  public static Fingerprint: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FingerprintSvg)\n\n  public static FirstPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FirstPageSvg)\n\n  public static Flag: React.ComponentType<IconProps> = makeUSWDSIcon(FlagSvg)\n\n  public static Flickr: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FlickrSvg)\n\n  public static Flight: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FlightSvg)\n\n  public static Flooding: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FloodingSvg)\n\n  public static Folder: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FolderSvg)\n\n  public static FolderOpen: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FolderOpenSvg)\n\n  public static FormatQuote: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FormatQuoteSvg)\n\n  public static FormatSize: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FormatSizeSvg)\n\n  public static Forum: React.ComponentType<IconProps> = makeUSWDSIcon(ForumSvg)\n\n  public static Github: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GithubSvg)\n\n  public static GridView: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GridViewSvg)\n\n  public static GroupAdd: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GroupAddSvg)\n\n  public static Groups: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GroupsSvg)\n\n  public static Hearing: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HearingSvg)\n\n  public static Help: React.ComponentType<IconProps> = makeUSWDSIcon(HelpSvg)\n\n  public static HelpOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HelpOutlineSvg)\n\n  public static HighlightOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HighlightOffSvg)\n\n  public static History: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HistorySvg)\n\n  public static Home: React.ComponentType<IconProps> = makeUSWDSIcon(HomeSvg)\n\n  public static Hospital: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HospitalSvg)\n\n  public static Hotel: React.ComponentType<IconProps> = makeUSWDSIcon(HotelSvg)\n\n  public static HourglassEmpty: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HourglassEmptySvg)\n\n  public static Hurricane: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HurricaneSvg)\n\n  public static Identification: React.ComponentType<IconProps> =\n    makeUSWDSIcon(IdentificationSvg)\n\n  public static Image: React.ComponentType<IconProps> = makeUSWDSIcon(ImageSvg)\n\n  public static Info: React.ComponentType<IconProps> = makeUSWDSIcon(InfoSvg)\n\n  public static InfoOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InfoOutlineSvg)\n\n  public static Insights: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InsightsSvg)\n\n  public static Instagram: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InstagramSvg)\n\n  public static Keyboard: React.ComponentType<IconProps> =\n    makeUSWDSIcon(KeyboardSvg)\n\n  public static Label: React.ComponentType<IconProps> = makeUSWDSIcon(LabelSvg)\n\n  public static Language: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LanguageSvg)\n\n  public static LastPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LastPageSvg)\n\n  public static Launch: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LaunchSvg)\n\n  public static Lightbulb: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LightbulbSvg)\n\n  public static LightbulbOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LightbulbOutlineSvg)\n\n  public static LinkedIn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LinkedInSvg)\n\n  public static Link: React.ComponentType<IconProps> = makeUSWDSIcon(LinkSvg)\n\n  public static LinkOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LinkOffSvg)\n\n  public static List: React.ComponentType<IconProps> = makeUSWDSIcon(ListSvg)\n\n  public static LocalCafe: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalCafeSvg)\n\n  public static LocalFireDepartment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalFireDepartmentSvg)\n\n  public static LocalGasStation: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalGasStationSvg)\n\n  public static LocalGroceryStore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalGroceryStoreSvg)\n\n  public static LocalHospital: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalHospitalSvg)\n\n  public static LocalLaundryService: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalLaundryServiceSvg)\n\n  public static LocalLibrary: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalLibrarySvg)\n\n  public static LocalOffer: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalOfferSvg)\n\n  public static LocalParking: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalParkingSvg)\n\n  public static LocalPharmacy: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalPharmacySvg)\n\n  public static LocalPolice: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalPoliceSvg)\n\n  public static LocalTaxi: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalTaxiSvg)\n\n  public static LocationCity: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocationCitySvg)\n\n  public static LocationOn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocationOnSvg)\n\n  public static Lock: React.ComponentType<IconProps> = makeUSWDSIcon(LockSvg)\n\n  public static LockOpen: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LockOpenSvg)\n\n  public static LockOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LockOutlineSvg)\n\n  public static Login: React.ComponentType<IconProps> = makeUSWDSIcon(LoginSvg)\n\n  public static Logout: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LogoutSvg)\n\n  public static Loop: React.ComponentType<IconProps> = makeUSWDSIcon(LoopSvg)\n\n  public static Mail: React.ComponentType<IconProps> = makeUSWDSIcon(MailSvg)\n\n  public static MailOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MailOutlineSvg)\n\n  public static Map: React.ComponentType<IconProps> = makeUSWDSIcon(MapSvg)\n\n  public static Masks: React.ComponentType<IconProps> = makeUSWDSIcon(MasksSvg)\n\n  public static MedicalServices: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MedicalServicesSvg)\n\n  public static Menu: React.ComponentType<IconProps> = makeUSWDSIcon(MenuSvg)\n\n  public static MilitaryTech: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MilitaryTechSvg)\n\n  public static MoreHoriz: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MoreHorizSvg)\n\n  public static MoreVert: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MoreVertSvg)\n\n  public static MyLocation: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MyLocationSvg)\n\n  public static NavigateBefore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateBeforeSvg)\n\n  public static NavigateNext: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateNextSvg)\n\n  public static NavigateFarBefore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateFarBeforeSvg)\n\n  public static NavigateFarNext: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateFarNextSvg)\n\n  public static NearMe: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NearMeSvg)\n\n  public static Notifications: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsSvg)\n\n  public static NotificationsActive: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsActiveSvg)\n\n  public static NotificationsNone: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsNoneSvg)\n\n  public static NotificationsOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsOffSvg)\n\n  public static Park: React.ComponentType<IconProps> = makeUSWDSIcon(ParkSvg)\n\n  public static People: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PeopleSvg)\n\n  public static Person: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PersonSvg)\n\n  public static Pets: React.ComponentType<IconProps> = makeUSWDSIcon(PetsSvg)\n\n  public static Phone: React.ComponentType<IconProps> = makeUSWDSIcon(PhoneSvg)\n\n  public static PhotoCamera: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PhotoCameraSvg)\n\n  public static Print: React.ComponentType<IconProps> = makeUSWDSIcon(PrintSvg)\n\n  public static PriorityHigh: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PriorityHighSvg)\n\n  public static Public: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PublicSvg)\n\n  public static PushPin: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PushPinSvg)\n\n  public static RadioButtonUnchecked: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RadioButtonUncheckedSvg)\n\n  public static Rain: React.ComponentType<IconProps> = makeUSWDSIcon(RainSvg)\n\n  public static ReduceCapacity: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ReduceCapacitySvg)\n\n  public static RemoveCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RemoveCircleSvg)\n\n  public static Remove: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RemoveSvg)\n\n  public static Report: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ReportSvg)\n\n  public static Restaurant: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RestaurantSvg)\n\n  public static RssFeed: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RssFeedSvg)\n\n  public static SafetyDivider: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SafetyDividerSvg)\n\n  public static Sanitizer: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SanitizerSvg)\n\n  public static SaveAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SaveAltSvg)\n\n  public static SevereWeather: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SevereWeatherSvg)\n\n  public static Schedule: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ScheduleSvg)\n\n  public static School: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SchoolSvg)\n\n  public static Science: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ScienceSvg)\n\n  public static Search: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SearchSvg)\n\n  public static Security: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SecuritySvg)\n\n  public static Send: React.ComponentType<IconProps> = makeUSWDSIcon(SendSvg)\n\n  public static SentimentDissatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentDissatisfiedSvg)\n\n  public static SentimentNeutral: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentNeutralSvg)\n\n  public static SentimentSatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentSatisfiedSvg)\n\n  public static SentimentSatisfiedAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentSatisfiedAltSvg)\n\n  public static SentimentVeryDissatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentVeryDissatisfiedSvg)\n\n  public static Settings: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SettingsSvg)\n\n  public static Share: React.ComponentType<IconProps> = makeUSWDSIcon(ShareSvg)\n\n  public static Shield: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ShieldSvg)\n\n  public static ShoppingBasket: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ShoppingBasketSvg)\n\n  public static Snow: React.ComponentType<IconProps> = makeUSWDSIcon(SnowSvg)\n\n  public static Soap: React.ComponentType<IconProps> = makeUSWDSIcon(SoapSvg)\n\n  public static SocialDistance: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SocialDistanceSvg)\n\n  public static SortArrow: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SortArrowSvg)\n\n  public static Spellcheck: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SpellcheckSvg)\n\n  public static Star: React.ComponentType<IconProps> = makeUSWDSIcon(StarSvg)\n\n  public static StarHalf: React.ComponentType<IconProps> =\n    makeUSWDSIcon(StarHalfSvg)\n\n  public static StarOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(StarOutlineSvg)\n\n  public static Store: React.ComponentType<IconProps> = makeUSWDSIcon(StoreSvg)\n\n  public static Support: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SupportSvg)\n\n  public static SupportAgent: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SupportAgentSvg)\n\n  public static TextFields: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TextFieldsSvg)\n\n  public static ThumbDownAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ThumbDownAltSvg)\n\n  public static ThumbUpAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ThumbUpAltSvg)\n\n  public static Timer: React.ComponentType<IconProps> = makeUSWDSIcon(TimerSvg)\n\n  public static ToggleOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ToggleOffSvg)\n\n  public static ToggleOn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ToggleOnSvg)\n\n  public static Topic: React.ComponentType<IconProps> = makeUSWDSIcon(TopicSvg)\n\n  public static Tornado: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TornadoSvg)\n\n  public static Translate: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TranslateSvg)\n\n  public static TrendingDown: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TrendingDownSvg)\n\n  public static TrendingUp: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TrendingUpSvg)\n\n  public static Twitter: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TwitterSvg)\n\n  public static Undo: React.ComponentType<IconProps> = makeUSWDSIcon(UndoSvg)\n\n  public static UnfoldLess: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UnfoldLessSvg)\n\n  public static UnfoldMore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UnfoldMoreSvg)\n\n  public static Update: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UpdateSvg)\n\n  public static UploadFile: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UploadFileSvg)\n\n  public static Verified: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VerifiedSvg)\n\n  public static VerifiedUser: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VerifiedUserSvg)\n\n  public static Visibility: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VisibilitySvg)\n\n  public static VisibilityOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VisibilityOffSvg)\n\n  public static VolumeOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VolumeOffSvg)\n\n  public static Warning: React.ComponentType<IconProps> =\n    makeUSWDSIcon(WarningSvg)\n\n  public static Wash: React.ComponentType<IconProps> = makeUSWDSIcon(WashSvg)\n\n  public static Wifi: React.ComponentType<IconProps> = makeUSWDSIcon(WifiSvg)\n\n  public static Work: React.ComponentType<IconProps> = makeUSWDSIcon(WorkSvg)\n\n  public static X: React.ComponentType<IconProps> = makeUSWDSIcon(XSvg)\n\n  public static Youtube: React.ComponentType<IconProps> =\n    makeUSWDSIcon(YoutubeSvg)\n\n  public static ZoomIn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomInSvg)\n\n  public static ZoomOutMap: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomOutMapSvg)\n\n  public static ZoomOut: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomOutSvg)\n}\n\nexport default Icon\n"
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "All",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Individual",
+    "id": "components-icons-individual",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "Individual",
+        "message": "Manifest extraction error for 'components-icons-individual': File: src/components/Icon/Icons.ts\nError:\nNo suitable component definition found.\nYou can debug your component file in this playground: https://react-docgen.dev/playground\nCode:\nimport AccessibilityNewSvg from '@uswds/uswds/img/usa-icons/accessibility_new.svg?svgr'\nimport AccessibleForwardSvg from '@uswds/uswds/img/usa-icons/accessible_forward.svg?svgr'\nimport AccountBalanceSvg from '@uswds/uswds/img/usa-icons/account_balance.svg?svgr'\nimport AccountBoxSvg from '@uswds/uswds/img/usa-icons/account_box.svg?svgr'\nimport AccountCircleSvg from '@uswds/uswds/img/usa-icons/account_circle.svg?svgr'\nimport AddSvg from '@uswds/uswds/img/usa-icons/add.svg?svgr'\nimport AddCircleSvg from '@uswds/uswds/img/usa-icons/add_circle.svg?svgr'\nimport AddCircleOutlineSvg from '@uswds/uswds/img/usa-icons/add_circle_outline.svg?svgr'\nimport AlarmSvg from '@uswds/uswds/img/usa-icons/alarm.svg?svgr'\nimport AlternateEmailSvg from '@uswds/uswds/img/usa-icons/alternate_email.svg?svgr'\nimport AnnouncementSvg from '@uswds/uswds/img/usa-icons/announcement.svg?svgr'\nimport ArrowBackSvg from '@uswds/uswds/img/usa-icons/arrow_back.svg?svgr'\nimport ArrowDownwardSvg from '@uswds/uswds/img/usa-icons/arrow_downward.svg?svgr'\nimport ArrowDropDownSvg from '@uswds/uswds/img/usa-icons/arrow_drop_down.svg?svgr'\nimport ArrowDropUpSvg from '@uswds/uswds/img/usa-icons/arrow_drop_up.svg?svgr'\nimport ArrowForwardSvg from '@uswds/uswds/img/usa-icons/arrow_forward.svg?svgr'\nimport ArrowUpwardSvg from '@uswds/uswds/img/usa-icons/arrow_upward.svg?svgr'\nimport ApiSvg from '@uswds/uswds/img/usa-icons/api.svg?svgr'\nimport AssessmentSvg from '@uswds/uswds/img/usa-icons/assessment.svg?svgr'\nimport AttachFileSvg from '@uswds/uswds/img/usa-icons/attach_file.svg?svgr'\nimport AttachMoneySvg from '@uswds/uswds/img/usa-icons/attach_money.svg?svgr'\nimport AutorenewSvg from '@uswds/uswds/img/usa-icons/autorenew.svg?svgr'\nimport BackpackSvg from '@uswds/uswds/img/usa-icons/backpack.svg?svgr'\nimport BathtubSvg from '@uswds/uswds/img/usa-icons/bathtub.svg?svgr'\nimport BeddingSvg from '@uswds/uswds/img/usa-icons/bedding.svg?svgr'\nimport BookmarkSvg from '@uswds/uswds/img/usa-icons/bookmark.svg?svgr'\nimport BugReportSvg from '@uswds/uswds/img/usa-icons/bug_report.svg?svgr'\nimport BuildSvg from '@uswds/uswds/img/usa-icons/build.svg?svgr'\nimport CalendarTodaySvg from '@uswds/uswds/img/usa-icons/calendar_today.svg?svgr'\nimport CampaignSvg from '@uswds/uswds/img/usa-icons/campaign.svg?svgr'\nimport CampingSvg from '@uswds/uswds/img/usa-icons/camping.svg?svgr'\nimport CancelSvg from '@uswds/uswds/img/usa-icons/cancel.svg?svgr'\nimport ChatSvg from '@uswds/uswds/img/usa-icons/chat.svg?svgr'\nimport CheckSvg from '@uswds/uswds/img/usa-icons/check.svg?svgr'\nimport CheckBoxOutlineBlankSvg from '@uswds/uswds/img/usa-icons/check_box_outline_blank.svg?svgr'\nimport CheckCircleSvg from '@uswds/uswds/img/usa-icons/check_circle.svg?svgr'\nimport CheckCircleOutlineSvg from '@uswds/uswds/img/usa-icons/check_circle_outline.svg?svgr'\nimport CheckroomSvg from '@uswds/uswds/img/usa-icons/checkroom.svg?svgr'\nimport CleanHandsSvg from '@uswds/uswds/img/usa-icons/clean_hands.svg?svgr'\nimport ClothesSvg from '@uswds/uswds/img/usa-icons/clothes.svg?svgr'\nimport CloseSvg from '@uswds/uswds/img/usa-icons/close.svg?svgr'\nimport ClosedCaptionSvg from '@uswds/uswds/img/usa-icons/closed_caption.svg?svgr'\nimport CloudSvg from '@uswds/uswds/img/usa-icons/cloud.svg?svgr'\nimport CodeSvg from '@uswds/uswds/img/usa-icons/code.svg?svgr'\nimport CommentSvg from '@uswds/uswds/img/usa-icons/comment.svg?svgr'\nimport ConnectWithoutContactSvg from '@uswds/uswds/img/usa-icons/connect_without_contact.svg?svgr'\nimport ConstructionSvg from '@uswds/uswds/img/usa-icons/construction.svg?svgr'\nimport ConstructionWorkerSvg from '@uswds/uswds/img/usa-icons/construction_worker.svg?svgr'\nimport ContactPageSvg from '@uswds/uswds/img/usa-icons/contact_page.svg?svgr'\nimport ContentCopySvg from '@uswds/uswds/img/usa-icons/content_copy.svg?svgr'\nimport CoronavirusSvg from '@uswds/uswds/img/usa-icons/coronavirus.svg?svgr'\nimport CreditCardSvg from '@uswds/uswds/img/usa-icons/credit_card.svg?svgr'\nimport DeckSvg from '@uswds/uswds/img/usa-icons/deck.svg?svgr'\nimport DeleteSvg from '@uswds/uswds/img/usa-icons/delete.svg?svgr'\nimport DeviceThermostatSvg from '@uswds/uswds/img/usa-icons/device_thermostat.svg?svgr'\nimport DirectionsSvg from '@uswds/uswds/img/usa-icons/directions.svg?svgr'\nimport DirectionsBikeSvg from '@uswds/uswds/img/usa-icons/directions_bike.svg?svgr'\nimport DirectionsBusSvg from '@uswds/uswds/img/usa-icons/directions_bus.svg?svgr'\nimport DirectionsCarSvg from '@uswds/uswds/img/usa-icons/directions_car.svg?svgr'\nimport DirectionsWalkSvg from '@uswds/uswds/img/usa-icons/directions_walk.svg?svgr'\nimport DoNotDisturbSvg from '@uswds/uswds/img/usa-icons/do_not_disturb.svg?svgr'\nimport DoNotTouchSvg from '@uswds/uswds/img/usa-icons/do_not_touch.svg?svgr'\nimport DragHandleSvg from '@uswds/uswds/img/usa-icons/drag_handle.svg?svgr'\nimport EcoSvg from '@uswds/uswds/img/usa-icons/eco.svg?svgr'\nimport EditSvg from '@uswds/uswds/img/usa-icons/edit.svg?svgr'\nimport ElectricalServicesSvg from '@uswds/uswds/img/usa-icons/electrical_services.svg?svgr'\nimport EmojiEventsSvg from '@uswds/uswds/img/usa-icons/emoji_events.svg?svgr'\nimport ErrorSvg from '@uswds/uswds/img/usa-icons/error.svg?svgr'\nimport ErrorOutlineSvg from '@uswds/uswds/img/usa-icons/error_outline.svg?svgr'\nimport EventSvg from '@uswds/uswds/img/usa-icons/event.svg?svgr'\nimport ExpandLessSvg from '@uswds/uswds/img/usa-icons/expand_less.svg?svgr'\nimport ExpandMoreSvg from '@uswds/uswds/img/usa-icons/expand_more.svg?svgr'\nimport FacebookSvg from '@uswds/uswds/img/usa-icons/facebook.svg?svgr'\nimport FastForwardSvg from '@uswds/uswds/img/usa-icons/fast_forward.svg?svgr'\nimport FastRewindSvg from '@uswds/uswds/img/usa-icons/fast_rewind.svg?svgr'\nimport FavoriteSvg from '@uswds/uswds/img/usa-icons/favorite.svg?svgr'\nimport FavoriteBorderSvg from '@uswds/uswds/img/usa-icons/favorite_border.svg?svgr'\nimport FaxSvg from '@uswds/uswds/img/usa-icons/fax.svg?svgr'\nimport FileDownloadSvg from '@uswds/uswds/img/usa-icons/file_download.svg?svgr'\nimport FilePresentSvg from '@uswds/uswds/img/usa-icons/file_present.svg?svgr'\nimport FileUploadSvg from '@uswds/uswds/img/usa-icons/file_upload.svg?svgr'\nimport FilterAltSvg from '@uswds/uswds/img/usa-icons/filter_alt.svg?svgr'\nimport FilterListSvg from '@uswds/uswds/img/usa-icons/filter_list.svg?svgr'\nimport FingerprintSvg from '@uswds/uswds/img/usa-icons/fingerprint.svg?svgr'\nimport FirstPageSvg from '@uswds/uswds/img/usa-icons/first_page.svg?svgr'\nimport FlagSvg from '@uswds/uswds/img/usa-icons/flag.svg?svgr'\nimport FlickrSvg from '@uswds/uswds/img/usa-icons/flickr.svg?svgr'\nimport FlightSvg from '@uswds/uswds/img/usa-icons/flight.svg?svgr'\nimport FloodingSvg from '@uswds/uswds/img/usa-icons/flooding.svg?svgr'\nimport FolderSvg from '@uswds/uswds/img/usa-icons/folder.svg?svgr'\nimport FolderOpenSvg from '@uswds/uswds/img/usa-icons/folder_open.svg?svgr'\nimport FormatQuoteSvg from '@uswds/uswds/img/usa-icons/format_quote.svg?svgr'\nimport FormatSizeSvg from '@uswds/uswds/img/usa-icons/format_size.svg?svgr'\nimport ForumSvg from '@uswds/uswds/img/usa-icons/forum.svg?svgr'\nimport GithubSvg from '@uswds/uswds/img/usa-icons/github.svg?svgr'\nimport GridViewSvg from '@uswds/uswds/img/usa-icons/grid_view.svg?svgr'\nimport GroupAddSvg from '@uswds/uswds/img/usa-icons/group_add.svg?svgr'\nimport GroupsSvg from '@uswds/uswds/img/usa-icons/groups.svg?svgr'\nimport HearingSvg from '@uswds/uswds/img/usa-icons/hearing.svg?svgr'\nimport HelpSvg from '@uswds/uswds/img/usa-icons/help.svg?svgr'\nimport HelpOutlineSvg from '@uswds/uswds/img/usa-icons/help_outline.svg?svgr'\nimport HighlightOffSvg from '@uswds/uswds/img/usa-icons/highlight_off.svg?svgr'\nimport HistorySvg from '@uswds/uswds/img/usa-icons/history.svg?svgr'\nimport HomeSvg from '@uswds/uswds/img/usa-icons/home.svg?svgr'\nimport HospitalSvg from '@uswds/uswds/img/usa-icons/hospital.svg?svgr'\nimport HotelSvg from '@uswds/uswds/img/usa-icons/hotel.svg?svgr'\nimport HourglassEmptySvg from '@uswds/uswds/img/usa-icons/hourglass_empty.svg?svgr'\nimport HurricaneSvg from '@uswds/uswds/img/usa-icons/hurricane.svg?svgr'\nimport IdentificationSvg from '@uswds/uswds/img/usa-icons/identification.svg?svgr'\nimport ImageSvg from '@uswds/uswds/img/usa-icons/image.svg?svgr'\nimport InfoSvg from '@uswds/uswds/img/usa-icons/info.svg?svgr'\nimport InfoOutlineSvg from '@uswds/uswds/img/usa-icons/info_outline.svg?svgr'\nimport InsightsSvg from '@uswds/uswds/img/usa-icons/insights.svg?svgr'\nimport InstagramSvg from '@uswds/uswds/img/usa-icons/instagram.svg?svgr'\nimport KeyboardSvg from '@uswds/uswds/img/usa-icons/keyboard.svg?svgr'\nimport LabelSvg from '@uswds/uswds/img/usa-icons/label.svg?svgr'\nimport LanguageSvg from '@uswds/uswds/img/usa-icons/language.svg?svgr'\nimport LastPageSvg from '@uswds/uswds/img/usa-icons/last_page.svg?svgr'\nimport LaunchSvg from '@uswds/uswds/img/usa-icons/launch.svg?svgr'\nimport LightbulbSvg from '@uswds/uswds/img/usa-icons/lightbulb.svg?svgr'\nimport LightbulbOutlineSvg from '@uswds/uswds/img/usa-icons/lightbulb_outline.svg?svgr'\nimport LinkedInSvg from '@uswds/uswds/img/usa-icons/linkedin.svg?svgr'\nimport LinkSvg from '@uswds/uswds/img/usa-icons/link.svg?svgr'\nimport LinkOffSvg from '@uswds/uswds/img/usa-icons/link_off.svg?svgr'\nimport ListSvg from '@uswds/uswds/img/usa-icons/list.svg?svgr'\nimport LocalCafeSvg from '@uswds/uswds/img/usa-icons/local_cafe.svg?svgr'\nimport LocalFireDepartmentSvg from '@uswds/uswds/img/usa-icons/local_fire_department.svg?svgr'\nimport LocalGasStationSvg from '@uswds/uswds/img/usa-icons/local_gas_station.svg?svgr'\nimport LocalGroceryStoreSvg from '@uswds/uswds/img/usa-icons/local_grocery_store.svg?svgr'\nimport LocalHospitalSvg from '@uswds/uswds/img/usa-icons/local_hospital.svg?svgr'\nimport LocalLaundryServiceSvg from '@uswds/uswds/img/usa-icons/local_laundry_service.svg?svgr'\nimport LocalLibrarySvg from '@uswds/uswds/img/usa-icons/local_library.svg?svgr'\nimport LocalOfferSvg from '@uswds/uswds/img/usa-icons/local_offer.svg?svgr'\nimport LocalParkingSvg from '@uswds/uswds/img/usa-icons/local_parking.svg?svgr'\nimport LocalPharmacySvg from '@uswds/uswds/img/usa-icons/local_pharmacy.svg?svgr'\nimport LocalPoliceSvg from '@uswds/uswds/img/usa-icons/local_police.svg?svgr'\nimport LocalTaxiSvg from '@uswds/uswds/img/usa-icons/local_taxi.svg?svgr'\nimport LocationCitySvg from '@uswds/uswds/img/usa-icons/location_city.svg?svgr'\nimport LocationOnSvg from '@uswds/uswds/img/usa-icons/location_on.svg?svgr'\nimport LockSvg from '@uswds/uswds/img/usa-icons/lock.svg?svgr'\nimport LockOpenSvg from '@uswds/uswds/img/usa-icons/lock_open.svg?svgr'\nimport LockOutlineSvg from '@uswds/uswds/img/usa-icons/lock_outline.svg?svgr'\nimport LoginSvg from '@uswds/uswds/img/usa-icons/login.svg?svgr'\nimport LogoutSvg from '@uswds/uswds/img/usa-icons/logout.svg?svgr'\nimport LoopSvg from '@uswds/uswds/img/usa-icons/loop.svg?svgr'\nimport MailSvg from '@uswds/uswds/img/usa-icons/mail.svg?svgr'\nimport MailOutlineSvg from '@uswds/uswds/img/usa-icons/mail_outline.svg?svgr'\nimport MapSvg from '@uswds/uswds/img/usa-icons/map.svg?svgr'\nimport MasksSvg from '@uswds/uswds/img/usa-icons/masks.svg?svgr'\nimport MedicalServicesSvg from '@uswds/uswds/img/usa-icons/medical_services.svg?svgr'\nimport MenuSvg from '@uswds/uswds/img/usa-icons/menu.svg?svgr'\nimport MilitaryTechSvg from '@uswds/uswds/img/usa-icons/military_tech.svg?svgr'\nimport MoreHorizSvg from '@uswds/uswds/img/usa-icons/more_horiz.svg?svgr'\nimport MoreVertSvg from '@uswds/uswds/img/usa-icons/more_vert.svg?svgr'\nimport MyLocationSvg from '@uswds/uswds/img/usa-icons/my_location.svg?svgr'\nimport NavigateBeforeSvg from '@uswds/uswds/img/usa-icons/navigate_before.svg?svgr'\nimport NavigateNextSvg from '@uswds/uswds/img/usa-icons/navigate_next.svg?svgr'\nimport NavigateFarBeforeSvg from '@uswds/uswds/img/usa-icons/navigate_far_before.svg?svgr'\nimport NavigateFarNextSvg from '@uswds/uswds/img/usa-icons/navigate_far_next.svg?svgr'\nimport NearMeSvg from '@uswds/uswds/img/usa-icons/near_me.svg?svgr'\nimport NotificationsSvg from '@uswds/uswds/img/usa-icons/notifications.svg?svgr'\nimport NotificationsActiveSvg from '@uswds/uswds/img/usa-icons/notifications_active.svg?svgr'\nimport NotificationsNoneSvg from '@uswds/uswds/img/usa-icons/notifications_none.svg?svgr'\nimport NotificationsOffSvg from '@uswds/uswds/img/usa-icons/notifications_off.svg?svgr'\nimport ParkSvg from '@uswds/uswds/img/usa-icons/park.svg?svgr'\nimport PeopleSvg from '@uswds/uswds/img/usa-icons/people.svg?svgr'\nimport PersonSvg from '@uswds/uswds/img/usa-icons/person.svg?svgr'\nimport PetsSvg from '@uswds/uswds/img/usa-icons/pets.svg?svgr'\nimport PhoneSvg from '@uswds/uswds/img/usa-icons/phone.svg?svgr'\nimport PhotoCameraSvg from '@uswds/uswds/img/usa-icons/photo_camera.svg?svgr'\nimport PrintSvg from '@uswds/uswds/img/usa-icons/print.svg?svgr'\nimport PriorityHighSvg from '@uswds/uswds/img/usa-icons/priority_high.svg?svgr'\nimport PublicSvg from '@uswds/uswds/img/usa-icons/public.svg?svgr'\nimport PushPinSvg from '@uswds/uswds/img/usa-icons/push_pin.svg?svgr'\nimport RadioButtonUncheckedSvg from '@uswds/uswds/img/usa-icons/radio_button_unchecked.svg?svgr'\nimport RainSvg from '@uswds/uswds/img/usa-icons/rain.svg?svgr'\nimport ReduceCapacitySvg from '@uswds/uswds/img/usa-icons/reduce_capacity.svg?svgr'\nimport RemoveCircleSvg from '@uswds/uswds/img/usa-icons/remove_circle.svg?svgr'\nimport RemoveSvg from '@uswds/uswds/img/usa-icons/remove.svg?svgr'\nimport ReportSvg from '@uswds/uswds/img/usa-icons/report.svg?svgr'\nimport RestaurantSvg from '@uswds/uswds/img/usa-icons/restaurant.svg?svgr'\nimport RssFeedSvg from '@uswds/uswds/img/usa-icons/rss_feed.svg?svgr'\nimport SafetyDividerSvg from '@uswds/uswds/img/usa-icons/safety_divider.svg?svgr'\nimport SanitizerSvg from '@uswds/uswds/img/usa-icons/sanitizer.svg?svgr'\nimport SaveAltSvg from '@uswds/uswds/img/usa-icons/save_alt.svg?svgr'\nimport SevereWeatherSvg from '@uswds/uswds/img/usa-icons/severe_weather.svg?svgr'\nimport ScheduleSvg from '@uswds/uswds/img/usa-icons/schedule.svg?svgr'\nimport SchoolSvg from '@uswds/uswds/img/usa-icons/school.svg?svgr'\nimport ScienceSvg from '@uswds/uswds/img/usa-icons/science.svg?svgr'\nimport SearchSvg from '@uswds/uswds/img/usa-icons/search.svg?svgr'\nimport SecuritySvg from '@uswds/uswds/img/usa-icons/security.svg?svgr'\nimport SendSvg from '@uswds/uswds/img/usa-icons/send.svg?svgr'\nimport SentimentDissatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_dissatisfied.svg?svgr'\nimport SentimentNeutralSvg from '@uswds/uswds/img/usa-icons/sentiment_neutral.svg?svgr'\nimport SentimentSatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_satisfied.svg?svgr'\nimport SentimentSatisfiedAltSvg from '@uswds/uswds/img/usa-icons/sentiment_satisfied_alt.svg?svgr'\nimport SentimentVeryDissatisfiedSvg from '@uswds/uswds/img/usa-icons/sentiment_very_dissatisfied.svg?svgr'\nimport SettingsSvg from '@uswds/uswds/img/usa-icons/settings.svg?svgr'\nimport ShareSvg from '@uswds/uswds/img/usa-icons/share.svg?svgr'\nimport ShieldSvg from '@uswds/uswds/img/usa-icons/shield.svg?svgr'\nimport ShoppingBasketSvg from '@uswds/uswds/img/usa-icons/shopping_basket.svg?svgr'\nimport SnowSvg from '@uswds/uswds/img/usa-icons/snow.svg?svgr'\nimport SoapSvg from '@uswds/uswds/img/usa-icons/soap.svg?svgr'\nimport SocialDistanceSvg from '@uswds/uswds/img/usa-icons/social_distance.svg?svgr'\nimport SortArrowSvg from '@uswds/uswds/img/usa-icons/sort_arrow.svg?svgr'\nimport SpellcheckSvg from '@uswds/uswds/img/usa-icons/spellcheck.svg?svgr'\nimport StarSvg from '@uswds/uswds/img/usa-icons/star.svg?svgr'\nimport StarHalfSvg from '@uswds/uswds/img/usa-icons/star_half.svg?svgr'\nimport StarOutlineSvg from '@uswds/uswds/img/usa-icons/star_outline.svg?svgr'\nimport StoreSvg from '@uswds/uswds/img/usa-icons/store.svg?svgr'\nimport SupportSvg from '@uswds/uswds/img/usa-icons/support.svg?svgr'\nimport SupportAgentSvg from '@uswds/uswds/img/usa-icons/support_agent.svg?svgr'\nimport TextFieldsSvg from '@uswds/uswds/img/usa-icons/text_fields.svg?svgr'\nimport ThumbDownAltSvg from '@uswds/uswds/img/usa-icons/thumb_down_alt.svg?svgr'\nimport ThumbUpAltSvg from '@uswds/uswds/img/usa-icons/thumb_up_alt.svg?svgr'\nimport TimerSvg from '@uswds/uswds/img/usa-icons/timer.svg?svgr'\nimport ToggleOffSvg from '@uswds/uswds/img/usa-icons/toggle_off.svg?svgr'\nimport ToggleOnSvg from '@uswds/uswds/img/usa-icons/toggle_on.svg?svgr'\nimport TopicSvg from '@uswds/uswds/img/usa-icons/topic.svg?svgr'\nimport TornadoSvg from '@uswds/uswds/img/usa-icons/tornado.svg?svgr'\nimport TranslateSvg from '@uswds/uswds/img/usa-icons/translate.svg?svgr'\nimport TrendingDownSvg from '@uswds/uswds/img/usa-icons/trending_down.svg?svgr'\nimport TrendingUpSvg from '@uswds/uswds/img/usa-icons/trending_up.svg?svgr'\nimport TwitterSvg from '@uswds/uswds/img/usa-icons/twitter.svg?svgr'\nimport UndoSvg from '@uswds/uswds/img/usa-icons/undo.svg?svgr'\nimport UnfoldLessSvg from '@uswds/uswds/img/usa-icons/unfold_less.svg?svgr'\nimport UnfoldMoreSvg from '@uswds/uswds/img/usa-icons/unfold_more.svg?svgr'\nimport UpdateSvg from '@uswds/uswds/img/usa-icons/update.svg?svgr'\nimport UploadFileSvg from '@uswds/uswds/img/usa-icons/upload_file.svg?svgr'\nimport VerifiedSvg from '@uswds/uswds/img/usa-icons/verified.svg?svgr'\nimport VerifiedUserSvg from '@uswds/uswds/img/usa-icons/verified_user.svg?svgr'\nimport VisibilitySvg from '@uswds/uswds/img/usa-icons/visibility.svg?svgr'\nimport VisibilityOffSvg from '@uswds/uswds/img/usa-icons/visibility_off.svg?svgr'\nimport VolumeOffSvg from '@uswds/uswds/img/usa-icons/volume_off.svg?svgr'\nimport WarningSvg from '@uswds/uswds/img/usa-icons/warning.svg?svgr'\nimport WashSvg from '@uswds/uswds/img/usa-icons/wash.svg?svgr'\nimport WifiSvg from '@uswds/uswds/img/usa-icons/wifi.svg?svgr'\nimport WorkSvg from '@uswds/uswds/img/usa-icons/work.svg?svgr'\nimport XSvg from '@uswds/uswds/img/usa-icons/x.svg?svgr'\nimport YoutubeSvg from '@uswds/uswds/img/usa-icons/youtube.svg?svgr'\nimport ZoomInSvg from '@uswds/uswds/img/usa-icons/zoom_in.svg?svgr'\nimport ZoomOutMapSvg from '@uswds/uswds/img/usa-icons/zoom_out_map.svg?svgr'\nimport ZoomOutSvg from '@uswds/uswds/img/usa-icons/zoom_out.svg?svgr'\n\nimport { makeUSWDSIcon, IconProps } from './Icon'\nimport React from 'react'\n\nexport class Icon {\n  public static AccessibilityNew: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccessibilityNewSvg)\n\n  public static AccessibleForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccessibleForwardSvg)\n\n  public static AccountBalance: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountBalanceSvg)\n\n  public static AccountBox: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountBoxSvg)\n\n  public static AccountCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AccountCircleSvg)\n\n  public static Add: React.ComponentType<IconProps> = makeUSWDSIcon(AddSvg)\n\n  public static AddCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AddCircleSvg)\n\n  public static AddCircleOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AddCircleOutlineSvg)\n\n  public static Alarm: React.ComponentType<IconProps> = makeUSWDSIcon(AlarmSvg)\n\n  public static AlternateEmail: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AlternateEmailSvg)\n\n  public static Announcement: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AnnouncementSvg)\n\n  public static ArrowBack: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowBackSvg)\n\n  public static ArrowDownward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDownwardSvg)\n\n  public static ArrowDropDown: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDropDownSvg)\n\n  public static ArrowDropUp: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowDropUpSvg)\n\n  public static ArrowForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowForwardSvg)\n\n  public static ArrowUpward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ArrowUpwardSvg)\n\n  public static Api: React.ComponentType<IconProps> = makeUSWDSIcon(ApiSvg)\n\n  public static Assessment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AssessmentSvg)\n\n  public static AttachFile: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AttachFileSvg)\n\n  public static AttachMoney: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AttachMoneySvg)\n\n  public static Autorenew: React.ComponentType<IconProps> =\n    makeUSWDSIcon(AutorenewSvg)\n\n  public static Backpack: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BackpackSvg)\n\n  public static Bathtub: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BathtubSvg)\n\n  public static Bedding: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BeddingSvg)\n\n  public static Bookmark: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BookmarkSvg)\n\n  public static BugReport: React.ComponentType<IconProps> =\n    makeUSWDSIcon(BugReportSvg)\n\n  public static Build: React.ComponentType<IconProps> = makeUSWDSIcon(BuildSvg)\n\n  public static CalendarToday: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CalendarTodaySvg)\n\n  public static Campaign: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CampaignSvg)\n\n  public static Camping: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CampingSvg)\n\n  public static Cancel: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CancelSvg)\n\n  public static Chat: React.ComponentType<IconProps> = makeUSWDSIcon(ChatSvg)\n\n  public static Check: React.ComponentType<IconProps> = makeUSWDSIcon(CheckSvg)\n\n  public static CheckBoxOutlineBlank: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckBoxOutlineBlankSvg)\n\n  public static CheckCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckCircleSvg)\n\n  public static CheckCircleOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckCircleOutlineSvg)\n\n  public static Checkroom: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CheckroomSvg)\n\n  public static CleanHands: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CleanHandsSvg)\n\n  public static Clothes: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ClothesSvg)\n\n  public static Close: React.ComponentType<IconProps> = makeUSWDSIcon(CloseSvg)\n\n  public static ClosedCaption: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ClosedCaptionSvg)\n\n  public static Cloud: React.ComponentType<IconProps> = makeUSWDSIcon(CloudSvg)\n\n  public static Code: React.ComponentType<IconProps> = makeUSWDSIcon(CodeSvg)\n\n  public static Comment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CommentSvg)\n\n  public static ConnectWithoutContact: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConnectWithoutContactSvg)\n\n  public static Construction: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConstructionSvg)\n\n  public static ConstructionWorker: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ConstructionWorkerSvg)\n\n  public static ContactPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ContactPageSvg)\n\n  public static ContentCopy: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ContentCopySvg)\n\n  public static Coronavirus: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CoronavirusSvg)\n\n  public static CreditCard: React.ComponentType<IconProps> =\n    makeUSWDSIcon(CreditCardSvg)\n\n  public static Deck: React.ComponentType<IconProps> = makeUSWDSIcon(DeckSvg)\n\n  public static Delete: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DeleteSvg)\n\n  public static DeviceThermostat: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DeviceThermostatSvg)\n\n  public static Directions: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsSvg)\n\n  public static DirectionsBike: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsBikeSvg)\n\n  public static DirectionsBus: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsBusSvg)\n\n  public static DirectionsCar: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsCarSvg)\n\n  public static DirectionsWalk: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DirectionsWalkSvg)\n\n  public static DoNotDisturb: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DoNotDisturbSvg)\n\n  public static DoNotTouch: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DoNotTouchSvg)\n\n  public static DragHandle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(DragHandleSvg)\n\n  public static Eco: React.ComponentType<IconProps> = makeUSWDSIcon(EcoSvg)\n\n  public static Edit: React.ComponentType<IconProps> = makeUSWDSIcon(EditSvg)\n\n  public static ElectricalServices: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ElectricalServicesSvg)\n\n  public static EmojiEvents: React.ComponentType<IconProps> =\n    makeUSWDSIcon(EmojiEventsSvg)\n\n  public static Error: React.ComponentType<IconProps> = makeUSWDSIcon(ErrorSvg)\n\n  public static ErrorOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ErrorOutlineSvg)\n\n  public static Event: React.ComponentType<IconProps> = makeUSWDSIcon(EventSvg)\n\n  public static ExpandLess: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ExpandLessSvg)\n\n  public static ExpandMore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ExpandMoreSvg)\n\n  public static Facebook: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FacebookSvg)\n\n  public static FastForward: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FastForwardSvg)\n\n  public static FastRewind: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FastRewindSvg)\n\n  public static Favorite: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FavoriteSvg)\n\n  public static FavoriteBorder: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FavoriteBorderSvg)\n\n  public static Fax: React.ComponentType<IconProps> = makeUSWDSIcon(FaxSvg)\n\n  public static FileDownload: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FileDownloadSvg)\n\n  public static FilePresent: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilePresentSvg)\n\n  public static FileUpload: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FileUploadSvg)\n\n  public static FilterAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilterAltSvg)\n\n  public static FilterList: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FilterListSvg)\n\n  public static Fingerprint: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FingerprintSvg)\n\n  public static FirstPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FirstPageSvg)\n\n  public static Flag: React.ComponentType<IconProps> = makeUSWDSIcon(FlagSvg)\n\n  public static Flickr: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FlickrSvg)\n\n  public static Flight: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FlightSvg)\n\n  public static Flooding: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FloodingSvg)\n\n  public static Folder: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FolderSvg)\n\n  public static FolderOpen: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FolderOpenSvg)\n\n  public static FormatQuote: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FormatQuoteSvg)\n\n  public static FormatSize: React.ComponentType<IconProps> =\n    makeUSWDSIcon(FormatSizeSvg)\n\n  public static Forum: React.ComponentType<IconProps> = makeUSWDSIcon(ForumSvg)\n\n  public static Github: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GithubSvg)\n\n  public static GridView: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GridViewSvg)\n\n  public static GroupAdd: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GroupAddSvg)\n\n  public static Groups: React.ComponentType<IconProps> =\n    makeUSWDSIcon(GroupsSvg)\n\n  public static Hearing: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HearingSvg)\n\n  public static Help: React.ComponentType<IconProps> = makeUSWDSIcon(HelpSvg)\n\n  public static HelpOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HelpOutlineSvg)\n\n  public static HighlightOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HighlightOffSvg)\n\n  public static History: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HistorySvg)\n\n  public static Home: React.ComponentType<IconProps> = makeUSWDSIcon(HomeSvg)\n\n  public static Hospital: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HospitalSvg)\n\n  public static Hotel: React.ComponentType<IconProps> = makeUSWDSIcon(HotelSvg)\n\n  public static HourglassEmpty: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HourglassEmptySvg)\n\n  public static Hurricane: React.ComponentType<IconProps> =\n    makeUSWDSIcon(HurricaneSvg)\n\n  public static Identification: React.ComponentType<IconProps> =\n    makeUSWDSIcon(IdentificationSvg)\n\n  public static Image: React.ComponentType<IconProps> = makeUSWDSIcon(ImageSvg)\n\n  public static Info: React.ComponentType<IconProps> = makeUSWDSIcon(InfoSvg)\n\n  public static InfoOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InfoOutlineSvg)\n\n  public static Insights: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InsightsSvg)\n\n  public static Instagram: React.ComponentType<IconProps> =\n    makeUSWDSIcon(InstagramSvg)\n\n  public static Keyboard: React.ComponentType<IconProps> =\n    makeUSWDSIcon(KeyboardSvg)\n\n  public static Label: React.ComponentType<IconProps> = makeUSWDSIcon(LabelSvg)\n\n  public static Language: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LanguageSvg)\n\n  public static LastPage: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LastPageSvg)\n\n  public static Launch: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LaunchSvg)\n\n  public static Lightbulb: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LightbulbSvg)\n\n  public static LightbulbOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LightbulbOutlineSvg)\n\n  public static LinkedIn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LinkedInSvg)\n\n  public static Link: React.ComponentType<IconProps> = makeUSWDSIcon(LinkSvg)\n\n  public static LinkOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LinkOffSvg)\n\n  public static List: React.ComponentType<IconProps> = makeUSWDSIcon(ListSvg)\n\n  public static LocalCafe: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalCafeSvg)\n\n  public static LocalFireDepartment: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalFireDepartmentSvg)\n\n  public static LocalGasStation: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalGasStationSvg)\n\n  public static LocalGroceryStore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalGroceryStoreSvg)\n\n  public static LocalHospital: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalHospitalSvg)\n\n  public static LocalLaundryService: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalLaundryServiceSvg)\n\n  public static LocalLibrary: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalLibrarySvg)\n\n  public static LocalOffer: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalOfferSvg)\n\n  public static LocalParking: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalParkingSvg)\n\n  public static LocalPharmacy: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalPharmacySvg)\n\n  public static LocalPolice: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalPoliceSvg)\n\n  public static LocalTaxi: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocalTaxiSvg)\n\n  public static LocationCity: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocationCitySvg)\n\n  public static LocationOn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LocationOnSvg)\n\n  public static Lock: React.ComponentType<IconProps> = makeUSWDSIcon(LockSvg)\n\n  public static LockOpen: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LockOpenSvg)\n\n  public static LockOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LockOutlineSvg)\n\n  public static Login: React.ComponentType<IconProps> = makeUSWDSIcon(LoginSvg)\n\n  public static Logout: React.ComponentType<IconProps> =\n    makeUSWDSIcon(LogoutSvg)\n\n  public static Loop: React.ComponentType<IconProps> = makeUSWDSIcon(LoopSvg)\n\n  public static Mail: React.ComponentType<IconProps> = makeUSWDSIcon(MailSvg)\n\n  public static MailOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MailOutlineSvg)\n\n  public static Map: React.ComponentType<IconProps> = makeUSWDSIcon(MapSvg)\n\n  public static Masks: React.ComponentType<IconProps> = makeUSWDSIcon(MasksSvg)\n\n  public static MedicalServices: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MedicalServicesSvg)\n\n  public static Menu: React.ComponentType<IconProps> = makeUSWDSIcon(MenuSvg)\n\n  public static MilitaryTech: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MilitaryTechSvg)\n\n  public static MoreHoriz: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MoreHorizSvg)\n\n  public static MoreVert: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MoreVertSvg)\n\n  public static MyLocation: React.ComponentType<IconProps> =\n    makeUSWDSIcon(MyLocationSvg)\n\n  public static NavigateBefore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateBeforeSvg)\n\n  public static NavigateNext: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateNextSvg)\n\n  public static NavigateFarBefore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateFarBeforeSvg)\n\n  public static NavigateFarNext: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NavigateFarNextSvg)\n\n  public static NearMe: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NearMeSvg)\n\n  public static Notifications: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsSvg)\n\n  public static NotificationsActive: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsActiveSvg)\n\n  public static NotificationsNone: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsNoneSvg)\n\n  public static NotificationsOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(NotificationsOffSvg)\n\n  public static Park: React.ComponentType<IconProps> = makeUSWDSIcon(ParkSvg)\n\n  public static People: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PeopleSvg)\n\n  public static Person: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PersonSvg)\n\n  public static Pets: React.ComponentType<IconProps> = makeUSWDSIcon(PetsSvg)\n\n  public static Phone: React.ComponentType<IconProps> = makeUSWDSIcon(PhoneSvg)\n\n  public static PhotoCamera: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PhotoCameraSvg)\n\n  public static Print: React.ComponentType<IconProps> = makeUSWDSIcon(PrintSvg)\n\n  public static PriorityHigh: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PriorityHighSvg)\n\n  public static Public: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PublicSvg)\n\n  public static PushPin: React.ComponentType<IconProps> =\n    makeUSWDSIcon(PushPinSvg)\n\n  public static RadioButtonUnchecked: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RadioButtonUncheckedSvg)\n\n  public static Rain: React.ComponentType<IconProps> = makeUSWDSIcon(RainSvg)\n\n  public static ReduceCapacity: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ReduceCapacitySvg)\n\n  public static RemoveCircle: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RemoveCircleSvg)\n\n  public static Remove: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RemoveSvg)\n\n  public static Report: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ReportSvg)\n\n  public static Restaurant: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RestaurantSvg)\n\n  public static RssFeed: React.ComponentType<IconProps> =\n    makeUSWDSIcon(RssFeedSvg)\n\n  public static SafetyDivider: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SafetyDividerSvg)\n\n  public static Sanitizer: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SanitizerSvg)\n\n  public static SaveAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SaveAltSvg)\n\n  public static SevereWeather: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SevereWeatherSvg)\n\n  public static Schedule: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ScheduleSvg)\n\n  public static School: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SchoolSvg)\n\n  public static Science: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ScienceSvg)\n\n  public static Search: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SearchSvg)\n\n  public static Security: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SecuritySvg)\n\n  public static Send: React.ComponentType<IconProps> = makeUSWDSIcon(SendSvg)\n\n  public static SentimentDissatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentDissatisfiedSvg)\n\n  public static SentimentNeutral: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentNeutralSvg)\n\n  public static SentimentSatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentSatisfiedSvg)\n\n  public static SentimentSatisfiedAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentSatisfiedAltSvg)\n\n  public static SentimentVeryDissatisfied: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SentimentVeryDissatisfiedSvg)\n\n  public static Settings: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SettingsSvg)\n\n  public static Share: React.ComponentType<IconProps> = makeUSWDSIcon(ShareSvg)\n\n  public static Shield: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ShieldSvg)\n\n  public static ShoppingBasket: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ShoppingBasketSvg)\n\n  public static Snow: React.ComponentType<IconProps> = makeUSWDSIcon(SnowSvg)\n\n  public static Soap: React.ComponentType<IconProps> = makeUSWDSIcon(SoapSvg)\n\n  public static SocialDistance: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SocialDistanceSvg)\n\n  public static SortArrow: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SortArrowSvg)\n\n  public static Spellcheck: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SpellcheckSvg)\n\n  public static Star: React.ComponentType<IconProps> = makeUSWDSIcon(StarSvg)\n\n  public static StarHalf: React.ComponentType<IconProps> =\n    makeUSWDSIcon(StarHalfSvg)\n\n  public static StarOutline: React.ComponentType<IconProps> =\n    makeUSWDSIcon(StarOutlineSvg)\n\n  public static Store: React.ComponentType<IconProps> = makeUSWDSIcon(StoreSvg)\n\n  public static Support: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SupportSvg)\n\n  public static SupportAgent: React.ComponentType<IconProps> =\n    makeUSWDSIcon(SupportAgentSvg)\n\n  public static TextFields: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TextFieldsSvg)\n\n  public static ThumbDownAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ThumbDownAltSvg)\n\n  public static ThumbUpAlt: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ThumbUpAltSvg)\n\n  public static Timer: React.ComponentType<IconProps> = makeUSWDSIcon(TimerSvg)\n\n  public static ToggleOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ToggleOffSvg)\n\n  public static ToggleOn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ToggleOnSvg)\n\n  public static Topic: React.ComponentType<IconProps> = makeUSWDSIcon(TopicSvg)\n\n  public static Tornado: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TornadoSvg)\n\n  public static Translate: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TranslateSvg)\n\n  public static TrendingDown: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TrendingDownSvg)\n\n  public static TrendingUp: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TrendingUpSvg)\n\n  public static Twitter: React.ComponentType<IconProps> =\n    makeUSWDSIcon(TwitterSvg)\n\n  public static Undo: React.ComponentType<IconProps> = makeUSWDSIcon(UndoSvg)\n\n  public static UnfoldLess: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UnfoldLessSvg)\n\n  public static UnfoldMore: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UnfoldMoreSvg)\n\n  public static Update: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UpdateSvg)\n\n  public static UploadFile: React.ComponentType<IconProps> =\n    makeUSWDSIcon(UploadFileSvg)\n\n  public static Verified: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VerifiedSvg)\n\n  public static VerifiedUser: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VerifiedUserSvg)\n\n  public static Visibility: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VisibilitySvg)\n\n  public static VisibilityOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VisibilityOffSvg)\n\n  public static VolumeOff: React.ComponentType<IconProps> =\n    makeUSWDSIcon(VolumeOffSvg)\n\n  public static Warning: React.ComponentType<IconProps> =\n    makeUSWDSIcon(WarningSvg)\n\n  public static Wash: React.ComponentType<IconProps> = makeUSWDSIcon(WashSvg)\n\n  public static Wifi: React.ComponentType<IconProps> = makeUSWDSIcon(WifiSvg)\n\n  public static Work: React.ComponentType<IconProps> = makeUSWDSIcon(WorkSvg)\n\n  public static X: React.ComponentType<IconProps> = makeUSWDSIcon(XSvg)\n\n  public static Youtube: React.ComponentType<IconProps> =\n    makeUSWDSIcon(YoutubeSvg)\n\n  public static ZoomIn: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomInSvg)\n\n  public static ZoomOutMap: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomOutMapSvg)\n\n  public static ZoomOut: React.ComponentType<IconProps> =\n    makeUSWDSIcon(ZoomOutSvg)\n}\n\nexport default Icon\n"
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Individual",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Openstates",
+    "id": "components-modal-open-states",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "unknown",
+      "projectedContent": "unknown"
+    },
+    "omittedKnown": [],
+    "blocking": [
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "Openstates",
+        "message": "Storybook could not detect the component for 'components-modal-open-states' (src/components/modal/OpenModal.stories.tsx). Specify 'meta.component' in the CSF default export."
+      },
+      {
+        "code": "NO_EXPORTABLE_PROPS",
+        "subject": "Openstates",
+        "message": "No supported properties were found, so there is nothing to put in the catalog."
+      }
+    ],
+    "warnings": []
+  }
+]

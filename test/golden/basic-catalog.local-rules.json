@@ -1,0 +1,43 @@
+{
+  "referenceErrors": [
+    "Component 'Text' must explicitly set 'additionalProperties: false'.",
+    "Component 'Image' must explicitly set 'additionalProperties: false'.",
+    "Component 'Icon' must explicitly set 'additionalProperties: false'.",
+    "Component 'Video' must explicitly set 'additionalProperties: false'.",
+    "Component 'AudioPlayer' must explicitly set 'additionalProperties: false'.",
+    "Component 'Row' must explicitly set 'additionalProperties: false'.",
+    "Component 'Column' must explicitly set 'additionalProperties: false'.",
+    "Component 'List' must explicitly set 'additionalProperties: false'.",
+    "Component 'Card' must explicitly set 'additionalProperties: false'.",
+    "Component 'Tabs' must explicitly set 'additionalProperties: false'.",
+    "Component 'Modal' must explicitly set 'additionalProperties: false'.",
+    "Component 'Divider' must explicitly set 'additionalProperties: false'.",
+    "Component 'Button' must explicitly set 'additionalProperties: false'.",
+    "Component 'Button' required list must include discriminator property 'component'.",
+    "Component 'Button' properties.component.const must equal 'Button'.",
+    "Component 'TextField' must explicitly set 'additionalProperties: false'.",
+    "Component 'TextField' required list must include discriminator property 'component'.",
+    "Component 'TextField' properties.component.const must equal 'TextField'.",
+    "Component 'CheckBox' must explicitly set 'additionalProperties: false'.",
+    "Component 'CheckBox' required list must include discriminator property 'component'.",
+    "Component 'CheckBox' properties.component.const must equal 'CheckBox'.",
+    "Component 'ChoicePicker' must explicitly set 'additionalProperties: false'.",
+    "Component 'ChoicePicker' required list must include discriminator property 'component'.",
+    "Component 'ChoicePicker' properties.component.const must equal 'ChoicePicker'.",
+    "Component 'Slider' must explicitly set 'additionalProperties: false'.",
+    "Component 'Slider' required list must include discriminator property 'component'.",
+    "Component 'Slider' properties.component.const must equal 'Slider'.",
+    "Component 'DateTimeInput' must explicitly set 'additionalProperties: false'.",
+    "Component 'DateTimeInput' required list must include discriminator property 'component'.",
+    "Component 'DateTimeInput' properties.component.const must equal 'DateTimeInput'.",
+    "Ajv schema compilation / dereferencing failed: discriminator: oneOf subschemas (or referenced schemas) must have \"properties/component\""
+  ],
+  "structuralErrors": [
+    "Component 'Button' properties.component.const must match component key (found: 'undefined').",
+    "Component 'TextField' properties.component.const must match component key (found: 'undefined').",
+    "Component 'CheckBox' properties.component.const must match component key (found: 'undefined').",
+    "Component 'ChoicePicker' properties.component.const must match component key (found: 'undefined').",
+    "Component 'Slider' properties.component.const must match component key (found: 'undefined').",
+    "Component 'DateTimeInput' properties.component.const must match component key (found: 'undefined')."
+  ]
+}
