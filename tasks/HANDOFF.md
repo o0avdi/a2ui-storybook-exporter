@@ -4,19 +4,20 @@ Written 2026-11-09 for a fresh Claude Code session. Read this file, then `tasks/
 criteria, verified findings) and `tasks/todo.md` (checklist). `docs/HANDOFF.md` is an older handoff from before this
 plan and is partly out of date.
 
-## State of the repository (verified 2026-11-09)
+## State of the repository (verified 2026-11-10)
 
-- Branch: `feat/exporter-hardening`. Working tree clean.
-- Commits on top of `4fc9d40` (the baseline the plan refers to), all local only:
+- Branch: `feat/exporter-hardening`, tracking `origin/feat/exporter-hardening`.
+- Commits on top of `4fc9d40` (the baseline the plan refers to), all pushed to `origin/feat/exporter-hardening`:
   - `c2b4b14` Add the exporter-only roadmap and task list
   - `010aa61` Pin current report and validator behavior with characterization tests (task M1)
-  - one documentation commit that adds this handoff and ticks M1 in `tasks/todo.md`
-- **Nothing from this plan is pushed.** `origin/main` is at `142dd7b`, `origin/docs/share-floorplan` at `4fc9d40`.
-- **Upstream trap:** the local branch tracks `origin/docs/share-floorplan`, and `feat/exporter-hardening` does not
-  exist on the remote. An approved push must name the branch: `git push -u origin feat/exporter-hardening`.
-- Tests: `npm test` gives 50 passed, 0 failed (47 in `test/exporter.test.mjs`, 3 in
-  `test/characterization.test.mjs`), run on Node 26.7.0. Node 22 and 24 have never been run.
-- Remote: `https://github.com/o0avdi/a2ui-storybook-exporter.git`. No `.github/` folder, no CI yet.
+  - `67543e4` Add a session handoff and tick M1 in the task list
+  - `3e4758f` Add CI for Node 22 and 24 on Ubuntu and Node 22 on Windows (task N2)
+- **Nothing is merged into `main`.** `origin/main` is at `142dd7b`, `origin/docs/share-floorplan` at `4fc9d40`.
+- Tests at `3e4758f`: `npm test` gives 50 passed, 0 failed (47 in `test/exporter.test.mjs`, 3 in
+  `test/characterization.test.mjs`).
+- CI: `.github/workflows/ci.yml` runs on every push. At `3e4758f` all three jobs passed (Node 22 and 24 on Ubuntu,
+  Node 22 on Windows; GitHub Actions run 42757388584).
+- Remote: `https://github.com/o0avdi/a2ui-storybook-exporter.git`.
 
 ## Objective
 
@@ -39,11 +40,10 @@ Do not add demo tasks (wrapper components, component registration, agent interac
 
 1. **Omar must understand every meaningful change.** Explain the files, functions and design decisions, not only
    the result. Claude acts as senior engineer, mentor and critical reviewer.
-2. **Approval gates.** No task starts without Omar's approval (N2 already has it, see below). Stop after each
-   task and wait for review.
+2. **Approval gates.** No task starts without Omar's approval. Stop after each task and wait for review.
 3. **Show before committing.** Present the change and the test results first; commit after Omar's go-ahead.
-4. **No push or merge without explicit approval**, each time. No installs without approval; the one standing
-   exception is described under N2.
+4. **No push or merge without explicit approval**, each time. No installs without approval, and no changes to
+   global tools.
 5. **Test first, small commits.** One task is one commit. A failing test comes before the change. Run the full
    suite after every change. Report results exactly as they are.
 6. **Snapshots and golden files are never updated blindly.** The diff is read and committed with its cause.
@@ -105,39 +105,22 @@ Numbers later tasks rely on, all read from these snapshots:
 - Official basic catalog: 0 official meta-schema errors, 31 reference-check problems and 6 structural-rule
   problems. The exporter's own rules are stricter than the specification (M7 must label this honestly).
 
-## Next task: N2, continuous integration (not started)
+**N2, continuous integration** (`3e4758f`): `.github/workflows/ci.yml`.
 
-**Already approved for local implementation and testing**, so it can begin without asking again. Stop for Omar's
-review before committing, before pushing, and before moving to any other task.
+- Matrix: Node 22 and Node 24 on Ubuntu, Node 22 on Windows. Steps: `npm ci`, `npm test`, then a clean install of
+  the packed tarball in an empty directory outside the checkout, followed by the installed CLI (`--version` and
+  `inspect` on the react-uswds fixture).
+- `.gitattributes` checks text files out with LF on every platform, so the byte-for-byte golden catalog test
+  passes on Windows.
+- Local Node versions: 22 and 24 through `fnm` (`fnm exec --using=22 npm test`), 26.7.0 as the system Node.
 
-**Installs:** temporary, isolated npm installations needed to test N2 are approved (for example installing the
-packed tarball into a throwaway directory). Do not install or modify global tools without asking; that includes
-adding Node versions.
+## Next task: M2, own-property checks in the validator and the ref resolver
 
-Approved shape:
-
-- Matrix: Node 22 and Node 24 on Ubuntu, Node 22 on Windows.
-- Steps: `npm ci`, `npm test`, then a clean install of the packed tarball in an empty directory, followed by
-  running the installed CLI (`--version` and an `inspect` on a repository fixture).
-- Prepare and test as much as possible locally. **Do not push until Omar explicitly approves**, and push
-  `feat/exporter-hardening` by name (see the upstream trap above).
-
-Facts that help:
-
-- `package.json` has `"private": true`, which blocks publishing but not `npm pack` or a tarball install.
-- `npm pack --dry-run` gave 19 files, 47 KB; `test/` and `docs/` are not in the package, so the CI step must point
-  the installed CLI at a fixture in the checked-out repository.
-- `fnm` and `gh` are installed locally. Only Node 26.7.0 is known to be installed; adding Node 22 or 24 with
-  `fnm` changes a global tool, so ask first.
-- Snapshot tests compare parsed JSON, not bytes, so Windows line endings should not affect them. The existing golden
-  catalog test compares bytes; watch it on Windows.
-
-After N2: M2 (own-property checks in the validator and ref resolver), then M3. See `tasks/todo.md`.
+Acceptance criteria are in `tasks/plan.md`. A Codex review is planned for it. Then M3. See `tasks/todo.md`.
 
 ## Open risks
 
 - Review time is the real limit: about two commits a day before the feature freeze.
-- Node 22 and Windows are unverified until N2 runs.
 - The validator still accepts three known-bad catalogs until M2 (`in` instead of an own-property check).
 - No external React fixture with react-docgen-typescript and no external Angular library exist yet. The only real
   Angular fixture uses self-written components.
