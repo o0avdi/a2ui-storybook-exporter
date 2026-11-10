@@ -6,7 +6,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { exportCatalog } from '../src/export.mjs';
-import { validateV1Export } from '../src/a2ui/validate.mjs';
+import { createCatalogValidator, validateCatalogStructuralRules, validateV1Export } from '../src/a2ui/validate.mjs';
 import { makeCatalogV1, sortDeterministic } from '../src/a2ui/catalog.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -532,6 +532,98 @@ test('Pipeline: a component named like an Object.prototype member is blocked, no
     assert.deepEqual(Object.getOwnPropertyNames(result.catalog.components), ['GovBanner'], name);
     assertCatalogMatchesReport(result);
   }
+});
+
+// ---- A name that an object only inherits from Object.prototype is not a definition: not for the validator's own
+// rules, and not for a manifest reference. `'toString' in {}` is true, `Object.hasOwn({}, 'toString')` is false.
+
+// The messages of the exporter's own rules for a valid generated catalog that was changed in one place.
+function ownRuleErrors(change) {
+  const catalog = makeCatalogV1([thing()], { catalogId });
+  change(catalog);
+  return { catalog, reference: createCatalogValidator()(catalog).referenceErrors, structural: validateCatalogStructuralRules(catalog).errors };
+}
+
+test('Validator: a required property that exists only on Object.prototype is reported as missing', () => {
+  for (const name of PROTOTYPE_NAMES) {
+    const { catalog, reference, structural } = ownRuleErrors((changed) => changed.components.Thing.required.push(name));
+    const message = `Component 'Thing' required property '${name}' does not exist in component properties.`;
+    assert.ok(reference.includes(message), `reference check: ${name}`);
+    assert.ok(structural.includes(message), `structural rules: ${name}`);
+    assert.throws(() => validateV1Export(catalog), /catalog validation failed/, name);
+  }
+});
+
+test('Validator: a $ref to a common type that exists only on Object.prototype is unresolved', () => {
+  for (const name of PROTOTYPE_NAMES) {
+    const ref = `common_types.json#/$defs/${name}`;
+    const { catalog, reference } = ownRuleErrors((changed) => { changed.components.Thing.properties.label = { $ref: ref }; });
+    assert.ok(reference.includes(`Unresolved external reference '${ref}' at components.Thing.properties.label: '${name}' is not defined in common_types.json.`), name);
+    assert.throws(() => validateV1Export(catalog), /catalog validation failed/, name);
+  }
+});
+
+test('Validator: an internal $ref through a name that exists only on Object.prototype is unresolved', () => {
+  for (const name of PROTOTYPE_NAMES) {
+    for (const ref of [`#/components/${name}`, `#/components/Thing/properties/${name}`]) {
+      const { catalog, reference } = ownRuleErrors((changed) => { changed.components.Thing.properties.label = { $ref: ref }; });
+      assert.ok(reference.includes(`Unresolved internal reference '${ref}' at components.Thing.properties.label.`), ref);
+      assert.throws(() => validateV1Export(catalog), /catalog validation failed/, ref);
+    }
+  }
+  // A key or an array position that the catalog really contains still resolves.
+  for (const ref of ['#/components/Thing/properties/component', '#/$defs/anyComponent/oneOf/0']) {
+    const { catalog, reference } = ownRuleErrors((changed) => { changed.components.Thing.properties.label = { $ref: ref }; });
+    assert.deepEqual(reference, [], ref);
+    assert.equal(validateV1Export(catalog).valid, true, ref);
+  }
+});
+
+test('Validator: anyComponent and anyFunction cannot list a component or function that exists only on Object.prototype', () => {
+  for (const name of PROTOTYPE_NAMES) {
+    const { catalog, reference } = ownRuleErrors((changed) => {
+      changed.$defs.anyComponent.oneOf.push({ $ref: `#/components/${name}` });
+      // The function has the shape of `required` in the official basic catalog.
+      changed.functions = { required: { type: 'object', returnType: 'validationResult', properties: { '@call': { const: 'required' } }, required: ['@call'] } };
+      changed.$defs.anyFunction = { oneOf: [{ $ref: '#/functions/required' }, { $ref: `#/functions/${name}` }] };
+    });
+    assert.ok(reference.includes(`$defs.anyComponent.oneOf references non-existent component '${name}'.`), `component ${name}`);
+    assert.ok(reference.includes(`$defs.anyFunction.oneOf references non-existent function '${name}'.`), `function ${name}`);
+    assert.throws(() => validateV1Export(catalog), /catalog validation failed/, name);
+  }
+});
+
+test('Angular: a manifest reference through a name that exists only on Object.prototype does not resolve', (t) => {
+  const DOCGEN = 'services/core/docgen/spike-statusbadge.json';
+  // The status badge of a copy of the build whose docgen (or stories) reference ends in `pointer`.
+  const badge = (kind, pointer, editDocgen = (json) => json) => {
+    const directory = path.join(temporary(t), 'build');
+    fs.cpSync(ANGULAR, directory, { recursive: true });
+    const file = path.join(directory, 'manifests/components.json');
+    const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const [target] = manifest.components['spike-statusbadge'][kind].$ref.split('#');
+    manifest.components['spike-statusbadge'][kind].$ref = `${target}#${pointer}`;
+    fs.writeFileSync(file, JSON.stringify(manifest));
+    const docgen = path.join(directory, DOCGEN);
+    fs.writeFileSync(docgen, JSON.stringify(editDocgen(JSON.parse(fs.readFileSync(docgen, 'utf8')))));
+    return component(run({ builds: [directory], components: ['StatusBadgeComponent'], unmappedEvents: 'omit' }), 'StatusBadgeComponent');
+  };
+  for (const [kind, pointer, missing] of [
+    ['docgen', '/constructor', 'constructor'],
+    ['docgen', '/components/toString', 'toString'],
+    ['docgen', '/__proto__/hasOwnProperty', '__proto__'],
+    ['stories', '/components/valueOf', 'valueOf'],
+  ]) {
+    const blocked = badge(kind, pointer);
+    assert.equal(blocked.status, 'blocked', pointer);
+    const invalid = blocked.blocking.filter((issue) => issue.code === 'MANIFEST_ENTRY_INVALID');
+    assert.equal(invalid.length, 1, pointer);
+    assert.ok(invalid[0].message.endsWith(`#${pointer} does not resolve (missing "${missing}").`), invalid[0].message);
+  }
+  // A key with such a name that the referenced file really contains is ordinary data and still resolves.
+  const exported = badge('docgen', '/constructor/spike-statusbadge', (json) => JSON.parse(`{"constructor":${JSON.stringify(json.components)}}`));
+  assert.equal(exported.status, 'exported');
+  assert.deepEqual(exported.properties, ['compact', 'label', 'tone']);
 });
 
 // ---- End to end: real react-uswds Storybook 10.6.3 build (see test/fixtures/PROVENANCE.md)

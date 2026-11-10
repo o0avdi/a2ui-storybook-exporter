@@ -9,7 +9,7 @@ approval before it starts and a review before the next one begins.
 
 - [x] **M1** Characterization tests: react-uswds report under both policies; validator on the official basic catalog (`010aa61`)
 - [x] **N2** CI: Node 22 and 24 on Ubuntu, Node 22 on Windows; `npm ci`, `npm test`, clean tarball install (`3e4758f`, all three jobs green)
-- [ ] **M2** Own-property checks in the validator and ref resolver (Codex review)
+- [x] **M2** Own-property checks in the validator and ref resolver (Codex review done; two validator limitations recorded in `tasks/HANDOFF.md`)
 - [ ] **M3** `MISSING_PROP_TYPE` replaces `Unsupported type ''`
 
 **Checkpoint A:** `npm test` green; catalog golden byte-identical; react-uswds still 2/73 and 4/71; snapshot diffs reviewed.

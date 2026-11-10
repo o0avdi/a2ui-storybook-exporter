@@ -73,7 +73,7 @@ export function resolveRef(buildDir, manifestFile, ref) {
   let node = readJson(real, `Manifest reference ${relative}`).value;
   for (const part of pointer.split('/').filter(Boolean)) {
     const key = part.replaceAll('~1', '/').replaceAll('~0', '~');
-    if (!record(node) || !(key in node)) throw new Error(`Manifest reference ${ref} does not resolve (missing "${key}").`);
+    if (!record(node) || !Object.hasOwn(node, key)) throw new Error(`Manifest reference ${ref} does not resolve (missing "${key}").`);
     node = node[key];
   }
   return node;

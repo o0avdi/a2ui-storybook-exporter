@@ -86,7 +86,7 @@ export function validateCatalogReferences(catalog, commonTypes) {
         }
         seenOneOfRefs.add(ref);
         const targetName = ref.replace('#/components/', '');
-        if (!catalog.components?.[targetName]) {
+        if (!Object.hasOwn(catalog.components ?? {}, targetName)) {
           errors.push(`$defs.anyComponent.oneOf references non-existent component '${targetName}'.`);
         }
       }
@@ -117,7 +117,7 @@ export function validateCatalogReferences(catalog, commonTypes) {
           }
           seenFnRefs.add(ref);
           const targetName = ref.replace('#/functions/', '');
-          if (!catalog.functions?.[targetName]) {
+          if (!Object.hasOwn(catalog.functions ?? {}, targetName)) {
             errors.push(`$defs.anyFunction.oneOf references non-existent function '${targetName}'.`);
           }
         }
@@ -130,7 +130,7 @@ export function validateCatalogReferences(catalog, commonTypes) {
   for (const { path: refPath, ref } of componentRefs) {
     if (ref.startsWith('common_types.json#/$defs/')) {
       const defName = ref.replace('common_types.json#/$defs/', '');
-      if (!commonTypes.$defs || !(defName in commonTypes.$defs)) {
+      if (!commonTypes.$defs || !Object.hasOwn(commonTypes.$defs, defName)) {
         errors.push(
           `Unresolved external reference '${ref}' at ${refPath}: '${defName}' is not defined in common_types.json.`,
         );
@@ -141,7 +141,7 @@ export function validateCatalogReferences(catalog, commonTypes) {
       let current = catalog;
       let resolved = true;
       for (const seg of segments) {
-        if (current && typeof current === 'object' && seg in current) {
+        if (current && typeof current === 'object' && Object.hasOwn(current, seg)) {
           current = current[seg];
         } else {
           resolved = false;
@@ -173,7 +173,7 @@ export function validateCatalogReferences(catalog, commonTypes) {
       }
       if (Array.isArray(comp.required)) {
         for (const reqProp of comp.required) {
-          if (!comp.properties || !(reqProp in comp.properties)) {
+          if (!comp.properties || !Object.hasOwn(comp.properties, reqProp)) {
             errors.push(
               `Component '${name}' required property '${reqProp}' does not exist in component properties.`,
             );
@@ -365,7 +365,7 @@ export function validateCatalogStructuralRules(catalog) {
       // Check required properties exist in properties
       if (Array.isArray(comp.required)) {
         for (const reqProp of comp.required) {
-          if (!comp.properties || !(reqProp in comp.properties)) {
+          if (!comp.properties || !Object.hasOwn(comp.properties, reqProp)) {
             errors.push(
               `Component '${name}' required property '${reqProp}' does not exist in component properties.`,
             );
