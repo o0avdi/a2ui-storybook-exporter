@@ -1,0 +1,1544 @@
+[
+  {
+    "name": "Alert",
+    "id": "mui-alert",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "sourceProperties": [
+      {
+        "name": "action",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: action (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "classes",
+        "sourceType": "Partial<AlertClasses>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "classes: Unsupported type 'Partial<AlertClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "closeText",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "color",
+        "sourceType": "OverridableStringUnion<AlertColor, AlertPropsColorOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "severity",
+        "sourceType": "OverridableStringUnion<AlertColor, AlertPropsColorOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "icon",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: icon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "role",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "iconMapping",
+        "sourceType": "Partial<Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, ReactNode>>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "iconMapping: Unsupported type 'Partial<Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, ReactNode>>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "onClose",
+        "sourceType": "((event: SyntheticEvent<Element, Event>) => void)",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNMAPPED_EVENT: onClose (((event: SyntheticEvent<Element, Event>) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "name": "variant",
+        "sourceType": "OverridableStringUnion<\"outlined\" | \"filled\" | \"standard\", AlertPropsVariantOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "sx",
+        "sourceType": "SxProps<Theme>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "className",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "style",
+        "sourceType": "CSSProperties",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "name": "children",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "component",
+        "sourceType": "ElementType<any, keyof IntrinsicElements>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "name": "elevation",
+        "sourceType": "number",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "square",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "slots",
+        "sourceType": "Partial<AlertSlots>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "slots: Unsupported type 'Partial<AlertSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "slotProps",
+        "sourceType": "{ root?: SlotProps<ElementType<PaperProps, keyof IntrinsicElements>, AlertRootSlotPropsOverrides, AlertOwnerState>; icon?: SlotProps<\"div\", AlertIconSlotPropsOverrides, AlertOwnerState>; message?: SlotProps<\"div\", AlertMessageSlotPropsOverrides, AlertOwnerState> | undefined; action?: SlotProps<\"div\", AlertActionSlotPropsOverrides, AlertOwnerState> | undefined; closeButton?: SlotProps<ElementType<IconButtonProps, keyof IntrinsicElements>, AlertCloseButtonSlotPropsOverrides, AlertOwnerState> | undefined; closeIcon?: SlotProps<ElementType<SvgIconProps, keyof IntrinsicElements>, AlertCloseIconSlotPropsOverrides, AlertOwnerState> | undefined; } | undefined",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "slotProps: Union type '{ root?: SlotProps<ElementType<PaperProps, keyof IntrinsicElements>, AlertRootSlotPropsOverrides, AlertOwnerState>; icon?: SlotProps<\"div\", AlertIconSlotPropsOverrides, AlertOwnerState>; message?: SlotProps<\"div\", AlertMessageSlotPropsOverrides, AlertOwnerState> | undefined; action?: SlotProps<\"div\", AlertActionSlotPropsOverrides, AlertOwnerState> | undefined; closeButton?: SlotProps<ElementType<IconButtonProps, keyof IntrinsicElements>, AlertCloseButtonSlotPropsOverrides, AlertOwnerState> | undefined; closeIcon?: SlotProps<ElementType<SvgIconProps, keyof IntrinsicElements>, AlertCloseIconSlotPropsOverrides, AlertOwnerState> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "kind": "property",
+        "name": "classes",
+        "reason": "classes: Unsupported type 'Partial<AlertClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "iconMapping",
+        "reason": "iconMapping: Unsupported type 'Partial<Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, ReactNode>>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "sx",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "slots",
+        "reason": "slots: Unsupported type 'Partial<AlertSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "slotProps",
+        "reason": "slotProps: Union type '{ root?: SlotProps<ElementType<PaperProps, keyof IntrinsicElements>, AlertRootSlotPropsOverrides, AlertOwnerState>; icon?: SlotProps<\"div\", AlertIconSlotPropsOverrides, AlertOwnerState>; message?: SlotProps<\"div\", AlertMessageSlotPropsOverrides, AlertOwnerState> | undefined; action?: SlotProps<\"div\", AlertActionSlotPropsOverrides, AlertOwnerState> | undefined; closeButton?: SlotProps<ElementType<IconButtonProps, keyof IntrinsicElements>, AlertCloseButtonSlotPropsOverrides, AlertOwnerState> | undefined; closeIcon?: SlotProps<ElementType<SvgIconProps, keyof IntrinsicElements>, AlertCloseIconSlotPropsOverrides, AlertOwnerState> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "action",
+        "message": "action (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "icon",
+        "message": "icon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onClose",
+        "message": "onClose (((event: SyntheticEvent<Element, Event>) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Button",
+    "id": "mui-button",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "sourceProperties": [
+      {
+        "name": "children",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "classes",
+        "sourceType": "(Partial<ButtonClasses> & Partial<ClassNameMap<never>>)",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "classes: Unsupported type '(Partial<ButtonClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "color",
+        "sourceType": "OverridableStringUnion<\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\", ButtonPropsColorOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "disabled",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "disableElevation",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "disableFocusRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "endIcon",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: endIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "fullWidth",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "href",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "loading",
+        "sourceType": "boolean | null",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "loading: Union type 'boolean | null' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "loadingIndicator",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: loadingIndicator (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "loadingPosition",
+        "sourceType": "\"center\" | \"start\" | \"end\"",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "size",
+        "sourceType": "OverridableStringUnion<\"small\" | \"medium\" | \"large\", ButtonPropsSizeOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "startIcon",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: startIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "sx",
+        "sourceType": "SxProps<Theme>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "variant",
+        "sourceType": "OverridableStringUnion<\"text\" | \"outlined\" | \"contained\", ButtonPropsVariantOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "action",
+        "sourceType": "Ref<ButtonBaseActions>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "action: Unsupported type 'Ref<ButtonBaseActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "centerRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "disableRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "disableTouchRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "focusRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "focusVisibleClassName",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "LinkComponent",
+        "sourceType": "ElementType<any, keyof IntrinsicElements>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "LinkComponent: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "nativeButton",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "onFocusVisible",
+        "sourceType": "FocusEventHandler<any>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNMAPPED_EVENT: onFocusVisible (FocusEventHandler<any>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "name": "tabIndex",
+        "sourceType": "number",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "TouchRippleProps",
+        "sourceType": "Partial<TouchRippleProps>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "TouchRippleProps: Unsupported type 'Partial<TouchRippleProps>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "touchRippleRef",
+        "sourceType": "Ref<TouchRippleActions>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "touchRippleRef: Unsupported type 'Ref<TouchRippleActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "type",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "className",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "style",
+        "sourceType": "CSSProperties",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "name": "component",
+        "sourceType": "ElementType<any, keyof IntrinsicElements>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      }
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "kind": "property",
+        "name": "classes",
+        "reason": "classes: Unsupported type '(Partial<ButtonClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "loading",
+        "reason": "loading: Union type 'boolean | null' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "sx",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "action",
+        "reason": "action: Unsupported type 'Ref<ButtonBaseActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "LinkComponent",
+        "reason": "LinkComponent: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "TouchRippleProps",
+        "reason": "TouchRippleProps: Unsupported type 'Partial<TouchRippleProps>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "touchRippleRef",
+        "reason": "touchRippleRef: Unsupported type 'Ref<TouchRippleActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "endIcon",
+        "message": "endIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "loadingIndicator",
+        "message": "loadingIndicator (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "startIcon",
+        "message": "startIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onFocusVisible",
+        "message": "onFocusVisible (FocusEventHandler<any>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Chip",
+    "id": "mui-chip",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "sourceProperties": [
+      {
+        "name": "avatar",
+        "sourceType": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "avatar: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "children",
+        "sourceType": "null",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: children (null) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "classes",
+        "sourceType": "(Partial<ChipClasses> & Partial<ClassNameMap<never>>)",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "classes: Unsupported type '(Partial<ChipClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "clickable",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "color",
+        "sourceType": "OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"default\", ChipPropsColorOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "deleteIcon",
+        "sourceType": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "deleteIcon: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "disabled",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "icon",
+        "sourceType": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "icon: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "label",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: label (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "onDelete",
+        "sourceType": "((event: any) => void)",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNMAPPED_EVENT: onDelete (((event: any) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "name": "size",
+        "sourceType": "OverridableStringUnion<\"small\" | \"medium\", ChipPropsSizeOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "nativeButton",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "skipFocusWhenDisabled",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "sx",
+        "sourceType": "SxProps<Theme>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "tabIndex",
+        "sourceType": "number",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "variant",
+        "sourceType": "OverridableStringUnion<\"outlined\" | \"filled\", ChipPropsVariantOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "slots",
+        "sourceType": "Partial<ChipSlots>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "slots: Unsupported type 'Partial<ChipSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "slotProps",
+        "sourceType": "{ root?: SlotProps<\"div\", ChipRootSlotPropsOverrides, ChipOwnerState>; label?: SlotProps<\"span\", ChipLabelSlotPropsOverrides, ChipOwnerState>; } | undefined",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "slotProps: Union type '{ root?: SlotProps<\"div\", ChipRootSlotPropsOverrides, ChipOwnerState>; label?: SlotProps<\"span\", ChipLabelSlotPropsOverrides, ChipOwnerState>; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "className",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "style",
+        "sourceType": "CSSProperties",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "name": "component",
+        "sourceType": "ElementType<any, keyof IntrinsicElements>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      }
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "kind": "property",
+        "name": "avatar",
+        "reason": "avatar: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "classes",
+        "reason": "classes: Unsupported type '(Partial<ChipClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "deleteIcon",
+        "reason": "deleteIcon: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "icon",
+        "reason": "icon: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "sx",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "slots",
+        "reason": "slots: Unsupported type 'Partial<ChipSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "slotProps",
+        "reason": "slotProps: Union type '{ root?: SlotProps<\"div\", ChipRootSlotPropsOverrides, ChipOwnerState>; label?: SlotProps<\"span\", ChipLabelSlotPropsOverrides, ChipOwnerState>; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (null) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onDelete",
+        "message": "onDelete (((event: any) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Switch",
+    "id": "mui-switch",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "sourceProperties": [
+      {
+        "name": "checkedIcon",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: checkedIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "classes",
+        "sourceType": "Partial<SwitchClasses>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "classes: Unsupported type 'Partial<SwitchClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "color",
+        "sourceType": "OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"default\", SwitchPropsColorOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "disabled",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "icon",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: icon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "size",
+        "sourceType": "OverridableStringUnion<\"small\" | \"medium\", SwitchPropsSizeOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "sx",
+        "sourceType": "SxProps<Theme>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "value",
+        "sourceType": "unknown",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "value: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "className",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "style",
+        "sourceType": "CSSProperties",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "name": "action",
+        "sourceType": "Ref<ButtonBaseActions>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "action: Unsupported type 'Ref<ButtonBaseActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "centerRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "disableRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "disableTouchRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "focusRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "focusVisibleClassName",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "LinkComponent",
+        "sourceType": "ElementType<any, keyof IntrinsicElements>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "LinkComponent: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "onFocusVisible",
+        "sourceType": "FocusEventHandler<any>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNMAPPED_EVENT: onFocusVisible (FocusEventHandler<any>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "name": "tabIndex",
+        "sourceType": "number",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "TouchRippleProps",
+        "sourceType": "Partial<TouchRippleProps>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "TouchRippleProps: Unsupported type 'Partial<TouchRippleProps>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "touchRippleRef",
+        "sourceType": "Ref<TouchRippleActions>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "touchRippleRef: Unsupported type 'Ref<TouchRippleActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "type",
+        "sourceType": "HTMLInputTypeAttribute",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "type: Unsupported type 'HTMLInputTypeAttribute'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "disableFocusRipple",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "name",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "defaultChecked",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "autoFocus",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "id",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "A2UI_RESERVED_NAME: Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      },
+      {
+        "name": "onChange",
+        "sourceType": "((event: ChangeEvent<HTMLInputElement, Element>, checked: boolean) => void)",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNMAPPED_EVENT: onChange (((event: ChangeEvent<HTMLInputElement, Element>, checked: boolean) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "name": "component",
+        "sourceType": "ElementType<any, keyof IntrinsicElements>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "name": "checked",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "edge",
+        "sourceType": "false | \"start\" | \"end\"",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "edge: Union type 'false | \"start\" | \"end\"' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "readOnly",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "required",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "slots",
+        "sourceType": "Partial<SwitchSlots>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "slots: Unsupported type 'Partial<SwitchSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "slotProps",
+        "sourceType": "{ root?: SlotProps<\"span\", SwitchRootSlotPropsOverrides, SwitchOwnerState>; track?: SlotProps<\"span\", SwitchTrackSlotPropsOverrides, SwitchOwnerState>; thumb?: SlotProps<\"span\", SwitchThumbSlotPropsOverrides, SwitchOwnerState> | undefined; switchBase?: SlotProps<ElementType<SwitchBaseProps, keyof IntrinsicElements>, SwitchSwitchBaseSlotPropsOverrides, SwitchOwnerState> | undefined; input?: SlotProps<\"input\", SwitchInputSlotPropsOverrides, SwitchOwnerState> | undefined; } | undefined",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "slotProps: Union type '{ root?: SlotProps<\"span\", SwitchRootSlotPropsOverrides, SwitchOwnerState>; track?: SlotProps<\"span\", SwitchTrackSlotPropsOverrides, SwitchOwnerState>; thumb?: SlotProps<\"span\", SwitchThumbSlotPropsOverrides, SwitchOwnerState> | undefined; switchBase?: SlotProps<ElementType<SwitchBaseProps, keyof IntrinsicElements>, SwitchSwitchBaseSlotPropsOverrides, SwitchOwnerState> | undefined; input?: SlotProps<\"input\", SwitchInputSlotPropsOverrides, SwitchOwnerState> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "kind": "property",
+        "name": "classes",
+        "reason": "classes: Unsupported type 'Partial<SwitchClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "sx",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "value",
+        "reason": "value: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "action",
+        "reason": "action: Unsupported type 'Ref<ButtonBaseActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "LinkComponent",
+        "reason": "LinkComponent: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "TouchRippleProps",
+        "reason": "TouchRippleProps: Unsupported type 'Partial<TouchRippleProps>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "touchRippleRef",
+        "reason": "touchRippleRef: Unsupported type 'Ref<TouchRippleActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "type",
+        "reason": "type: Unsupported type 'HTMLInputTypeAttribute'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "edge",
+        "reason": "edge: Union type 'false | \"start\" | \"end\"' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "slots",
+        "reason": "slots: Unsupported type 'Partial<SwitchSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "slotProps",
+        "reason": "slotProps: Union type '{ root?: SlotProps<\"span\", SwitchRootSlotPropsOverrides, SwitchOwnerState>; track?: SlotProps<\"span\", SwitchTrackSlotPropsOverrides, SwitchOwnerState>; thumb?: SlotProps<\"span\", SwitchThumbSlotPropsOverrides, SwitchOwnerState> | undefined; switchBase?: SlotProps<ElementType<SwitchBaseProps, keyof IntrinsicElements>, SwitchSwitchBaseSlotPropsOverrides, SwitchOwnerState> | undefined; input?: SlotProps<\"input\", SwitchInputSlotPropsOverrides, SwitchOwnerState> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "checkedIcon",
+        "message": "checkedIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "icon",
+        "message": "icon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onFocusVisible",
+        "message": "onFocusVisible (FocusEventHandler<any>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onChange",
+        "message": "onChange (((event: ChangeEvent<HTMLInputElement, Element>, checked: boolean) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Typography",
+    "id": "mui-typography",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "sourceProperties": [
+      {
+        "name": "align",
+        "sourceType": "\"center\" | \"inherit\" | \"left\" | \"right\" | \"justify\"",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "children",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "classes",
+        "sourceType": "(Partial<TypographyClasses> & Partial<ClassNameMap<never>>)",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "classes: Unsupported type '(Partial<TypographyClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "color",
+        "sourceType": "(string & {}) | OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"textDisabled\" | \"textPrimary\" | \"textSecondary\", TypographyPropsColorOverrides>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "color: Union type '(string & {}) | OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"textDisabled\" | \"textPrimary\" | \"textSecondary\", TypographyPropsColorOverrides>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "gutterBottom",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "noWrap",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "sx",
+        "sourceType": "SxProps<Theme>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "variant",
+        "sourceType": "OverridableStringUnion<\"inherit\" | TypographyVariant, TypographyPropsVariantOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "variantMapping",
+        "sourceType": "Partial<Record<OverridableStringUnion<\"inherit\" | TypographyVariant, TypographyPropsVariantOverrides>, string>>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "variantMapping: Union type 'Partial<Record<OverridableStringUnion<\"inherit\" | TypographyVariant, TypographyPropsVariantOverrides>, string>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "className",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "style",
+        "sourceType": "CSSProperties",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "name": "component",
+        "sourceType": "ElementType<any, keyof IntrinsicElements>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      }
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "kind": "property",
+        "name": "classes",
+        "reason": "classes: Unsupported type '(Partial<TypographyClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "color",
+        "reason": "color: Union type '(string & {}) | OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"textDisabled\" | \"textPrimary\" | \"textSecondary\", TypographyPropsColorOverrides>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "sx",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "variantMapping",
+        "reason": "variantMapping: Union type 'Partial<Record<OverridableStringUnion<\"inherit\" | TypographyVariant, TypographyPropsVariantOverrides>, string>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "TextField",
+    "id": "mui-textfield",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "sourceProperties": [
+      {
+        "name": "onChange",
+        "sourceType": "ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement, Element>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNMAPPED_EVENT: onChange (ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement, Element>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "name": "variant",
+        "sourceType": "\"outlined\" | \"filled\" | \"standard\"",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "MANIFEST_ENTRY_INVALID: variant: docgen source default ''outlined'\n'outlined'\n'outlined'' is not a verified scalar literal. Add a reviewed lossless default conversion before export."
+      },
+      {
+        "name": "autoComplete",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "autoFocus",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "children",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "classes",
+        "sourceType": "Partial<TextFieldClasses>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "classes: Unsupported type 'Partial<TextFieldClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "color",
+        "sourceType": "OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\", TextFieldPropsColorOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "defaultValue",
+        "sourceType": "unknown",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "defaultValue: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "disabled",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "error",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "fullWidth",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "helperText",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: helperText (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "id",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "A2UI_RESERVED_NAME: Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      },
+      {
+        "name": "inputRef",
+        "sourceType": "Ref<any>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "inputRef: Unsupported type 'Ref<any>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "label",
+        "sourceType": "ReactNode",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "PROJECTED_CONTENT_UNMAPPED: label (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "name": "multiline",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "name",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "onBlur",
+        "sourceType": "FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNMAPPED_EVENT: onBlur (FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "name": "onFocus",
+        "sourceType": "FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNMAPPED_EVENT: onFocus (FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "name": "placeholder",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "required",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "rows",
+        "sourceType": "string | number",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "maxRows",
+        "sourceType": "string | number",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "minRows",
+        "sourceType": "string | number",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "select",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "size",
+        "sourceType": "OverridableStringUnion<\"small\" | \"medium\", TextFieldPropsSizeOverrides>",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "sx",
+        "sourceType": "SxProps<Theme>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "type",
+        "sourceType": "HTMLInputTypeAttribute",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "type: Unsupported type 'HTMLInputTypeAttribute'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "value",
+        "sourceType": "unknown",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "value: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "className",
+        "sourceType": "string",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "style",
+        "sourceType": "CSSProperties",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "name": "margin",
+        "sourceType": "\"none\" | \"dense\" | \"normal\"",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "component",
+        "sourceType": "ElementType<any, keyof IntrinsicElements>",
+        "requiredness": "optional",
+        "disposition": "blocked",
+        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "name": "focused",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "hiddenLabel",
+        "sourceType": "boolean",
+        "requiredness": "optional",
+        "disposition": "supported"
+      },
+      {
+        "name": "slots",
+        "sourceType": "Partial<TextFieldSlots>",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "slots: Unsupported type 'Partial<TextFieldSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "name": "slotProps",
+        "sourceType": "{ root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps>; input?: SlotProps<ElementType<OutlinedInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps>; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<FilledInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<InputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | undefined",
+        "requiredness": "optional",
+        "disposition": "omitted",
+        "reason": "slotProps: Union type '{ root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps>; input?: SlotProps<ElementType<OutlinedInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps>; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<FilledInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<InputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      },
+      {
+        "kind": "property",
+        "name": "classes",
+        "reason": "classes: Unsupported type 'Partial<TextFieldClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "defaultValue",
+        "reason": "defaultValue: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "inputRef",
+        "reason": "inputRef: Unsupported type 'Ref<any>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "sx",
+        "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "type",
+        "reason": "type: Unsupported type 'HTMLInputTypeAttribute'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "value",
+        "reason": "value: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "slots",
+        "reason": "slots: Unsupported type 'Partial<TextFieldSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "property",
+        "name": "slotProps",
+        "reason": "slotProps: Union type '{ root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps>; input?: SlotProps<ElementType<OutlinedInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps>; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<FilledInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<InputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+      },
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "variant",
+        "message": "variant: docgen source default ''outlined'\n'outlined'\n'outlined'' is not a verified scalar literal. Add a reviewed lossless default conversion before export."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "helperText",
+        "message": "helperText (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onChange",
+        "message": "onChange (ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement, Element>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onBlur",
+        "message": "onBlur (FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onFocus",
+        "message": "onFocus (FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  }
+]

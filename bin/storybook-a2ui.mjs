@@ -6,8 +6,10 @@ import { exportCatalog } from '../src/export.mjs';
 
 const USAGE = `Usage:
   storybook-a2ui inspect --storybook <build-dir> [--storybook <build-dir> ...] [--unmapped-events fail|omit]
+                       [--supported-subset]
   storybook-a2ui export  --storybook <build-dir> [...] --catalog-id <https-uri> --out <new-dir>
-                       [--components A,B] [--unmapped-events fail|omit] [--title <t>] [--description <d>]
+                       [--components A,B] [--unmapped-events fail|omit] [--supported-subset]
+                       [--title <t>] [--description <d>]
 
   <build-dir>        a "storybook build" output folder (index.json and manifests/components.json), Storybook >= 10.6.
                      The manifest needs features.componentsManifest: true in .storybook/main.ts.
@@ -16,6 +18,12 @@ const USAGE = `Usage:
   --unmapped-events  fail (default): a component with events/callbacks is blocked.
                      omit: export its properties; each event is recorded as not exported in export-report.json
                      and in the component description. No mapping is ever invented.
+  --supported-subset off by default. With it, a property whose type is not supported is left out of the
+                     component, not blocking it, but only when the metadata says required: false. A required
+                     property, or one whose requiredness is not stated, still blocks. Projected content, events,
+                     reserved names and metadata errors are never left out by this option. Each property left
+                     out is named in the component description, and export-report.json lists every source
+                     property once (sourceProperties) with its type and what was decided for it.
   Without --components every exportable component is exported and the rest are reported as blocked.
 
   -h, --help         show this help (also: storybook-a2ui <command> --help)
@@ -34,6 +42,7 @@ function parse(argv) {
     else if (flag === '--catalog-id') options.catalogId = value(flag);
     else if (flag === '--components') options.components = value(flag).split(',').map((s) => s.trim()).filter(Boolean);
     else if (flag === '--unmapped-events') options.unmappedEvents = value(flag);
+    else if (flag === '--supported-subset') options.supportedSubset = true;
     else if (flag === '--title') options.title = value(flag);
     else if (flag === '--description') options.description = value(flag);
     else if (flag === '-h' || flag === '--help') continue;
@@ -47,6 +56,10 @@ function print(report) {
   console.log(`\nNote: ${report.notice}`);
   for (const c of report.components) {
     console.log(`\n${c.status === 'exported' ? 'OK     ' : 'BLOCKED'} ${c.name} [${c.framework}]${c.properties.length ? ` properties: ${c.properties.join(', ')}` : ''}`);
+    if (c.sourceProperties) {
+      const count = (disposition) => c.sourceProperties.filter((item) => item.disposition === disposition).length;
+      console.log(`   source properties: ${count('supported')} supported, ${count('omitted')} omitted, ${count('blocked')} blocked`);
+    }
     for (const item of c.omittedKnown) console.log(`   not exported (${item.kind}): ${item.name}`);
     for (const warning of c.warnings) console.log(`   WARNING ${warning.code}: ${warning.message}`);
     for (const issue of c.blocking) console.log(`   ${issue.code}: ${issue.message}`);

@@ -123,11 +123,44 @@ for the guided walkthroughs.
 | Defaults | from docgen | booleans, numbers, enum members; plain-string defaults refused (encoding unverified) |
 | Events / callbacks | **block** the component | **block** the component (outputs) |
 | `children` / `ReactNode` | **block** | n/a |
-| Objects, arrays, functions, other types | **block**, with the type named | **block** |
+| Objects, arrays, functions, other types | **block**, with the type named; with `--supported-subset`, left out when `required: false` | **block** (the same option applies, but real output never says `required: false`) |
 
 Not supported yet: `string[]` and nullable primitives (both representable in A2UI v1.0), Vue, Web Components,
 other manifest versions, complete Windows verification (one tester has run the baseline there; see `docs/TEAM_TESTING.md`). Event mapping is strict by default; `--unmapped-events omit` exports
 the properties and records each event as not exported in the report and the component description.
+
+## Supported-subset mode (opt-in)
+
+By default, one property the exporter cannot represent blocks its whole component. `--supported-subset` exports a
+deliberately narrower interface instead. It has one rule:
+
+- A property with an unsupported type is **left out** when the Storybook metadata says `required: false`.
+- The same property **still blocks** when it is required, or when the metadata does not say whether it is
+  (a missing or non-boolean `required` is never read as optional). `@storybook/angular-vite` writes no `required`
+  key for an optional input, so the mode leaves nothing out of an Angular component today.
+- It never leaves out projected content (`children`, `ReactNode`), events (those follow `--unmapped-events`), a
+  property named `id` or `component` (A2UI reserves both), an unsupported default or a metadata error. These block
+  as before.
+
+What the mode adds to the output:
+
+- Each property left out is named in the component's description in `catalog.json`
+  ("Narrower interface than the source component: ... are not exported: sx, classes."), and in `omittedKnown` with
+  `kind: "property"` and the reason.
+- `export-report.json` gets `policy.supportedSubset: true` and, per component, `sourceProperties`: every property the
+  metadata lists, exactly once, with `sourceType` (the original type text), `requiredness` (`required`, `optional`
+  or `unknown`), one `disposition` and the `reason`. The dispositions are `supported` (the property can be
+  represented directly in A2UI), `omitted` (it is deliberately left out) and `blocked` (it prevents export);
+  `mapped` is reserved and not used yet. A disposition describes the property. `status: "exported"` describes the
+  component: a supported property of a component whose `status` is `blocked` is not in the catalog.
+
+Without the option the output is unchanged, byte for byte. A property left out cannot be set through A2UI, so the
+component always behaves as if it was not passed. Read the list before you rely on the export: on the Material UI
+fixture the mode leaves out `sx` and `classes`, and also `value` of TextField and Switch (typed `unknown`).
+
+```bash
+node bin/storybook-a2ui.mjs inspect --storybook test/fixtures/react-uswds --supported-subset   # 4 of 75 instead of 2
+```
 
 ## What a successful export does and does not claim
 

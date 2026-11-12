@@ -20,6 +20,14 @@ const INSTRUCTIONS = 'Use only the components and properties declared in this ca
   'where a component description lists them as not exported, the developer owns that behavior. ' +
   'Bindings use the A2UI v1.0 @path form. This export contains catalog JSON only.';
 
+// Added to the report's notice in supported-subset mode, so the report explains its own extra list.
+const SUBSET_NOTICE = ' Supported-subset mode is on: a property with an unsupported type is left out, not blocking, only when the ' +
+  'source metadata says required: false. "sourceProperties" lists every property the metadata exposes exactly once, with ' +
+  'its original type, its requiredness and one disposition: "supported" (it can be represented directly in A2UI), ' +
+  '"omitted" (it is deliberately left out) or "blocked" (it prevents export); "mapped" is reserved and not used yet. ' +
+  'A disposition describes the property. A component is written to the catalog only when its status is "exported"; ' +
+  'a supported property of a blocked component is not in the catalog.';
+
 function readBuild(buildDir) {
   const dir = path.resolve(buildDir);
   const index = readIndex(dir);
@@ -50,12 +58,14 @@ function readBuild(buildDir) {
  * @param {string}   options.catalogId     absolute http(s) URI
  * @param {string[]} [options.components]  names or ids; omit to take every exportable component
  * @param {'fail'|'omit'} [options.unmappedEvents]
+ * @param {boolean}  [options.supportedSubset] opt-in: omit optional properties with an unsupported type; list every source property
  * @param {string}   [options.out]         when given, files are written only if the export succeeds
  */
 export function exportCatalog(options) {
-  const { builds, catalogId, components: selection, unmappedEvents = 'fail', title, description, out } = options;
+  const { builds, catalogId, components: selection, unmappedEvents = 'fail', supportedSubset = false, title, description, out } = options;
   if (!builds?.length) throw new Error('At least one Storybook build directory is required (--storybook <dir>).');
   if (!['fail', 'omit'].includes(unmappedEvents)) throw new Error('--unmapped-events must be "fail" or "omit".');
+  if (typeof supportedSubset !== 'boolean') throw new Error('supportedSubset must be true or false.');
   if (!isValidCatalogId(catalogId)) throw new Error(`Invalid --catalog-id. ${catalogIdRequirements}`);
 
   const reads = builds.map(readBuild);
@@ -70,20 +80,22 @@ export function exportCatalog(options) {
     contracts = contracts.filter((c) => selection.includes(c.name) || selection.includes(c.id));
   }
 
-  const evaluated = contracts.map((contract) => ({ contract, ...evaluate(contract, { unmappedEvents }) }));
+  const evaluated = contracts.map((contract) => ({ contract, ...evaluate(contract, { unmappedEvents, supportedSubset }) }));
   const exportable = evaluated.filter((item) => item.exportable);
   const report = {
     generator: 'storybook-a2ui', protocolVersion: '1.0', catalogId,
-    policy: { unmappedEvents },
+    policy: { unmappedEvents, ...(supportedSubset ? { supportedSubset: true } : {}) },
     notice: 'Conversion covers the properties Storybook exposes. The source component contract is not verified: ' +
       'anything the metadata does not list, such as inherited HTML/DOM attributes or projected content like React children, ' +
       'is not visible to this exporter. ' +
-      '"omittedKnown" lists only omissions the exporter could see; an empty list is not proof that nothing was left out.',
+      '"omittedKnown" lists only omissions the exporter could see; an empty list is not proof that nothing was left out.' +
+      (supportedSubset ? SUBSET_NOTICE : ''),
     builds: reads.map((read) => read.build),
-    components: evaluated.map(({ contract, exportable: ok, blocking, omitted }) => ({
+    components: evaluated.map(({ contract, exportable: ok, blocking, omitted, sourceProperties }) => ({
       name: contract.name, id: contract.id, framework: contract.framework, adapter: contract.adapter,
       status: ok ? 'exported' : 'blocked',
       properties: ok ? contract.fields.map((field) => field.name) : [],
+      ...(supportedSubset ? { sourceProperties } : {}),
       contract: contractStatus(omitted, contract.content),
       omittedKnown: omitted, blocking, warnings: contract.warnings,
     })),

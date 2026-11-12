@@ -29,9 +29,16 @@ function committed(file, value) {
 }
 
 // The per-component part of the report, as export-report.json would hold it (hence the JSON round trip).
-function reportComponents(unmappedEvents, build = USWDS) {
-  const { report } = exportCatalog({ builds: [build], catalogId: 'https://example.org/catalogs/characterization/1', unmappedEvents });
+function reportComponents(unmappedEvents, build = USWDS, supportedSubset = false) {
+  const { report } = exportCatalog({ builds: [build], catalogId: 'https://example.org/catalogs/characterization/1', unmappedEvents, supportedSubset });
   return JSON.parse(JSON.stringify(report.components));
+}
+
+// How often each disposition occurs in the sourceProperties of a list of report entries (supported-subset mode).
+function dispositions(entries) {
+  const counts = {};
+  for (const item of entries.flatMap((entry) => entry.sourceProperties)) counts[item.disposition] = (counts[item.disposition] ?? 0) + 1;
+  return counts;
 }
 
 // How often each blocking code occurs in a list of report entries.
@@ -125,4 +132,47 @@ test('Characterization Material UI: react-docgen over the pass-through files fin
       assert.deepEqual(entry.blocking.map((issue) => issue.code), ['NO_EXPORTABLE_PROPS'], entry.name);
     }
   }
+});
+
+// ---- Supported-subset mode (opt-in) on the real fixtures. The tests above run without it and pin the default.
+
+test('Characterization Material UI, supported-subset mode: 42 optional unsupported properties are omitted and no component exports', () => {
+  const actual = reportComponents('fail', MUI, true);
+  assert.deepEqual(actual.map((entry) => entry.status), Array(6).fill('blocked'));
+  // 48 unsupported types without the mode. The 6 that remain are the "component" property of each component:
+  // optional, but a name A2UI reserves. Content, events, the reserved "id" and the one metadata error are untouched.
+  assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 6, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, UNMAPPED_EVENT: 8, A2UI_RESERVED_NAME: 2 });
+  assert.deepEqual(actual.flatMap((entry) => entry.blocking).filter((issue) => issue.code === 'UNSUPPORTED_PROP_TYPE').map((issue) => issue.subject), Array(6).fill('component'));
+  // 156 source properties, each once. "omitted" is the 42 plus the "style" attribute of each component.
+  assert.deepEqual(dispositions(actual), { supported: 76, omitted: 48, blocked: 32 });
+  assertSameEntries(actual, committed(golden('mui-rdt-pass.report.subset.json'), actual));
+});
+
+test('Characterization Material UI, supported-subset mode with --unmapped-events omit: content, reserved names and one default still block all six', () => {
+  const actual = reportComponents('omit', MUI, true);
+  assert.deepEqual(actual.map((entry) => entry.status), Array(6).fill('blocked'));
+  assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 6, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, A2UI_RESERVED_NAME: 2 });
+  assert.deepEqual(dispositions(actual), { supported: 76, omitted: 56, blocked: 24 });
+  // What still blocks each component, by property.
+  assert.deepEqual(Object.fromEntries(actual.map((entry) => [entry.name, entry.sourceProperties.filter((item) => item.disposition === 'blocked').map((item) => item.name)])), {
+    Alert: ['action', 'icon', 'children', 'component'],
+    Button: ['children', 'endIcon', 'loadingIndicator', 'startIcon', 'component'],
+    Chip: ['children', 'label', 'component'],
+    Switch: ['checkedIcon', 'icon', 'id', 'component'],
+    Typography: ['children', 'component'],
+    TextField: ['variant', 'children', 'helperText', 'id', 'label', 'component'],
+  });
+});
+
+test('Characterization react-uswds, supported-subset mode: Card and SearchButton export as well; every unsupported property left is required', () => {
+  const exported = (entries) => names(entries.filter((entry) => entry.status === 'exported')).sort();
+  const fail = reportComponents('fail', USWDS, true);
+  assert.deepEqual(exported(fail), ['Card', 'Collection', 'GovBanner', 'SearchButton']);
+  assert.deepEqual(exported(reportComponents('omit', USWDS, true)), ['Card', 'Collection', 'GovBanner', 'NavDropDownButton', 'Pagination', 'SearchButton']);
+  // 55 unsupported types without the mode, 14 with it.
+  const unsupported = fail.flatMap((entry) => entry.blocking).filter((issue) => issue.code === 'UNSUPPORTED_PROP_TYPE');
+  assert.equal(unsupported.length, 14);
+  for (const issue of unsupported) assert.match(issue.message, /does not omit it: the source metadata marks it required\.$/);
+  assert.deepEqual(Object.fromEntries(fail.filter((entry) => ['Card', 'SearchButton'].includes(entry.name)).map((entry) => [entry.name, entry.omittedKnown.map((item) => item.name)])),
+    { Card: ['containerProps', 'gridLayout'], SearchButton: ['i18n'] });
 });

@@ -57,20 +57,27 @@ export function readAngularV1({ buildDir, manifestFile, manifest }) {
     const contract = {
       id, name: entry.name ?? id, framework: 'angular', adapter: ANGULAR_V1,
       description: entry.description ?? '', descriptionOrigin: entry.description ? 'storybook-angular-docgen' : 'generator-fallback',
-      storyIds: [], fields: [], events: [], content: [], omitted: [], blocking: [],
+      storyIds: [], fields: [], events: [], content: [], omitted: [], blocking: [], source: [],
     };
     try {
       const docgen = resolveRef(buildDir, manifestFile, entry.docgen?.$ref);
       if (entry.stories?.$ref) contract.storyIds = Object.keys(resolveRef(buildDir, manifestFile, entry.stories.$ref).stories ?? {});
       for (const [name, argType] of Object.entries(docgen.argTypes ?? {})) {
         const category = argType.table?.category;
+        // The argType as the metadata describes it. An optional input has no "required" key in real output, so its
+        // requiredness is null (not stated) unless the key holds a boolean.
+        const property = { name, type: argType.table?.type?.summary ?? argType.type?.name ?? null,
+          required: typeof argType.type?.required === 'boolean' ? argType.type.required : null, blocking: [] };
+        contract.source.push(property);
+        // A blocker about this argType goes into the component's list and into the property's own list.
+        const block = (issue) => { contract.blocking.push(issue); property.blocking.push(issue); };
         if (category === 'inputs') {
           const input = readInput(name, argType);
-          if (input.blocker) contract.blocking.push(input.blocker); else contract.fields.push(input.field);
+          if (input.blocker) block(input.blocker); else contract.fields.push(input.field);
         } else if (category === 'outputs') {
           contract.events.push({ name, payload: argType.table?.type?.summary, description: argType.description });
         } else {
-          contract.blocking.push(blocker(BLOCKING.manifest, name, `${name}: unrecognized argType category ${JSON.stringify(category)}.`));
+          block(blocker(BLOCKING.manifest, name, `${name}: unrecognized argType category ${JSON.stringify(category)}.`));
         }
       }
     } catch (error) {

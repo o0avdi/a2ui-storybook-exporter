@@ -705,3 +705,194 @@ test('E2E react-uswds: explicitly selecting TimePicker fails cleanly with exit 1
   const mixed = run({ builds: [USWDS], components: ['GovBanner', 'TimePicker'], unmappedEvents: 'omit' });
   assert.equal(mixed.ok, false);
 });
+
+// ---- Supported-subset mode (opt-in): an unsupported property is left out only when the source says required: false
+
+const MUI = path.join(here, 'fixtures/mui-rdt-pass');
+const OBJECT_TYPE = { name: 'signature', type: 'object', raw: '{ dark: boolean }', signature: { properties: [{ key: 'dark', value: { name: 'boolean', required: true } }] } };
+const sourceProperty = (entry, name) => entry.sourceProperties.filter((item) => item.name === name);
+
+// The external Button with extra properties in its docgen. `props` maps a property name to its docgen entry.
+function buttonWith(t, props) {
+  return mutatedReact(t, ({ read, write }) => {
+    const manifest = read('manifests/components.json');
+    Object.assign(manifest.components['example-button'].reactDocgen.props, props);
+    write('manifests/components.json', manifest);
+  });
+}
+
+test('Subset: an unsupported property with required: false is left out, recorded with its type and disclosed', (t) => {
+  const build = buttonWith(t, { theme: { required: false, tsType: OBJECT_TYPE, description: '' } });
+  const options = { builds: [build], components: ['Button'], unmappedEvents: 'omit' };
+
+  // Without the option nothing changes: the property blocks, and the report has no new keys.
+  const strict = run(options);
+  assert.equal(strict.ok, false);
+  assert.deepEqual(component(strict, 'Button').blocking.map((issue) => [issue.code, issue.subject]), [['UNSUPPORTED_PROP_TYPE', 'theme']]);
+  assert.deepEqual(strict.report.policy, { unmappedEvents: 'omit' });
+  assert.ok(!('sourceProperties' in component(strict, 'Button')));
+
+  const result = run({ ...options, supportedSubset: true });
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.report.policy, { unmappedEvents: 'omit', supportedSubset: true });
+  const schema = result.catalog.components.Button;
+  assert.deepEqual(Object.keys(schema.properties).sort(), ['backgroundColor', 'component', 'label', 'primary', 'size']);
+  assert.deepEqual(schema.required, ['component', 'label']);
+  assert.match(schema.description, /Narrower interface than the source component: these optional properties have types this exporter does not represent in A2UI and are not exported: theme\./);
+  assert.equal(validateV1Export(result.catalog).valid, true);
+
+  const entry = component(result, 'Button');
+  assert.equal(entry.status, 'exported');
+  assert.deepEqual(entry.properties, ['primary', 'backgroundColor', 'size', 'label']);
+  assert.deepEqual(entry.omittedKnown.map((item) => [item.kind, item.name]), [['property', 'theme'], ['event', 'onClick']]);
+  assert.match(entry.omittedKnown[0].reason, /Unsupported type '\{ dark: boolean \}'/);
+  assert.match(entry.omittedKnown[0].reason, /required: false/);
+  assert.deepEqual(entry.sourceProperties.map((item) => [item.name, item.sourceType, item.requiredness, item.disposition]), [
+    ['primary', 'boolean', 'optional', 'supported'],
+    ['backgroundColor', 'string', 'optional', 'supported'],
+    ['size', '"small" | "medium" | "large"', 'optional', 'supported'],
+    ['label', 'string', 'required', 'supported'],
+    ['onClick', '() => void', 'optional', 'omitted'],
+    ['theme', '{ dark: boolean }', 'optional', 'omitted'],
+  ]);
+  assert.equal(sourceProperty(entry, 'theme')[0].reason, entry.omittedKnown[0].reason);
+  assert.ok(!('reason' in sourceProperty(entry, 'label')[0]), 'a supported property needs no reason');
+  assert.match(result.report.notice, /sourceProperties/);
+  assert.throws(() => run({ ...options, supportedSubset: 'yes' }), /supportedSubset must be true or false/);
+});
+
+test('Subset: an unsupported property that is required still blocks the component', (t) => {
+  const build = buttonWith(t, { theme: { required: true, tsType: OBJECT_TYPE, description: '' } });
+  const result = run({ builds: [build], components: ['Button'], unmappedEvents: 'omit', supportedSubset: true });
+  assert.equal(result.ok, false);
+  assert.equal(result.catalog, undefined);
+  const entry = component(result, 'Button');
+  assert.deepEqual(entry.blocking.map((issue) => [issue.code, issue.subject]), [['UNSUPPORTED_PROP_TYPE', 'theme']]);
+  assert.match(entry.blocking[0].message, /Supported-subset mode does not omit it: the source metadata marks it required\./);
+  assert.ok(!entry.omittedKnown.some((item) => item.name === 'theme'));
+  assert.deepEqual(sourceProperty(entry, 'theme').map((item) => [item.requiredness, item.disposition]), [['required', 'blocked']]);
+  assert.match(sourceProperty(entry, 'theme')[0].reason, /^UNSUPPORTED_PROP_TYPE: theme: /);
+});
+
+test('Subset: an unsupported property with unknown requiredness still blocks; a missing or non-boolean "required" is not "optional"', (t) => {
+  for (const [label, required] of [['key absent', undefined], ['string "false"', 'false'], ['null', null], ['0', 0]]) {
+    const theme = { tsType: OBJECT_TYPE, description: '' };
+    if (required !== undefined) theme.required = required;
+    const result = run({ builds: [buttonWith(t, { theme })], components: ['Button'], unmappedEvents: 'omit', supportedSubset: true });
+    assert.equal(result.ok, false, label);
+    const entry = component(result, 'Button');
+    assert.deepEqual(entry.blocking.map((issue) => [issue.code, issue.subject]), [['UNSUPPORTED_PROP_TYPE', 'theme']], label);
+    assert.match(entry.blocking[0].message, /Supported-subset mode does not omit it: the source metadata does not say whether it is required\./, label);
+    assert.deepEqual(sourceProperty(entry, 'theme').map((item) => [item.requiredness, item.disposition]), [['unknown', 'blocked']], label);
+  }
+});
+
+test('Subset: content, events, reserved names and metadata errors are never omitted, even when optional', (t) => {
+  const build = buttonWith(t, {
+    children: { required: false, tsType: { name: 'ReactNode' }, description: '' },                       // projected content
+    id: { required: false, tsType: { name: 'string' }, description: '' },                                // reserved, supported type
+    component: { required: false, tsType: OBJECT_TYPE, description: '' },                                // reserved, unsupported type
+    tone: { required: false, tsType: { name: 'string' }, description: '', defaultValue: { value: 'pick()', computed: false } },  // unverifiable default
+  });
+  const result = run({ builds: [build], components: ['Button'], supportedSubset: true });
+  assert.equal(result.ok, false);
+  const entry = component(result, 'Button');
+  assert.deepEqual(entry.blocking.map((issue) => [issue.code, issue.subject]).sort(), [
+    ['A2UI_RESERVED_NAME', 'id'], ['MANIFEST_ENTRY_INVALID', 'tone'], ['PROJECTED_CONTENT_UNMAPPED', 'children'],
+    ['UNMAPPED_EVENT', 'onClick'], ['UNSUPPORTED_PROP_TYPE', 'component'],
+  ]);
+  assert.match(entry.blocking.find((issue) => issue.subject === 'component').message, /does not omit it: "component" is a name A2UI reserves/);
+  assert.deepEqual(entry.omittedKnown, []);
+  for (const name of ['children', 'id', 'component', 'tone', 'onClick'])
+    assert.deepEqual(sourceProperty(entry, name).map((item) => [item.requiredness, item.disposition]), [['optional', 'blocked']], name);
+  assert.equal(sourceProperty(entry, 'id')[0].reason.startsWith('A2UI_RESERVED_NAME: '), true);
+  // The four original supported properties are not blocked themselves; the component is.
+  assert.deepEqual(entry.sourceProperties.filter((item) => item.disposition === 'supported').map((item) => item.name), ['primary', 'backgroundColor', 'size', 'label']);
+  assert.equal(entry.status, 'blocked');
+  assert.deepEqual(entry.properties, []);
+});
+
+test('Subset: leaving properties out never produces an empty component (the external Header)', () => {
+  // Header lists an optional object property and three callbacks. With both omissions nothing is left to export.
+  const result = run({ builds: [REACT], unmappedEvents: 'omit', supportedSubset: true });
+  const header = component(result, 'Header');
+  assert.equal(header.status, 'blocked');
+  assert.deepEqual(header.blocking.map((issue) => issue.code), ['NO_EXPORTABLE_PROPS']);
+  assert.deepEqual(header.sourceProperties.map((item) => [item.name, item.disposition]), [['user', 'omitted'], ['onLogin', 'omitted'], ['onLogout', 'omitted'], ['onCreateAccount', 'omitted']]);
+  assert.deepEqual(Object.keys(result.catalog.components), ['Button']);
+});
+
+test('Subset, Angular: an input is omitted only when type.required is false; an absent key is unknown requiredness', (t) => {
+  // Real @storybook/angular-vite output has no "required" key on an optional input, so this mode omits nothing there.
+  const options = { components: ['StatusBadgeComponent'], unmappedEvents: 'omit', supportedSubset: true };
+  const unknown = run({ ...options, builds: [mutatedAngular(t, (argTypes) => { argTypes.compact.type = { name: 'other', value: 'Foo[]' }; argTypes.compact.table.type.summary = 'Foo[]'; delete argTypes.compact.table.defaultValue; })] });
+  assert.equal(unknown.ok, false);
+  const blocked = component(unknown, 'StatusBadgeComponent');
+  assert.match(blocked.blocking[0].message, /does not omit it: the source metadata does not say whether it is required\./);
+  assert.deepEqual(sourceProperty(blocked, 'compact').map((item) => [item.sourceType, item.requiredness, item.disposition]), [['Foo[]', 'unknown', 'blocked']]);
+
+  const optional = run({ ...options, builds: [mutatedAngular(t, (argTypes) => { argTypes.compact.type = { name: 'other', value: 'Foo[]', required: false }; argTypes.compact.table.type.summary = 'Foo[]'; delete argTypes.compact.table.defaultValue; })] });
+  assert.equal(optional.ok, true);
+  const exported = component(optional, 'StatusBadgeComponent');
+  assert.deepEqual(exported.sourceProperties.map((item) => [item.name, item.sourceType, item.requiredness, item.disposition]), [
+    ['compact', 'Foo[]', 'optional', 'omitted'], ['label', 'string', 'required', 'supported'],
+    ['tone', '"info" | "success" | "warning"', 'unknown', 'supported'], ['dismissed', 'EventEmitter', 'unknown', 'omitted'],
+  ]);
+  assert.deepEqual(Object.keys(optional.catalog.components.StatusBadgeComponent.properties).sort(), ['component', 'label', 'tone']);
+  assert.match(optional.catalog.components.StatusBadgeComponent.description, /are not exported: compact\./);
+});
+
+test('Subset: every source property of every fixture is accounted for exactly once, under both event policies', () => {
+  // The expected names are read from the manifests here, without the exporter.
+  const reactProps = (build) => Object.fromEntries(Object.values(JSON.parse(fs.readFileSync(path.join(build, 'manifests/components.json'), 'utf8')).components)
+    .map((entry) => [entry.id, Object.keys((entry.reactDocgenTypescript ?? entry.reactDocgen)?.props ?? {})]));
+  const angularProps = { 'spike-statusbadge': ['compact', 'label', 'tone', 'dismissed'], 'spike-statuschip': ['compact', 'label', 'tone', 'dismissed'] };
+  let total = 0;
+  for (const [build, expected] of [[REACT, reactProps(REACT)], [USWDS, reactProps(USWDS)], [MUI, reactProps(MUI)], [ANGULAR, angularProps]]) {
+    for (const unmappedEvents of ['fail', 'omit']) {
+      const { report } = run({ builds: [build], unmappedEvents, supportedSubset: true });
+      assert.deepEqual(report.components.map((entry) => entry.id).sort(), Object.keys(expected).sort());
+      for (const entry of report.components) {
+        const where = `${path.basename(build)} ${entry.name} (${unmappedEvents})`;
+        const of = (disposition) => entry.sourceProperties.filter((item) => item.disposition === disposition).map((item) => item.name);
+        assert.deepEqual(entry.sourceProperties.map((item) => item.name), expected[entry.id], where);
+        assert.equal(new Set(expected[entry.id]).size, expected[entry.id].length, where);
+        for (const item of entry.sourceProperties) {
+          assert.ok(['supported', 'omitted', 'blocked'].includes(item.disposition), where);
+          assert.ok(['required', 'optional', 'unknown'].includes(item.requiredness), where);
+          assert.equal(typeof item.reason, item.disposition === 'supported' ? 'undefined' : 'string', `${where} ${item.name}`);
+        }
+        // The three lists agree with the rest of the entry: nothing is counted twice or left out.
+        assert.deepEqual(of('omitted').sort(), entry.omittedKnown.map((item) => item.name).sort(), where);
+        for (const name of of('blocked')) assert.ok(entry.blocking.some((issue) => issue.subject === name), `${where} ${name}`);
+        if (entry.status === 'exported') {
+          assert.deepEqual(of('blocked'), [], where);
+          assert.deepEqual(of('supported'), entry.properties, where);
+        }
+        total += entry.sourceProperties.length;
+      }
+    }
+  }
+  assert.equal(total, 2 * (5 + 4 + 0 + 305 + 156 + 8));
+});
+
+test('Subset, CLI: --supported-subset is off unless given, and reaches the printed report and export-report.json', (t) => {
+  const build = buttonWith(t, { theme: { required: false, tsType: OBJECT_TYPE, description: '' } });
+  const cli = (...args) => spawnSync(process.execPath, [CLI, ...args], { encoding: 'utf8' });
+  const strict = cli('inspect', '--storybook', build, '--unmapped-events', 'omit');
+  assert.match(strict.stdout, /BLOCKED Button/);
+  assert.doesNotMatch(strict.stdout, /source properties|not exported \(property\)/);
+  const inspect = cli('inspect', '--storybook', build, '--unmapped-events', 'omit', '--supported-subset');
+  assert.equal(inspect.status, 0, inspect.stderr);
+  assert.match(inspect.stdout, /OK +Button \[react\] properties: primary, backgroundColor, size, label/);
+  assert.match(inspect.stdout, /not exported \(property\): theme/);
+  assert.match(inspect.stdout, /source properties: 4 supported, 2 omitted, 0 blocked/);
+  const out = path.join(temporary(t), 'out');
+  const exported = cli('export', '--storybook', build, '--components', 'Button', '--unmapped-events', 'omit', '--supported-subset', '--catalog-id', catalogId, '--out', out);
+  assert.equal(exported.status, 0, exported.stderr);
+  const report = JSON.parse(fs.readFileSync(path.join(out, 'export-report.json'), 'utf8'));
+  assert.equal(report.policy.supportedSubset, true);
+  assert.equal(report.components[0].sourceProperties.length, 6);
+  assert.ok(!('theme' in JSON.parse(fs.readFileSync(path.join(out, 'catalog.json'), 'utf8')).components.Button.properties));
+  assert.match(cli('--help').stdout, /--supported-subset/);
+});

@@ -14,7 +14,7 @@ plan and is partly out of date.
   - `3e4758f` Add CI for Node 22 and 24 on Ubuntu and Node 22 on Windows (task N2)
 - **Nothing is merged into `main`.** `origin/main` is at `142dd7b`, `origin/docs/share-floorplan` at `4fc9d40`.
 - Tests at `3e4758f`: `npm test` gives 50 passed, 0 failed (47 in `test/exporter.test.mjs`, 3 in
-  `test/characterization.test.mjs`). With M2 it is 55, with the Material UI fixtures (C0b) 59.
+  `test/characterization.test.mjs`). With M2 it is 55, with the Material UI fixtures (C0b) 59, with C1 70.
 - CI: `.github/workflows/ci.yml` runs on every push. At `3e4758f` all three jobs passed (Node 22 and 24 on Ubuntu,
   Node 22 on Windows; GitHub Actions run 42757388584).
 - Remote: `https://github.com/o0avdi/a2ui-storybook-exporter.git`.
@@ -161,14 +161,46 @@ Numbers later tasks rely on, all read from these snapshots:
   of the six components under the default policy; `mui-rdt-pass.report.omit-changes.json` the five that differ with
   `--unmapped-events omit`. `npm test` gives 59 passed, 0 failed. No existing golden file changed.
 
-## Next task: C1, opt-in supported-subset mode (approved 2026-11-11)
+**C1, opt-in supported-subset mode** (`--supported-subset`, library option `supportedSubset: true`):
 
-Scope and acceptance criteria are in Omar's C0 review of 2026-11-11: default mode byte-identical; an unsupported
-property is omitted only when `required` is explicitly `false`; required and unknown requiredness block; every source
-property is recorded once as exported, mapped, omitted or blocked, with its original type and the reason; component
-descriptions disclose the narrower interface; reserved names, content, required properties and metadata errors are
-never omitted. After C1 comes the design of C2 (text content and child references), which is not approved for
-implementation.
+- One rule, in `evaluate` (`src/contract.mjs`): a property whose only blocker is `UNSUPPORTED_PROP_TYPE` is recorded
+  as omitted when the metadata says `required: false`. Required, unknown requiredness and the reserved names `id`
+  and `component` still block, and the blocker's message says which of the three applies. Content, events,
+  unsupported defaults and metadata errors are untouched.
+- The contract has a new list, `source`: every property the metadata lists, with its original type text, `required`
+  as `true`, `false` or `null`, and the blockers the adapter raised for it. Both adapters fill it. The policy reads it
+  only in this mode.
+- Report, in this mode only: `policy.supportedSubset`, one more paragraph in `notice`, `omittedKnown` entries with
+  `kind: "property"`, and per component `sourceProperties` (name, `sourceType`, `requiredness`, `disposition`,
+  `reason`). `mapped` is never emitted yet. The component description in the catalog names every property left out.
+- Default mode is byte-identical: no existing golden changed, and 44 CLI runs of the old and new code over all six
+  fixtures gave the same stdout, stderr, exit code and files. Only `--help` differs.
+- Measured: Material UI stays at **0 of 6**. `UNSUPPORTED_PROP_TYPE` falls from 48 to 6 (the `component` property of
+  each component). Of 156 source properties, 76 are supported, 48 omitted (42 by the new rule and `style` six times)
+  and 32 blocked; with `--unmapped-events omit` 76, 56 and 24. react-uswds goes from 2 to 4 of 75 (Card,
+  SearchButton), and from 4 to 6 with `--unmapped-events omit`.
+- 11 tests: 8 in `test/exporter.test.mjs`, 3 in `test/characterization.test.mjs`, with
+  `test/golden/mui-rdt-pass.report.subset.json`. `npm test` gives 70 passed, 0 failed.
+
+Decided by Omar at the C1 review (2026-11-11):
+
+- The disposition of a property that can be represented directly in A2UI is `supported`, not `exported`. `exported`
+  stays the `status` of a component that was written to the catalog. `omitted` and `blocked` are unchanged, and
+  `mapped` is reserved for explicit C2 mappings.
+- `Chip.avatar`, `Chip.deleteIcon` and `Chip.icon` are typed `ReactElement<...>`. The existing React classifier calls
+  that an unsupported type, not content, so the mode leaves them out, recorded and disclosed. This stays unchanged
+  until C2.
+- The mode also leaves out optional properties that carry a value: `value` of TextField and Switch and
+  `TextField.defaultValue` (`unknown`), `Button.loading` (`boolean | null`), `Typography.color`, `Switch.edge`.
+  Accepted for C1 as a documented omission.
+- An optional `component` or `id` stays blocked in C1. Leaving them out needs a generic, reviewed rule, planned for C2.
+- `THIRD_PARTY_NOTICES.md`, the task documentation and the `mui-rd-pass` negative fixture are kept.
+
+## Next task: C2, mappings for text content and component references (design only; not approved)
+
+What still blocks the six Material UI components after C1 with `--unmapped-events omit`: 15 content properties,
+`component` six times, `id` twice (Switch, TextField) and the default of `TextField.variant`. The proposed design
+and its renderer obligations were reported to Omar on 2026-11-11. No part of C2 is implemented.
 
 M3 (`MISSING_PROP_TYPE` replaces `Unsupported type ''`) and the tasks after it are not started and now follow the
 C tasks. Their acceptance criteria are in `tasks/plan.md`.

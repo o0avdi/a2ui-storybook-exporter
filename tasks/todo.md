@@ -10,8 +10,8 @@ The exporter gets no Material UI-specific logic. Record: `tasks/HANDOFF.md`.
 
 - [x] **C0** Experiment outside the repository: what the unmodified exporter does with six Material UI components (0 of 6 exported)
 - [x] **C0b** Material UI fixtures, reproducible Storybook project, provenance and characterization tests (tests and fixtures only)
-- [ ] **C1** Opt-in supported-subset mode: optional unsupported properties omitted and disclosed; every source property accounted for
-- [ ] **C2** Reviewed mappings for text content and component child references (design first, then implementation)
+- [x] **C1** Opt-in supported-subset mode (`--supported-subset`): optional unsupported properties omitted and disclosed; every source property accounted for
+- [ ] **C2** Reviewed mappings for text content and component child references (design proposed 2026-11-11; not approved for implementation)
 
 ## Implementation (Omar with Claude)
 
