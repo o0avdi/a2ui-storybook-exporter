@@ -3,9 +3,19 @@
 Details, acceptance criteria and reasons are in `tasks/plan.md`. One task is one commit. Each task needs Omar's
 approval before it starts and a review before the next one begins.
 
+## Material UI compatibility (first priority since 2026-11-10; Omar with Claude)
+
+Real third-party React libraries come before the diagnostics tasks below, with Material UI as the acceptance target.
+The exporter gets no Material UI-specific logic. Record: `tasks/HANDOFF.md`.
+
+- [x] **C0** Experiment outside the repository: what the unmodified exporter does with six Material UI components (0 of 6 exported)
+- [x] **C0b** Material UI fixtures, reproducible Storybook project, provenance and characterization tests (tests and fixtures only)
+- [ ] **C1** Opt-in supported-subset mode: optional unsupported properties omitted and disclosed; every source property accounted for
+- [ ] **C2** Reviewed mappings for text content and component child references (design first, then implementation)
+
 ## Implementation (Omar with Claude)
 
-### Before the feature freeze (target Fri Nov 13)
+### Before the feature freeze (target moved to Sun Nov 15)
 
 - [x] **M1** Characterization tests: react-uswds report under both policies; validator on the official basic catalog (`010aa61`)
 - [x] **N2** CI: Node 22 and 24 on Ubuntu, Node 22 on Windows; `npm ci`, `npm test`, clean tarball install (`3e4758f`, all three jobs green)

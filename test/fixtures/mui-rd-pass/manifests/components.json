@@ -1,0 +1,156 @@
+{
+  "v": 0,
+  "components": {
+    "mui-alert": {
+      "id": "mui-alert",
+      "name": "Alert",
+      "path": "./passthrough/Alert.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgen": {
+        "description": "",
+        "methods": [],
+        "displayName": "Alert",
+        "definedInFile": "./passthrough/Alert.tsx",
+        "actualName": "Alert",
+        "exportName": "Alert",
+        "composes": [
+          "MuiAlertProps"
+        ]
+      },
+      "stories": [
+        {
+          "id": "mui-alert--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Alert severity=\"info\">Saved.</Alert>;"
+        }
+      ],
+      "import": "import { Alert } from 'mui-c0-experiment';"
+    },
+    "mui-button": {
+      "id": "mui-button",
+      "name": "Button",
+      "path": "./passthrough/Button.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgen": {
+        "description": "",
+        "methods": [],
+        "displayName": "Button",
+        "definedInFile": "./passthrough/Button.tsx",
+        "actualName": "Button",
+        "exportName": "Button",
+        "composes": [
+          "MuiButtonProps"
+        ]
+      },
+      "stories": [
+        {
+          "id": "mui-button--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Button variant=\"contained\">Save</Button>;"
+        }
+      ],
+      "import": "import { Button } from 'mui-c0-experiment';"
+    },
+    "mui-chip": {
+      "id": "mui-chip",
+      "name": "Chip",
+      "path": "./passthrough/Chip.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgen": {
+        "description": "",
+        "methods": [],
+        "displayName": "Chip",
+        "definedInFile": "./passthrough/Chip.tsx",
+        "actualName": "Chip",
+        "exportName": "Chip",
+        "composes": [
+          "MuiChipProps"
+        ]
+      },
+      "stories": [
+        {
+          "id": "mui-chip--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Chip label=\"Draft\" />;"
+        }
+      ],
+      "import": "import { Chip } from 'mui-c0-experiment';"
+    },
+    "mui-switch": {
+      "id": "mui-switch",
+      "name": "Switch",
+      "path": "./passthrough/Switch.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgen": {
+        "description": "",
+        "methods": [],
+        "displayName": "Switch",
+        "definedInFile": "./passthrough/Switch.tsx",
+        "actualName": "Switch",
+        "exportName": "Switch",
+        "composes": [
+          "MuiSwitchProps"
+        ]
+      },
+      "stories": [
+        {
+          "id": "mui-switch--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Switch defaultChecked />;"
+        }
+      ],
+      "import": "import { Switch } from 'mui-c0-experiment';"
+    },
+    "mui-textfield": {
+      "id": "mui-textfield",
+      "name": "TextField",
+      "path": "./passthrough/TextField.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgen": {
+        "description": "",
+        "methods": [],
+        "displayName": "TextField",
+        "definedInFile": "./passthrough/TextField.tsx",
+        "actualName": "TextField",
+        "exportName": "TextField"
+      },
+      "stories": [
+        {
+          "id": "mui-textfield--default",
+          "name": "Default",
+          "snippet": "const Default = () => <TextField label=\"Name\" variant=\"outlined\" />;"
+        }
+      ],
+      "import": "import { TextField } from 'mui-c0-experiment';"
+    },
+    "mui-typography": {
+      "id": "mui-typography",
+      "name": "Typography",
+      "path": "./passthrough/Typography.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgen": {
+        "description": "",
+        "methods": [],
+        "displayName": "Typography",
+        "definedInFile": "./passthrough/Typography.tsx",
+        "actualName": "Typography",
+        "exportName": "Typography",
+        "composes": [
+          "MuiTypographyProps"
+        ]
+      },
+      "stories": [
+        {
+          "id": "mui-typography--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Typography variant=\"body1\">Hello</Typography>;"
+        }
+      ],
+      "import": "import { Typography } from 'mui-c0-experiment';"
+    }
+  },
+  "meta": {
+    "docgen": "react-docgen",
+    "durationMs": 53
+  }
+}

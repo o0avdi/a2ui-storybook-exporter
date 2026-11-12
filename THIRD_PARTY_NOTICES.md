@@ -32,6 +32,11 @@ they contain text taken from the projects they were built from. See `test/fixtur
   license text is reproduced below.
 - `angular-vite-spike/`: real `@storybook/angular-vite` output for two components written by this project's
   authors; no third-party component code.
+- `mui-rdt-pass/`, `mui-rdt-direct/`, `mui-rd-pass/`: built against `@mui/material` 9.5.0 from npm
+  (https://github.com/mui/material-ui), MIT License, Copyright (c) 2014 Call-Em-All. The property names, types and
+  descriptions in `mui-rdt-pass/`, and the property names and types in `test/golden/mui-*`, come from its type
+  declarations. The MIT license text below applies with that copyright line. `mui-harness/` is the project that produced the builds; it was written by this
+  project's authors and contains no Material UI code.
 
 The Storybook-generated files themselves are tool output; Storybook is MIT licensed.
 

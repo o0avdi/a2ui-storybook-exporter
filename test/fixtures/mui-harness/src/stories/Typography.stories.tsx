@@ -1,0 +1,9 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import Typography from '@mui/material/Typography';
+
+// The real Material UI component, imported unchanged. No wrapper.
+const meta = { title: 'MUI/Typography', component: Typography } satisfies Meta<typeof Typography>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { args: { variant: 'body1', children: 'Hello' } };

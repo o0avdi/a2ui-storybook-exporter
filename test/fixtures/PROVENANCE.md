@@ -41,3 +41,82 @@ was written by hand to suit the exporter.
 - `../golden/govbanner.catalog.json`: the catalog the exporter produced from the real build. Under the
   default policy 2 of 75 components convert (`GovBanner`, and `Collection` with its single `condensed` property, whose
   `children` the manifest hides); 73 are blocked (children, callbacks, object props).
+
+## `mui-rdt-pass/`, `mui-rdt-direct/`, `mui-rd-pass/` (genuinely external components, Material UI)
+
+Three real `storybook build` outputs of one small project, `mui-harness/`, which shows six unmodified Material UI
+components: Alert, Button, Chip, Switch, TextField and Typography. The project and its lockfile are committed, so the
+builds can be repeated.
+
+- Library: `@mui/material` **9.5.0** from npm (MIT License, Copyright (c) 2014 Call-Em-All), with `@emotion/react`
+  11.14.0 and `@emotion/styled` 11.14.1.
+- Tools: Storybook / `@storybook/react-vite` **10.6.7**, React 19.3.1, TypeScript 5.9.3, Vite 8.3.8,
+  `features.componentsManifest: true`. Exact versions are pinned in `mui-harness/package.json`; the resolved tree is
+  `mui-harness/package-lock.json` (sha256 `34d70b2c7ae1c2bbf370459e8def8531aed5c9769a5d53ed1bbd7f48d7ebd6b8`).
+- Built on 2026-11-11 with Node 22.23.4 and npm 10.9.9 on macOS, from a copy of `mui-harness/` outside this
+  repository: `npm ci` (223 packages, lockfile unchanged), `npx tsc --noEmit` and the three builds all exited 0.
+
+| Fixture | Storybook config | Docgen engine | Stories import | What Storybook wrote |
+|---|---|---|---|---|
+| `mui-rdt-pass/` | `.storybook-rdt-pass/` | `react-docgen-typescript` with the options of Storybook's Material UI recipe | pass-through files (`passthrough/`) | 6 components, 156 properties |
+| `mui-rdt-direct/` | `.storybook-rdt/` | the same | `@mui/material/<Component>` directly (`src/stories/`) | 6 entries, each with an `error`, no docgen |
+| `mui-rd-pass/` | `.storybook-rd-pass/` | `react-docgen` | pass-through files | 6 components, 0 properties |
+
+The recipe is https://storybook.js.org/recipes/@mui/material; its `reactDocgenTypescriptOptions` are copied unchanged.
+
+### The exported components are Storybook pass-through components
+
+The entries in `mui-rdt-pass/` are **not** manifest entries of the upstream Material UI components. Storybook writes no
+docgen for a component whose file is in `node_modules` (that is what `mui-rdt-direct/` records). Each file in
+`mui-harness/passthrough/` therefore re-declares one component in the project, in the form the recipe gives:
+
+```tsx
+export interface ButtonProps extends MuiButtonProps {}
+export const Button = (props: ButtonProps) => <MuiButton {...props} />;
+```
+
+The real Material UI component renders, and the props type is inherited whole: nothing is picked, omitted, renamed or
+narrowed. `TextField.tsx` uses `export type TextFieldProps = MuiTextFieldProps;` because Material UI declares that type
+as a union, which an interface cannot extend (TypeScript error TS2312). What the manifest describes is the pass-through
+component with the inherited public props type. Each property's `parent.fileName` names the Material UI declaration
+file it comes from. Properties declared in `@types/react` are removed by the recipe's `propFilter`; `onClick` is
+absent from Button and Chip, and that filter is the likely cause (not verified).
+
+### Normalization and hashes
+
+Each `index.json` is byte-identical to the build output. Each `manifests/components.json` is the build output with
+**one transformation**, made by `mui-harness/normalize-paths.mjs` on the file text: the absolute path of the build
+directory is replaced by `.`, six times per file (`filePath` in `mui-rdt-pass/`, `definedInFile` in `mui-rd-pass/`,
+the file named in each error message in `mui-rdt-direct/`). No property name, type, default, description or
+requiredness is changed.
+
+| File | sha256 as built | sha256 committed |
+|---|---|---|
+| `mui-rdt-pass/index.json`, `mui-rd-pass/index.json` | `18d2c93d103accbb20a3db0014dad357c93b8db5214a9cc5a4f88e8ca853c016` | the same |
+| `mui-rdt-direct/index.json` | `3797d740c889b1811480e55deb5dad67fb46bb7df02b60fa9033659d922ff445` | the same |
+| `mui-rdt-pass/manifests/components.json` | `dce5a949a4e6e006454e738e9d7466085f9a44b46a4307d9bb1940237292d02b` | `cd63cbf7050a4174e1bab637f40184acb6bc87236de9287c6d55a05c6f3998ea` |
+| `mui-rdt-direct/manifests/components.json` | `8e8feace2de613e95df3fdd227609d0698f658937aaf156286a82dae3ca12942` | `160c07b60231c417a431a3faaebcd3f60c890db2709c59d359bf0523b1c46443` |
+| `mui-rd-pass/manifests/components.json` | `2e4752dda8dc0b2c2692f5c1900890c04695ef5bf07480141060ce3f64080b62` | `e3d2235a65fe314be0579efcffe85a0269c9e7cab525d337884c5e78a1f6d477` |
+
+### Rebuilding
+
+```bash
+cp -R test/fixtures/mui-harness /somewhere/outside/the/repository/mui-harness   # keep the directory name
+cd /somewhere/outside/the/repository/mui-harness
+npm ci
+npm run build:rdt-pass && node normalize-paths.mjs out-rdt-pass <fixture-directory>
+npm run build:rdt      && node normalize-paths.mjs out-rdt      <fixture-directory>
+npm run build:rd-pass  && node normalize-paths.mjs out-rd-pass  <fixture-directory>
+```
+
+A rebuild is **not byte-identical**, for two measured reasons:
+
+- `meta.durationMs` in each manifest is the time the docgen step took (1126 in the committed `mui-rdt-pass/`, 1122
+  in the first build of the same sources).
+- `react-docgen-typescript` writes `parent.fileName` and `declarations[].fileName` starting with the name of the
+  build directory (`mui-harness/node_modules/@mui/material/...`, 323 times). A copy with another directory name gives
+  another prefix.
+
+The committed manifests were compared with the first builds of these sources (2026-11-10/11, in a directory named
+`mui-c0`): apart from `durationMs`, the directory name and the absolute paths, the three files are identical.
+`normalize-paths.mjs` expects POSIX paths; it has not been run on Windows.

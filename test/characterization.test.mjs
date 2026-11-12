@@ -15,6 +15,9 @@ import { createCatalogValidator, validateCatalogStructuralRules, validateV1Expor
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const USWDS = path.join(here, 'fixtures/react-uswds');
+const MUI = path.join(here, 'fixtures/mui-rdt-pass');
+const MUI_DIRECT = path.join(here, 'fixtures/mui-rdt-direct');
+const MUI_REACT_DOCGEN = path.join(here, 'fixtures/mui-rd-pass');
 const BASIC_CATALOG = path.join(here, '../spec/v1_0/basic_catalog.json');
 const golden = (name) => path.join(here, 'golden', name);
 const names = (entries) => entries.map((entry) => entry.name);
@@ -26,9 +29,16 @@ function committed(file, value) {
 }
 
 // The per-component part of the report, as export-report.json would hold it (hence the JSON round trip).
-function reportComponents(unmappedEvents) {
-  const { report } = exportCatalog({ builds: [USWDS], catalogId: 'https://example.org/catalogs/characterization/1', unmappedEvents });
+function reportComponents(unmappedEvents, build = USWDS) {
+  const { report } = exportCatalog({ builds: [build], catalogId: 'https://example.org/catalogs/characterization/1', unmappedEvents });
   return JSON.parse(JSON.stringify(report.components));
+}
+
+// How often each blocking code occurs in a list of report entries.
+function blockingCodes(entries) {
+  const counts = {};
+  for (const issue of entries.flatMap((entry) => entry.blocking)) counts[issue.code] = (counts[issue.code] ?? 0) + 1;
+  return counts;
 }
 
 // Same components in the same order, and on a mismatch the failure shows only the entries that changed, by name.
@@ -68,4 +78,51 @@ test('Characterization validator: the official basic catalog passes the official
   const actual = { referenceErrors: result.referenceErrors, structuralErrors: validateCatalogStructuralRules(basic).errors };
   assert.deepStrictEqual(actual, committed(golden('basic-catalog.local-rules.json'), actual));
   assert.throws(() => validateV1Export(basic), /A2UI v1\.0 catalog validation failed/);
+});
+
+// ---- Material UI 9.5.0: six components, three real Storybook 10.6.7 builds of one project (test/fixtures/PROVENANCE.md).
+// The builds differ in the docgen engine and in whether the stories import Material UI directly or through
+// pass-through files. Only react-docgen-typescript over pass-through files gives Storybook any properties to list.
+
+test('Characterization Material UI: the report entry of all six components under the default policy', () => {
+  const actual = reportComponents('fail', MUI);
+  assert.deepEqual(names(actual), ['Alert', 'Button', 'Chip', 'Switch', 'Typography', 'TextField']);
+  assert.deepEqual(actual.map((entry) => entry.status), Array(6).fill('blocked'));
+  assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 48, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, UNMAPPED_EVENT: 8, A2UI_RESERVED_NAME: 2 });
+  assertSameEntries(actual, committed(golden('mui-rdt-pass.report.fail.json'), actual));
+});
+
+test('Characterization Material UI: --unmapped-events omit changes the report entry of these components only, and none exports', () => {
+  const fail = reportComponents('fail', MUI);
+  const omit = reportComponents('omit', MUI);
+  assert.deepEqual(names(omit), names(fail));
+  assert.deepEqual(omit.map((entry) => entry.status), Array(6).fill('blocked'));
+  assert.deepEqual(blockingCodes(omit), { UNSUPPORTED_PROP_TYPE: 48, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, A2UI_RESERVED_NAME: 2 });
+  const changed = omit.filter((entry, index) => !isDeepStrictEqual(entry, fail[index]));
+  assertSameEntries(changed, committed(golden('mui-rdt-pass.report.omit-changes.json'), changed));
+});
+
+test('Characterization Material UI: stories that import the library directly give a manifest without docgen, and the export stops', () => {
+  // Storybook reports an error for each of the six components because their files are in node_modules. The exporter
+  // then finds no entry with docgen, does not recognize the manifest and stops. Its message does not name that cause.
+  const manifest = JSON.parse(fs.readFileSync(path.join(MUI_DIRECT, 'manifests/components.json'), 'utf8'));
+  const entries = Object.values(manifest.components);
+  assert.equal(entries.length, 6);
+  for (const entry of entries) {
+    assert.equal(entry.error.name, 'react-docgen-typescript found no component docs');
+    assert.ok(!entry.reactDocgen && !entry.reactDocgenTypescript);
+  }
+  assert.throws(() => reportComponents('fail', MUI_DIRECT), /Unsupported components manifest format .*\(v=0, meta\.docgen=react-docgen-typescript\)/);
+});
+
+test('Characterization Material UI: react-docgen over the pass-through files finds six components and no properties', () => {
+  // The same pass-through files that give react-docgen-typescript 156 properties give react-docgen none.
+  for (const policy of ['fail', 'omit']) {
+    const actual = reportComponents(policy, MUI_REACT_DOCGEN);
+    assert.equal(actual.length, 6);
+    for (const entry of actual) {
+      assert.equal(entry.status, 'blocked');
+      assert.deepEqual(entry.blocking.map((issue) => issue.code), ['NO_EXPORTABLE_PROPS'], entry.name);
+    }
+  }
 });

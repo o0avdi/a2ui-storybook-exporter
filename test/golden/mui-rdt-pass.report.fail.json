@@ -1,0 +1,516 @@
+[
+  {
+    "name": "Alert",
+    "id": "mui-alert",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "classes",
+        "message": "classes: Unsupported type 'Partial<AlertClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "iconMapping",
+        "message": "iconMapping: Unsupported type 'Partial<Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, ReactNode>>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "sx",
+        "message": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "slots",
+        "message": "slots: Unsupported type 'Partial<AlertSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "slotProps",
+        "message": "slotProps: Union type '{ root?: SlotProps<ElementType<PaperProps, keyof IntrinsicElements>, AlertRootSlotPropsOverrides, AlertOwnerState>; icon?: SlotProps<\"div\", AlertIconSlotPropsOverrides, AlertOwnerState>; message?: SlotProps<\"div\", AlertMessageSlotPropsOverrides, AlertOwnerState> | undefined; action?: SlotProps<\"div\", AlertActionSlotPropsOverrides, AlertOwnerState> | undefined; closeButton?: SlotProps<ElementType<IconButtonProps, keyof IntrinsicElements>, AlertCloseButtonSlotPropsOverrides, AlertOwnerState> | undefined; closeIcon?: SlotProps<ElementType<SvgIconProps, keyof IntrinsicElements>, AlertCloseIconSlotPropsOverrides, AlertOwnerState> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "action",
+        "message": "action (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "icon",
+        "message": "icon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onClose",
+        "message": "onClose (((event: SyntheticEvent<Element, Event>) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Button",
+    "id": "mui-button",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "classes",
+        "message": "classes: Unsupported type '(Partial<ButtonClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "loading",
+        "message": "loading: Union type 'boolean | null' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "sx",
+        "message": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "action",
+        "message": "action: Unsupported type 'Ref<ButtonBaseActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "LinkComponent",
+        "message": "LinkComponent: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "TouchRippleProps",
+        "message": "TouchRippleProps: Unsupported type 'Partial<TouchRippleProps>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "touchRippleRef",
+        "message": "touchRippleRef: Unsupported type 'Ref<TouchRippleActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "endIcon",
+        "message": "endIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "loadingIndicator",
+        "message": "loadingIndicator (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "startIcon",
+        "message": "startIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onFocusVisible",
+        "message": "onFocusVisible (FocusEventHandler<any>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Chip",
+    "id": "mui-chip",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "avatar",
+        "message": "avatar: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "classes",
+        "message": "classes: Unsupported type '(Partial<ChipClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "deleteIcon",
+        "message": "deleteIcon: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "icon",
+        "message": "icon: Union type 'ReactElement<unknown, string | JSXElementConstructor<any>>' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "sx",
+        "message": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "slots",
+        "message": "slots: Unsupported type 'Partial<ChipSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "slotProps",
+        "message": "slotProps: Union type '{ root?: SlotProps<\"div\", ChipRootSlotPropsOverrides, ChipOwnerState>; label?: SlotProps<\"span\", ChipLabelSlotPropsOverrides, ChipOwnerState>; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (null) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onDelete",
+        "message": "onDelete (((event: any) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Switch",
+    "id": "mui-switch",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "classes",
+        "message": "classes: Unsupported type 'Partial<SwitchClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "sx",
+        "message": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "value",
+        "message": "value: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "action",
+        "message": "action: Unsupported type 'Ref<ButtonBaseActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "LinkComponent",
+        "message": "LinkComponent: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "TouchRippleProps",
+        "message": "TouchRippleProps: Unsupported type 'Partial<TouchRippleProps>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "touchRippleRef",
+        "message": "touchRippleRef: Unsupported type 'Ref<TouchRippleActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "type",
+        "message": "type: Unsupported type 'HTMLInputTypeAttribute'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "edge",
+        "message": "edge: Union type 'false | \"start\" | \"end\"' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "slots",
+        "message": "slots: Unsupported type 'Partial<SwitchSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "slotProps",
+        "message": "slotProps: Union type '{ root?: SlotProps<\"span\", SwitchRootSlotPropsOverrides, SwitchOwnerState>; track?: SlotProps<\"span\", SwitchTrackSlotPropsOverrides, SwitchOwnerState>; thumb?: SlotProps<\"span\", SwitchThumbSlotPropsOverrides, SwitchOwnerState> | undefined; switchBase?: SlotProps<ElementType<SwitchBaseProps, keyof IntrinsicElements>, SwitchSwitchBaseSlotPropsOverrides, SwitchOwnerState> | undefined; input?: SlotProps<\"input\", SwitchInputSlotPropsOverrides, SwitchOwnerState> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "checkedIcon",
+        "message": "checkedIcon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "icon",
+        "message": "icon (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onFocusVisible",
+        "message": "onFocusVisible (FocusEventHandler<any>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onChange",
+        "message": "onChange (((event: ChangeEvent<HTMLInputElement, Element>, checked: boolean) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "Typography",
+    "id": "mui-typography",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "classes",
+        "message": "classes: Unsupported type '(Partial<TypographyClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "color",
+        "message": "color: Union type '(string & {}) | OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"textDisabled\" | \"textPrimary\" | \"textSecondary\", TypographyPropsColorOverrides>' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "sx",
+        "message": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "variantMapping",
+        "message": "variantMapping: Union type 'Partial<Record<OverridableStringUnion<\"inherit\" | TypographyVariant, TypographyPropsVariantOverrides>, string>>' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "TextField",
+    "id": "mui-textfield",
+    "framework": "react",
+    "adapter": "react-v0",
+    "status": "blocked",
+    "properties": [],
+    "contract": {
+      "basis": "storybook-manifest",
+      "sourceContractVerified": false,
+      "inheritedAttributes": "present",
+      "projectedContent": "present"
+    },
+    "omittedKnown": [
+      {
+        "kind": "dom-attribute",
+        "name": "style",
+        "reason": "Inherited DOM/HTML forwarded attribute 'style'."
+      }
+    ],
+    "blocking": [
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "classes",
+        "message": "classes: Unsupported type 'Partial<TextFieldClasses>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "defaultValue",
+        "message": "defaultValue: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "inputRef",
+        "message": "inputRef: Unsupported type 'Ref<any>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "sx",
+        "message": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "type",
+        "message": "type: Unsupported type 'HTMLInputTypeAttribute'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "value",
+        "message": "value: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "component",
+        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "slots",
+        "message": "slots: Unsupported type 'Partial<TextFieldSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
+      },
+      {
+        "code": "UNSUPPORTED_PROP_TYPE",
+        "subject": "slotProps",
+        "message": "slotProps: Union type '{ root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps>; input?: SlotProps<ElementType<OutlinedInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps>; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<FilledInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<InputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping."
+      },
+      {
+        "code": "MANIFEST_ENTRY_INVALID",
+        "subject": "variant",
+        "message": "variant: docgen source default ''outlined'\n'outlined'\n'outlined'' is not a verified scalar literal. Add a reviewed lossless default conversion before export."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "children",
+        "message": "children (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "helperText",
+        "message": "helperText (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "PROJECTED_CONTENT_UNMAPPED",
+        "subject": "label",
+        "message": "label (ReactNode) is projected content; there is no reviewed A2UI content mapping."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onChange",
+        "message": "onChange (ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement, Element>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onBlur",
+        "message": "onBlur (FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "UNMAPPED_EVENT",
+        "subject": "onFocus",
+        "message": "onFocus (FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
+      },
+      {
+        "code": "A2UI_RESERVED_NAME",
+        "subject": "id",
+        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+      }
+    ],
+    "warnings": []
+  }
+]

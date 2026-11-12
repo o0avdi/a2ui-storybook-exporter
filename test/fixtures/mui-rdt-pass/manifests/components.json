@@ -1,0 +1,3581 @@
+{
+  "v": 0,
+  "components": {
+    "mui-alert": {
+      "id": "mui-alert",
+      "name": "Alert",
+      "path": "./passthrough/Alert.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgenTypescript": {
+        "tags": {},
+        "filePath": "./passthrough/Alert.tsx",
+        "description": "",
+        "displayName": "Alert",
+        "methods": [],
+        "props": {
+          "action": {
+            "defaultValue": null,
+            "description": "The action to display. It renders after the message, at the end of the alert.",
+            "name": "action",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "classes": {
+            "defaultValue": null,
+            "description": "Override or extend the styles applied to the component.",
+            "name": "classes",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<AlertClasses>"
+            }
+          },
+          "closeText": {
+            "defaultValue": {
+              "value": "'Close'"
+            },
+            "description": "Override the default label for the *close popup* icon button.\n\nFor localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).",
+            "name": "closeText",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "color": {
+            "defaultValue": null,
+            "description": "The color of the component. Unless provided, the value is taken from the `severity` prop.\nIt supports both default and custom theme colors, which can be added as shown in the\n[palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).",
+            "name": "color",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<AlertColor, AlertPropsColorOverrides>",
+              "value": [
+                {
+                  "value": "\"success\""
+                },
+                {
+                  "value": "\"error\""
+                },
+                {
+                  "value": "\"info\""
+                },
+                {
+                  "value": "\"warning\""
+                }
+              ]
+            }
+          },
+          "severity": {
+            "defaultValue": {
+              "value": "'success'"
+            },
+            "description": "The severity of the alert. This defines the color and icon used.",
+            "name": "severity",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<AlertColor, AlertPropsColorOverrides>",
+              "value": [
+                {
+                  "value": "\"success\""
+                },
+                {
+                  "value": "\"error\""
+                },
+                {
+                  "value": "\"info\""
+                },
+                {
+                  "value": "\"warning\""
+                }
+              ]
+            }
+          },
+          "icon": {
+            "defaultValue": null,
+            "description": "Override the icon displayed before the children.\nUnless provided, the icon is mapped to the value of the `severity` prop.\nSet to `false` to remove the `icon`.",
+            "name": "icon",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "role": {
+            "defaultValue": {
+              "value": "'alert'"
+            },
+            "description": "The ARIA role attribute of the element.",
+            "name": "role",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "iconMapping": {
+            "defaultValue": null,
+            "description": "The component maps the `severity` prop to a range of different icons,\nfor instance success to `<SuccessOutlined>`.\nIf you wish to change this mapping, you can provide your own.\nAlternatively, you can use the `icon` prop to override the icon displayed.",
+            "name": "iconMapping",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, ReactNode>>"
+            }
+          },
+          "onClose": {
+            "defaultValue": null,
+            "description": "Callback fired when the component requests to be closed.\nWhen provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.\n@param event The event source of the callback.",
+            "name": "onClose",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "((event: SyntheticEvent<Element, Event>) => void)"
+            }
+          },
+          "variant": {
+            "defaultValue": {
+              "value": "'standard'"
+            },
+            "description": "The variant to use.",
+            "name": "variant",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"outlined\" | \"filled\" | \"standard\", AlertPropsVariantOverrides>",
+              "value": [
+                {
+                  "value": "\"outlined\""
+                },
+                {
+                  "value": "\"filled\""
+                },
+                {
+                  "value": "\"standard\""
+                }
+              ]
+            }
+          },
+          "sx": {
+            "defaultValue": null,
+            "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+            "name": "sx",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+              "name": "AlertProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Alert/Alert.d.mts",
+                "name": "AlertProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "SxProps<Theme>"
+            }
+          },
+          "className": {
+            "defaultValue": null,
+            "description": "",
+            "name": "className",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "style": {
+            "defaultValue": null,
+            "description": "",
+            "name": "style",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "CSSProperties"
+            }
+          },
+          "children": {
+            "defaultValue": null,
+            "description": "The content of the component.",
+            "name": "children",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Paper/Paper.d.mts",
+              "name": "PaperOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Paper/Paper.d.mts",
+                "name": "PaperOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "component": {
+            "defaultValue": null,
+            "description": "",
+            "name": "component",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Paper/Paper.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ElementType<any, keyof IntrinsicElements>"
+            }
+          },
+          "elevation": {
+            "defaultValue": {
+              "value": "1"
+            },
+            "description": "Shadow depth, corresponds to `dp` in the spec.\nIt accepts values between 0 and 24 inclusive.",
+            "name": "elevation",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Paper/Paper.d.mts",
+              "name": "PaperOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Paper/Paper.d.mts",
+                "name": "PaperOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "number"
+            }
+          },
+          "square": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, rounded corners are disabled.",
+            "name": "square",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Paper/Paper.d.mts",
+              "name": "PaperOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Paper/Paper.d.mts",
+                "name": "PaperOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "slots": {
+            "defaultValue": {
+              "value": "{}"
+            },
+            "description": "The components used for each slot inside.",
+            "name": "slots",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<AlertSlots>"
+            }
+          },
+          "slotProps": {
+            "defaultValue": {
+              "value": "{}"
+            },
+            "description": "The props used for each slot inside.",
+            "name": "slotProps",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "{ root?: SlotProps<ElementType<PaperProps, keyof IntrinsicElements>, AlertRootSlotPropsOverrides, AlertOwnerState>; icon?: SlotProps<\"div\", AlertIconSlotPropsOverrides, AlertOwnerState>; message?: SlotProps<\"div\", AlertMessageSlotPropsOverrides, AlertOwnerState> | undefined; action?: SlotProps<\"div\", AlertActionSlotPropsOverrides, AlertOwnerState> | undefined; closeButton?: SlotProps<ElementType<IconButtonProps, keyof IntrinsicElements>, AlertCloseButtonSlotPropsOverrides, AlertOwnerState> | undefined; closeIcon?: SlotProps<ElementType<SvgIconProps, keyof IntrinsicElements>, AlertCloseIconSlotPropsOverrides, AlertOwnerState> | undefined; } | undefined"
+            }
+          }
+        },
+        "exportName": "Alert"
+      },
+      "stories": [
+        {
+          "id": "mui-alert--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Alert severity=\"info\">Saved.</Alert>;"
+        }
+      ],
+      "import": "import { Alert } from 'mui-c0-experiment';"
+    },
+    "mui-button": {
+      "id": "mui-button",
+      "name": "Button",
+      "path": "./passthrough/Button.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgenTypescript": {
+        "tags": {},
+        "filePath": "./passthrough/Button.tsx",
+        "description": "",
+        "displayName": "Button",
+        "methods": [],
+        "props": {
+          "children": {
+            "defaultValue": null,
+            "description": "The content of the component.",
+            "name": "children",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "classes": {
+            "defaultValue": null,
+            "description": "Override or extend the styles applied to the component.",
+            "name": "classes",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/styles/index.d.mts",
+                "name": "StyledComponentProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "(Partial<ButtonClasses> & Partial<ClassNameMap<never>>)"
+            }
+          },
+          "color": {
+            "defaultValue": {
+              "value": "'primary'"
+            },
+            "description": "The color of the component.\nIt supports both default and custom theme colors, which can be added as shown in the\n[palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).",
+            "name": "color",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\", ButtonPropsColorOverrides>",
+              "value": [
+                {
+                  "value": "\"inherit\""
+                },
+                {
+                  "value": "\"primary\""
+                },
+                {
+                  "value": "\"secondary\""
+                },
+                {
+                  "value": "\"success\""
+                },
+                {
+                  "value": "\"error\""
+                },
+                {
+                  "value": "\"info\""
+                },
+                {
+                  "value": "\"warning\""
+                }
+              ]
+            }
+          },
+          "disabled": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the component is disabled.",
+            "name": "disabled",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "disableElevation": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, no elevation is used.",
+            "name": "disableElevation",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "disableFocusRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the  keyboard focus ripple is disabled.",
+            "name": "disableFocusRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "endIcon": {
+            "defaultValue": null,
+            "description": "Element placed after the children.",
+            "name": "endIcon",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "fullWidth": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the button will take up the full width of its container.",
+            "name": "fullWidth",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "href": {
+            "defaultValue": null,
+            "description": "The URL to link to when the button is clicked.\nIf defined, an `a` element will be used as the root node.",
+            "name": "href",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "loading": {
+            "defaultValue": {
+              "value": "null"
+            },
+            "description": "If `true`, the loading indicator is visible and the button is disabled.\nIf `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).",
+            "name": "loading",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean | null"
+            }
+          },
+          "loadingIndicator": {
+            "defaultValue": {
+              "value": "<CircularProgress color=\"inherit\" size={16} />"
+            },
+            "description": "Element placed before the children if the button is in loading state.\nThe node should contain an element with `role=\"progressbar\"` with an accessible name.\nBy default, it renders a `CircularProgress` that is labeled by the button itself.",
+            "name": "loadingIndicator",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "loadingPosition": {
+            "defaultValue": {
+              "value": "'center'"
+            },
+            "description": "The loading indicator can be positioned on the start, end, or the center of the button.",
+            "name": "loadingPosition",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "\"center\" | \"start\" | \"end\"",
+              "value": [
+                {
+                  "value": "\"center\""
+                },
+                {
+                  "value": "\"start\""
+                },
+                {
+                  "value": "\"end\""
+                }
+              ]
+            }
+          },
+          "size": {
+            "defaultValue": {
+              "value": "'medium'"
+            },
+            "description": "The size of the component.\n`small` is equivalent to the dense button styling.",
+            "name": "size",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"small\" | \"medium\" | \"large\", ButtonPropsSizeOverrides>",
+              "value": [
+                {
+                  "value": "\"small\""
+                },
+                {
+                  "value": "\"medium\""
+                },
+                {
+                  "value": "\"large\""
+                }
+              ]
+            }
+          },
+          "startIcon": {
+            "defaultValue": null,
+            "description": "Element placed before the children.",
+            "name": "startIcon",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "sx": {
+            "defaultValue": null,
+            "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+            "name": "sx",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "SxProps<Theme>"
+            }
+          },
+          "variant": {
+            "defaultValue": {
+              "value": "'text'"
+            },
+            "description": "The variant to use.",
+            "name": "variant",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+              "name": "ButtonOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "ButtonOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"text\" | \"outlined\" | \"contained\", ButtonPropsVariantOverrides>",
+              "value": [
+                {
+                  "value": "\"text\""
+                },
+                {
+                  "value": "\"outlined\""
+                },
+                {
+                  "value": "\"contained\""
+                }
+              ]
+            }
+          },
+          "action": {
+            "defaultValue": null,
+            "description": "A ref for imperative actions.\nIt currently only supports `focusVisible()` action.",
+            "name": "action",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Ref<ButtonBaseActions>"
+            }
+          },
+          "centerRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the ripples are centered.\nThey won't start at the cursor interaction position.",
+            "name": "centerRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "disableRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the ripple effect is disabled.\n\n⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure\nto highlight the element by applying separate styles with the `.Mui-focusVisible` class.",
+            "name": "disableRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "disableTouchRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the touch ripple effect is disabled.",
+            "name": "disableTouchRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "focusRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the base button will have a keyboard focus ripple.",
+            "name": "focusRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "focusVisibleClassName": {
+            "defaultValue": null,
+            "description": "This prop can help identify which element has keyboard focus.\nThe class name will be applied when the element gains the focus through keyboard interaction.\nIt's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).\nThe rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).\nA [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components\nif needed.",
+            "name": "focusVisibleClassName",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "LinkComponent": {
+            "defaultValue": {
+              "value": "'a'"
+            },
+            "description": "The component used to render a link when the `href` prop is provided.",
+            "name": "LinkComponent",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ElementType<any, keyof IntrinsicElements>"
+            }
+          },
+          "nativeButton": {
+            "defaultValue": null,
+            "description": "Whether the custom component is expected to render a native `<button>` element\nwhen passing a React component to the `component` or `slots` prop.",
+            "name": "nativeButton",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "onFocusVisible": {
+            "defaultValue": null,
+            "description": "Callback fired when the component is focused with a keyboard.\nWe trigger a `onFocus` callback too.",
+            "name": "onFocusVisible",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "FocusEventHandler<any>"
+            }
+          },
+          "tabIndex": {
+            "defaultValue": {
+              "value": "0"
+            },
+            "description": "",
+            "name": "tabIndex",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "number"
+            }
+          },
+          "TouchRippleProps": {
+            "defaultValue": null,
+            "description": "Props applied to the `TouchRipple` element.",
+            "name": "TouchRippleProps",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<TouchRippleProps>"
+            }
+          },
+          "touchRippleRef": {
+            "defaultValue": null,
+            "description": "A ref that points to the `TouchRipple` element.",
+            "name": "touchRippleRef",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Ref<TouchRippleActions>"
+            }
+          },
+          "type": {
+            "defaultValue": {
+              "value": "'button'"
+            },
+            "description": "The HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type)\nattribute applied to `button` and `a` elements.\nIgnored when rendering non-native buttons.",
+            "name": "type",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "className": {
+            "defaultValue": null,
+            "description": "",
+            "name": "className",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "style": {
+            "defaultValue": null,
+            "description": "",
+            "name": "style",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "CSSProperties"
+            }
+          },
+          "component": {
+            "defaultValue": null,
+            "description": "",
+            "name": "component",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Button/Button.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ElementType<any, keyof IntrinsicElements>"
+            }
+          }
+        },
+        "exportName": "Button"
+      },
+      "stories": [
+        {
+          "id": "mui-button--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Button variant=\"contained\">Save</Button>;"
+        }
+      ],
+      "import": "import { Button } from 'mui-c0-experiment';"
+    },
+    "mui-chip": {
+      "id": "mui-chip",
+      "name": "Chip",
+      "path": "./passthrough/Chip.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgenTypescript": {
+        "tags": {},
+        "filePath": "./passthrough/Chip.tsx",
+        "description": "",
+        "displayName": "Chip",
+        "methods": [],
+        "props": {
+          "avatar": {
+            "defaultValue": null,
+            "description": "The Avatar element to display.",
+            "name": "avatar",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
+            }
+          },
+          "children": {
+            "defaultValue": null,
+            "description": "This prop isn't supported.\nUse the `component` prop if you need to change the children structure.",
+            "name": "children",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "null"
+            }
+          },
+          "classes": {
+            "defaultValue": null,
+            "description": "Override or extend the styles applied to the component.",
+            "name": "classes",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/styles/index.d.mts",
+                "name": "StyledComponentProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "(Partial<ChipClasses> & Partial<ClassNameMap<never>>)"
+            }
+          },
+          "clickable": {
+            "defaultValue": null,
+            "description": "If `true`, the chip will appear clickable, and will raise when pressed,\neven if the onClick prop is not defined.\nIf `false`, the chip will not appear clickable, even if onClick prop is defined.\nThis can be used, for example,\nalong with the component prop to indicate an anchor Chip is clickable.\nNote: this controls the UI and does not affect the onClick event.",
+            "name": "clickable",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "color": {
+            "defaultValue": {
+              "value": "'default'"
+            },
+            "description": "The color of the component.\nIt supports both default and custom theme colors, which can be added as shown in the\n[palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).",
+            "name": "color",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"default\", ChipPropsColorOverrides>",
+              "value": [
+                {
+                  "value": "\"primary\""
+                },
+                {
+                  "value": "\"secondary\""
+                },
+                {
+                  "value": "\"success\""
+                },
+                {
+                  "value": "\"error\""
+                },
+                {
+                  "value": "\"info\""
+                },
+                {
+                  "value": "\"warning\""
+                },
+                {
+                  "value": "\"default\""
+                }
+              ]
+            }
+          },
+          "deleteIcon": {
+            "defaultValue": null,
+            "description": "Override the default delete icon element. Shown only if `onDelete` is set.",
+            "name": "deleteIcon",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
+            }
+          },
+          "disabled": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the component is disabled.",
+            "name": "disabled",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "icon": {
+            "defaultValue": null,
+            "description": "Icon element.",
+            "name": "icon",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
+            }
+          },
+          "label": {
+            "defaultValue": null,
+            "description": "The content of the component.",
+            "name": "label",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "onDelete": {
+            "defaultValue": null,
+            "description": "Callback fired when the delete icon is clicked.\nIf set, the delete icon will be shown.",
+            "name": "onDelete",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "((event: any) => void)"
+            }
+          },
+          "size": {
+            "defaultValue": {
+              "value": "'medium'"
+            },
+            "description": "The size of the component.",
+            "name": "size",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"small\" | \"medium\", ChipPropsSizeOverrides>",
+              "value": [
+                {
+                  "value": "\"small\""
+                },
+                {
+                  "value": "\"medium\""
+                }
+              ]
+            }
+          },
+          "nativeButton": {
+            "defaultValue": null,
+            "description": "If `true`, the component is expected to resolve to a native `<button>` element.\nWhen omitted, custom components inherit the default button semantics of the current wrapper.\nSet to `true` when a custom component resolves to a native `<button>`, or `false`\nwhen it resolves to a non-button host.",
+            "name": "nativeButton",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "skipFocusWhenDisabled": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, allows the disabled chip to escape focus.\nIf `false`, allows the disabled chip to receive focus.",
+            "name": "skipFocusWhenDisabled",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "sx": {
+            "defaultValue": null,
+            "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+            "name": "sx",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "SxProps<Theme>"
+            }
+          },
+          "tabIndex": {
+            "defaultValue": null,
+            "description": "@ignore",
+            "name": "tabIndex",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "number"
+            }
+          },
+          "variant": {
+            "defaultValue": {
+              "value": "'filled'"
+            },
+            "description": "The variant to use.",
+            "name": "variant",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+              "name": "ChipOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "ChipOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"outlined\" | \"filled\", ChipPropsVariantOverrides>",
+              "value": [
+                {
+                  "value": "\"outlined\""
+                },
+                {
+                  "value": "\"filled\""
+                }
+              ]
+            }
+          },
+          "slots": {
+            "defaultValue": {
+              "value": "{}"
+            },
+            "description": "The components used for each slot inside.",
+            "name": "slots",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<ChipSlots>"
+            }
+          },
+          "slotProps": {
+            "defaultValue": {
+              "value": "{}"
+            },
+            "description": "The props used for each slot inside.",
+            "name": "slotProps",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "{ root?: SlotProps<\"div\", ChipRootSlotPropsOverrides, ChipOwnerState>; label?: SlotProps<\"span\", ChipLabelSlotPropsOverrides, ChipOwnerState>; } | undefined"
+            }
+          },
+          "className": {
+            "defaultValue": null,
+            "description": "",
+            "name": "className",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "style": {
+            "defaultValue": null,
+            "description": "",
+            "name": "style",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "CSSProperties"
+            }
+          },
+          "component": {
+            "defaultValue": null,
+            "description": "",
+            "name": "component",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Chip/Chip.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ElementType<any, keyof IntrinsicElements>"
+            }
+          }
+        },
+        "exportName": "Chip"
+      },
+      "stories": [
+        {
+          "id": "mui-chip--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Chip label=\"Draft\" />;"
+        }
+      ],
+      "import": "import { Chip } from 'mui-c0-experiment';"
+    },
+    "mui-switch": {
+      "id": "mui-switch",
+      "name": "Switch",
+      "path": "./passthrough/Switch.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgenTypescript": {
+        "tags": {},
+        "filePath": "./passthrough/Switch.tsx",
+        "description": "",
+        "displayName": "Switch",
+        "methods": [],
+        "props": {
+          "checkedIcon": {
+            "defaultValue": null,
+            "description": "The icon to display when the component is checked.",
+            "name": "checkedIcon",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+              "name": "SwitchProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+                "name": "SwitchProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "classes": {
+            "defaultValue": null,
+            "description": "Override or extend the styles applied to the component.",
+            "name": "classes",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+              "name": "SwitchProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+                "name": "SwitchProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<SwitchClasses>"
+            }
+          },
+          "color": {
+            "defaultValue": {
+              "value": "'primary'"
+            },
+            "description": "The color of the component.\nIt supports both default and custom theme colors, which can be added as shown in the\n[palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).",
+            "name": "color",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+              "name": "SwitchProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+                "name": "SwitchProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"default\", SwitchPropsColorOverrides>",
+              "value": [
+                {
+                  "value": "\"primary\""
+                },
+                {
+                  "value": "\"secondary\""
+                },
+                {
+                  "value": "\"success\""
+                },
+                {
+                  "value": "\"error\""
+                },
+                {
+                  "value": "\"info\""
+                },
+                {
+                  "value": "\"warning\""
+                },
+                {
+                  "value": "\"default\""
+                }
+              ]
+            }
+          },
+          "disabled": {
+            "defaultValue": null,
+            "description": "If `true`, the component is disabled.",
+            "name": "disabled",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+              "name": "SwitchProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+                "name": "SwitchProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "icon": {
+            "defaultValue": null,
+            "description": "The icon to display when the component is unchecked.",
+            "name": "icon",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+              "name": "SwitchProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+                "name": "SwitchProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "size": {
+            "defaultValue": {
+              "value": "'medium'"
+            },
+            "description": "The size of the component.\n`small` is equivalent to the dense switch styling.",
+            "name": "size",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+              "name": "SwitchProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+                "name": "SwitchProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"small\" | \"medium\", SwitchPropsSizeOverrides>",
+              "value": [
+                {
+                  "value": "\"small\""
+                },
+                {
+                  "value": "\"medium\""
+                }
+              ]
+            }
+          },
+          "sx": {
+            "defaultValue": null,
+            "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+            "name": "sx",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+              "name": "SwitchProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+                "name": "SwitchProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "SxProps<Theme>"
+            }
+          },
+          "value": {
+            "defaultValue": null,
+            "description": "The value of the component. The DOM API casts this to a string.\nThe browser uses \"on\" as the default value.",
+            "name": "value",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+              "name": "SwitchProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Switch/Switch.d.mts",
+                "name": "SwitchProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "unknown"
+            }
+          },
+          "className": {
+            "defaultValue": null,
+            "description": "",
+            "name": "className",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "style": {
+            "defaultValue": null,
+            "description": "",
+            "name": "style",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "CSSProperties"
+            }
+          },
+          "action": {
+            "defaultValue": null,
+            "description": "A ref for imperative actions.\nIt currently only supports `focusVisible()` action.",
+            "name": "action",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Ref<ButtonBaseActions>"
+            }
+          },
+          "centerRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the ripples are centered.\nThey won't start at the cursor interaction position.",
+            "name": "centerRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "disableRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the ripple effect is disabled.",
+            "name": "disableRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "disableTouchRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the touch ripple effect is disabled.",
+            "name": "disableTouchRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "focusRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the base button will have a keyboard focus ripple.",
+            "name": "focusRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "focusVisibleClassName": {
+            "defaultValue": null,
+            "description": "This prop can help identify which element has keyboard focus.\nThe class name will be applied when the element gains the focus through keyboard interaction.\nIt's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).\nThe rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).\nA [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components\nif needed.",
+            "name": "focusVisibleClassName",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "LinkComponent": {
+            "defaultValue": {
+              "value": "'a'"
+            },
+            "description": "The component used to render a link when the `href` prop is provided.",
+            "name": "LinkComponent",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ElementType<any, keyof IntrinsicElements>"
+            }
+          },
+          "onFocusVisible": {
+            "defaultValue": null,
+            "description": "Callback fired when the component is focused with a keyboard.\nWe trigger a `onFocus` callback too.",
+            "name": "onFocusVisible",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "FocusEventHandler<any>"
+            }
+          },
+          "tabIndex": {
+            "defaultValue": null,
+            "description": "",
+            "name": "tabIndex",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "number"
+            }
+          },
+          "TouchRippleProps": {
+            "defaultValue": null,
+            "description": "Props applied to the `TouchRipple` element.",
+            "name": "TouchRippleProps",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<TouchRippleProps>"
+            }
+          },
+          "touchRippleRef": {
+            "defaultValue": null,
+            "description": "A ref that points to the `TouchRipple` element.",
+            "name": "touchRippleRef",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+              "name": "ButtonBaseOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "ButtonBaseOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Ref<TouchRippleActions>"
+            }
+          },
+          "type": {
+            "defaultValue": null,
+            "description": "",
+            "name": "type",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "HTMLInputTypeAttribute"
+            }
+          },
+          "disableFocusRipple": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the  keyboard focus ripple is disabled.",
+            "name": "disableFocusRipple",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "name": {
+            "defaultValue": null,
+            "description": "Name attribute of the `input` element.",
+            "name": "name",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "defaultChecked": {
+            "defaultValue": null,
+            "description": "The default checked state. Use when the component is not controlled.",
+            "name": "defaultChecked",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "autoFocus": {
+            "defaultValue": null,
+            "description": "",
+            "name": "autoFocus",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "id": {
+            "defaultValue": null,
+            "description": "The id of the `input` element.",
+            "name": "id",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "onChange": {
+            "defaultValue": null,
+            "description": "Callback fired when the state is changed.\n@param event The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (string).\nYou can pull out the new checked state by accessing `event.target.checked` (boolean).",
+            "name": "onChange",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "((event: ChangeEvent<HTMLInputElement, Element>, checked: boolean) => void)"
+            }
+          },
+          "component": {
+            "defaultValue": null,
+            "description": "",
+            "name": "component",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/ButtonBase/ButtonBase.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ElementType<any, keyof IntrinsicElements>"
+            }
+          },
+          "checked": {
+            "defaultValue": null,
+            "description": "If `true`, the component is checked.",
+            "name": "checked",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "edge": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If given, uses a negative margin to counteract the padding on one\nside (this is often helpful for aligning the left or right\nside of the icon with content above or below, without ruining the border\nsize and shape).",
+            "name": "edge",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "false | \"start\" | \"end\""
+            }
+          },
+          "readOnly": {
+            "defaultValue": null,
+            "description": "",
+            "name": "readOnly",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "required": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the `input` element is required.",
+            "name": "required",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+              "name": "SwitchBaseProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/SwitchBase.d.mts",
+                "name": "SwitchBaseProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "slots": {
+            "defaultValue": {
+              "value": "{}"
+            },
+            "description": "The components used for each slot inside.",
+            "name": "slots",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<SwitchSlots>"
+            }
+          },
+          "slotProps": {
+            "defaultValue": {
+              "value": "{}"
+            },
+            "description": "The props used for each slot inside.",
+            "name": "slotProps",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "{ root?: SlotProps<\"span\", SwitchRootSlotPropsOverrides, SwitchOwnerState>; track?: SlotProps<\"span\", SwitchTrackSlotPropsOverrides, SwitchOwnerState>; thumb?: SlotProps<\"span\", SwitchThumbSlotPropsOverrides, SwitchOwnerState> | undefined; switchBase?: SlotProps<ElementType<SwitchBaseProps, keyof IntrinsicElements>, SwitchSwitchBaseSlotPropsOverrides, SwitchOwnerState> | undefined; input?: SlotProps<\"input\", SwitchInputSlotPropsOverrides, SwitchOwnerState> | undefined; } | undefined"
+            }
+          }
+        },
+        "exportName": "Switch"
+      },
+      "stories": [
+        {
+          "id": "mui-switch--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Switch defaultChecked />;"
+        }
+      ],
+      "import": "import { Switch } from 'mui-c0-experiment';"
+    },
+    "mui-textfield": {
+      "id": "mui-textfield",
+      "name": "TextField",
+      "path": "./passthrough/TextField.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgenTypescript": {
+        "tags": {},
+        "filePath": "./passthrough/TextField.tsx",
+        "description": "",
+        "displayName": "TextField",
+        "methods": [],
+        "props": {
+          "onChange": {
+            "defaultValue": null,
+            "description": "Callback fired when the value is changed.\n@param event The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (string).\n@param event The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (string).\n@param event The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (string).",
+            "name": "onChange",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "OutlinedTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "OutlinedTextFieldProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "FilledTextFieldProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "StandardTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement, Element>"
+            }
+          },
+          "variant": {
+            "defaultValue": {
+              "value": "'outlined'\n'outlined'\n'outlined'"
+            },
+            "description": "The variant to use.",
+            "name": "variant",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "OutlinedTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "OutlinedTextFieldProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "FilledTextFieldProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "StandardTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "\"outlined\" | \"filled\" | \"standard\"",
+              "value": [
+                {
+                  "value": "\"outlined\""
+                },
+                {
+                  "value": "\"filled\""
+                },
+                {
+                  "value": "\"standard\""
+                }
+              ]
+            }
+          },
+          "autoComplete": {
+            "defaultValue": null,
+            "description": "This prop helps users to fill forms faster, especially on mobile devices.\nThe name can be confusing, as it's more like an autofill.\nYou can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).",
+            "name": "autoComplete",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "autoFocus": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the `input` element is focused during the first mount.",
+            "name": "autoFocus",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "children": {
+            "defaultValue": null,
+            "description": "The content of the component.\n@ignore",
+            "name": "children",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "classes": {
+            "defaultValue": null,
+            "description": "Override or extend the styles applied to the component.",
+            "name": "classes",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<TextFieldClasses>"
+            }
+          },
+          "color": {
+            "defaultValue": {
+              "value": "'primary'"
+            },
+            "description": "The color of the component.\nIt supports both default and custom theme colors, which can be added as shown in the\n[palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).",
+            "name": "color",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\", TextFieldPropsColorOverrides>",
+              "value": [
+                {
+                  "value": "\"primary\""
+                },
+                {
+                  "value": "\"secondary\""
+                },
+                {
+                  "value": "\"success\""
+                },
+                {
+                  "value": "\"error\""
+                },
+                {
+                  "value": "\"info\""
+                },
+                {
+                  "value": "\"warning\""
+                }
+              ]
+            }
+          },
+          "defaultValue": {
+            "defaultValue": null,
+            "description": "The default value. Use when the component is not controlled.",
+            "name": "defaultValue",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "unknown"
+            }
+          },
+          "disabled": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the component is disabled.",
+            "name": "disabled",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "error": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the label is displayed in an error state.",
+            "name": "error",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "fullWidth": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the input will take up the full width of its container.",
+            "name": "fullWidth",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "helperText": {
+            "defaultValue": null,
+            "description": "The helper text content.",
+            "name": "helperText",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "id": {
+            "defaultValue": null,
+            "description": "The id of the `input` element.\nUse this prop to make `label` and `helperText` accessible for screen readers.",
+            "name": "id",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "inputRef": {
+            "defaultValue": null,
+            "description": "Pass a ref to the `input` element.",
+            "name": "inputRef",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Ref<any>"
+            }
+          },
+          "label": {
+            "defaultValue": null,
+            "description": "The label content.",
+            "name": "label",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "multiline": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, a `textarea` element is rendered instead of an input.",
+            "name": "multiline",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "name": {
+            "defaultValue": null,
+            "description": "Name attribute of the `input` element.",
+            "name": "name",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "onBlur": {
+            "defaultValue": null,
+            "description": "",
+            "name": "onBlur",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>"
+            }
+          },
+          "onFocus": {
+            "defaultValue": null,
+            "description": "",
+            "name": "onFocus",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>"
+            }
+          },
+          "placeholder": {
+            "defaultValue": null,
+            "description": "The short hint displayed in the `input` before the user enters a value.",
+            "name": "placeholder",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "required": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the label is displayed as required and the `input` element is required.",
+            "name": "required",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "rows": {
+            "defaultValue": null,
+            "description": "Number of rows to display when multiline option is set to true.",
+            "name": "rows",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string | number"
+            }
+          },
+          "maxRows": {
+            "defaultValue": null,
+            "description": "Maximum number of rows to display when multiline option is set to true.",
+            "name": "maxRows",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string | number"
+            }
+          },
+          "minRows": {
+            "defaultValue": null,
+            "description": "Minimum number of rows to display when multiline option is set to true.",
+            "name": "minRows",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string | number"
+            }
+          },
+          "select": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "Render a [`Select`](https://mui.com/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.\nIf this option is set you must pass the options of the select as children.",
+            "name": "select",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "size": {
+            "defaultValue": {
+              "value": "'medium'"
+            },
+            "description": "The size of the component.",
+            "name": "size",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"small\" | \"medium\", TextFieldPropsSizeOverrides>",
+              "value": [
+                {
+                  "value": "\"small\""
+                },
+                {
+                  "value": "\"medium\""
+                }
+              ]
+            }
+          },
+          "sx": {
+            "defaultValue": null,
+            "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+            "name": "sx",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "SxProps<Theme>"
+            }
+          },
+          "type": {
+            "defaultValue": null,
+            "description": "Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).",
+            "name": "type",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "HTMLInputTypeAttribute"
+            }
+          },
+          "value": {
+            "defaultValue": null,
+            "description": "The value of the `input` element, required for a controlled component.",
+            "name": "value",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+              "name": "BaseTextFieldProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/TextField/TextField.d.mts",
+                "name": "BaseTextFieldProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "unknown"
+            }
+          },
+          "className": {
+            "defaultValue": null,
+            "description": "",
+            "name": "className",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "style": {
+            "defaultValue": null,
+            "description": "",
+            "name": "style",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/internal/index.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "CSSProperties"
+            }
+          },
+          "margin": {
+            "defaultValue": {
+              "value": "'none'"
+            },
+            "description": "If `dense` or `normal`, will adjust vertical spacing of this and contained components.",
+            "name": "margin",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/FormControl/FormControl.d.mts",
+              "name": "FormControlOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/FormControl/FormControl.d.mts",
+                "name": "FormControlOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "\"none\" | \"dense\" | \"normal\"",
+              "value": [
+                {
+                  "value": "\"none\""
+                },
+                {
+                  "value": "\"dense\""
+                },
+                {
+                  "value": "\"normal\""
+                }
+              ]
+            }
+          },
+          "component": {
+            "defaultValue": null,
+            "description": "",
+            "name": "component",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/FormControl/FormControl.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ElementType<any, keyof IntrinsicElements>"
+            }
+          },
+          "focused": {
+            "defaultValue": null,
+            "description": "If `true`, the component is displayed in focused state.",
+            "name": "focused",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/FormControl/FormControl.d.mts",
+              "name": "FormControlOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/FormControl/FormControl.d.mts",
+                "name": "FormControlOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "hiddenLabel": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the label is hidden.\nThis is used to increase density for a `FilledInput`.\nBe sure to add `aria-label` to the `input` element.",
+            "name": "hiddenLabel",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/FormControl/FormControl.d.mts",
+              "name": "FormControlOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/FormControl/FormControl.d.mts",
+                "name": "FormControlOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "slots": {
+            "defaultValue": {
+              "value": "{}"
+            },
+            "description": "The components used for each slot inside.",
+            "name": "slots",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<TextFieldSlots>"
+            }
+          },
+          "slotProps": {
+            "defaultValue": {
+              "value": "{}"
+            },
+            "description": "The props used for each slot inside.",
+            "name": "slotProps",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/utils/types.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "{ root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps>; input?: SlotProps<ElementType<OutlinedInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps>; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<FilledInputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | { root?: SlotProps<ElementType<FormControlProps, keyof IntrinsicElements>, TextFieldRootSlotPropsOverrides, BaseTextFieldProps> | undefined; input?: SlotProps<ElementType<InputProps, keyof IntrinsicElements>, TextFieldInputSlotPropsOverrides, BaseTextFieldProps> | undefined; inputLabel?: SlotProps<ElementType<InputLabelProps, keyof IntrinsicElements>, TextFieldInputLabelSlotPropsOverrides, BaseTextFieldProps> | undefined; htmlInput?: SlotProps<ElementType<InputBaseComponentProps | undefined, keyof IntrinsicElements>, TextFieldHtmlInputSlotPropsOverrides, BaseTextFieldProps> | undefined; formHelperText?: SlotProps<ElementType<FormHelperTextProps, keyof IntrinsicElements>, TextFieldFormHelperTextSlotPropsOverrides, BaseTextFieldProps> | undefined; select?: SlotProps<ElementType<SelectProps, keyof IntrinsicElements>, TextFieldSelectSlotPropsOverrides, BaseTextFieldProps> | undefined; } | undefined"
+            }
+          }
+        },
+        "exportName": "TextField"
+      },
+      "stories": [
+        {
+          "id": "mui-textfield--default",
+          "name": "Default",
+          "snippet": "const Default = () => <TextField label=\"Name\" variant=\"outlined\" />;"
+        }
+      ],
+      "import": "import { TextField } from 'mui-c0-experiment';"
+    },
+    "mui-typography": {
+      "id": "mui-typography",
+      "name": "Typography",
+      "path": "./passthrough/Typography.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgenTypescript": {
+        "tags": {},
+        "filePath": "./passthrough/Typography.tsx",
+        "description": "",
+        "displayName": "Typography",
+        "methods": [],
+        "props": {
+          "align": {
+            "defaultValue": {
+              "value": "'inherit'"
+            },
+            "description": "Set the text-align on the component.",
+            "name": "align",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "\"center\" | \"inherit\" | \"left\" | \"right\" | \"justify\"",
+              "value": [
+                {
+                  "value": "\"center\""
+                },
+                {
+                  "value": "\"inherit\""
+                },
+                {
+                  "value": "\"left\""
+                },
+                {
+                  "value": "\"right\""
+                },
+                {
+                  "value": "\"justify\""
+                }
+              ]
+            }
+          },
+          "children": {
+            "defaultValue": null,
+            "description": "The content of the component.",
+            "name": "children",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ReactNode"
+            }
+          },
+          "classes": {
+            "defaultValue": null,
+            "description": "Override or extend the styles applied to the component.",
+            "name": "classes",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              },
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/styles/index.d.mts",
+                "name": "StyledComponentProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "(Partial<TypographyClasses> & Partial<ClassNameMap<never>>)"
+            }
+          },
+          "color": {
+            "defaultValue": null,
+            "description": "The color of the component.\nIt supports both default and custom theme colors, which can be added as shown in the\n[palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).",
+            "name": "color",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "(string & {}) | OverridableStringUnion<\"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"textDisabled\" | \"textPrimary\" | \"textSecondary\", TypographyPropsColorOverrides>"
+            }
+          },
+          "gutterBottom": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the text will have a bottom margin.",
+            "name": "gutterBottom",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "noWrap": {
+            "defaultValue": {
+              "value": "false"
+            },
+            "description": "If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.\n\nNote that text overflow can only happen with block or inline-block level elements\n(the element needs to have a width in order to overflow).",
+            "name": "noWrap",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "boolean"
+            }
+          },
+          "sx": {
+            "defaultValue": null,
+            "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+            "name": "sx",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "SxProps<Theme>"
+            }
+          },
+          "variant": {
+            "defaultValue": {
+              "value": "'body1'"
+            },
+            "description": "Applies the theme typography styles.",
+            "name": "variant",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "enum",
+              "raw": "OverridableStringUnion<\"inherit\" | TypographyVariant, TypographyPropsVariantOverrides>",
+              "value": [
+                {
+                  "value": "\"button\""
+                },
+                {
+                  "value": "\"caption\""
+                },
+                {
+                  "value": "\"h1\""
+                },
+                {
+                  "value": "\"h2\""
+                },
+                {
+                  "value": "\"h3\""
+                },
+                {
+                  "value": "\"h4\""
+                },
+                {
+                  "value": "\"h5\""
+                },
+                {
+                  "value": "\"h6\""
+                },
+                {
+                  "value": "\"inherit\""
+                },
+                {
+                  "value": "\"body2\""
+                },
+                {
+                  "value": "\"body1\""
+                },
+                {
+                  "value": "\"subtitle1\""
+                },
+                {
+                  "value": "\"subtitle2\""
+                },
+                {
+                  "value": "\"overline\""
+                }
+              ]
+            }
+          },
+          "variantMapping": {
+            "defaultValue": {
+              "value": "{\nh1: 'h1',\nh2: 'h2',\nh3: 'h3',\nh4: 'h4',\nh5: 'h5',\nh6: 'h6',\nsubtitle1: 'h6',\nsubtitle2: 'h6',\nbody1: 'p',\nbody2: 'p',\ninherit: 'p',\n}"
+            },
+            "description": "The component maps the variant prop to a range of different HTML element types.\nFor instance, subtitle1 to `<h6>`.\nIf you wish to change that mapping, you can provide your own.\nAlternatively, you can use the `component` prop.",
+            "name": "variantMapping",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+              "name": "TypographyOwnProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypographyOwnProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "Partial<Record<OverridableStringUnion<\"inherit\" | TypographyVariant, TypographyPropsVariantOverrides>, string>>"
+            }
+          },
+          "className": {
+            "defaultValue": null,
+            "description": "",
+            "name": "className",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "string"
+            }
+          },
+          "style": {
+            "defaultValue": null,
+            "description": "",
+            "name": "style",
+            "parent": {
+              "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+              "name": "CommonProps"
+            },
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/OverridableComponent/index.d.mts",
+                "name": "CommonProps"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "CSSProperties"
+            }
+          },
+          "component": {
+            "defaultValue": null,
+            "description": "",
+            "name": "component",
+            "declarations": [
+              {
+                "fileName": "mui-harness/node_modules/@mui/material/Typography/Typography.d.mts",
+                "name": "TypeLiteral"
+              }
+            ],
+            "required": false,
+            "type": {
+              "name": "ElementType<any, keyof IntrinsicElements>"
+            }
+          }
+        },
+        "exportName": "Typography"
+      },
+      "stories": [
+        {
+          "id": "mui-typography--default",
+          "name": "Default",
+          "snippet": "const Default = () => <Typography variant=\"body1\">Hello</Typography>;"
+        }
+      ],
+      "import": "import { Typography } from 'mui-c0-experiment';"
+    }
+  },
+  "meta": {
+    "docgen": "react-docgen-typescript",
+    "durationMs": 1126
+  }
+}

@@ -14,7 +14,7 @@ plan and is partly out of date.
   - `3e4758f` Add CI for Node 22 and 24 on Ubuntu and Node 22 on Windows (task N2)
 - **Nothing is merged into `main`.** `origin/main` is at `142dd7b`, `origin/docs/share-floorplan` at `4fc9d40`.
 - Tests at `3e4758f`: `npm test` gives 50 passed, 0 failed (47 in `test/exporter.test.mjs`, 3 in
-  `test/characterization.test.mjs`).
+  `test/characterization.test.mjs`). With M2 it is 55, with the Material UI fixtures (C0b) 59.
 - CI: `.github/workflows/ci.yml` runs on every push. At `3e4758f` all three jobs passed (Node 22 and 24 on Ubuntu,
   Node 22 on Windows; GitHub Actions run 42757388584).
 - Remote: `https://github.com/o0avdi/a2ui-storybook-exporter.git`.
@@ -23,8 +23,13 @@ plan and is partly out of date.
 
 A standalone, general-purpose CLI that reads a Storybook build, writes a validated A2UI v1.0 `catalog.json` for the
 components it can represent faithfully, and explains every component it cannot. University capstone sponsored by
-Google Cloud (contact: Alan). Deadline: showcase on **Fri Nov 20, 2026**. Feature freeze target Fri Nov 13, code
-freeze target Tue Nov 17. Both are targets: a correct, tested smaller scope beats a complete rushed one.
+Google Cloud (contact: Alan). Deadline: showcase on **Fri Nov 20, 2026**. Feature freeze target Sun Nov 15 (moved
+from Fri Nov 13 on 2026-11-10), code freeze target Tue Nov 17. Both are targets: a correct, tested smaller scope
+beats a complete rushed one.
+
+**Priority since 2026-11-10: real third-party React libraries, with Material UI as the acceptance target** (tasks
+C0 to C2 in `tasks/todo.md`). They come before M3 to M9. Material UI is a test target only: the exporter contains no
+Material UI-specific logic and does not depend on it.
 
 **Scope is exporter-only.** The exporter must not depend on the showcase demo, on Material UI, or on any renderer or
 agent. The demo team consumes `catalog.json` through a documented output contract (task N3) like any other user.
@@ -128,9 +133,45 @@ Numbers later tasks rely on, all read from these snapshots:
 - Codex reviewed the change in a read-only sandbox on 2026-11-10 and found nothing in the change itself. The two
   gaps it found next to it are recorded under "Known validator limitations" below.
 
-## Next task: M3, `MISSING_PROP_TYPE` replaces `Unsupported type ''` (not started)
+**C0, Material UI experiment** (2026-11-10/11, outside the repository, nothing committed): Storybook 10.6.7 and
+`@mui/material` 9.5.0, six components (Alert, Button, Chip, Switch, TextField, Typography).
 
-Acceptance criteria are in `tasks/plan.md`. It needs Omar's approval before it starts. See `tasks/todo.md`.
+- Stories that import Material UI directly give a manifest in which every entry carries an `error` and no docgen.
+  The exporter stops with "Unsupported components manifest format", which does not name the cause.
+- `react-docgen` over project-local pass-through files finds the components and 0 properties.
+- `react-docgen-typescript` with the options of Storybook's Material UI recipe over pass-through files gives 156
+  properties, all with `required: false`. The unmodified exporter exports **0 of 6** from it, under both event
+  policies. 74 blocking issues: `UNSUPPORTED_PROP_TYPE` 48, `PROJECTED_CONTENT_UNMAPPED` 15, `UNMAPPED_EVENT` 8,
+  `A2UI_RESERVED_NAME` 2 (optional `id`), `MANIFEST_ENTRY_INVALID` 1 (`TextField.variant`, default repeated once per
+  union member).
+- Button and Chip have no `onClick` in the manifest. `label`, `children`, `startIcon` and `Alert.action` are all
+  `ReactNode`: the type cannot tell text from a slot for another component.
+
+**C0b, Material UI fixtures and characterization tests** (tests and fixtures only, nothing under `src/` or `bin/`):
+
+- `test/fixtures/mui-harness/` is the Storybook project (pinned `package.json`, `package-lock.json`, three Storybook
+  configurations, the pass-through files and the direct-import stories). A clean `npm ci` and all three builds were
+  run from a copy of it on 2026-11-11.
+- `test/fixtures/mui-rdt-pass/` (156 properties), `mui-rdt-direct/` (every entry an error) and `mui-rd-pass/`
+  (0 properties) are the build outputs. Only the absolute build path is normalized, by
+  `mui-harness/normalize-paths.mjs`; hashes before and after are in `test/fixtures/PROVENANCE.md`.
+- The exported components are Storybook pass-through components that keep the real Material UI component and its
+  inherited props type. They are not manifest entries of the upstream components. PROVENANCE.md says so.
+- Four tests in `test/characterization.test.mjs`. `test/golden/mui-rdt-pass.report.fail.json` holds the report entry
+  of the six components under the default policy; `mui-rdt-pass.report.omit-changes.json` the five that differ with
+  `--unmapped-events omit`. `npm test` gives 59 passed, 0 failed. No existing golden file changed.
+
+## Next task: C1, opt-in supported-subset mode (approved 2026-11-11)
+
+Scope and acceptance criteria are in Omar's C0 review of 2026-11-11: default mode byte-identical; an unsupported
+property is omitted only when `required` is explicitly `false`; required and unknown requiredness block; every source
+property is recorded once as exported, mapped, omitted or blocked, with its original type and the reason; component
+descriptions disclose the narrower interface; reserved names, content, required properties and metadata errors are
+never omitted. After C1 comes the design of C2 (text content and child references), which is not approved for
+implementation.
+
+M3 (`MISSING_PROP_TYPE` replaces `Unsupported type ''`) and the tasks after it are not started and now follow the
+C tasks. Their acceptance criteria are in `tasks/plan.md`.
 
 ## Known validator limitations (recorded with M2; behavior deliberately unchanged)
 
@@ -159,8 +200,8 @@ accepted, because Ajv follows the prototype chain when it resolves a JSON pointe
 ## Open risks
 
 - Review time is the real limit: about two commits a day before the feature freeze.
-- No external React fixture with react-docgen-typescript and no external Angular library exist yet. The only real
-  Angular fixture uses self-written components.
+- No external Angular library exists as a fixture yet. The only real Angular fixture uses self-written components.
+  A React fixture with react-docgen-typescript now exists (Material UI, C0b).
 - Most components in real libraries are blocked (children, callbacks, object props). That is reported, not worked
   around.
 - The catalog cannot express actions (`events: {}`); this must appear as a limitation in the output contract.

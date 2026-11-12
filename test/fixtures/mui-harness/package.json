@@ -1,0 +1,27 @@
+{
+  "name": "mui-c0-experiment",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Storybook project that produced the mui-* test fixtures: six unmodified Material UI components. See ../PROVENANCE.md.",
+  "scripts": {
+    "build:rdt": "storybook build -c .storybook-rdt -o out-rdt",
+    "build:rd-pass": "storybook build -c .storybook-rd-pass -o out-rd-pass",
+    "build:rdt-pass": "storybook build -c .storybook-rdt-pass -o out-rdt-pass"
+  },
+  "dependencies": {
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
+    "@mui/material": "9.5.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "10.6.7",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "storybook": "10.6.7",
+    "typescript": "5.9.3",
+    "vite": "8.3.8"
+  }
+}
