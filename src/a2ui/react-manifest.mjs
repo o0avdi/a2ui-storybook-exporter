@@ -226,7 +226,24 @@ export function classifyProperty(name, propDef, options = {}) {
     }
   }
 
-  // 9. Complex / Nullable Unions (e.g. CVA variants containing null: "default" | ... | null)
+  // 9. Nullable primitive. Read RDT's type text or RD's structured union.
+  const nullableMembers = isRDT
+    ? rawType.split('|').map((part) => part.trim())
+    : propDef.tsType?.name === 'union' && Array.isArray(propDef.tsType.elements)
+      ? propDef.tsType.elements.map((element) => element?.name)
+      : [];
+  if (nullableMembers.length === 2 && nullableMembers.includes('null')) {
+    const primitive = nullableMembers.find((member) => member !== 'null');
+    if (['boolean', 'number', 'string'].includes(primitive)) {
+      return {
+        category: 'union',
+        rawType,
+        schema: { type: [primitive, 'null'] },
+      };
+    }
+  }
+
+  // 10. Remaining complex unions (e.g. CVA variants containing null: "default" | ... | null)
   if (rawType.includes('|')) {
     return {
       category: 'complex_union',
@@ -235,7 +252,7 @@ export function classifyProperty(name, propDef, options = {}) {
     };
   }
 
-  // 10. Arbitrary complex or unsupported types
+  // 11. Arbitrary complex or unsupported types
   return {
     category: 'unsupported_type',
     rawType,
@@ -446,7 +463,8 @@ export function normalizeReactComponentManifest(entry, options = {}) {
       });
       if (hasSourceDefault && !identifierFromReactDocgen) {
         const types = Array.isArray(classification.schema.type) ? classification.schema.type : [classification.schema.type];
-        if (!types.includes(typeof parsedDefault) || (classification.schema.enum && !classification.schema.enum.includes(parsedDefault)))
+        const defaultType = parsedDefault === null ? 'null' : typeof parsedDefault;
+        if (!types.includes(defaultType) || (classification.schema.enum && !classification.schema.enum.includes(parsedDefault)))
           diagnostics.push({ code: 'SOURCE_DEFAULT_TYPE_MISMATCH', severity: 'error', property: propName,
             message: `${propName}: source default does not match the declared docgen type/enum.` });
       }

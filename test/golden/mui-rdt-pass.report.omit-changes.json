@@ -106,11 +106,6 @@
       },
       {
         "code": "UNSUPPORTED_PROP_TYPE",
-        "subject": "loading",
-        "message": "loading: Union type 'boolean | null' contains null or non-scalar types requiring explicit reviewed mapping."
-      },
-      {
-        "code": "UNSUPPORTED_PROP_TYPE",
         "subject": "sx",
         "message": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema."
       },

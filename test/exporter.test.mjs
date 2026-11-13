@@ -721,6 +721,87 @@ function buttonWith(t, props) {
   });
 }
 
+test('React: the Material UI nullable boolean type and null default survive catalog generation', (t) => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(MUI, 'manifests/components.json'), 'utf8'));
+  const { loading } = manifest.components['mui-button'].reactDocgenTypescript.props;
+  // Isolate the unchanged real docgen property from other Material UI Button blockers.
+  const build = mutatedReact(t, ({ read, write }) => {
+    const file = 'manifests/components.json';
+    const manifest = read(file);
+    delete manifest.components['example-button'].reactDocgen;
+    manifest.components['example-button'].reactDocgenTypescript = { props: { loading } };
+    write(file, manifest);
+  });
+  const result = run({ builds: [build], components: ['Button'] });
+  assert.equal(result.ok, true, JSON.stringify(component(result, 'Button').blocking));
+  const schema = result.catalog.components.Button;
+  assert.deepEqual(schema.required, ['component']);
+  assert.equal(schema.properties.loading.default, null);
+  assert.deepEqual(schema.properties.loading.oneOf, [
+    { type: 'boolean' },
+    { type: 'null' },
+    { $ref: 'common_types.json#/$defs/DataBinding' },
+    { $ref: 'common_types.json#/$defs/FunctionCall' },
+  ]);
+  assert.equal(result.report.validation.valid, true);
+});
+
+test('React: structured nullable primitives preserve requiredness and distinguish null from an absent default', (t) => {
+  const build = buttonWith(t, {
+    message: {
+      required: true,
+      tsType: { name: 'union', raw: 'null | string', elements: [{ name: 'null' }, { name: 'string' }] },
+    },
+    count: {
+      required: false,
+      tsType: { name: 'union', raw: 'number | null', elements: [{ name: 'number' }, { name: 'null' }] },
+      defaultValue: { value: '0', computed: false },
+    },
+  });
+  const result = run({ builds: [build], components: ['Button'], unmappedEvents: 'omit' });
+  assert.equal(result.ok, true, JSON.stringify(component(result, 'Button').blocking));
+  const schema = result.catalog.components.Button;
+  assert.ok(schema.required.includes('message'));
+  assert.ok(!schema.required.includes('count'));
+  assert.deepEqual(schema.properties.message.oneOf.slice(0, 2), [{ type: 'string' }, { type: 'null' }]);
+  assert.ok(!Object.hasOwn(schema.properties.message, 'default'));
+  assert.deepEqual(schema.properties.count.oneOf.slice(0, 2), [{ type: 'number' }, { type: 'null' }]);
+  assert.equal(schema.properties.count.default, 0);
+});
+
+test('React: nullable shapes that would widen or lose values stay unsupported', (t) => {
+  const build = buttonWith(t, {
+    limited: { required: true, tsType: {
+      name: 'union', raw: "'ready' | null", elements: [{ name: 'literal', value: "'ready'" }, { name: 'null' }],
+    } },
+    mixed: { required: true, type: { name: 'number | boolean | null' } },
+    undefinedValue: { required: true, type: { name: 'boolean | null | undefined' } },
+  });
+  const result = run({ builds: [build], components: ['Button'], unmappedEvents: 'omit' });
+  assert.deepEqual(component(result, 'Button').blocking.map(({ code, subject }) => [code, subject]), [
+    ['UNSUPPORTED_PROP_TYPE', 'limited'],
+    ['UNSUPPORTED_PROP_TYPE', 'mixed'],
+    ['UNSUPPORTED_PROP_TYPE', 'undefinedValue'],
+  ]);
+});
+
+test('React: null and incompatible defaults still block the corresponding non-nullable and nullable fields', (t) => {
+  const build = buttonWith(t, {
+    nonNullable: {
+      required: false, tsType: { name: 'string' }, defaultValue: { value: 'null', computed: false },
+    },
+    nullable: {
+      required: false, tsType: { name: 'union', raw: 'boolean | null', elements: [{ name: 'boolean' }, { name: 'null' }] },
+      defaultValue: { value: '0', computed: false },
+    },
+  });
+  const result = run({ builds: [build], components: ['Button'], unmappedEvents: 'omit', supportedSubset: true });
+  assert.deepEqual(component(result, 'Button').blocking.map(({ code, subject }) => [code, subject]), [
+    ['MANIFEST_ENTRY_INVALID', 'nonNullable'],
+    ['MANIFEST_ENTRY_INVALID', 'nullable'],
+  ]);
+});
+
 test('Subset: an unsupported property with required: false is left out, recorded with its type and disclosed', (t) => {
   const build = buttonWith(t, { theme: { required: false, tsType: OBJECT_TYPE, description: '' } });
   const options = { builds: [build], components: ['Button'], unmappedEvents: 'omit' };
