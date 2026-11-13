@@ -269,8 +269,7 @@
         "name": "loading",
         "sourceType": "boolean | null",
         "requiredness": "optional",
-        "disposition": "omitted",
-        "reason": "loading: Union type 'boolean | null' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+        "disposition": "supported"
       },
       {
         "name": "loadingIndicator",
@@ -431,11 +430,6 @@
         "kind": "property",
         "name": "classes",
         "reason": "classes: Unsupported type '(Partial<ButtonClasses> & Partial<ClassNameMap<never>>)'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
-      },
-      {
-        "kind": "property",
-        "name": "loading",
-        "reason": "loading: Union type 'boolean | null' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
       },
       {
         "kind": "property",

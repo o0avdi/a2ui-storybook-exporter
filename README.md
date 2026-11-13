@@ -116,16 +116,16 @@ for the guided walkthroughs.
 
 ## Compatibility
 
-| | React (manifest v0, `react-docgen`) | Angular (`@storybook/angular-vite` manifest v1) |
+| | React (manifest v0, `react-docgen` or `react-docgen-typescript`) | Angular (`@storybook/angular-vite` manifest v1) |
 |---|---|---|
-| Property types | `boolean`, `string`, `number`, string-literal unions, `number \| string` | `boolean`, `string`, `number`, string-literal unions |
+| Property types | `boolean`, `string`, `number`, string-literal unions, `number \| string`, a single primitive with `null` | `boolean`, `string`, `number`, string-literal unions |
 | Requiredness, descriptions | from docgen | from `type.required`, `argTypes.description` |
 | Defaults | from docgen | booleans, numbers, enum members; plain-string defaults refused (encoding unverified) |
 | Events / callbacks | **block** the component | **block** the component (outputs) |
 | `children` / `ReactNode` | **block** | n/a |
 | Objects, arrays, functions, other types | **block**, with the type named; with `--supported-subset`, left out when `required: false` | **block** (the same option applies, but real output never says `required: false`) |
 
-Not supported yet: `string[]` and nullable primitives (both representable in A2UI v1.0), Vue, Web Components,
+Not supported yet: `string[]`, nullable literal or mixed unions, Vue, Web Components,
 other manifest versions, complete Windows verification (one tester has run the baseline there; see `docs/TEAM_TESTING.md`). Event mapping is strict by default; `--unmapped-events omit` exports
 the properties and records each event as not exported in the report and the component description.
 

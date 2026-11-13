@@ -95,7 +95,7 @@ test('Characterization Material UI: the report entry of all six components under
   const actual = reportComponents('fail', MUI);
   assert.deepEqual(names(actual), ['Alert', 'Button', 'Chip', 'Switch', 'Typography', 'TextField']);
   assert.deepEqual(actual.map((entry) => entry.status), Array(6).fill('blocked'));
-  assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 48, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, UNMAPPED_EVENT: 8, A2UI_RESERVED_NAME: 2 });
+  assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 47, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, UNMAPPED_EVENT: 8, A2UI_RESERVED_NAME: 2 });
   assertSameEntries(actual, committed(golden('mui-rdt-pass.report.fail.json'), actual));
 });
 
@@ -104,7 +104,7 @@ test('Characterization Material UI: --unmapped-events omit changes the report en
   const omit = reportComponents('omit', MUI);
   assert.deepEqual(names(omit), names(fail));
   assert.deepEqual(omit.map((entry) => entry.status), Array(6).fill('blocked'));
-  assert.deepEqual(blockingCodes(omit), { UNSUPPORTED_PROP_TYPE: 48, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, A2UI_RESERVED_NAME: 2 });
+  assert.deepEqual(blockingCodes(omit), { UNSUPPORTED_PROP_TYPE: 47, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, A2UI_RESERVED_NAME: 2 });
   const changed = omit.filter((entry, index) => !isDeepStrictEqual(entry, fail[index]));
   assertSameEntries(changed, committed(golden('mui-rdt-pass.report.omit-changes.json'), changed));
 });
@@ -136,15 +136,15 @@ test('Characterization Material UI: react-docgen over the pass-through files fin
 
 // ---- Supported-subset mode (opt-in) on the real fixtures. The tests above run without it and pin the default.
 
-test('Characterization Material UI, supported-subset mode: 42 optional unsupported properties are omitted and no component exports', () => {
+test('Characterization Material UI, supported-subset mode: 41 optional unsupported properties are omitted and no component exports', () => {
   const actual = reportComponents('fail', MUI, true);
   assert.deepEqual(actual.map((entry) => entry.status), Array(6).fill('blocked'));
-  // 48 unsupported types without the mode. The 6 that remain are the "component" property of each component:
+  // 47 unsupported types without the mode. The 6 that remain are the "component" property of each component:
   // optional, but a name A2UI reserves. Content, events, the reserved "id" and the one metadata error are untouched.
   assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 6, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, UNMAPPED_EVENT: 8, A2UI_RESERVED_NAME: 2 });
   assert.deepEqual(actual.flatMap((entry) => entry.blocking).filter((issue) => issue.code === 'UNSUPPORTED_PROP_TYPE').map((issue) => issue.subject), Array(6).fill('component'));
-  // 156 source properties, each once. "omitted" is the 42 plus the "style" attribute of each component.
-  assert.deepEqual(dispositions(actual), { supported: 76, omitted: 48, blocked: 32 });
+  // 156 source properties, each once. "omitted" is the 41 plus the "style" attribute of each component.
+  assert.deepEqual(dispositions(actual), { supported: 77, omitted: 47, blocked: 32 });
   assertSameEntries(actual, committed(golden('mui-rdt-pass.report.subset.json'), actual));
 });
 
@@ -152,7 +152,7 @@ test('Characterization Material UI, supported-subset mode with --unmapped-events
   const actual = reportComponents('omit', MUI, true);
   assert.deepEqual(actual.map((entry) => entry.status), Array(6).fill('blocked'));
   assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 6, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, A2UI_RESERVED_NAME: 2 });
-  assert.deepEqual(dispositions(actual), { supported: 76, omitted: 56, blocked: 24 });
+  assert.deepEqual(dispositions(actual), { supported: 77, omitted: 55, blocked: 24 });
   // What still blocks each component, by property.
   assert.deepEqual(Object.fromEntries(actual.map((entry) => [entry.name, entry.sourceProperties.filter((item) => item.disposition === 'blocked').map((item) => item.name)])), {
     Alert: ['action', 'icon', 'children', 'component'],
