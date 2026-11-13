@@ -3,10 +3,13 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { exportCatalog } from '../src/export.mjs';
-import { createCatalogValidator, validateCatalogStructuralRules, validateV1Export } from '../src/a2ui/validate.mjs';
+import { evaluate } from '../src/contract.mjs';
+import { readReactV0 } from '../src/adapters/react-v0.mjs';
+import { createCatalogValidator, createComponentInstanceValidator, validateCatalogStructuralRules, validateV1Export } from '../src/a2ui/validate.mjs';
 import { makeCatalogV1, sortDeterministic } from '../src/a2ui/catalog.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -787,29 +790,90 @@ test('Subset: an unsupported property with unknown requiredness still blocks; a 
   }
 });
 
-test('Subset: content, events, reserved names and metadata errors are never omitted, even when optional', (t) => {
+test('Subset: content, events and metadata errors are never omitted, even when optional', (t) => {
   const build = buttonWith(t, {
     children: { required: false, tsType: { name: 'ReactNode' }, description: '' },                       // projected content
-    id: { required: false, tsType: { name: 'string' }, description: '' },                                // reserved, supported type
-    component: { required: false, tsType: OBJECT_TYPE, description: '' },                                // reserved, unsupported type
     tone: { required: false, tsType: { name: 'string' }, description: '', defaultValue: { value: 'pick()', computed: false } },  // unverifiable default
   });
   const result = run({ builds: [build], components: ['Button'], supportedSubset: true });
   assert.equal(result.ok, false);
   const entry = component(result, 'Button');
   assert.deepEqual(entry.blocking.map((issue) => [issue.code, issue.subject]).sort(), [
-    ['A2UI_RESERVED_NAME', 'id'], ['MANIFEST_ENTRY_INVALID', 'tone'], ['PROJECTED_CONTENT_UNMAPPED', 'children'],
-    ['UNMAPPED_EVENT', 'onClick'], ['UNSUPPORTED_PROP_TYPE', 'component'],
+    ['MANIFEST_ENTRY_INVALID', 'tone'], ['PROJECTED_CONTENT_UNMAPPED', 'children'], ['UNMAPPED_EVENT', 'onClick'],
   ]);
-  assert.match(entry.blocking.find((issue) => issue.subject === 'component').message, /does not omit it: "component" is a name A2UI reserves/);
   assert.deepEqual(entry.omittedKnown, []);
-  for (const name of ['children', 'id', 'component', 'tone', 'onClick'])
+  for (const name of ['children', 'tone', 'onClick'])
     assert.deepEqual(sourceProperty(entry, name).map((item) => [item.requiredness, item.disposition]), [['optional', 'blocked']], name);
-  assert.equal(sourceProperty(entry, 'id')[0].reason.startsWith('A2UI_RESERVED_NAME: '), true);
   // The four original supported properties are not blocked themselves; the component is.
   assert.deepEqual(entry.sourceProperties.filter((item) => item.disposition === 'supported').map((item) => item.name), ['primary', 'backgroundColor', 'size', 'label']);
   assert.equal(entry.status, 'blocked');
   assert.deepEqual(entry.properties, []);
+});
+
+// ---- Supported-subset mode: an optional source property named "id" or "component" is left out and disclosed (C2).
+// A2UI uses both names itself, so the property cannot be exported. Required or unknown requiredness still blocks.
+
+const STRING = { name: 'string' };
+
+test('Subset: an optional property named id or component is left out and disclosed, whatever its type', (t) => {
+  const build = buttonWith(t, {
+    id: { required: false, tsType: STRING, description: '' },             // a type the exporter supports
+    component: { required: false, tsType: OBJECT_TYPE, description: '' },  // a type it does not
+  });
+  const options = { builds: [build], components: ['Button'], unmappedEvents: 'omit' };
+
+  // Without the mode both still block, exactly as before.
+  const strict = component(run(options), 'Button');
+  assert.deepEqual(strict.blocking.map((issue) => [issue.code, issue.subject]).sort(), [['A2UI_RESERVED_NAME', 'id'], ['UNSUPPORTED_PROP_TYPE', 'component']]);
+  assert.match(strict.blocking.find((issue) => issue.subject === 'id').message, /This exporter does not rename or drop properties\.$/);
+
+  const result = run({ ...options, supportedSubset: true });
+  assert.equal(result.ok, true);
+  const entry = component(result, 'Button');
+  assert.deepEqual(entry.blocking, []);
+  assert.deepEqual(entry.properties, ['primary', 'backgroundColor', 'size', 'label']);
+  assert.deepEqual(entry.omittedKnown.map((item) => [item.kind, item.name]), [['reserved-name', 'id'], ['reserved-name', 'component'], ['event', 'onClick']]);
+  for (const name of ['id', 'component']) {
+    const [item] = sourceProperty(entry, name);
+    assert.deepEqual([item.requiredness, item.disposition], ['optional', 'omitted'], name);
+    assert.match(item.reason, new RegExp(`^Property "${name}" is not exported: '${name}' `), name);
+    assert.match(item.reason, /required: false/, name);
+    assert.match(item.reason, new RegExp(`A renderer must never pass the A2UI "${name}" of an instance to the source component as this property\\.$`), name);
+  }
+  // In the catalog "component" is only the A2UI discriminator, and there is no "id" property.
+  const schema = result.catalog.components.Button;
+  assert.deepEqual(Object.keys(schema.properties).sort(), ['backgroundColor', 'component', 'label', 'primary', 'size']);
+  assert.deepEqual(schema.properties.component, { const: 'Button' });
+  assert.match(schema.description, /Optional source properties with a name A2UI reserves are not exported: id, component\. The A2UI "component" and "id" of an instance are never passed to the source component as these properties\./);
+  assert.equal(validateV1Export(result.catalog).valid, true);
+});
+
+test('Subset: a property named id or component that is required, or whose requiredness is unknown, still blocks', (t) => {
+  for (const [label, required, why] of [['required', true, 'the source metadata marks it required'], ['key absent', undefined, 'the source metadata does not say whether it is required']]) {
+    const props = { id: { tsType: STRING, description: '' }, component: { tsType: OBJECT_TYPE, description: '' } };
+    if (required !== undefined) for (const prop of Object.values(props)) prop.required = required;
+    const result = run({ builds: [buttonWith(t, props)], components: ['Button'], unmappedEvents: 'omit', supportedSubset: true });
+    assert.equal(result.ok, false, label);
+    const entry = component(result, 'Button');
+    assert.deepEqual(entry.blocking.map((issue) => [issue.code, issue.subject]).sort(), [['A2UI_RESERVED_NAME', 'id'], ['UNSUPPORTED_PROP_TYPE', 'component']], label);
+    for (const issue of entry.blocking) assert.ok(issue.message.endsWith(`Supported-subset mode does not omit it: ${why}.`), `${label}: ${issue.message}`);
+    assert.ok(!entry.omittedKnown.some((item) => ['id', 'component'].includes(item.name)), label);
+    for (const name of ['id', 'component']) assert.equal(sourceProperty(entry, name)[0].disposition, 'blocked', `${label} ${name}`);
+  }
+});
+
+test('Subset: an optional id whose metadata has an error stays blocked; optional content named component is left out', (t) => {
+  const broken = run({ builds: [buttonWith(t, { id: { required: false, tsType: STRING, description: '', defaultValue: { value: 'pick()', computed: false } } })],
+    components: ['Button'], unmappedEvents: 'omit', supportedSubset: true });
+  assert.equal(broken.ok, false);
+  assert.deepEqual(component(broken, 'Button').blocking.map((issue) => [issue.code, issue.subject]).sort(), [['A2UI_RESERVED_NAME', 'id'], ['MANIFEST_ENTRY_INVALID', 'id']]);
+  assert.equal(sourceProperty(component(broken, 'Button'), 'id')[0].disposition, 'blocked');
+
+  const content = run({ builds: [buttonWith(t, { component: { required: false, tsType: { name: 'ReactNode' }, description: '' } })],
+    components: ['Button'], unmappedEvents: 'omit', supportedSubset: true });
+  assert.equal(content.ok, true);
+  assert.deepEqual(component(content, 'Button').omittedKnown.map((item) => [item.kind, item.name]), [['reserved-name', 'component'], ['event', 'onClick']]);
+  assert.deepEqual(content.catalog.components.Button.properties.component, { const: 'Button' });
 });
 
 test('Subset: leaving properties out never produces an empty component (the external Header)', () => {
@@ -895,4 +959,309 @@ test('Subset, CLI: --supported-subset is off unless given, and reaches the print
   assert.equal(report.components[0].sourceProperties.length, 6);
   assert.ok(!('theme' in JSON.parse(fs.readFileSync(path.join(out, 'catalog.json'), 'utf8')).components.Button.properties));
   assert.match(cli('--help').stdout, /--supported-subset/);
+});
+
+// ---- Mappings (opt-in, C2): a reviewed file maps content to text or leaves an optional property out. Every entry is
+// checked against the source metadata, and the file is only read in supported-subset mode.
+
+const TEXT = 'common_types.json#/$defs/DynamicString';
+const NODE = (required = false, description = 'What the button shows.') => ({ required, tsType: { name: 'ReactReactNode', raw: 'React.ReactNode' }, description });
+const mappingsFor = (properties, name = 'Button') => ({ version: 1, components: { [name]: properties } });
+const mapped = (build, mappings, extra = {}) => run({ builds: [build], components: ['Button'], unmappedEvents: 'omit', supportedSubset: true, mappings, ...extra });
+
+test('Mappings: content the source types as ReactNode becomes a text property under its own name, with the source requiredness', (t) => {
+  const build = buttonWith(t, { children: NODE() });
+  // Without a mapping the content blocks, in strict and in supported-subset mode.
+  assert.deepEqual(component(run({ builds: [build], components: ['Button'], unmappedEvents: 'omit', supportedSubset: true }), 'Button').blocking.map((issue) => issue.code), ['PROJECTED_CONTENT_UNMAPPED']);
+
+  const result = mapped(build, mappingsFor({ children: { map: 'text' } }));
+  assert.equal(result.ok, true);
+  const schema = result.catalog.components.Button;
+  assert.deepEqual(schema.properties.children, { $ref: TEXT, description: 'What the button shows. Text only. The source type is React.ReactNode; this catalog accepts a string.' });
+  assert.deepEqual(schema.required, ['component', 'label']);
+  assert.match(schema.description, /Text only, where the source accepts more \(explicit mapping\): children \(source type React\.ReactNode\)\./);
+  assert.match(schema.description, /Projected content is described only by the text properties named above; other content the source accepts is not part of this schema\.$/);
+  assert.doesNotMatch(schema.description, /may be missing from Storybook metadata/);
+  assert.equal(validateV1Export(result.catalog).valid, true);
+
+  const entry = component(result, 'Button');
+  assert.deepEqual(entry.properties, ['primary', 'backgroundColor', 'size', 'label', 'children']);
+  const [item] = sourceProperty(entry, 'children');
+  assert.deepEqual([item.sourceType, item.requiredness, item.disposition, item.mapping], ['React.ReactNode', 'optional', 'mapped', 'text']);
+  assert.match(item.reason, /^Mapped to text by the mappings file: /);
+  assert.ok(!entry.omittedKnown.some((omission) => omission.name === 'children'));
+  // The notice defines all four dispositions and says when "mapped" is used; it no longer calls it unused.
+  for (const notice of [result.report.notice, run({ builds: [build], unmappedEvents: 'omit', supportedSubset: true }).report.notice]) {
+    assert.match(notice, /one disposition: "supported" \([^)]+\), "mapped" \([^)]+\), "omitted" \([^)]+\) or "blocked" \([^)]+\)\./);
+    assert.match(notice, /"mapped" \(an explicit text mapping in a mappings file exports it as an A2UI text property/);
+    assert.doesNotMatch(notice, /not used yet|reserved and/);
+  }
+  assert.match(result.report.notice, /Mappings are on/);
+
+  // What an agent may send: a literal string or an @path binding. Anything else is rejected.
+  const valid = createComponentInstanceValidator(result.catalog);
+  assert.equal(valid({ component: 'Button', label: 'Save', children: 'Save draft' }).valid, true);
+  assert.equal(valid({ component: 'Button', label: 'Save', children: { '@path': '/draft/title' } }).valid, true);
+  assert.equal(valid({ component: 'Button', label: 'Save', children: 5 }).valid, false);
+  assert.equal(valid({ component: 'Button', label: 'Save', children: ['a', 'b'] }).valid, false);
+  assert.equal(valid({ component: 'Button', label: 'Save', children: { path: '/draft/title' } }).valid, false);
+
+  // Required content stays required.
+  const required = mapped(buttonWith(t, { children: NODE(true, '') }), mappingsFor({ children: { map: 'text' } }));
+  assert.deepEqual(required.catalog.components.Button.required, ['component', 'label', 'children']);
+  assert.deepEqual(required.catalog.components.Button.properties.children, { $ref: TEXT, description: 'Text only. The source type is React.ReactNode; this catalog accepts a string.' });
+  assert.equal(sourceProperty(component(required, 'Button'), 'children')[0].requiredness, 'required');
+  assert.equal(createComponentInstanceValidator(required.catalog)({ component: 'Button', label: 'Save' }).valid, false);
+});
+
+test('Mappings: "text" is refused unless the source metadata shows content that accepts a string', (t) => {
+  const refuse = (props, property, pattern) => assert.throws(() => mapped(buttonWith(t, props), mappingsFor({ [property]: { map: 'text' } })), pattern, property);
+  const noString = /^Error: Invalid mappings: Button\.\w+ cannot be mapped to text: the source metadata does not show that it accepts string content \(source type: /;
+  refuse({}, 'label', noString);                                                                                   // a string property, already supported
+  refuse({}, 'onClick', noString);                                                                                 // an event
+  refuse({ theme: { required: false, tsType: OBJECT_TYPE, description: '' } }, 'theme', noString);                // an unsupported type
+  refuse({ children: { required: false, tsType: { name: 'null' }, description: '' } }, 'children', noString);      // content by name only
+  refuse({ icon: { required: false, tsType: { name: 'ReactElement', raw: 'React.ReactElement' }, description: '' } }, 'icon', noString);  // an element, not a string
+  refuse({ id: NODE() }, 'id', /Button\.id cannot be mapped to text: "id" is a name A2UI reserves/);
+  // An Angular input is never content.
+  assert.throws(() => run({ builds: [ANGULAR], unmappedEvents: 'omit', supportedSubset: true, mappings: mappingsFor({ label: { map: 'text' } }, 'StatusChipComponent') }),
+    /StatusChipComponent\.label cannot be mapped to text/);
+});
+
+test('Mappings: "omit" leaves out an optional property of any ordinary kind, with its reason in the report and its name in the description', (t) => {
+  const reason = 'Not needed by this catalog.';
+  const build = buttonWith(t, {
+    children: NODE(),                                                                                     // content
+    theme: { required: false, tsType: OBJECT_TYPE, description: '' },                                     // unsupported type
+    'aria-label': { required: false, tsType: STRING, description: '' },                                   // inherited DOM attribute
+    id: { required: false, tsType: STRING, description: '' },                                             // reserved name
+  });
+  // A supported property as well, and an event: the event policy of this run is "omit" (see the two tests below).
+  const names = ['backgroundColor', 'onClick', 'children', 'theme', 'aria-label', 'id'];
+  const result = mapped(build, mappingsFor(Object.fromEntries(names.map((name) => [name, { map: 'omit', reason }]))));
+  assert.equal(result.report.policy.unmappedEvents, 'omit');
+  assert.equal(result.ok, true);
+  const entry = component(result, 'Button');
+  assert.deepEqual(entry.blocking, []);
+  assert.deepEqual(entry.properties, ['primary', 'size', 'label']);
+  assert.deepEqual(entry.omittedKnown, names.map((name) => ({ kind: 'mapping', name, reason: `Left out by the mappings file: ${reason}` })));
+  for (const name of names) assert.deepEqual(sourceProperty(entry, name).map((item) => [item.disposition, item.reason]), [['omitted', `Left out by the mappings file: ${reason}`]], name);
+  const schema = result.catalog.components.Button;
+  assert.deepEqual(Object.keys(schema.properties).sort(), ['component', 'label', 'primary', 'size']);
+  assert.match(schema.description, /Left out by an explicit mapping: backgroundColor, onClick, children, theme, aria-label, id\./);
+  assert.doesNotMatch(schema.description, /Inherited DOM attributes not exported|Events not exported|name A2UI reserves/);
+  assert.equal(validateV1Export(result.catalog).valid, true);
+  assert.equal(createComponentInstanceValidator(result.catalog)({ component: 'Button', label: 'Save', backgroundColor: 'red' }).valid, false);
+});
+
+test('Mappings: "omit" never hides a source metadata error, such as a default that cannot be verified', (t) => {
+  const reason = 'Not needed by this catalog.';
+  const badDefault = { required: false, tsType: STRING, description: '', defaultValue: { value: 'pick()', computed: false } };
+  const refused = /^Error: Invalid mappings: Button\.\w+ cannot be omitted: its source metadata has an error, which a mapping must not hide \(MANIFEST_ENTRY_INVALID: /;
+  // An ordinary property, and one with a reserved name: the error decides, not the name.
+  for (const name of ['tone', 'id'])
+    assert.throws(() => mapped(buttonWith(t, { [name]: badDefault }), mappingsFor({ [name]: { map: 'omit', reason } })), refused, name);
+  // Without the entry the property blocks its component, exactly as before; the error is still reported.
+  const build = buttonWith(t, { tone: badDefault });
+  const blocked = mapped(build, mappingsFor({ backgroundColor: { map: 'omit', reason } }));
+  assert.equal(blocked.ok, false);
+  assert.deepEqual(component(blocked, 'Button').blocking.map((issue) => [issue.code, issue.subject]), [['MANIFEST_ENTRY_INVALID', 'tone']]);
+  assert.deepEqual(sourceProperty(component(blocked, 'Button'), 'tone').map((item) => item.disposition), ['blocked']);
+  // Angular reports a default it cannot read under another code; it is refused the same way.
+  const angular = mutatedAngular(t, (argTypes) => { argTypes.label.type.required = false; argTypes.label.table.defaultValue = { summary: "'x'" }; });
+  assert.throws(() => run({ builds: [angular], unmappedEvents: 'omit', supportedSubset: true, mappings: mappingsFor({ label: { map: 'omit', reason } }, 'StatusBadgeComponent') }),
+    /^Error: Invalid mappings: StatusBadgeComponent\.label cannot be omitted: its source metadata has an error, which a mapping must not hide \(UNSUPPORTED_DEFAULT: /);
+  // The policy itself refuses as well, should a caller skip the check.
+  const [contract] = readReactV0({ manifest: JSON.parse(fs.readFileSync(path.join(build, 'manifests/components.json'), 'utf8')) }).filter((item) => item.name === 'Button');
+  assert.throws(() => evaluate(contract, { unmappedEvents: 'omit', supportedSubset: true, mappings: new Map([['tone', { map: 'omit', reason }]]) }),
+    /Internal error: Button\.tone was omitted by a mapping that the checks do not allow/);
+});
+
+test('Mappings: "omit" on an event needs --unmapped-events omit; it is never a way around --unmapped-events fail', (t) => {
+  const reason = 'Not needed by this catalog.';
+  const mappings = mappingsFor({ onClick: { map: 'omit', reason } });
+  const refused = /^Error: Invalid mappings: Button\.onClick cannot be omitted: it is an event, and events block under --unmapped-events fail\. Pass --unmapped-events omit \(unmappedEvents: "omit"\) to leave events out\./;
+  assert.throws(() => mapped(REACT, mappings, { unmappedEvents: 'fail' }), refused);
+  assert.throws(() => run({ builds: [REACT], components: ['Button'], supportedSubset: true, mappings }), refused, 'fail is the default');
+  // Also for a component this export does not select: the file is checked as a whole.
+  assert.throws(() => run({ builds: [REACT], components: ['Page'], supportedSubset: true, mappings }), refused);
+  // Other omissions do not need the event policy, and the event then still blocks.
+  const others = mapped(REACT, mappingsFor({ backgroundColor: { map: 'omit', reason } }), { unmappedEvents: 'fail' });
+  assert.equal(others.ok, false);
+  assert.deepEqual(component(others, 'Button').blocking.map((issue) => [issue.code, issue.subject]), [['UNMAPPED_EVENT', 'onClick']]);
+  // With --unmapped-events omit the entry is allowed, and the report gives the reason from the file.
+  const allowed = mapped(REACT, mappings);
+  assert.equal(allowed.ok, true);
+  assert.deepEqual(component(allowed, 'Button').omittedKnown, [{ kind: 'mapping', name: 'onClick', reason: `Left out by the mappings file: ${reason}` }]);
+  // The policy itself refuses as well, should a caller skip the check.
+  const [contract] = readReactV0({ manifest: JSON.parse(fs.readFileSync(path.join(REACT, 'manifests/components.json'), 'utf8')) }).filter((item) => item.name === 'Button');
+  const direct = (unmappedEvents) => evaluate(contract, { unmappedEvents, supportedSubset: true, mappings: new Map([['onClick', { map: 'omit', reason }]]) });
+  assert.throws(() => direct('fail'), /Internal error: Button\.onClick was omitted by a mapping that the checks do not allow/);
+  assert.equal(direct('omit').exportable, true);
+  // The CLI stops with exit 2 and writes nothing.
+  const file = path.join(temporary(t), 'button.mappings.json');
+  fs.writeFileSync(file, JSON.stringify(mappings));
+  const out = path.join(temporary(t), 'out');
+  const cli = spawnSync(process.execPath, [CLI, 'export', '--storybook', REACT, '--components', 'Button', '--supported-subset', '--mappings', file, '--catalog-id', catalogId, '--out', out], { encoding: 'utf8' });
+  assert.equal(cli.status, 2);
+  assert.match(cli.stderr, /Error: Invalid mappings: Button\.onClick cannot be omitted: it is an event/);
+  assert.equal(fs.existsSync(out), false);
+});
+
+test('Mappings: "omit" is refused for a required property, for unknown requiredness, and without a meaningful reason', (t) => {
+  const reason = 'Not needed by this catalog.';
+  assert.throws(() => mapped(REACT, mappingsFor({ label: { map: 'omit', reason } })), /Invalid mappings: Button\.label cannot be omitted: the source metadata marks it required\./);
+  assert.throws(() => mapped(buttonWith(t, { theme: { tsType: OBJECT_TYPE, description: '' } }), mappingsFor({ theme: { map: 'omit', reason } })),
+    /Invalid mappings: Button\.theme cannot be omitted: the source metadata does not say whether it is required\./);
+  for (const entry of [{ map: 'omit' }, { map: 'omit', reason: '' }, { map: 'omit', reason: '   n/a   ' }, { map: 'omit', reason: 42 }])
+    assert.throws(() => mapped(REACT, mappingsFor({ backgroundColor: entry })), /Invalid mappings: Button\.backgroundColor needs a "reason" of at least 10 characters/, JSON.stringify(entry));
+  assert.throws(() => mapped(REACT, mappingsFor({ backgroundColor: { map: 'text', reason } })), /Button\.backgroundColor: "reason" belongs to "map": "omit" only/);
+});
+
+test('Mappings: version, structure, verbs, component names and property names are all checked, and anything unknown fails', (t) => {
+  const reason = 'Not needed by this catalog.';
+  const refuse = (mappings, pattern) => assert.throws(() => mapped(REACT, mappings), pattern, JSON.stringify(mappings));
+  // A string is a file path (tested below); any other value that is not an object is refused.
+  for (const notAnObject of [null, [], 7, true]) refuse(notAnObject, /Invalid mappings: expected an object with "version" and "components"/);
+  refuse({ components: {} }, /Invalid mappings: "version" must be 1 \(found undefined\)/);
+  refuse({ version: 2, components: {} }, /Invalid mappings: "version" must be 1 \(found 2\)/);
+  refuse({ version: '1', components: {} }, /Invalid mappings: "version" must be 1 \(found "1"\)/);
+  refuse({ version: 1 }, /Invalid mappings: "components" must be an object keyed by component name/);
+  refuse({ version: 1, components: [] }, /Invalid mappings: "components" must be an object keyed by component name/);
+  refuse({ version: 1, components: {}, mappings: [] }, /Invalid mappings: unknown key "mappings"/);
+  refuse(mappingsFor(['children']), /Invalid mappings: components\.Button must be an object keyed by property name/);
+  refuse(mappingsFor({ backgroundColor: 'omit' }), /Invalid mappings: Button\.backgroundColor must be an object such as \{ "map": "text" \}/);
+  refuse(mappingsFor({ backgroundColor: {} }), /Invalid mappings: Button\.backgroundColor has "map": undefined; supported: "text" and "omit"/);
+  refuse(mappingsFor({ backgroundColor: { map: 'child' } }), /Invalid mappings: Button\.backgroundColor has "map": "child"; supported: "text" and "omit"/);
+  refuse(mappingsFor({ backgroundColor: { map: 'omit', reason, as: 'x' } }), /Invalid mappings: Button\.backgroundColor has an unknown key "as"/);
+  refuse(mappingsFor({ backgroundColor: { map: 'omit', reason } }, 'Buton'), /Invalid mappings: component "Buton" is not in the Storybook build\(s\)\. Components: Button, Header, Page\./);
+  refuse(mappingsFor({ colour: { map: 'omit', reason } }), /Invalid mappings: Button\.colour is not a property the Storybook metadata lists\. Listed: primary, backgroundColor, size, label, onClick\./);
+  // A file path: unreadable, not JSON, and a valid file.
+  const directory = temporary(t);
+  refuse(path.join(directory, 'missing.json'), /Cannot read Mappings file/);
+  fs.writeFileSync(path.join(directory, 'broken.json'), '{ "version": 1,');
+  refuse(path.join(directory, 'broken.json'), /Mappings file is not valid JSON/);
+  // The option itself: only with supported-subset mode, through the API as well.
+  assert.throws(() => run({ builds: [REACT], mappings: mappingsFor({}) }), /Mappings need supported-subset mode: pass --supported-subset \(supportedSubset: true\) together with --mappings\./);
+  assert.throws(() => run({ builds: [REACT], supportedSubset: false, mappings: mappingsFor({}) }), /Mappings need supported-subset mode/);
+});
+
+test('Mappings: names that exist on Object.prototype are looked up as data, in the file and in the metadata', (t) => {
+  const reason = 'Not needed by this catalog.';
+  // As a file would arrive: JSON.parse makes "__proto__" an own key.
+  const parsed = (text) => JSON.parse(text);
+  for (const name of ['constructor', 'toString', 'hasOwnProperty', '__proto__']) {
+    assert.throws(() => mapped(REACT, parsed(`{ "version": 1, "components": { ${JSON.stringify(name)}: { "label": { "map": "text" } } } }`)),
+      /Invalid mappings: component "\w+" is not in the Storybook build\(s\)/, `component ${name}`);
+    assert.throws(() => mapped(REACT, parsed(`{ "version": 1, "components": { "Button": { ${JSON.stringify(name)}: { "map": "omit", "reason": "${reason}" } } } }`)),
+      /Invalid mappings: Button\.\w+ is not a property the Storybook metadata lists/, `property ${name}`);
+  }
+  // Keys that are only inherited are never read: this object has no own "version", "components" or "map".
+  assert.throws(() => mapped(REACT, Object.create({ version: 1, components: {} })), /Invalid mappings: "version" must be 1 \(found undefined\)/);
+  assert.throws(() => mapped(REACT, mappingsFor({ backgroundColor: Object.create({ map: 'omit', reason }) })), /has "map": undefined/);
+  // A real property with such a name can be mapped like any other.
+  const build = buttonWith(t, { constructor: { required: false, tsType: OBJECT_TYPE, description: '' }, toString: NODE() });
+  const result = mapped(build, mappingsFor({ constructor: { map: 'omit', reason }, toString: { map: 'text' } }));
+  assert.equal(result.ok, true);
+  assert.deepEqual(component(result, 'Button').properties, ['primary', 'backgroundColor', 'size', 'label', 'toString']);
+  assert.equal(Object.hasOwn(result.catalog.components.Button.properties, 'toString'), true);
+  assert.equal(result.catalog.components.Button.properties.toString.$ref, TEXT);
+  assert.equal(Object.hasOwn(result.catalog.components.Button.properties, 'constructor'), false);
+  assertCatalogMatchesReport(result);
+  // Text content named __proto__ is still blocked by name after the mapping; it is never emitted.
+  const proto = mutatedReact(t, ({ read, write }) => {
+    const manifest = read('manifests/components.json');
+    Object.defineProperty(manifest.components['example-button'].reactDocgen.props, '__proto__', { value: NODE(), enumerable: true, writable: true, configurable: true });
+    write('manifests/components.json', manifest);
+  });
+  const blocked = mapped(proto, parsed('{ "version": 1, "components": { "Button": { "__proto__": { "map": "text" } } } }'));
+  assert.equal(blocked.ok, false);
+  assert.deepEqual(component(blocked, 'Button').blocking.map((issue) => [issue.code, issue.subject]), [['UNSAFE_NAME', '__proto__']]);
+  assert.deepEqual(sourceProperty(component(blocked, 'Button'), '__proto__').map((item) => item.disposition), ['blocked']);
+});
+
+test('Mappings: one file serves any selection; entries for components that are not selected are checked and then unused', (t) => {
+  const reason = 'Not needed by this catalog.';
+  const mappings = { version: 1, components: { Button: { backgroundColor: { map: 'omit', reason } }, Header: { user: { map: 'omit', reason } } } };
+  const button = run({ builds: [REACT], components: ['Button'], unmappedEvents: 'omit', supportedSubset: true, mappings });
+  assert.equal(button.ok, true);
+  assert.deepEqual(button.report.components.map((item) => item.name), ['Button']);
+  // An entry for an unselected component is still validated against the build.
+  mappings.components.Header.nope = { map: 'omit', reason };
+  assert.throws(() => run({ builds: [REACT], components: ['Button'], unmappedEvents: 'omit', supportedSubset: true, mappings }), /Invalid mappings: Header\.nope is not a property/);
+});
+
+test('Mappings: the report records the configuration by SHA-256 and file name, never by an absolute path', (t) => {
+  const directory = temporary(t);
+  const file = path.join(directory, 'button.mappings.json');
+  const text = '{\n  "version": 1,\n  "components": { "Button": { "children": { "map": "text" } } }\n}\n';
+  fs.writeFileSync(file, text);
+  const build = buttonWith(t, { children: NODE() });
+  const fromFile = mapped(build, file);
+  assert.deepEqual(fromFile.report.policy, { unmappedEvents: 'omit', supportedSubset: true,
+    mappings: { version: 1, file: 'button.mappings.json', sha256: createHash('sha256').update(text).digest('hex') } });
+  // An object has no file: the hash is of its JSON with sorted keys and no whitespace, so key order does not matter.
+  const canonical = '{"components":{"Button":{"children":{"map":"text"}}},"version":1}';
+  for (const object of [JSON.parse(text), { components: { Button: { children: { map: 'text' } } }, version: 1 }])
+    assert.deepEqual(mapped(build, object).report.policy.mappings, { version: 1, file: null, sha256: createHash('sha256').update(canonical).digest('hex') });
+  assert.deepEqual(mapped(build, JSON.parse(text)).catalog, fromFile.catalog);
+  assert.ok(!JSON.stringify(fromFile.report).includes(directory), 'no absolute path in the report');
+  // Without mappings the report has no such key.
+  assert.deepEqual(run({ builds: [build], unmappedEvents: 'omit', supportedSubset: true }).report.policy, { unmappedEvents: 'omit', supportedSubset: true });
+});
+
+test('Mappings: the normalized contract is never changed, so strict results are the same before and after a mapped export', (t) => {
+  const build = buttonWith(t, { children: NODE(), id: { required: false, tsType: STRING, description: '' }, theme: { required: false, tsType: OBJECT_TYPE, description: '' } });
+  const reason = 'Not needed by this catalog.';
+  const deepFreeze = (value) => { if (value && typeof value === 'object' && !Object.isFrozen(value)) { Object.freeze(value); Object.values(value).forEach(deepFreeze); } return value; };
+  const [contract] = readReactV0({ manifest: JSON.parse(fs.readFileSync(path.join(build, 'manifests/components.json'), 'utf8')) }).filter((item) => item.name === 'Button');
+  const before = JSON.stringify(contract);
+  deepFreeze(contract);   // a write to the contract now throws
+  const strictBefore = evaluate(contract, { unmappedEvents: 'omit' });
+  const decided = evaluate(contract, { unmappedEvents: 'omit', supportedSubset: true,
+    mappings: new Map([['children', { map: 'text' }], ['backgroundColor', { map: 'omit', reason }]]) });
+  assert.equal(decided.exportable, true);
+  assert.deepEqual(decided.fields.map((field) => field.name), ['primary', 'size', 'label', 'children']);
+  assert.equal(JSON.stringify(contract), before);
+  assert.deepEqual(evaluate(contract, { unmappedEvents: 'omit' }), strictBefore);
+  assert.equal(strictBefore.fields, contract.fields, 'strict mode hands the contract fields on untouched');
+  assert.throws(() => evaluate(contract, { mappings: new Map([['children', { map: 'text' }]]) }), /mappings are read only in supported-subset mode/);
+  // The same through the whole pipeline, in one process: strict, mapped, strict.
+  const strict = () => run({ builds: [build], components: ['Button'], unmappedEvents: 'omit' });
+  const first = strict();
+  assert.equal(mapped(build, mappingsFor({ children: { map: 'text' } })).ok, true);
+  assert.deepEqual(strict(), first);
+  assert.deepEqual(first.report.policy, { unmappedEvents: 'omit' });
+  assert.ok(!('sourceProperties' in component(first, 'Button')));
+});
+
+test('Mappings, CLI: --mappings needs --supported-subset, reads a file, and reaches the printed report and export-report.json', (t) => {
+  const build = buttonWith(t, { children: NODE(), icon: NODE() });
+  const file = path.join(temporary(t), 'button.mappings.json');
+  fs.writeFileSync(file, JSON.stringify(mappingsFor({ children: { map: 'text' }, icon: { map: 'omit', reason: 'No icon component in this catalog.' } })));
+  const cli = (...args) => spawnSync(process.execPath, [CLI, ...args], { encoding: 'utf8' });
+  const alone = cli('inspect', '--storybook', build, '--mappings', file);
+  assert.equal(alone.status, 2);
+  assert.match(alone.stderr, /Error: Mappings need supported-subset mode: pass --supported-subset/);
+  assert.match(cli('inspect', '--storybook', build, '--supported-subset', '--mappings').stderr, /--mappings needs a value/);
+  const inspect = cli('inspect', '--storybook', build, '--unmapped-events', 'omit', '--supported-subset', '--mappings', file);
+  assert.equal(inspect.status, 0, inspect.stderr);
+  assert.match(inspect.stdout, /OK +Button \[react\] properties: primary, backgroundColor, size, label, children/);
+  assert.match(inspect.stdout, /source properties: 4 supported, 1 mapped, 2 omitted, 0 blocked/);
+  assert.match(inspect.stdout, /mapped to text: children/);
+  assert.match(inspect.stdout, /not exported \(mapping\): icon/);
+  const out = path.join(temporary(t), 'out');
+  const exported = cli('export', '--storybook', build, '--components', 'Button', '--unmapped-events', 'omit', '--supported-subset', '--mappings', file, '--catalog-id', catalogId, '--out', out);
+  assert.equal(exported.status, 0, exported.stderr);
+  const report = JSON.parse(fs.readFileSync(path.join(out, 'export-report.json'), 'utf8'));
+  assert.deepEqual(report.policy.mappings, { version: 1, file: 'button.mappings.json', sha256: createHash('sha256').update(fs.readFileSync(file)).digest('hex') });
+  assert.equal(JSON.parse(fs.readFileSync(path.join(out, 'catalog.json'), 'utf8')).components.Button.properties.children.$ref, TEXT);
+  assert.match(cli('--help').stdout, /--mappings/);
+  // A bad file stops the export with exit 2 and writes nothing.
+  fs.writeFileSync(file, JSON.stringify(mappingsFor({ label: { map: 'text' } })));
+  const refused = path.join(temporary(t), 'out');
+  const bad = cli('export', '--storybook', build, '--supported-subset', '--mappings', file, '--catalog-id', catalogId, '--out', refused);
+  assert.equal(bad.status, 2);
+  assert.match(bad.stderr, /Error: Invalid mappings: Button\.label cannot be mapped to text/);
+  assert.equal(fs.existsSync(refused), false);
 });

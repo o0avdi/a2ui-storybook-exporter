@@ -4,7 +4,7 @@ Written 2026-11-09 for a fresh Claude Code session. Read this file, then `tasks/
 criteria, verified findings) and `tasks/todo.md` (checklist). `docs/HANDOFF.md` is an older handoff from before this
 plan and is partly out of date.
 
-## State of the repository (verified 2026-11-10)
+## State of the repository (verified 2026-11-12)
 
 - Branch: `feat/exporter-hardening`, tracking `origin/feat/exporter-hardening`.
 - Commits on top of `4fc9d40` (the baseline the plan refers to), all pushed to `origin/feat/exporter-hardening`:
@@ -12,11 +12,20 @@ plan and is partly out of date.
   - `010aa61` Pin current report and validator behavior with characterization tests (task M1)
   - `67543e4` Add a session handoff and tick M1 in the task list
   - `3e4758f` Add CI for Node 22 and 24 on Ubuntu and Node 22 on Windows (task N2)
+  - `1254465` Tick N2 and bring the handoff up to date with CI and the pushed branch
+  - `34a2a48` Check own properties in the validator and the manifest ref resolver (task M2)
+  - `d453d5e` Add Material UI fixtures, their Storybook project and characterization tests (task C0b)
+  - `00ddc78` Add an opt-in supported-subset mode that omits optional unsupported properties (task C1)
+- **C2 passed Omar's final review on 2026-11-12 and is committed together with this entry**, as one commit on top of
+  `00ddc78`; see "C2" below. Its hash goes into the next update of this file. It is **not pushed**: Omar authorizes
+  the push separately, and C2 counts as complete only when all three CI jobs have passed on it.
 - **Nothing is merged into `main`.** `origin/main` is at `142dd7b`, `origin/docs/share-floorplan` at `4fc9d40`.
 - Tests at `3e4758f`: `npm test` gives 50 passed, 0 failed (47 in `test/exporter.test.mjs`, 3 in
-  `test/characterization.test.mjs`). With M2 it is 55, with the Material UI fixtures (C0b) 59, with C1 70.
+  `test/characterization.test.mjs`). With M2 it is 55, with the Material UI fixtures (C0b) 59, with C1 70, and
+  with C2 88.
 - CI: `.github/workflows/ci.yml` runs on every push. At `3e4758f` all three jobs passed (Node 22 and 24 on Ubuntu,
-  Node 22 on Windows; GitHub Actions run 42757388584).
+  Node 22 on Windows; GitHub Actions run 42757388584). At `00ddc78` Omar reported all three green with 70 tests
+  (run 43171165749).
 - Remote: `https://github.com/o0avdi/a2ui-storybook-exporter.git`.
 
 ## Objective
@@ -147,7 +156,8 @@ Numbers later tasks rely on, all read from these snapshots:
 - Button and Chip have no `onClick` in the manifest. `label`, `children`, `startIcon` and `Alert.action` are all
   `ReactNode`: the type cannot tell text from a slot for another component.
 
-**C0b, Material UI fixtures and characterization tests** (tests and fixtures only, nothing under `src/` or `bin/`):
+**C0b, Material UI fixtures and characterization tests** (`d453d5e`; tests and fixtures only, nothing under `src/`
+or `bin/`):
 
 - `test/fixtures/mui-harness/` is the Storybook project (pinned `package.json`, `package-lock.json`, three Storybook
   configurations, the pass-through files and the direct-import stories). A clean `npm ci` and all three builds were
@@ -161,7 +171,7 @@ Numbers later tasks rely on, all read from these snapshots:
   of the six components under the default policy; `mui-rdt-pass.report.omit-changes.json` the five that differ with
   `--unmapped-events omit`. `npm test` gives 59 passed, 0 failed. No existing golden file changed.
 
-**C1, opt-in supported-subset mode** (`--supported-subset`, library option `supportedSubset: true`):
+**C1, opt-in supported-subset mode** (`00ddc78`; `--supported-subset`, library option `supportedSubset: true`):
 
 - One rule, in `evaluate` (`src/contract.mjs`): a property whose only blocker is `UNSUPPORTED_PROP_TYPE` is recorded
   as omitted when the metadata says `required: false`. Required, unknown requiredness and the reserved names `id`
@@ -196,13 +206,64 @@ Decided by Omar at the C1 review (2026-11-11):
 - An optional `component` or `id` stays blocked in C1. Leaving them out needs a generic, reviewed rule, planned for C2.
 - `THIRD_PARTY_NOTICES.md`, the task documentation and the `mui-rd-pass` negative fixture are kept.
 
-## Next task: C2, mappings for text content and component references (design only; not approved)
+## C2, reviewed mappings for text content (final review passed; committed locally, not pushed)
 
-What still blocks the six Material UI components after C1 with `--unmapped-events omit`: 15 content properties,
-`component` six times, `id` twice (Switch, TextField) and the default of `TextField.variant`. The proposed design
-and its renderer obligations were reported to Omar on 2026-11-11. No part of C2 is implemented.
+Status on 2026-11-12: Omar approved the design, reviewed the first implementation independently, asked for four
+corrections (conservative explicit omission, the report notice, `docs/MAPPINGS.md` in the package, the `href`
+wording), reviewed those and approved the result for one local commit. **The commit is not pushed or merged.** The
+next steps are Omar's: authorize the push, then check the three CI jobs. Do not start C3 or any other
+implementation work before that.
 
-M3 (`MISSING_PROP_TYPE` replaces `Unsupported type ''`) and the tasks after it are not started and now follow the
+What it does (user documentation: `docs/MAPPINGS.md`, README section "Mappings"):
+
+- **Reserved names, a rule of supported-subset mode.** An optional source property named `id` or `component` is left
+  out and disclosed (`kind: "reserved-name"`), whatever its type. Required, unknown requiredness or a metadata error
+  on it still blocks. This changes C1 behavior in that mode only: eight Material UI properties go from blocked to
+  omitted in `test/golden/mui-rdt-pass.report.subset.json`.
+- **`--mappings <file>`** (library option `mappings`, a path or the parsed object), only with `--supported-subset`.
+  Format: `{ "version": 1, "components": { "<Component>": { "<property>": { "map": "text" | "omit", ... } } } }`.
+  - `text`: content the adapter marks `acceptsText` (React `ReactNode`, `React.ReactNode`, PropTypes `node`) becomes
+    a `DynamicString` property under its own name with the source requiredness. Disposition `mapped`.
+  - `omit`: an optional property is left out with a mandatory reason (at least 10 characters). It is refused for a
+    required property, for unknown requiredness, for a property whose metadata has an error (an invalid or
+    unverified default, for example), and for an event unless the run uses `--unmapped-events omit`.
+  - Every entry is checked against all contracts of the build before `--components` applies; anything that does not
+    fit stops the run with exit code 2. Lookups use own keys and Maps.
+- Files: `src/mappings.mjs` (new: `readMappings`, `checkMappings`), `src/contract.mjs` (`decideSourceProperties`,
+  `whyMappingCannotOmit`, `evaluate` returns the final `fields` and never changes the contract),
+  `src/adapters/react-v0.mjs` (`acceptsText`), `src/export.mjs` (`policy.mappings` with the SHA-256 and base name
+  of the file, the report notice), `bin/storybook-a2ui.mjs`. `src/a2ui/catalog.mjs`, `src/a2ui/validate.mjs` and
+  `spec/` are unchanged. `package.json` gained `docs/MAPPINGS.md` in `files`.
+- Fixture and goldens: `test/fixtures/mui.mappings.json` (hand-written, in PROVENANCE.md),
+  `test/golden/mui.catalog.json`, `test/golden/mui-rdt-pass.report.mapped.json`.
+
+Measured on `test/fixtures/mui-rdt-pass` with `--supported-subset --unmapped-events omit --mappings
+test/fixtures/mui.mappings.json`:
+
+- **3 of 6 exported: Typography, Button, Chip.** Alert (`action`, `icon`, `children`), Switch (`checkedIcon`,
+  `icon`) and TextField (`variant` default, `children`, `helperText`, `label`) stay blocked.
+- 156 source properties: 76 supported, 3 mapped, 68 omitted, 9 blocked. Without the mappings file: 0 of 6.
+- Default mode is byte-identical to `00ddc78` in 24 CLI runs (6 fixtures, `inspect` and `export`, both event
+  policies). Six of the seven older goldens are unchanged.
+- `npm test`: 88 passed, 0 failed on Node 22.23, 24.22 and 26.7 (local). CI has not run on C2 yet, so Windows is
+  unverified for it.
+
+Decided by Omar for C2 (2026-11-12):
+
+- Property names are kept (`children`, `label`); nothing is renamed.
+- `Child` and `ChildList` (a reference to another component) are deferred. So is every event or action mapping.
+- An explicit omission is conservative: it cannot hide a metadata error or get around `--unmapped-events fail`.
+- The exporter has no Material UI-specific logic; the mappings file is the only place a library is named.
+
+Known limits, all documented in `docs/MAPPINGS.md`:
+
+- The seven renderer obligations are derived from the catalog and the pinned schemas. They are not tested against a
+  renderer.
+- No component has an A2UI action. An exported Button reports nothing to the agent when pressed, but it navigates
+  when `href` is set; `href` and `className` are agent-provided strings a renderer must treat as untrusted.
+- `docs/HANDOFF.md` (the older handoff) sketches a different, event-oriented `--mappings` format. It is out of date.
+
+M3 (`MISSING_PROP_TYPE` replaces `Unsupported type ''`) and the tasks after it are not started and follow the
 C tasks. Their acceptance criteria are in `tasks/plan.md`.
 
 ## Known validator limitations (recorded with M2; behavior deliberately unchanged)

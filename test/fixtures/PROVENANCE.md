@@ -1,7 +1,8 @@
 # Fixture provenance
 
-Both fixtures are **unmodified or minimally normalized copies of real `storybook build` output**. Nothing here
-was written by hand to suit the exporter.
+The build fixtures are **unmodified or minimally normalized copies of real `storybook build` output**. No build
+output here was written by hand to suit the exporter. The one hand-written file is `mui.mappings.json`, which is
+exporter configuration and not Storybook output (see its section below).
 
 ## `chromatic-react/` (genuinely external)
 
@@ -120,3 +121,20 @@ A rebuild is **not byte-identical**, for two measured reasons:
 The committed manifests were compared with the first builds of these sources (2026-11-10/11, in a directory named
 `mui-c0`): apart from `durationMs`, the directory name and the absolute paths, the three files are identical.
 `normalize-paths.mjs` expects POSIX paths; it has not been run on Windows.
+
+## `mui.mappings.json` (hand-written configuration, not build output)
+
+A mappings file for `mui-rdt-pass/`, written for this repository on 2026-11-12 (format: `docs/MAPPINGS.md`). It is the
+only fixture written by hand. It changes no build output: the exporter reads it next to the build, with
+`--supported-subset --mappings`.
+
+| Entry | Verb | Backed by the manifest in `mui-rdt-pass/` |
+|---|---|---|
+| `Typography.children`, `Button.children`, `Chip.label` | `text` | type `ReactNode`, `required: false`, description "The content of the component." |
+| `Button.startIcon`, `Button.endIcon` | `omit` | type `ReactNode`, `required: false`; "Element placed before/after the children." |
+| `Button.loadingIndicator` | `omit` | type `ReactNode`, `required: false`; default `<CircularProgress color="inherit" size={16} />` |
+| `Chip.children` | `omit` | type `null`, `required: false`; "This prop isn't supported." |
+
+The exporter re-checks the type and the requiredness of every entry on each run. The reasons given for the four
+omissions are this repository's own wording. `../golden/mui.catalog.json` and `../golden/mui-rdt-pass.report.mapped.json`
+are what the exporter produced from the build and this file.

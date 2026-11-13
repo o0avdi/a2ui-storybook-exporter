@@ -6,12 +6,15 @@
 // then read the diff of test/golden/ and commit it together with the change that caused it. Never update unread.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import test from 'node:test';
 import { exportCatalog } from '../src/export.mjs';
-import { createCatalogValidator, validateCatalogStructuralRules, validateV1Export } from '../src/a2ui/validate.mjs';
+import { createCatalogValidator, createComponentInstanceValidator, validateCatalogStructuralRules, validateV1Export } from '../src/a2ui/validate.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const USWDS = path.join(here, 'fixtures/react-uswds');
@@ -19,6 +22,7 @@ const MUI = path.join(here, 'fixtures/mui-rdt-pass');
 const MUI_DIRECT = path.join(here, 'fixtures/mui-rdt-direct');
 const MUI_REACT_DOCGEN = path.join(here, 'fixtures/mui-rd-pass');
 const BASIC_CATALOG = path.join(here, '../spec/v1_0/basic_catalog.json');
+const CLI = path.join(here, '../bin/storybook-a2ui.mjs');
 const golden = (name) => path.join(here, 'golden', name);
 const names = (entries) => entries.map((entry) => entry.name);
 
@@ -136,32 +140,132 @@ test('Characterization Material UI: react-docgen over the pass-through files fin
 
 // ---- Supported-subset mode (opt-in) on the real fixtures. The tests above run without it and pin the default.
 
-test('Characterization Material UI, supported-subset mode: 42 optional unsupported properties are omitted and no component exports', () => {
+test('Characterization Material UI, supported-subset mode: 42 optional unsupported properties and 8 reserved names are omitted, and no component exports', () => {
   const actual = reportComponents('fail', MUI, true);
   assert.deepEqual(actual.map((entry) => entry.status), Array(6).fill('blocked'));
-  // 48 unsupported types without the mode. The 6 that remain are the "component" property of each component:
-  // optional, but a name A2UI reserves. Content, events, the reserved "id" and the one metadata error are untouched.
-  assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 6, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, UNMAPPED_EVENT: 8, A2UI_RESERVED_NAME: 2 });
-  assert.deepEqual(actual.flatMap((entry) => entry.blocking).filter((issue) => issue.code === 'UNSUPPORTED_PROP_TYPE').map((issue) => issue.subject), Array(6).fill('component'));
-  // 156 source properties, each once. "omitted" is the 42 plus the "style" attribute of each component.
-  assert.deepEqual(dispositions(actual), { supported: 76, omitted: 48, blocked: 32 });
+  // 48 unsupported types without the mode. 42 are left out for their type, and the other 6 are the optional "component"
+  // property of each component, left out for its name like the optional "id" of Switch and TextField (C2).
+  // Content, events and the one metadata error are untouched.
+  assert.deepEqual(blockingCodes(actual), { MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, UNMAPPED_EVENT: 8 });
+  const reserved = actual.flatMap((entry) => entry.omittedKnown.filter((item) => item.kind === 'reserved-name').map((item) => `${entry.name}.${item.name}`));
+  assert.deepEqual(reserved, ['Alert.component', 'Button.component', 'Chip.component', 'Switch.id', 'Switch.component', 'Typography.component', 'TextField.id', 'TextField.component']);
+  // 156 source properties, each once. "omitted" is the 42, the 8 and the "style" attribute of each component.
+  // Before C2 this was 76, 48 and 32: the 8 reserved names moved from blocked to omitted.
+  assert.deepEqual(dispositions(actual), { supported: 76, omitted: 56, blocked: 24 });
   assertSameEntries(actual, committed(golden('mui-rdt-pass.report.subset.json'), actual));
 });
 
-test('Characterization Material UI, supported-subset mode with --unmapped-events omit: content, reserved names and one default still block all six', () => {
+test('Characterization Material UI, supported-subset mode with --unmapped-events omit: content and one default still block all six', () => {
   const actual = reportComponents('omit', MUI, true);
   assert.deepEqual(actual.map((entry) => entry.status), Array(6).fill('blocked'));
-  assert.deepEqual(blockingCodes(actual), { UNSUPPORTED_PROP_TYPE: 6, MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15, A2UI_RESERVED_NAME: 2 });
-  assert.deepEqual(dispositions(actual), { supported: 76, omitted: 56, blocked: 24 });
+  assert.deepEqual(blockingCodes(actual), { MANIFEST_ENTRY_INVALID: 1, PROJECTED_CONTENT_UNMAPPED: 15 });
+  assert.deepEqual(dispositions(actual), { supported: 76, omitted: 64, blocked: 16 });
   // What still blocks each component, by property.
   assert.deepEqual(Object.fromEntries(actual.map((entry) => [entry.name, entry.sourceProperties.filter((item) => item.disposition === 'blocked').map((item) => item.name)])), {
-    Alert: ['action', 'icon', 'children', 'component'],
-    Button: ['children', 'endIcon', 'loadingIndicator', 'startIcon', 'component'],
-    Chip: ['children', 'label', 'component'],
-    Switch: ['checkedIcon', 'icon', 'id', 'component'],
-    Typography: ['children', 'component'],
-    TextField: ['variant', 'children', 'helperText', 'id', 'label', 'component'],
+    Alert: ['action', 'icon', 'children'],
+    Button: ['children', 'endIcon', 'loadingIndicator', 'startIcon'],
+    Chip: ['children', 'label'],
+    Switch: ['checkedIcon', 'icon'],
+    Typography: ['children'],
+    TextField: ['variant', 'children', 'helperText', 'label'],
   });
+});
+
+// ---- Mappings (C2) on the real Material UI build: test/fixtures/mui.mappings.json maps the text content of three
+// components and leaves five optional properties out, each with a reason. Nothing in src/ knows about Material UI.
+
+const MUI_MAPPINGS = path.join(here, 'fixtures/mui.mappings.json');
+const MUI_ID = 'https://example.org/catalogs/material-ui/1';
+const muiMapped = (extra = {}) => exportCatalog({ builds: [MUI], catalogId: MUI_ID, unmappedEvents: 'omit', supportedSubset: true, mappings: MUI_MAPPINGS, ...extra });
+
+test('Characterization Material UI with mappings: exactly Typography, Button and Chip export, and the catalog is the committed golden file', () => {
+  const { ok, report, catalog } = muiMapped();
+  assert.equal(ok, true);
+  const actual = JSON.parse(JSON.stringify(report.components));
+  assert.deepEqual(Object.fromEntries(actual.map((entry) => [entry.name, entry.status])),
+    { Alert: 'blocked', Button: 'exported', Chip: 'exported', Switch: 'blocked', Typography: 'exported', TextField: 'blocked' });
+  assert.deepEqual(Object.keys(catalog.components), ['Button', 'Chip', 'Typography']);
+  assert.equal(report.validation.valid, true);
+  assert.equal(validateV1Export(catalog).valid, true);
+  // The three that stay blocked need more than text: element content, and for TextField a default docgen repeats.
+  assert.deepEqual(Object.fromEntries(actual.filter((entry) => entry.status === 'blocked').map((entry) => [entry.name, entry.blocking.map((issue) => `${issue.code} ${issue.subject}`)])), {
+    Alert: ['PROJECTED_CONTENT_UNMAPPED action', 'PROJECTED_CONTENT_UNMAPPED icon', 'PROJECTED_CONTENT_UNMAPPED children'],
+    Switch: ['PROJECTED_CONTENT_UNMAPPED checkedIcon', 'PROJECTED_CONTENT_UNMAPPED icon'],
+    TextField: ['MANIFEST_ENTRY_INVALID variant', 'PROJECTED_CONTENT_UNMAPPED children', 'PROJECTED_CONTENT_UNMAPPED helperText', 'PROJECTED_CONTENT_UNMAPPED label'],
+  });
+  // Every one of the 156 source properties has exactly one of the four dispositions. Against the run without
+  // mappings (76, 64 omitted, 16 blocked): 3 blocked content properties are mapped and 4 are left out explicitly.
+  assert.deepEqual(dispositions(actual), { supported: 76, mapped: 3, omitted: 68, blocked: 9 });
+  assert.deepEqual(actual.flatMap((entry) => entry.sourceProperties.filter((item) => item.disposition === 'mapped').map((item) => `${entry.name}.${item.name} ${item.mapping} ${item.sourceType}`)),
+    ['Button.children text ReactNode', 'Chip.label text ReactNode', 'Typography.children text ReactNode']);
+  assert.deepEqual(actual.flatMap((entry) => entry.omittedKnown.filter((item) => item.kind === 'mapping').map((item) => `${entry.name}.${item.name}`)),
+    ['Button.endIcon', 'Button.loadingIndicator', 'Button.startIcon', 'Chip.children']);
+  for (const entry of actual) {
+    assert.equal(entry.sourceProperties.length, new Set(entry.sourceProperties.map((item) => item.name)).size, entry.name);
+    for (const item of entry.sourceProperties) assert.ok(['supported', 'mapped', 'omitted', 'blocked'].includes(item.disposition), `${entry.name}.${item.name}`);
+    if (entry.status !== 'exported') continue;
+    // The report and the catalog list the same properties: supported and mapped ones, nothing omitted.
+    const exported = entry.sourceProperties.filter((item) => ['supported', 'mapped'].includes(item.disposition)).map((item) => item.name);
+    assert.deepEqual(exported, entry.properties, entry.name);
+    assert.deepEqual(Object.keys(catalog.components[entry.name].properties).filter((name) => name !== 'component').sort(), [...exported].sort(), entry.name);
+  }
+  assert.deepEqual(report.policy, { unmappedEvents: 'omit', supportedSubset: true,
+    mappings: { version: 1, file: 'mui.mappings.json', sha256: createHash('sha256').update(fs.readFileSync(MUI_MAPPINGS)).digest('hex') } });
+  assertSameEntries(actual, committed(golden('mui-rdt-pass.report.mapped.json'), actual));
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(catalog)), committed(golden('mui.catalog.json'), catalog));
+});
+
+test('Characterization Material UI with mappings: the catalog accepts real component instances and rejects what it does not declare', () => {
+  const { catalog } = muiMapped();
+  const valid = createComponentInstanceValidator(catalog);
+  const accepts = (instance) => assert.equal(valid(instance).valid, true, JSON.stringify(instance));
+  const rejects = (instance) => assert.equal(valid(instance).valid, false, JSON.stringify(instance));
+  // Text content: a literal string or an A2UI v1.0 data binding, under the source property's own name.
+  accepts({ component: 'Typography', variant: 'h4', children: 'Quarterly report' });
+  accepts({ component: 'Typography', children: { '@path': '/report/title' }, noWrap: true });
+  accepts({ component: 'Typography' });                                             // children is optional in the source
+  accepts({ component: 'Button', variant: 'contained', color: 'primary', children: 'Save' });
+  accepts({ component: 'Button', children: { '@path': '/actions/primary/label' }, disabled: { '@path': '/form/invalid' } });
+  accepts({ component: 'Chip', label: 'Draft', color: 'warning', size: 'small' });
+  accepts({ component: 'Chip', label: { '@path': '/status' } });
+  // Not text.
+  rejects({ component: 'Typography', children: 5 });
+  rejects({ component: 'Typography', children: ['a', 'b'] });
+  rejects({ component: 'Typography', children: { path: '/report/title' } });        // not the v1.0 binding form
+  rejects({ component: 'Chip', label: { component: 'Typography', children: 'x' } }); // an inline component is not text
+  // Not declared: omitted properties, a value outside an enum, an unknown component.
+  rejects({ component: 'Typography', children: 'x', sx: { mt: 2 } });
+  rejects({ component: 'Typography', children: 'x', id: 'title' });                 // "id" is the envelope's, not a property
+  rejects({ component: 'Button', children: 'Save', startIcon: 'save' });
+  rejects({ component: 'Button', children: 'Save', onClick: 'submit' });
+  rejects({ component: 'Chip', label: 'Draft', children: 'Draft' });
+  rejects({ component: 'Chip', label: 'Draft', color: 'purple' });
+  rejects({ component: 'Typography', variant: 'h7', children: 'x' });
+  rejects({ component: 'Alert', children: 'x' });
+  rejects({ children: 'x' });
+});
+
+test('Characterization Material UI with mappings: the CLI writes the golden catalog, and one mappings file serves a smaller selection', (t) => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'mui-mapped-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const cli = (out, ...args) => spawnSync(process.execPath, [CLI, 'export', '--storybook', MUI, '--catalog-id', MUI_ID, '--unmapped-events', 'omit', '--supported-subset',
+    '--mappings', MUI_MAPPINGS, '--out', path.join(directory, out), ...args], { encoding: 'utf8' });
+  const all = cli('all');
+  assert.equal(all.status, 0, all.stderr);
+  assert.match(all.stdout, /OK +Typography \[react\] properties: align, children, gutterBottom, noWrap, variant, className/);
+  assert.match(all.stdout, /source properties: 5 supported, 1 mapped, 6 omitted, 0 blocked/);
+  assert.equal(fs.readFileSync(path.join(directory, 'all/catalog.json'), 'utf8'), fs.readFileSync(golden('mui.catalog.json'), 'utf8'));
+  const report = JSON.parse(fs.readFileSync(path.join(directory, 'all/export-report.json'), 'utf8'));
+  assert.equal(report.result, 'exported');
+  assert.ok(!JSON.stringify(report).includes(here), 'no absolute path in export-report.json');
+  // The same file with only Typography selected: the Button and Chip entries are checked and unused.
+  const one = cli('one', '--components', 'Typography');
+  assert.equal(one.status, 0, one.stderr);
+  assert.deepEqual(Object.keys(JSON.parse(fs.readFileSync(path.join(directory, 'one/catalog.json'), 'utf8')).components), ['Typography']);
+  // Selecting a component that is still blocked is all-or-nothing, as without mappings.
+  const blocked = cli('blocked', '--components', 'Typography,Alert');
+  assert.equal(blocked.status, 1, blocked.stderr);
+  assert.equal(fs.existsSync(path.join(directory, 'blocked')), false);
 });
 
 test('Characterization react-uswds, supported-subset mode: Card and SearchButton export as well; every unsupported property left is required', () => {

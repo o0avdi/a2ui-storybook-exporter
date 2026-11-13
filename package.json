@@ -7,7 +7,7 @@
   "private": true,
   "type": "module",
   "bin": { "storybook-a2ui": "bin/storybook-a2ui.mjs" },
-  "files": ["bin", "src", "spec", "LICENSE", "THIRD_PARTY_NOTICES.md"],
+  "files": ["bin", "src", "spec", "docs/MAPPINGS.md", "LICENSE", "THIRD_PARTY_NOTICES.md"],
   "engines": { "node": ">=22" },
   "scripts": { "test": "node --test test/*.test.mjs" },
   "dependencies": { "ajv": "8.20.0" }

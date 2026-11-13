@@ -6,9 +6,9 @@ import { exportCatalog } from '../src/export.mjs';
 
 const USAGE = `Usage:
   storybook-a2ui inspect --storybook <build-dir> [--storybook <build-dir> ...] [--unmapped-events fail|omit]
-                       [--supported-subset]
+                       [--supported-subset [--mappings <file>]]
   storybook-a2ui export  --storybook <build-dir> [...] --catalog-id <https-uri> --out <new-dir>
-                       [--components A,B] [--unmapped-events fail|omit] [--supported-subset]
+                       [--components A,B] [--unmapped-events fail|omit] [--supported-subset [--mappings <file>]]
                        [--title <t>] [--description <d>]
 
   <build-dir>        a "storybook build" output folder (index.json and manifests/components.json), Storybook >= 10.6.
@@ -19,11 +19,18 @@ const USAGE = `Usage:
                      omit: export its properties; each event is recorded as not exported in export-report.json
                      and in the component description. No mapping is ever invented.
   --supported-subset off by default. With it, a property whose type is not supported is left out of the
-                     component, not blocking it, but only when the metadata says required: false. A required
-                     property, or one whose requiredness is not stated, still blocks. Projected content, events,
-                     reserved names and metadata errors are never left out by this option. Each property left
+                     component, not blocking it, but only when the metadata says required: false. So is a
+                     property named "id" or "component", whatever its type: A2UI uses both names itself. A required
+                     property, or one whose requiredness is not stated, still blocks. Projected content, events
+                     and metadata errors are never left out by this option alone. Each property left
                      out is named in the component description, and export-report.json lists every source
                      property once (sourceProperties) with its type and what was decided for it.
+  --mappings <file>  only with --supported-subset. A reviewed JSON file (docs/MAPPINGS.md) that, per component and
+                     property, either exports content as text ({ "map": "text" }, only where the metadata types the
+                     content as accepting a string) or leaves an optional property out ({ "map": "omit", "reason":
+                     "..." }). Every entry is checked against the metadata; an entry that does not fit stops the run.
+                     An omission never hides a metadata error, and may name an event only with --unmapped-events omit.
+                     The file may also cover components of the build that --components does not select.
   Without --components every exportable component is exported and the rest are reported as blocked.
 
   -h, --help         show this help (also: storybook-a2ui <command> --help)
@@ -43,6 +50,7 @@ function parse(argv) {
     else if (flag === '--components') options.components = value(flag).split(',').map((s) => s.trim()).filter(Boolean);
     else if (flag === '--unmapped-events') options.unmappedEvents = value(flag);
     else if (flag === '--supported-subset') options.supportedSubset = true;
+    else if (flag === '--mappings') options.mappings = value(flag);
     else if (flag === '--title') options.title = value(flag);
     else if (flag === '--description') options.description = value(flag);
     else if (flag === '-h' || flag === '--help') continue;
@@ -58,7 +66,8 @@ function print(report) {
     console.log(`\n${c.status === 'exported' ? 'OK     ' : 'BLOCKED'} ${c.name} [${c.framework}]${c.properties.length ? ` properties: ${c.properties.join(', ')}` : ''}`);
     if (c.sourceProperties) {
       const count = (disposition) => c.sourceProperties.filter((item) => item.disposition === disposition).length;
-      console.log(`   source properties: ${count('supported')} supported, ${count('omitted')} omitted, ${count('blocked')} blocked`);
+      console.log(`   source properties: ${count('supported')} supported, ${report.policy.mappings ? `${count('mapped')} mapped, ` : ''}${count('omitted')} omitted, ${count('blocked')} blocked`);
+      for (const item of c.sourceProperties.filter((property) => property.disposition === 'mapped')) console.log(`   mapped to ${item.mapping}: ${item.name}`);
     }
     for (const item of c.omittedKnown) console.log(`   not exported (${item.kind}): ${item.name}`);
     for (const warning of c.warnings) console.log(`   WARNING ${warning.code}: ${warning.message}`);

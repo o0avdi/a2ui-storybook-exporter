@@ -103,8 +103,8 @@
         "name": "component",
         "sourceType": "ElementType<any, keyof IntrinsicElements>",
         "requiredness": "optional",
-        "disposition": "blocked",
-        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+        "disposition": "omitted",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       },
       {
         "name": "elevation",
@@ -161,6 +161,11 @@
         "reason": "sx: Unsupported type 'SxProps<Theme>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
       },
       {
+        "kind": "reserved-name",
+        "name": "component",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
+      },
+      {
         "kind": "property",
         "name": "slots",
         "reason": "slots: Unsupported type 'Partial<AlertSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
@@ -172,11 +177,6 @@
       }
     ],
     "blocking": [
-      {
-        "code": "UNSUPPORTED_PROP_TYPE",
-        "subject": "component",
-        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
-      },
       {
         "code": "PROJECTED_CONTENT_UNMAPPED",
         "subject": "action",
@@ -411,8 +411,8 @@
         "name": "component",
         "sourceType": "ElementType<any, keyof IntrinsicElements>",
         "requiredness": "optional",
-        "disposition": "blocked",
-        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+        "disposition": "omitted",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       }
     ],
     "contract": {
@@ -461,14 +461,14 @@
         "kind": "property",
         "name": "touchRippleRef",
         "reason": "touchRippleRef: Unsupported type 'Ref<TouchRippleActions>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "reserved-name",
+        "name": "component",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       }
     ],
     "blocking": [
-      {
-        "code": "UNSUPPORTED_PROP_TYPE",
-        "subject": "component",
-        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
-      },
       {
         "code": "PROJECTED_CONTENT_UNMAPPED",
         "subject": "children",
@@ -640,8 +640,8 @@
         "name": "component",
         "sourceType": "ElementType<any, keyof IntrinsicElements>",
         "requiredness": "optional",
-        "disposition": "blocked",
-        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+        "disposition": "omitted",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       }
     ],
     "contract": {
@@ -690,14 +690,14 @@
         "kind": "property",
         "name": "slotProps",
         "reason": "slotProps: Union type '{ root?: SlotProps<\"div\", ChipRootSlotPropsOverrides, ChipOwnerState>; label?: SlotProps<\"span\", ChipLabelSlotPropsOverrides, ChipOwnerState>; } | undefined' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "reserved-name",
+        "name": "component",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       }
     ],
     "blocking": [
-      {
-        "code": "UNSUPPORTED_PROP_TYPE",
-        "subject": "component",
-        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
-      },
       {
         "code": "PROJECTED_CONTENT_UNMAPPED",
         "subject": "children",
@@ -896,8 +896,8 @@
         "name": "id",
         "sourceType": "string",
         "requiredness": "optional",
-        "disposition": "blocked",
-        "reason": "A2UI_RESERVED_NAME: Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+        "disposition": "omitted",
+        "reason": "Property \"id\" is not exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"id\" of an instance to the source component as this property."
       },
       {
         "name": "onChange",
@@ -910,8 +910,8 @@
         "name": "component",
         "sourceType": "ElementType<any, keyof IntrinsicElements>",
         "requiredness": "optional",
-        "disposition": "blocked",
-        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+        "disposition": "omitted",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       },
       {
         "name": "checked",
@@ -1006,6 +1006,16 @@
         "reason": "type: Unsupported type 'HTMLInputTypeAttribute'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
       },
       {
+        "kind": "reserved-name",
+        "name": "id",
+        "reason": "Property \"id\" is not exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"id\" of an instance to the source component as this property."
+      },
+      {
+        "kind": "reserved-name",
+        "name": "component",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
+      },
+      {
         "kind": "property",
         "name": "edge",
         "reason": "edge: Union type 'false | \"start\" | \"end\"' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
@@ -1022,11 +1032,6 @@
       }
     ],
     "blocking": [
-      {
-        "code": "UNSUPPORTED_PROP_TYPE",
-        "subject": "component",
-        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
-      },
       {
         "code": "PROJECTED_CONTENT_UNMAPPED",
         "subject": "checkedIcon",
@@ -1046,11 +1051,6 @@
         "code": "UNMAPPED_EVENT",
         "subject": "onChange",
         "message": "onChange (((event: ChangeEvent<HTMLInputElement, Element>, checked: boolean) => void)) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
-      },
-      {
-        "code": "A2UI_RESERVED_NAME",
-        "subject": "id",
-        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
       }
     ],
     "warnings": []
@@ -1139,8 +1139,8 @@
         "name": "component",
         "sourceType": "ElementType<any, keyof IntrinsicElements>",
         "requiredness": "optional",
-        "disposition": "blocked",
-        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+        "disposition": "omitted",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       }
     ],
     "contract": {
@@ -1174,14 +1174,14 @@
         "kind": "property",
         "name": "variantMapping",
         "reason": "variantMapping: Union type 'Partial<Record<OverridableStringUnion<\"inherit\" | TypographyVariant, TypographyPropsVariantOverrides>, string>>' contains null or non-scalar types requiring explicit reviewed mapping. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
+      },
+      {
+        "kind": "reserved-name",
+        "name": "component",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       }
     ],
     "blocking": [
-      {
-        "code": "UNSUPPORTED_PROP_TYPE",
-        "subject": "component",
-        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
-      },
       {
         "code": "PROJECTED_CONTENT_UNMAPPED",
         "subject": "children",
@@ -1280,8 +1280,8 @@
         "name": "id",
         "sourceType": "string",
         "requiredness": "optional",
-        "disposition": "blocked",
-        "reason": "A2UI_RESERVED_NAME: Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
+        "disposition": "omitted",
+        "reason": "Property \"id\" is not exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"id\" of an instance to the source component as this property."
       },
       {
         "name": "inputRef",
@@ -1409,8 +1409,8 @@
         "name": "component",
         "sourceType": "ElementType<any, keyof IntrinsicElements>",
         "requiredness": "optional",
-        "disposition": "blocked",
-        "reason": "UNSUPPORTED_PROP_TYPE: component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
+        "disposition": "omitted",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
       },
       {
         "name": "focused",
@@ -1462,6 +1462,11 @@
         "reason": "defaultValue: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
       },
       {
+        "kind": "reserved-name",
+        "name": "id",
+        "reason": "Property \"id\" is not exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"id\" of an instance to the source component as this property."
+      },
+      {
         "kind": "property",
         "name": "inputRef",
         "reason": "inputRef: Unsupported type 'Ref<any>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
@@ -1482,6 +1487,11 @@
         "reason": "value: Unsupported type 'unknown'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
       },
       {
+        "kind": "reserved-name",
+        "name": "component",
+        "reason": "Property \"component\" is not exported: 'component' is the A2UI component discriminator, so A2UI v1.0 does not allow it as a component property. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component. A renderer must never pass the A2UI \"component\" of an instance to the source component as this property."
+      },
+      {
         "kind": "property",
         "name": "slots",
         "reason": "slots: Unsupported type 'Partial<TextFieldSlots>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. The source metadata marks it optional (required: false), so supported-subset mode leaves it out of the A2UI component."
@@ -1493,11 +1503,6 @@
       }
     ],
     "blocking": [
-      {
-        "code": "UNSUPPORTED_PROP_TYPE",
-        "subject": "component",
-        "message": "component: Unsupported type 'ElementType<any, keyof IntrinsicElements>'; A2UI v1 does not widen unrecognized types without explicit reviewed schema. Supported-subset mode does not omit it: \"component\" is a name A2UI reserves, and leaving out a reserved name needs its own reviewed rule."
-      },
       {
         "code": "MANIFEST_ENTRY_INVALID",
         "subject": "variant",
@@ -1532,11 +1537,6 @@
         "code": "UNMAPPED_EVENT",
         "subject": "onFocus",
         "message": "onFocus (FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>) is an event with no reviewed A2UI mapping. Use --unmapped-events omit to export the properties only, with this event recorded as not exported."
-      },
-      {
-        "code": "A2UI_RESERVED_NAME",
-        "subject": "id",
-        "message": "Property \"id\" cannot be exported: 'id' belongs to the A2UI wire envelope, so A2UI v1.0 does not allow it as a component property. This exporter does not rename or drop properties."
       }
     ],
     "warnings": []

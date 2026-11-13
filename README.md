@@ -122,7 +122,7 @@ for the guided walkthroughs.
 | Requiredness, descriptions | from docgen | from `type.required`, `argTypes.description` |
 | Defaults | from docgen | booleans, numbers, enum members; plain-string defaults refused (encoding unverified) |
 | Events / callbacks | **block** the component | **block** the component (outputs) |
-| `children` / `ReactNode` | **block** | n/a |
+| `children` / `ReactNode` | **block**; with `--supported-subset --mappings`, exported as text where a reviewed mapping says so | n/a |
 | Objects, arrays, functions, other types | **block**, with the type named; with `--supported-subset`, left out when `required: false` | **block** (the same option applies, but real output never says `required: false`) |
 
 Not supported yet: `string[]` and nullable primitives (both representable in A2UI v1.0), Vue, Web Components,
@@ -132,26 +132,33 @@ the properties and records each event as not exported in the report and the comp
 ## Supported-subset mode (opt-in)
 
 By default, one property the exporter cannot represent blocks its whole component. `--supported-subset` exports a
-deliberately narrower interface instead. It has one rule:
+deliberately narrower interface instead. It has two rules, and both apply only when the Storybook metadata says
+`required: false`:
 
-- A property with an unsupported type is **left out** when the Storybook metadata says `required: false`.
-- The same property **still blocks** when it is required, or when the metadata does not say whether it is
+- A property with an unsupported type is **left out**.
+- A property named `id` or `component` is **left out**, whatever its type. A2UI v1.0 uses both names itself
+  (`component` says which catalog component an instance is, `id` identifies the instance), so the source property
+  cannot be exported and the exporter does not rename. A renderer must never pass the A2UI `component` or `id` of an
+  instance to the React component as that property (`docs/MAPPINGS.md`).
+- Either property **still blocks** when it is required, or when the metadata does not say whether it is
   (a missing or non-boolean `required` is never read as optional). `@storybook/angular-vite` writes no `required`
   key for an optional input, so the mode leaves nothing out of an Angular component today.
-- It never leaves out projected content (`children`, `ReactNode`), events (those follow `--unmapped-events`), a
-  property named `id` or `component` (A2UI reserves both), an unsupported default or a metadata error. These block
-  as before.
+- On its own it never leaves out projected content (`children`, `ReactNode`), events (those follow
+  `--unmapped-events`), an unsupported default or a metadata error. These block as before. Content can be exported
+  as text, and an optional property left out for a stated reason, with a reviewed mappings file (next section); a
+  metadata error blocks even then.
 
 What the mode adds to the output:
 
 - Each property left out is named in the component's description in `catalog.json`
   ("Narrower interface than the source component: ... are not exported: sx, classes."), and in `omittedKnown` with
-  `kind: "property"` and the reason.
+  the reason and a `kind`: `property` for an unsupported type, `reserved-name` for `id` or `component`.
 - `export-report.json` gets `policy.supportedSubset: true` and, per component, `sourceProperties`: every property the
   metadata lists, exactly once, with `sourceType` (the original type text), `requiredness` (`required`, `optional`
   or `unknown`), one `disposition` and the `reason`. The dispositions are `supported` (the property can be
-  represented directly in A2UI), `omitted` (it is deliberately left out) and `blocked` (it prevents export);
-  `mapped` is reserved and not used yet. A disposition describes the property. `status: "exported"` describes the
+  represented directly in A2UI), `mapped` (a mappings file represents it as another A2UI type; only with
+  `--mappings`), `omitted` (it is deliberately left out) and `blocked` (it prevents export). A disposition describes
+  the property. `status: "exported"` describes the
   component: a supported property of a component whose `status` is `blocked` is not in the catalog.
 
 Without the option the output is unchanged, byte for byte. A property left out cannot be set through A2UI, so the
@@ -161,6 +168,40 @@ fixture the mode leaves out `sx` and `classes`, and also `value` of TextField an
 ```bash
 node bin/storybook-a2ui.mjs inspect --storybook test/fixtures/react-uswds --supported-subset   # 4 of 75 instead of 2
 ```
+
+## Mappings (opt-in, with supported-subset mode)
+
+`--mappings <file>` names a small reviewed JSON file that makes two kinds of choice the exporter will not make alone:
+
+```json
+{ "version": 1, "components": {
+  "Typography": { "children": { "map": "text" } },
+  "Chip": { "label": { "map": "text" },
+            "children": { "map": "omit", "reason": "The source types it as null; Chip takes its content through label." } } } }
+```
+
+- `"map": "text"` exports content as an A2UI text property (the official `DynamicString`) under its own name and with
+  the source requiredness. It is accepted only where the metadata types the content as accepting a string
+  (`ReactNode`).
+- `"map": "omit"` leaves out a property the metadata marks `required: false`, with a mandatory reason. It never hides
+  an error in the source metadata (an invalid or unverified default, for example), and it may name an event only
+  together with `--unmapped-events omit`.
+
+Every entry is checked against the metadata; an unknown component, property or verb, or an entry the metadata does
+not back, stops the run with exit code 2. The report records the file's SHA-256 (`policy.mappings`) and what each
+property became. The exporter contains no library-specific logic: the file is the only place a library is named.
+
+```bash
+node bin/storybook-a2ui.mjs export --storybook test/fixtures/mui-rdt-pass --supported-subset --unmapped-events omit \
+  --mappings test/fixtures/mui.mappings.json --catalog-id https://example.org/catalogs/material-ui/1 --out out
+# Material UI 9.5.0: Typography, Button and Chip export (3 of 6); without the mappings file, 0 of 6
+```
+
+**`docs/MAPPINGS.md`** has the full format, every check, and what a renderer must do to use the result (resolve
+bindings, pass only declared properties, never pass A2UI's `component` or `id` to the React component, treat mapped
+content as plain text). No component in the catalog has an A2UI action or callback, so pressing an exported Button
+sends nothing to the agent. It can still navigate: `href` is exported, and Material UI renders a Button with an
+`href` as a link. That URL comes from the agent, so a renderer must treat it as untrusted.
 
 ## What a successful export does and does not claim
 

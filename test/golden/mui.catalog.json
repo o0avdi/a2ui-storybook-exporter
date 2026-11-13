@@ -1,0 +1,293 @@
+{
+  "$defs": {
+    "anyComponent": {
+      "discriminator": {
+        "propertyName": "component"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/components/Button"
+        },
+        {
+          "$ref": "#/components/Chip"
+        },
+        {
+          "$ref": "#/components/Typography"
+        }
+      ]
+    },
+    "anyFunction": false
+  },
+  "$id": "https://example.org/catalogs/material-ui/1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "catalogId": "https://example.org/catalogs/material-ui/1",
+  "components": {
+    "Button": {
+      "additionalProperties": false,
+      "description": "Button component exported from React Storybook. Events not exported (no reviewed A2UI mapping): onFocusVisible. Inherited DOM attributes not exported: style. Narrower interface than the source component: these optional properties have types this exporter does not represent in A2UI and are not exported: classes, loading, sx, action, LinkComponent, TouchRippleProps, touchRippleRef. Optional source properties with a name A2UI reserves are not exported: component. The A2UI \"component\" and \"id\" of an instance are never passed to the source component as these properties. Left out by an explicit mapping: endIcon, loadingIndicator, startIcon. Text only, where the source accepts more (explicit mapping): children (source type ReactNode). Properties listed by Storybook metadata only; inherited HTML/DOM attributes and handlers are not part of this schema. Projected content is described only by the text properties named above; other content the source accepts is not part of this schema.",
+      "properties": {
+        "centerRipple": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the ripples are centered.\nThey won't start at the cursor interaction position."
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "description": "The content of the component. Text only. The source type is ReactNode; this catalog accepts a string."
+        },
+        "className": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "color": {
+          "default": "primary",
+          "description": "The color of the component.\nIt supports both default and custom theme colors, which can be added as shown in the\n[palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).",
+          "enum": [
+            "error",
+            "info",
+            "inherit",
+            "primary",
+            "secondary",
+            "success",
+            "warning"
+          ],
+          "type": "string"
+        },
+        "component": {
+          "const": "Button"
+        },
+        "disableElevation": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, no elevation is used."
+        },
+        "disableFocusRipple": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the  keyboard focus ripple is disabled."
+        },
+        "disableRipple": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the ripple effect is disabled.\n\n⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure\nto highlight the element by applying separate styles with the `.Mui-focusVisible` class."
+        },
+        "disableTouchRipple": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the touch ripple effect is disabled."
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the component is disabled."
+        },
+        "focusRipple": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the base button will have a keyboard focus ripple."
+        },
+        "focusVisibleClassName": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "description": "This prop can help identify which element has keyboard focus.\nThe class name will be applied when the element gains the focus through keyboard interaction.\nIt's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).\nThe rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).\nA [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components\nif needed."
+        },
+        "fullWidth": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the button will take up the full width of its container."
+        },
+        "href": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "description": "The URL to link to when the button is clicked.\nIf defined, an `a` element will be used as the root node."
+        },
+        "loadingPosition": {
+          "default": "center",
+          "description": "The loading indicator can be positioned on the start, end, or the center of the button.",
+          "enum": [
+            "center",
+            "end",
+            "start"
+          ],
+          "type": "string"
+        },
+        "nativeButton": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "description": "Whether the custom component is expected to render a native `<button>` element\nwhen passing a React component to the `component` or `slots` prop."
+        },
+        "size": {
+          "default": "medium",
+          "description": "The size of the component.\n`small` is equivalent to the dense button styling.",
+          "enum": [
+            "large",
+            "medium",
+            "small"
+          ],
+          "type": "string"
+        },
+        "tabIndex": {
+          "$ref": "common_types.json#/$defs/DynamicNumber",
+          "default": 0
+        },
+        "type": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "default": "button",
+          "description": "The HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type)\nattribute applied to `button` and `a` elements.\nIgnored when rendering non-native buttons."
+        },
+        "variant": {
+          "default": "text",
+          "description": "The variant to use.",
+          "enum": [
+            "contained",
+            "outlined",
+            "text"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "component"
+      ],
+      "type": "object"
+    },
+    "Chip": {
+      "additionalProperties": false,
+      "description": "Chip component exported from React Storybook. Events not exported (no reviewed A2UI mapping): onDelete. Inherited DOM attributes not exported: style. Narrower interface than the source component: these optional properties have types this exporter does not represent in A2UI and are not exported: avatar, classes, deleteIcon, icon, sx, slots, slotProps. Optional source properties with a name A2UI reserves are not exported: component. The A2UI \"component\" and \"id\" of an instance are never passed to the source component as these properties. Left out by an explicit mapping: children. Text only, where the source accepts more (explicit mapping): label (source type ReactNode). Properties listed by Storybook metadata only; inherited HTML/DOM attributes and handlers are not part of this schema. Projected content is described only by the text properties named above; other content the source accepts is not part of this schema.",
+      "properties": {
+        "className": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "clickable": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "description": "If `true`, the chip will appear clickable, and will raise when pressed,\neven if the onClick prop is not defined.\nIf `false`, the chip will not appear clickable, even if onClick prop is defined.\nThis can be used, for example,\nalong with the component prop to indicate an anchor Chip is clickable.\nNote: this controls the UI and does not affect the onClick event."
+        },
+        "color": {
+          "default": "default",
+          "description": "The color of the component.\nIt supports both default and custom theme colors, which can be added as shown in the\n[palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).",
+          "enum": [
+            "default",
+            "error",
+            "info",
+            "primary",
+            "secondary",
+            "success",
+            "warning"
+          ],
+          "type": "string"
+        },
+        "component": {
+          "const": "Chip"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the component is disabled."
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "description": "The content of the component. Text only. The source type is ReactNode; this catalog accepts a string."
+        },
+        "nativeButton": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "description": "If `true`, the component is expected to resolve to a native `<button>` element.\nWhen omitted, custom components inherit the default button semantics of the current wrapper.\nSet to `true` when a custom component resolves to a native `<button>`, or `false`\nwhen it resolves to a non-button host."
+        },
+        "size": {
+          "default": "medium",
+          "description": "The size of the component.",
+          "enum": [
+            "medium",
+            "small"
+          ],
+          "type": "string"
+        },
+        "skipFocusWhenDisabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, allows the disabled chip to escape focus.\nIf `false`, allows the disabled chip to receive focus."
+        },
+        "tabIndex": {
+          "$ref": "common_types.json#/$defs/DynamicNumber",
+          "description": "@ignore"
+        },
+        "variant": {
+          "default": "filled",
+          "description": "The variant to use.",
+          "enum": [
+            "filled",
+            "outlined"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "component"
+      ],
+      "type": "object"
+    },
+    "Typography": {
+      "additionalProperties": false,
+      "description": "Typography component exported from React Storybook. Inherited DOM attributes not exported: style. Narrower interface than the source component: these optional properties have types this exporter does not represent in A2UI and are not exported: classes, color, sx, variantMapping. Optional source properties with a name A2UI reserves are not exported: component. The A2UI \"component\" and \"id\" of an instance are never passed to the source component as these properties. Text only, where the source accepts more (explicit mapping): children (source type ReactNode). Properties listed by Storybook metadata only; inherited HTML/DOM attributes and handlers are not part of this schema. Projected content is described only by the text properties named above; other content the source accepts is not part of this schema.",
+      "properties": {
+        "align": {
+          "default": "inherit",
+          "description": "Set the text-align on the component.",
+          "enum": [
+            "center",
+            "inherit",
+            "justify",
+            "left",
+            "right"
+          ],
+          "type": "string"
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "description": "The content of the component. Text only. The source type is ReactNode; this catalog accepts a string."
+        },
+        "className": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "component": {
+          "const": "Typography"
+        },
+        "gutterBottom": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the text will have a bottom margin."
+        },
+        "noWrap": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean",
+          "default": false,
+          "description": "If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.\n\nNote that text overflow can only happen with block or inline-block level elements\n(the element needs to have a width in order to overflow)."
+        },
+        "variant": {
+          "default": "body1",
+          "description": "Applies the theme typography styles.",
+          "enum": [
+            "body1",
+            "body2",
+            "button",
+            "caption",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "inherit",
+            "overline",
+            "subtitle1",
+            "subtitle2"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "component"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Standardized components exported from React Storybook.",
+  "functions": {},
+  "instructions": "Use only the components and properties declared in this catalog. Properties, types, defaults and requiredness come from Storybook component metadata, not from story args. Events and projected content without a reviewed A2UI mapping are not part of a component schema; where a component description lists them as not exported, the developer owns that behavior. Bindings use the A2UI v1.0 @path form. This export contains catalog JSON only.",
+  "protocolVersion": "1.0",
+  "title": "React A2UI Catalog"
+}

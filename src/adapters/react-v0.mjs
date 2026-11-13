@@ -7,6 +7,10 @@ import { BLOCKING, blocker } from '../contract.mjs';
 
 export const REACT_V0 = 'react-v0';
 
+// Content types that accept a plain string: a ReactNode may be one, a ReactElement or a render function may not.
+// "node" is the PropTypes name. A reviewed mapping may turn such content into an A2UI text property; nothing else may.
+const TEXT_CONTENT_TYPES = new Set(['ReactNode', 'React.ReactNode', 'node']);
+
 export function detectReactV0(manifest) {
   return manifest.v === 0 && Object.values(manifest.components).some((entry) => entry && (entry.reactDocgen || entry.reactDocgenTypescript));
 }
@@ -44,7 +48,8 @@ export function readReactV0({ manifest }) {
       storyIds: component.storyIds,
       fields: component.fields,
       events: component.callbacks.map((callback) => ({ name: callback.name, payload: callback.typeText, description: callback.description })),
-      content: Object.entries(component.content).map(([name, value]) => ({ name, typeText: value.typeText })),
+      content: Object.entries(component.content).map(([name, value]) => ({ name, typeText: value.typeText,
+        acceptsText: TEXT_CONTENT_TYPES.has(value.typeText), description: value.description })),
       omitted,
       blocking,
       source: [...source.values()],

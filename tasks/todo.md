@@ -9,9 +9,9 @@ Real third-party React libraries come before the diagnostics tasks below, with M
 The exporter gets no Material UI-specific logic. Record: `tasks/HANDOFF.md`.
 
 - [x] **C0** Experiment outside the repository: what the unmodified exporter does with six Material UI components (0 of 6 exported)
-- [x] **C0b** Material UI fixtures, reproducible Storybook project, provenance and characterization tests (tests and fixtures only)
-- [x] **C1** Opt-in supported-subset mode (`--supported-subset`): optional unsupported properties omitted and disclosed; every source property accounted for
-- [ ] **C2** Reviewed mappings for text content and component child references (design proposed 2026-11-11; not approved for implementation)
+- [x] **C0b** Material UI fixtures, reproducible Storybook project, provenance and characterization tests (tests and fixtures only) (`d453d5e`)
+- [x] **C1** Opt-in supported-subset mode (`--supported-subset`): optional unsupported properties omitted and disclosed; every source property accounted for (`00ddc78`)
+- [ ] **C2** Reviewed mappings (`--mappings`): text content and explicit omission, optional `id`/`component` left out; Typography, Button and Chip export (3 of 6). Passed Omar's final review and committed locally 2026-11-12. **Open: push (needs Omar's go-ahead) and the three CI jobs; tick this when they are green.** Component child references (`Child`, `ChildList`) are deferred and not part of C2.
 
 ## Implementation (Omar with Claude)
 

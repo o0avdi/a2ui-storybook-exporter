@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "components": {
+    "Typography": {
+      "children": { "map": "text" }
+    },
+    "Button": {
+      "children": { "map": "text" },
+      "startIcon": { "map": "omit", "reason": "An element placed before the content. This catalog has no icon component to put there." },
+      "endIcon": { "map": "omit", "reason": "An element placed after the content. This catalog has no icon component to put there." },
+      "loadingIndicator": { "map": "omit", "reason": "An element shown while loading. This catalog has no progress component; Button then renders its own default indicator." }
+    },
+    "Chip": {
+      "label": { "map": "text" },
+      "children": { "map": "omit", "reason": "The source types it as null and documents it as not supported. Chip takes its content through label." }
+    }
+  }
+}
